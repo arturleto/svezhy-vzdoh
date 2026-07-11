@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Свежий Вздох — Брось курить без ломки, вместе</title>
-<meta name="description" content="Закрытый клуб для тех кто хочет бросить курить. Без ломки. Без подсчёта дней. Вместе. 990₽ в месяц.">
+<meta name="description" content="Закрытый клуб для тех, кто хочет бросить курить. Без ломки. Без подсчёта дней. Вместе.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -99,12 +99,6 @@ nav{
 
 .hero-inner{position:relative;z-index:1;max-width:640px;}
 
-.hero-eyebrow{
-  display:inline-block;
-  font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--green-pale);margin-bottom:1.5rem;
-}
-
 .hero h1{
   font-size:clamp(2.6rem,7vw,4.2rem);
   font-weight:800;color:#fff;line-height:1.1;
@@ -128,15 +122,6 @@ nav{
   display:flex;align-items:center;justify-content:center;
   position:relative;border:1px solid rgba(168,230,197,.15);
 }
-.video-placeholder{text-align:center;color:rgba(255,255,255,.5);}
-.play-btn{
-  width:64px;height:64px;
-  background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 12px;
-}
-.play-btn svg{margin-left:4px}
-.video-placeholder p{font-size:.85rem}
 
 /* CONTAINER */
 .container{max-width:680px;margin:0 auto;padding:0 24px}
@@ -252,15 +237,36 @@ h2{
 .inside-list .text span{font-size:.85rem;color:var(--muted)}
 
 /* GUARANTEE */
-.guarantee{
-  background:var(--white);border:1px solid var(--green-border);
-  border-radius:14px;padding:1.4rem 1.75rem;margin-top:1.5rem;
-  display:flex;gap:1rem;align-items:flex-start;
-  box-shadow:var(--card-shadow);
+.guarantee-block{
+  background:linear-gradient(135deg,var(--step-bg) 0%,var(--green-bg) 100%);
+  border:1.5px solid var(--green-border);
+  border-left:4px solid var(--green-soft);
+  border-radius:16px;
+  padding:1.75rem 2rem;
+  margin-top:2rem;
+  display:flex;
+  gap:1.5rem;
+  align-items:center;
 }
-.g-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem}
-.g-text h4{font-size:.92rem;font-weight:700;margin-bottom:.25rem}
-.g-text p{font-size:.85rem;color:var(--muted)}
+.guarantee-shield{
+  width:58px;height:58px;
+  background:var(--green-deep);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  color:#fff;
+}
+.guarantee-shield svg{width:30px;height:30px}
+.guarantee-meta{flex:1}
+.guarantee-tag{
+  font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--green-soft);display:block;margin-bottom:.2rem;
+}
+.guarantee-title{
+  font-size:1.05rem;font-weight:800;color:var(--green-deep);margin-bottom:.35rem;
+  line-height:1.2;
+}
+.guarantee-desc{font-size:.88rem;color:var(--muted);line-height:1.6;margin:0}
 
 /* TICKET */
 .ticket{
@@ -313,6 +319,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
   .stat-row{grid-template-columns:1fr 1fr}
   .btn-main{padding:1rem 2rem;font-size:1rem}
   nav{padding:0 16px}
+  .guarantee-block{flex-direction:column;align-items:flex-start;gap:1rem}
 }
 </style>
 </head>
@@ -331,9 +338,8 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
   <div class="breath-ring"></div>
 
   <div class="hero-inner">
-    <span class="hero-eyebrow">Закрытый клуб · 990 ₽/мес</span>
     <h1>Брось курить.<br>Без ломки.<br>Вместе.</h1>
-    <p class="hero-sub">Метод который работает — потому что ты не один и знаешь как это устроено</p>
+    <p class="hero-sub">Метод, который работает, — потому что ты не один и знаешь, как это устроено</p>
 
     <div class="video-wrap">
       <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KL7IzVKX-5w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%"></iframe>
@@ -347,8 +353,8 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
     <span class="sec-label">Личная история</span>
     <h2>Я курил 24 года.<br>Бросал 20 с лишним раз.</h2>
     <blockquote>
-      А потом понял как это работает — и вышел без ломки, без страданий, просто вышел.
-      Не через силу воли. Через понимание. И теперь собрал всё что нужно чтобы ты смог сделать то же самое.
+      А потом понял, как это работает, — и вышел без ломки, без страданий, просто вышел.
+      Не через силу воли. Через понимание. И теперь собрал всё, что нужно, чтобы ты смог сделать то же самое.
     </blockquote>
   </div>
 </section>
@@ -359,7 +365,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
 <section>
   <div class="container">
     <span class="sec-label">Бесплатный метод</span>
-    <h2>Вот всё что нужно сделать</h2>
+    <h2>Вот всё, что нужно сделать</h2>
     <p class="lead">Это реальный метод — не тизер. Можешь пройти сам. В клубе — всё то же самое, только с видео, аудио, ботом и живыми людьми рядом.</p>
 
     <div class="steps-wrap">
@@ -376,7 +382,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         <div class="step-num">02</div>
         <div>
           <h3>Понять биологию</h3>
-          <p>Ты должен понять что происходит в твоём теле когда ты куришь. Как молекула никотина попадает в кровь. Что она делает с рецепторами. Почему ты думаешь что хочешь курить — хотя на самом деле просто снимаешь ломку которую сам себе создал.<br><br>Когда понимаешь механизм — он перестаёт работать против тебя. В клубе есть видеокурс от доктора — простым языком, понятно любому.</p>
+          <p>Ты должен понять, что происходит в твоём теле, когда ты куришь. Как молекула никотина попадает в кровь. Что она делает с рецепторами. Почему ты думаешь, что хочешь курить, — хотя на самом деле просто снимаешь ломку, которую сам себе создал.<br><br>Когда понимаешь механизм — он перестаёт работать против тебя. В клубе есть видеокурс от доктора — простым языком, понятно любому.</p>
         </div>
       </div>
 
@@ -384,7 +390,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         <div class="step-num">03</div>
         <div>
           <h3>Понять психологию</h3>
-          <p>Есть книга которая изменила жизнь 13 миллионам курильщиков. Аллен Карр. «Лёгкий способ бросить курить».<br><br>Её можно слушать в дороге, на прогулке, в транспорте. Аудиоверсия есть в клубе. После неё ты понимаешь психологию ловушки. И ловушка перестаёт работать.</p>
+          <p>Есть книга, которая изменила жизнь 13 миллионам курильщиков. Аллен Карр. «Лёгкий способ бросить курить».<br><br>Её можно слушать в дороге, на прогулке, в транспорте. Аудиоверсия есть в клубе. После неё ты понимаешь психологию ловушки. И ловушка перестаёт работать.</p>
         </div>
       </div>
 
@@ -400,7 +406,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
 
     <div class="fallback">
       <h3>Если не получилось — это нормально</h3>
-      <p>Продолжай курить. Без паники, без вины. Значит ты ещё не до конца понял биологию или психологию. Возможно не хватает мотивации — это всё можно доработать.<br><br>Пройди ещё раз всё заново. Найди ещё один день. Сделай медитацию снова. Дай себе 10 попыток — каждая сигарета отнимает 11 минут жизни, ты заслуживаешь минимум 10 попыток чтобы выйти.</p>
+      <p>Продолжай курить. Без паники, без вины. Значит, ты ещё не до конца понял биологию или психологию. Возможно, не хватает мотивации — это всё можно доработать.<br><br>Пройди ещё раз всё заново. Найди ещё один день. Сделай медитацию снова. Дай себе 10 попыток — каждая сигарета отнимает 11 минут жизни, ты заслуживаешь минимум 10 попыток, чтобы выйти.</p>
     </div>
   </div>
 </section>
@@ -417,7 +423,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
     <div class="stat-row">
       <div class="stat-box">
         <span class="stat-num">15 сек</span>
-        <div class="stat-lbl">кружочек в чат каждый день — это всё что нужно</div>
+        <div class="stat-lbl">кружочек в чат каждый день — это всё, что нужно</div>
       </div>
       <div class="stat-box">
         <span class="stat-num">5</span>
@@ -427,17 +433,17 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
 
     <div class="mechanic-card">
       <h3>Как это работает</h3>
-      <p>Каждый день — 15-секундный кружочек в общий чат. Просто говоришь на какой стадии ты сейчас. <strong>Изучаю. Готовлюсь. Уже не курю день пять.</strong> Всё.<br><br>Зайдёшь записать кружочек — увидишь других — посмотришь одно видео. Вот так оно и работает. Без насилия над собой. Каждый день на шаг ближе к цели.</p>
+      <p>Каждый день — 15-секундный кружочек в общий чат. Просто говоришь, на какой стадии ты сейчас. <strong>Изучаю. Готовлюсь. Уже не курю — день пять.</strong> Всё.<br><br>Зайдёшь записать кружочек — увидишь других — посмотришь одно видео. Вот так оно и работает. Без насилия над собой. Каждый день на шаг ближе к цели.</p>
     </div>
 
     <div class="mechanic-card">
       <h3>Цена слова и штрафы</h3>
-      <p>Каждый участник в начале ставит себе <strong>цену слова</strong> — сумму штрафа за пропуск дня. Минимум 200 рублей. Можно 1000, можно 5000 — это твоё дело.<br><br>Если до полуночи ты не выложил кружочек — любой участник который это заметил пишет в чат: <strong>«поймал, жду штраф»</strong>. И ты платишь ему свою цену слова. Не заплатил — вылетаешь из клуба.<br><br>Это работает в обе стороны. Ты тоже можешь следить за другими. Поймал кого-то на пропуске — деньги твои.</p>
+      <p>Каждый участник в начале ставит себе <strong>цену слова</strong> — сумму штрафа за пропуск дня. Минимум 200 рублей. Можно 1000, можно 5000 — это твоё дело.<br><br>Если до полуночи ты не выложил кружочек — любой участник, который это заметил, пишет в чат: <strong>«поймал, жду штраф»</strong>. И ты платишь ему свою цену слова. Не заплатил — вылетаешь из клуба.<br><br>Это работает в обе стороны. Ты тоже можешь следить за другими. Поймал кого-то на пропуске — деньги твои.</p>
     </div>
 
     <div class="mechanic-card" style="border-left:3px solid var(--green-soft)">
       <h3>Результат</h3>
-      <p>Каждый день ты возвращаешься. Не потому что обязан. А потому что <strong>либо пишешь кружочек — либо платишь</strong>. И платить не хочется.<br><br>Это и есть условия в которых не бросают бросать.</p>
+      <p>Каждый день ты возвращаешься. Не потому что обязан. А потому что <strong>либо пишешь кружочек — либо платишь</strong>. И платить не хочется.<br><br>Это и есть условия, в которых не бросают бросать.</p>
     </div>
   </div>
 </section>
@@ -476,27 +482,27 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         <div class="icon">👥</div>
         <div class="text">
           <strong>Живое сообщество</strong>
-          <span>Каждый день кружочки от участников — ты видишь живых людей которые делают то же самое</span>
+          <span>Каждый день кружочки от участников — ты видишь живых людей, которые делают то же самое</span>
         </div>
       </li>
       <li>
         <div class="icon">🎯</div>
         <div class="text">
           <strong>Механика ежедневного присутствия</strong>
-          <span>Система которая не даёт потерять нить — один раз вступил и оказался в условиях где невозможно забыть</span>
+          <span>Система, которая не даёт потерять нить, — один раз вступил и оказался в условиях, где невозможно забыть</span>
         </div>
       </li>
       <li>
         <div class="icon">🌿</div>
         <div class="text">
           <strong>Личное присутствие Артура</strong>
-          <span>Человек который прошёл через это сам — 24 года курения, 20+ попыток, вышел без ломки</span>
+          <span>Человек, который прошёл через это сам, — 24 года курения, 20+ попыток, вышел без ломки</span>
         </div>
       </li>
     </ul>
 
     <p style="margin-top:1.75rem;font-size:.95rem;color:var(--muted);font-style:italic;text-align:center">
-      Если не бросишь здесь — честно, я не знаю что тебе ещё поможет.<br>
+      Если не бросишь здесь — честно, я не знаю, что тебе ещё поможет.<br>
       Потому что здесь собрано всё: метод, информация, люди и условия.
     </p>
   </div>
@@ -511,8 +517,8 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
     <h2>Купи билет.</h2>
 
     <div class="ticket">
-      <p>Знаешь как говорят — если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.<br><br>
-      Вот это и есть твой билет. Билет в жизнь где ты не куришь. Где каждый твой вздох свежий. Где ты гордишься собой. Где твои близкие гордятся тобой.<br><br>
+      <p>Знаешь, как говорят: если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.<br><br>
+      Вот это и есть твой билет. Билет в жизнь, где ты не куришь. Где каждый твой вздох свежий. Где ты гордишься собой. Где твои близкие гордятся тобой.<br><br>
       <strong>После него тебе просто остаётся делать:</strong> изучать, записывать кружочек, выбрать день, бросить.</p>
     </div>
 
@@ -523,11 +529,18 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       Вступить в Свежий Вздох →
     </a>
 
-    <div class="guarantee">
-      <div class="g-icon">🛡</div>
-      <div class="g-text">
-        <h4>Гарантия 3 дня</h4>
-        <p>Если зайдёшь и поймёшь что не твоё — напиши мне, верну 80% без вопросов. 20% уходит на комиссии сторонних сервисов.</p>
+    <div class="guarantee-block">
+      <div class="guarantee-shield">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 5L9 11v13c0 9.5 6.5 18.4 15 20.9C33.5 42.4 39 33.5 39 24V11L24 5z" fill="currentColor" opacity="0.2"/>
+          <path d="M24 5L9 11v13c0 9.5 6.5 18.4 15 20.9C33.5 42.4 39 33.5 39 24V11L24 5z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          <path d="M17 24.5l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="guarantee-meta">
+        <span class="guarantee-tag">Гарантия 3 дня</span>
+        <div class="guarantee-title">Ты ничего не теряешь</div>
+        <p class="guarantee-desc">Если зайдёшь и поймёшь, что не твоё, — напиши мне, верну 80% без вопросов. 20% уходит на комиссии сторонних сервисов.</p>
       </div>
     </div>
 
@@ -541,7 +554,6 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
 </footer>
 
 <script>
-// Theme toggle based on system preference (nav button optional)
 const mq = window.matchMedia('(prefers-color-scheme: dark)');
 document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
 mq.addEventListener('change', e => document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'));
