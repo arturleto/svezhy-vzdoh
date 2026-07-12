@@ -4,48 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Свежий Вздох — Бросаем курить без ломки, вместе</title>
-<meta name="description" content="Бросаем курить без ломки. Биология + психология + среда в которой невозможно не бросить.">
+<meta name="description" content="Бросаем курить без ломки. Программа в среде с практиками.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --green-deep:#1A5C3E;
-  --green-mid:#2A7A55;
-  --green-soft:#5BAF85;
-  --green-pale:#A8E6C5;
-  --green-bg:#F5FBF7;
-  --green-border:#DCF0E5;
-  --white:#FFFFFF;
-  --text:#0D1F15;
-  --muted:#5A7568;
-  --step-bg:#EAF7F0;
-  --card-shadow:0 2px 16px rgba(26,92,62,.08);
+  --green-deep:#1A5C3E;--green-mid:#2A7A55;--green-soft:#5BAF85;
+  --green-pale:#A8E6C5;--green-bg:#F5FBF7;--green-border:#DCF0E5;
+  --white:#FFFFFF;--text:#0D1F15;--muted:#5A7568;
 }
 @media(prefers-color-scheme:dark){:root{
-  --green-bg:#0A1A12;--white:#0F2418;--text:#E8F5EE;--muted:#7BA892;
-  --green-border:#1C3D29;--step-bg:#0D2A1C;--card-shadow:0 2px 16px rgba(0,0,0,.4);
+  --green-bg:#0A1A12;--white:#0F2418;--text:#E8F5EE;--muted:#7BA892;--green-border:#1C3D29;
 }}
-:root[data-theme="light"]{
-  --green-bg:#F5FBF7;--white:#FFFFFF;--text:#0D1F15;--muted:#5A7568;
-  --green-border:#DCF0E5;--step-bg:#EAF7F0;--card-shadow:0 2px 16px rgba(26,92,62,.08);
-}
-:root[data-theme="dark"]{
-  --green-bg:#0A1A12;--white:#0F2418;--text:#E8F5EE;--muted:#7BA892;
-  --green-border:#1C3D29;--step-bg:#0D2A1C;--card-shadow:0 2px 16px rgba(0,0,0,.4);
-}
+:root[data-theme="light"]{--green-bg:#F5FBF7;--white:#FFFFFF;--text:#0D1F15;--muted:#5A7568;--green-border:#DCF0E5;}
+:root[data-theme="dark"]{--green-bg:#0A1A12;--white:#0F2418;--text:#E8F5EE;--muted:#7BA892;--green-border:#1C3D29;}
 
 html{scroll-behavior:smooth}
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
-  background:var(--green-bg);color:var(--text);line-height:1.7;font-size:17px;
+  background:#0D3826;color:var(--text);line-height:1.7;font-size:17px;
+  min-height:100svh;display:flex;flex-direction:column;
 }
 
-/* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   padding:0 24px;height:56px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(26,92,62,.97);backdrop-filter:blur(8px);
+  background:rgba(13,56,38,.95);backdrop-filter:blur(8px);
 }
 .nav-brand{font-size:1rem;font-weight:700;color:#fff;letter-spacing:.04em;text-decoration:none;}
 .nav-cta{
@@ -55,12 +39,11 @@ nav{
 }
 .nav-cta:hover{background:rgba(255,255,255,.28)}
 
-/* HERO */
 .hero{
-  min-height:100svh;
+  flex:1;
   background:linear-gradient(160deg,#0D3826 0%,#1A5C3E 55%,#1F6B47 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:72px 20px 48px;
+  text-align:center;padding:80px 20px 56px;
   position:relative;overflow:hidden;
 }
 .breath-ring{
@@ -72,211 +55,59 @@ nav{
 .breath-ring:nth-child(2){width:540px;height:540px;animation-delay:.6s}
 .breath-ring:nth-child(3){width:800px;height:800px;animation-delay:1.2s}
 .breath-ring:nth-child(4){width:1100px;height:1100px;animation-delay:1.8s}
-@keyframes breathe{
-  0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.04);opacity:.15}
-}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.04);opacity:.15}}
 @media(prefers-reduced-motion:reduce){.breath-ring{animation:none}}
 
-.hero-inner{position:relative;z-index:1;width:100%;max-width:920px;}
+.hero-inner{position:relative;z-index:1;width:100%;max-width:940px;}
 
-.video-label{
-  font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--green-pale);opacity:.7;margin-bottom:.9rem;display:block;
+.video-eyebrow{
+  font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(168,230,197,.6);margin-bottom:.9rem;display:block;
 }
 .hero h1{
-  font-size:clamp(2rem,5.5vw,3.4rem);
-  font-weight:800;color:#fff;line-height:1.1;
-  text-wrap:balance;margin-bottom:.75rem;letter-spacing:-.02em;
+  font-size:clamp(2rem,5.5vw,3.4rem);font-weight:800;color:#fff;
+  line-height:1.1;text-wrap:balance;margin-bottom:.5rem;letter-spacing:-.02em;
 }
-.hero-sub{
-  font-size:clamp(.92rem,2vw,1.05rem);
-  color:rgba(255,255,255,.65);margin-bottom:1.8rem;
-  max-width:520px;margin-left:auto;margin-right:auto;
+.hero-tagline{
+  font-size:clamp(.85rem,1.8vw,.98rem);
+  color:rgba(255,255,255,.45);margin-bottom:1.6rem;
+  font-weight:400;letter-spacing:.01em;
 }
 
-/* VIDEO — large */
 .video-wrap{
-  width:100%;
-  border-radius:14px;overflow:hidden;
-  box-shadow:0 24px 64px rgba(0,0,0,.5);
-  background:#081E11;
-  aspect-ratio:16/9;
-  position:relative;
-  border:1px solid rgba(168,230,197,.12);
+  width:100%;border-radius:14px;overflow:hidden;
+  box-shadow:0 28px 72px rgba(0,0,0,.55);
+  background:#081E11;aspect-ratio:16/9;position:relative;
+  border:1px solid rgba(168,230,197,.1);
 }
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
 
-/* scroll CTA below video */
 .btn-scroll{
-  display:inline-block;margin-top:1.5rem;
-  font-size:.88rem;font-weight:600;color:rgba(255,255,255,.6);
-  border:1px solid rgba(255,255,255,.2);border-radius:20px;
-  padding:.45rem 1.2rem;text-decoration:none;
+  display:inline-block;margin-top:1.6rem;
+  font-size:.9rem;font-weight:600;color:rgba(255,255,255,.55);
+  border:1px solid rgba(255,255,255,.18);border-radius:24px;
+  padding:.5rem 1.4rem;text-decoration:none;
   transition:color .2s, border-color .2s, background .2s;
   letter-spacing:.02em;
 }
-.btn-scroll:hover{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08)}
+.btn-scroll:hover{color:#fff;border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.08)}
 
-/* CONTAINER */
-.container{max-width:680px;margin:0 auto;padding:0 24px}
-
-/* SECTIONS */
-section{padding:72px 0}
-section+section{padding-top:0}
-
-.sec-label{
-  font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--green-soft);margin-bottom:.75rem;display:block;
-}
-h2{
-  font-size:clamp(1.6rem,4vw,2.1rem);font-weight:800;
-  line-height:1.2;text-wrap:balance;margin-bottom:1.2rem;letter-spacing:-.02em;
-}
-.lead{font-size:1.05rem;color:var(--muted);line-height:1.75;margin-bottom:2rem;}
-
-/* PERSONAL */
-.personal{background:var(--white);padding:56px 0}
-.personal blockquote{
-  border-left:3px solid var(--green-soft);padding-left:1.5rem;
-  font-size:1.05rem;color:var(--text);line-height:1.75;font-style:italic;
-}
-
-/* STEPS */
-.steps-wrap{display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem}
-.step{
-  background:var(--white);border:1px solid var(--green-border);
-  border-radius:14px;padding:1.5rem 1.75rem;
-  display:grid;grid-template-columns:52px 1fr;gap:1rem;align-items:start;
-  box-shadow:var(--card-shadow);
-}
-.step-num{
-  width:48px;height:48px;border-radius:50%;background:var(--step-bg);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;font-weight:800;color:var(--green-deep);flex-shrink:0;
-  font-variant-numeric:tabular-nums;font-family:'Courier New',Courier,monospace;
-}
-.step h3{font-size:1rem;font-weight:700;margin-bottom:.4rem;color:var(--text)}
-.step p{font-size:.92rem;color:var(--muted);line-height:1.65;margin:0}
-
-/* FALLBACK */
-.fallback{
-  background:var(--step-bg);border:1px solid var(--green-border);
-  border-radius:14px;padding:1.5rem 1.75rem;margin-top:2rem;
-}
-.fallback h3{font-size:1rem;font-weight:700;margin-bottom:.5rem}
-.fallback p{font-size:.92rem;color:var(--muted);line-height:1.65}
-
-/* DIVIDER */
-.divider{border:none;border-top:1px solid var(--green-border);margin:0;}
-
-/* CLUB MECHANICS */
-.mechanics-section{background:var(--green-bg)}
-.mechanic-card{
-  background:var(--white);border:1px solid var(--green-border);
-  border-radius:14px;padding:1.5rem 1.75rem;margin-top:1.25rem;
-  box-shadow:var(--card-shadow);
-}
-.mechanic-card h3{font-size:1rem;font-weight:700;color:var(--green-deep);margin-bottom:.6rem;}
-.mechanic-card p{font-size:.92rem;color:var(--muted);line-height:1.65}
-.mechanic-card strong{color:var(--text)}
-
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem;}
-.stat-box{
-  background:var(--white);border:1px solid var(--green-border);
-  border-radius:12px;padding:1.25rem;text-align:center;box-shadow:var(--card-shadow);
-}
-.stat-num{
-  font-size:2rem;font-weight:800;color:var(--green-deep);
-  display:block;line-height:1;margin-bottom:.3rem;font-variant-numeric:tabular-nums;
-}
-.stat-lbl{font-size:.8rem;color:var(--muted);line-height:1.35}
-
-/* WHAT'S INSIDE */
-.inside-list{list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-top:1.75rem;}
-.inside-list li{
-  display:flex;gap:.85rem;align-items:flex-start;
-  background:var(--white);border:1px solid var(--green-border);
-  border-radius:12px;padding:1.1rem 1.25rem;box-shadow:var(--card-shadow);
-}
-.inside-list .icon{
-  width:36px;height:36px;border-radius:8px;background:var(--step-bg);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;
-}
-.inside-list .text strong{display:block;font-size:.92rem;font-weight:700;margin-bottom:.15rem}
-.inside-list .text span{font-size:.85rem;color:var(--muted)}
-
-/* GUARANTEE */
-.guarantee-block{
-  background:linear-gradient(135deg,var(--step-bg) 0%,var(--green-bg) 100%);
-  border:1.5px solid var(--green-border);border-left:4px solid var(--green-soft);
-  border-radius:16px;padding:1.75rem 2rem;margin-top:2rem;
-  display:flex;gap:1.5rem;align-items:center;
-}
-.guarantee-shield{
-  width:58px;height:58px;background:var(--green-deep);border-radius:14px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;
-}
-.guarantee-shield svg{width:30px;height:30px}
-.guarantee-meta{flex:1}
-.guarantee-tag{
-  font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--green-soft);display:block;margin-bottom:.2rem;
-}
-.guarantee-title{font-size:1.05rem;font-weight:800;color:var(--green-deep);margin-bottom:.35rem;line-height:1.2;}
-.guarantee-desc{font-size:.88rem;color:var(--muted);line-height:1.6;margin:0}
-
-/* TICKET */
-.ticket{
-  margin:2rem 0;padding:1.75rem;
-  background:linear-gradient(135deg,var(--green-deep) 0%,#2A7A55 100%);
-  border-radius:16px;text-align:center;color:#fff;
-}
-.ticket p{font-size:.98rem;line-height:1.7;opacity:.88}
-.ticket strong{color:var(--green-pale);opacity:1}
-
-/* CTA */
-.cta-section{padding:56px 0 80px;text-align:center}
-.price-display{
-  font-size:clamp(2rem,6vw,3rem);font-weight:800;color:var(--green-deep);
-  margin-bottom:.3rem;letter-spacing:-.03em;font-variant-numeric:tabular-nums;
-}
-.price-period{font-size:.95rem;color:var(--muted);margin-bottom:2rem}
-.btn-main{
-  display:inline-block;background:var(--green-deep);color:#fff;
-  font-size:1.05rem;font-weight:700;padding:1.1rem 2.8rem;border-radius:50px;
-  text-decoration:none;letter-spacing:.01em;
-  transition:background .2s, transform .15s, box-shadow .2s;
-  box-shadow:0 4px 20px rgba(26,92,62,.35);
-}
-.btn-main:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,92,62,.4);}
-.btn-main:active{transform:translateY(0)}
-.cta-sub{font-size:.85rem;color:var(--muted);margin-top:1.2rem}
-
-/* FOOTER */
 footer{
-  background:var(--green-deep);color:rgba(255,255,255,.6);
-  padding:32px 24px;text-align:center;font-size:.82rem;line-height:1.7;
+  background:rgba(13,56,38,.9);color:rgba(255,255,255,.4);
+  padding:20px 24px;text-align:center;font-size:.8rem;
 }
-footer a{color:rgba(255,255,255,.5);text-decoration:none}
+footer a{color:rgba(255,255,255,.35);text-decoration:none}
 
-/* MOBILE */
-@media(max-width:600px){
-  .step{grid-template-columns:40px 1fr;gap:.75rem}
-  .step-num{width:40px;height:40px;font-size:1rem}
-  .btn-main{padding:1rem 2rem;font-size:1rem}
-  nav{padding:0 16px}
-  .guarantee-block{flex-direction:column;align-items:flex-start;gap:1rem}
-}
+@media(max-width:600px){nav{padding:0 16px}}
 </style>
 </head>
 <body>
 
 <nav>
   <a class="nav-brand" href="#">🌿 Свежий Вздох</a>
-  <a class="nav-cta" href="#join">Вступить →</a>
+  <a class="nav-cta" href="offer.html">Узнать подробнее</a>
 </nav>
 
-<!-- HERO — фокус на видео -->
 <section class="hero">
   <div class="breath-ring"></div>
   <div class="breath-ring"></div>
@@ -284,9 +115,9 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
   <div class="breath-ring"></div>
 
   <div class="hero-inner">
-    <span class="video-label">↓ посмотри это видео</span>
+    <span class="video-eyebrow">↓ посмотри это видео</span>
     <h1>Как бросить курить без ломки</h1>
-    <p class="hero-sub">Артур курил 24 года и вышел без страданий. Вот как это работает.</p>
+    <p class="hero-tagline">Свежий Вздох — программа в среде с практиками</p>
 
     <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed/KL7IzVKX-5w" frameborder="0"
@@ -294,217 +125,12 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         allowfullscreen></iframe>
     </div>
 
-    <a href="#details" class="btn-scroll">Узнать подробнее →</a>
+    <a href="offer.html" class="btn-scroll">Узнать подробнее →</a>
   </div>
 </section>
-
-<!-- ВСЁ ОСТАЛЬНОЕ — продающий блок -->
-<div id="details">
-
-<!-- PERSONAL STORY -->
-<section class="personal">
-  <div class="container">
-    <span class="sec-label">Личная история</span>
-    <h2>Я курил 24 года.<br>Бросал 20 с лишним раз.</h2>
-    <blockquote>
-      А потом понял, как это работает, — и вышел без ломки, без страданий, просто вышел.
-      Не через силу воли. Через понимание. И теперь собрал всё, что нужно, чтобы ты смог сделать то же самое.
-    </blockquote>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- METHOD -->
-<section>
-  <div class="container">
-    <span class="sec-label">Бесплатный метод</span>
-    <h2>Вот всё, что нужно сделать</h2>
-    <p class="lead">Это реальный метод — не тизер. Можешь пройти сам. В программе — всё то же самое, только с видео, аудио, ботом и живыми людьми рядом.</p>
-
-    <div class="steps-wrap">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div>
-          <h3>Список причин — прямо сейчас</h3>
-          <p>Открой заметки в телефоне. Создай список: «Зачем я бросаю». Пиши всё — даже самое маленькое. Запах. Деньги. Дыхание. Дети. Утренний кашель. Зависимость. Стыд.<br><br>Список должен быть в телефоне — не на бумажке дома. Чтобы в любой момент открыл и перечитал. Без этого дальше не работает.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">02</div>
-        <div>
-          <h3>Понять биологию</h3>
-          <p>Ты должен понять, что происходит в твоём теле, когда ты куришь. Как молекула никотина попадает в кровь. Что она делает с рецепторами. Почему ты думаешь, что хочешь курить, — хотя на самом деле просто снимаешь ломку, которую сам себе создал.<br><br>Когда понимаешь механизм — он перестаёт работать против тебя. В программе есть видеокурс от доктора — простым языком, понятно любому.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">03</div>
-        <div>
-          <h3>Понять психологию</h3>
-          <p>Есть книга, которая изменила жизнь 13 миллионам курильщиков. Аллен Карр. «Лёгкий способ бросить курить».<br><br>Её можно слушать в дороге, на прогулке, в транспорте. Аудиоверсия есть в программе. После неё ты понимаешь психологию ловушки. И ловушка перестаёт работать.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">04</div>
-        <div>
-          <h3>День X — медитация и манифест</h3>
-          <p>Выбираешь день. Садишься. Пишешь на листочке своё намерение больше не курить — и команду организму вырабатывать все вещества самостоятельно, без никотина извне.<br><br>Проговариваешь своими словами. Перечитываешь. Три круга — создаёшь новые нейронные связи. Фотографируешься с листочком. Можешь сжечь его — это эмоциональная точка. После этого просто не куришь.<br><br>Как проводить такую медитацию — есть видео от меня в программе.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="fallback">
-      <h3>Если не получилось — это нормально</h3>
-      <p>Продолжай курить. Без паники, без вины. Значит, ты ещё не до конца понял биологию или психологию. Возможно, не хватает мотивации — это всё можно доработать.<br><br>Пройди ещё раз всё заново. Найди ещё один день. Сделай медитацию снова. Дай себе 10 попыток — каждая сигарета отнимает 11 минут жизни, ты заслуживаешь минимум 10 попыток, чтобы выйти.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- WHY THIS TIME -->
-<section class="mechanics-section">
-  <div class="container">
-    <span class="sec-label">Почему в этот раз получится</span>
-    <h2>В программе невозможно просто купить и забыть</h2>
-    <p class="lead">Большинство людей покупают курсы и не возвращаются. Мы это исключили.</p>
-
-    <div class="stat-row">
-      <div class="stat-box">
-        <span class="stat-num">15 сек</span>
-        <div class="stat-lbl">кружочек в чат каждый день — это всё, что нужно</div>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">5</span>
-        <div class="stat-lbl">пропусков в месяц — и вылетаешь из программы</div>
-      </div>
-    </div>
-
-    <div class="mechanic-card">
-      <h3>Как это работает</h3>
-      <p>Каждый день — 15-секундный кружочек в общий чат. Просто говоришь, на какой стадии ты сейчас. <strong>Изучаю. Готовлюсь. Уже не курю — день пять.</strong> Всё.<br><br>Зайдёшь записать кружочек — увидишь других — посмотришь одно видео. Вот так оно и работает. Без насилия над собой. Каждый день на шаг ближе к цели.</p>
-    </div>
-
-    <div class="mechanic-card">
-      <h3>Цена слова и штрафы</h3>
-      <p>Каждый участник в начале ставит себе <strong>цену слова</strong> — сумму штрафа за пропуск дня. Минимум 200 рублей. Можно 1000, можно 5000 — это твоё дело.<br><br>Если до полуночи ты не выложил кружочек — любой участник, который это заметил, пишет в чат: <strong>«поймал, жду штраф»</strong>. И ты платишь ему свою цену слова. Не заплатил — вылетаешь.<br><br>Это работает в обе стороны. Ты тоже можешь следить за другими. Поймал кого-то на пропуске — деньги твои.</p>
-    </div>
-
-    <div class="mechanic-card" style="border-left:3px solid var(--green-soft)">
-      <h3>Результат</h3>
-      <p>Каждый день ты возвращаешься. Не потому что обязан. А потому что <strong>либо пишешь кружочек — либо платишь</strong>. И платить не хочется.<br><br>Это и есть условия, в которых не бросают бросать.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- WHAT'S INSIDE -->
-<section>
-  <div class="container">
-    <span class="sec-label">Что внутри</span>
-    <h2>Всё собрано в одном месте</h2>
-
-    <ul class="inside-list">
-      <li>
-        <div class="icon">🧠</div>
-        <div class="text">
-          <strong>Видеокурс доктора по биологии зависимости</strong>
-          <span>Простым языком — как никотин работает в организме и как остановить этот процесс</span>
-        </div>
-      </li>
-      <li>
-        <div class="icon">🎧</div>
-        <div class="text">
-          <strong>Аудиокнига Аллена Карра</strong>
-          <span>Слушаешь где удобно — в дороге, на прогулке, в транспорте</span>
-        </div>
-      </li>
-      <li>
-        <div class="icon">🤖</div>
-        <div class="text">
-          <strong>Telegram-бот</strong>
-          <span>Помогает подготовиться к своему дню X, ведёт трекинг, хранит твои причины и мотивацию</span>
-        </div>
-      </li>
-      <li>
-        <div class="icon">👥</div>
-        <div class="text">
-          <strong>Живое сообщество</strong>
-          <span>Каждый день кружочки от участников — ты видишь живых людей, которые делают то же самое</span>
-        </div>
-      </li>
-      <li>
-        <div class="icon">🎯</div>
-        <div class="text">
-          <strong>Механика ежедневного присутствия</strong>
-          <span>Система, которая не даёт потерять нить, — один раз вступил и оказался в условиях, где невозможно забыть</span>
-        </div>
-      </li>
-      <li>
-        <div class="icon">🌿</div>
-        <div class="text">
-          <strong>Личное присутствие Артура</strong>
-          <span>Человек, который прошёл через это сам, — 24 года курения, 20+ попыток, вышел без ломки</span>
-        </div>
-      </li>
-    </ul>
-
-    <p style="margin-top:1.75rem;font-size:.95rem;color:var(--muted);font-style:italic;text-align:center">
-      Если не бросишь здесь — честно, я не знаю, что тебе ещё поможет.<br>
-      Потому что здесь собрано всё: метод, информация, люди и условия.
-    </p>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- CTA -->
-<section class="cta-section" id="join">
-  <div class="container">
-    <span class="sec-label">Вступить в программу</span>
-    <h2>Купи билет.</h2>
-
-    <div class="ticket">
-      <p>Знаешь, как говорят: если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.<br><br>
-      Вот это и есть твой билет. Билет в жизнь, где ты не куришь. Где каждый твой вздох свежий. Где ты гордишься собой. Где твои близкие гордятся тобой.<br><br>
-      <strong>После него тебе просто остаётся делать:</strong> изучать, записывать кружочек, выбрать день, бросить.</p>
-    </div>
-
-    <p class="price-display">990 ₽</p>
-    <p class="price-period">в месяц · отменить можно в любой момент</p>
-
-    <a class="btn-main" href="https://t.me/tribute/app?startapp=sVVm" target="_blank" rel="noopener">
-      Вступить в Свежий Вздох →
-    </a>
-
-    <div class="guarantee-block">
-      <div class="guarantee-shield">
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 5L9 11v13c0 9.5 6.5 18.4 15 20.9C33.5 42.4 39 33.5 39 24V11L24 5z" fill="currentColor" opacity="0.2"/>
-          <path d="M24 5L9 11v13c0 9.5 6.5 18.4 15 20.9C33.5 42.4 39 33.5 39 24V11L24 5z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
-          <path d="M17 24.5l5 5 9-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="guarantee-meta">
-        <span class="guarantee-tag">Гарантия 3 дня</span>
-        <div class="guarantee-title">Ты ничего не теряешь</div>
-        <p class="guarantee-desc">Если зайдёшь и поймёшь, что не твоё, — напиши мне, верну 80% без вопросов. 20% уходит на комиссии сторонних сервисов.</p>
-      </div>
-    </div>
-
-    <p class="cta-sub">Мы уже собрались. Помогаем друг другу.<br>Одному — не вариант. Вместе — другое дело.</p>
-  </div>
-</section>
-
-</div><!-- /#details -->
 
 <footer>
-  <p>Свежий Вздох · Программа по отказу от курения<br>
-  Автор и куратор: Артур Лето · <a href="https://instagram.com/leto.s.v" target="_blank">@leto.s.v</a></p>
+  <p>Свежий Вздох · Артур Лето · <a href="https://instagram.com/leto.s.v" target="_blank">@leto.s.v</a></p>
 </footer>
 
 <script>
@@ -512,6 +138,5 @@ const mq = window.matchMedia('(prefers-color-scheme: dark)');
 document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
 mq.addEventListener('change', e => document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'));
 </script>
-
 </body>
 </html>
