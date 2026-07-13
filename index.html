@@ -1,142 +1,110 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Свежий Вздох — Бросаем курить без ломки, вместе</title>
-<meta name="description" content="Бросаем курить без ломки. Программа в среде с практиками.">
+<title>Как бросить курить без ломки, без зажоров и навсегда</title>
+<meta name="description" content="Бросаем курить без ломки, без зажоров, без стресса и навсегда. Посмотри это видео.">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --green-deep:#1A5C3E;--green-mid:#2A7A55;--green-soft:#5BAF85;
-  --green-pale:#A8E6C5;--green-bg:#F5FBF7;--green-border:#DCF0E5;
-  --white:#FFFFFF;--text:#0D1F15;--muted:#5A7568;
-}
-@media(prefers-color-scheme:dark){:root{
-  --green-bg:#0A1A12;--white:#0F2418;--text:#E8F5EE;--muted:#7BA892;--green-border:#1C3D29;
-}}
-:root[data-theme="light"]{--green-bg:#F5FBF7;--white:#FFFFFF;--text:#0D1F15;--muted:#5A7568;--green-border:#DCF0E5;}
-:root[data-theme="dark"]{--green-bg:#0A1A12;--white:#0F2418;--text:#E8F5EE;--muted:#7BA892;--green-border:#1C3D29;}
-
-html{scroll-behavior:smooth}
-body{
+html,body{
+  height:100%;
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
-  background:#0D3826;color:var(--text);line-height:1.7;font-size:17px;
-  min-height:100svh;display:flex;flex-direction:column;
-}
-
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:0 24px;height:56px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(13,56,38,.95);backdrop-filter:blur(8px);
-}
-.nav-brand{font-size:1rem;font-weight:700;color:#fff;letter-spacing:.04em;text-decoration:none;}
-.nav-cta{
-  font-size:.82rem;font-weight:600;color:#fff;
-  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);
-  padding:.35rem .9rem;border-radius:20px;text-decoration:none;transition:background .2s;
-}
-.nav-cta:hover{background:rgba(255,255,255,.28)}
-
-.hero{
-  flex:1;
   background:linear-gradient(160deg,#0D3826 0%,#1A5C3E 55%,#1F6B47 100%);
+  color:#fff;
+}
+.page{
+  min-height:100svh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:80px 20px 56px;
+  padding:40px 20px 48px;
+  text-align:center;
   position:relative;overflow:hidden;
 }
-.breath-ring{
+
+/* breathing rings */
+.br{
   position:absolute;border-radius:50%;
-  border:1px solid rgba(168,230,197,.12);
+  border:1px solid rgba(168,230,197,.1);
   animation:breathe 4s ease-in-out infinite;
+  pointer-events:none;
 }
-.breath-ring:nth-child(1){width:300px;height:300px;animation-delay:0s}
-.breath-ring:nth-child(2){width:540px;height:540px;animation-delay:.6s}
-.breath-ring:nth-child(3){width:800px;height:800px;animation-delay:1.2s}
-.breath-ring:nth-child(4){width:1100px;height:1100px;animation-delay:1.8s}
-@keyframes breathe{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.04);opacity:.15}}
-@media(prefers-reduced-motion:reduce){.breath-ring{animation:none}}
+.br:nth-child(1){width:300px;height:300px;animation-delay:0s}
+.br:nth-child(2){width:560px;height:560px;animation-delay:.7s}
+.br:nth-child(3){width:860px;height:860px;animation-delay:1.4s}
+.br:nth-child(4){width:1200px;height:1200px;animation-delay:2.1s}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.03);opacity:.12}}
+@media(prefers-reduced-motion:reduce){.br{animation:none}}
 
-.hero-inner{position:relative;z-index:1;width:100%;max-width:940px;}
+.inner{
+  position:relative;z-index:1;
+  width:100%;max-width:960px;
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+}
 
-.video-eyebrow{
-  font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(168,230,197,.6);margin-bottom:.9rem;display:block;
-}
-.hero h1{
-  font-size:clamp(2rem,5.5vw,3.4rem);font-weight:800;color:#fff;
-  line-height:1.1;text-wrap:balance;margin-bottom:.5rem;letter-spacing:-.02em;
-}
-.hero-tagline{
-  font-size:clamp(.85rem,1.8vw,.98rem);
-  color:rgba(255,255,255,.45);margin-bottom:1.6rem;
-  font-weight:400;letter-spacing:.01em;
+h1{
+  font-size:clamp(1.6rem,4.5vw,2.8rem);
+  font-weight:800;color:#fff;
+  line-height:1.15;text-wrap:balance;
+  letter-spacing:-.02em;
+  max-width:680px;
 }
 
 .video-wrap{
-  width:100%;border-radius:14px;overflow:hidden;
+  width:100%;
+  border-radius:14px;overflow:hidden;
   box-shadow:0 28px 72px rgba(0,0,0,.55);
-  background:#081E11;aspect-ratio:16/9;position:relative;
+  background:#081E11;
+  aspect-ratio:16/9;position:relative;
   border:1px solid rgba(168,230,197,.1);
 }
-.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
+.video-wrap iframe{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  border:none;
+}
 
-.btn-scroll{
-  display:inline-block;margin-top:1.6rem;
-  font-size:.9rem;font-weight:600;color:rgba(255,255,255,.55);
-  border:1px solid rgba(255,255,255,.18);border-radius:24px;
-  padding:.5rem 1.4rem;text-decoration:none;
-  transition:color .2s, border-color .2s, background .2s;
+.btn-cta{
+  display:inline-block;
+  font-size:.9rem;font-weight:600;
+  color:rgba(255,255,255,.6);
+  border:1px solid rgba(255,255,255,.2);border-radius:24px;
+  padding:.5rem 1.5rem;text-decoration:none;
+  transition:color .3s, border-color .3s, background .3s, opacity .8s;
   letter-spacing:.02em;
+  opacity:0;pointer-events:none;
 }
-.btn-scroll:hover{color:#fff;border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.08)}
+.btn-cta.visible{opacity:1;pointer-events:auto;}
+.btn-cta:hover{color:#fff;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08)}
 
-footer{
-  background:rgba(13,56,38,.9);color:rgba(255,255,255,.4);
-  padding:20px 24px;text-align:center;font-size:.8rem;
+@media(max-width:520px){
+  .page{padding:28px 16px 36px;}
 }
-footer a{color:rgba(255,255,255,.35);text-decoration:none}
-
-@media(max-width:600px){nav{padding:0 16px}}
 </style>
 </head>
 <body>
+<div class="page">
+  <div class="br"></div>
+  <div class="br"></div>
+  <div class="br"></div>
+  <div class="br"></div>
 
-<nav>
-  <a class="nav-brand" href="#">🌿 Свежий Вздох</a>
-  <a class="nav-cta" href="offer.html">Узнать подробнее</a>
-</nav>
-
-<section class="hero">
-  <div class="breath-ring"></div>
-  <div class="breath-ring"></div>
-  <div class="breath-ring"></div>
-  <div class="breath-ring"></div>
-
-  <div class="hero-inner">
-    <span class="video-eyebrow">↓ посмотри это видео</span>
-    <h1>Как бросить курить без ломки</h1>
-    <p class="hero-tagline">Свежий Вздох — программа в среде с практиками</p>
+  <div class="inner">
+    <h1>Как бросить курить без ломки, без зажоров, без стресса и навсегда</h1>
 
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/KL7IzVKX-5w" frameborder="0"
+      <iframe src="https://www.youtube.com/embed/KL7IzVKX-5w"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
 
-    <a href="offer.html" class="btn-scroll">Узнать подробнее →</a>
+    <a href="offer.html" class="btn-cta" id="cta">Узнать подробнее →</a>
   </div>
-</section>
-
-<footer>
-  <p>Свежий Вздох · Артур Лето · <a href="https://instagram.com/leto.s.v" target="_blank">@leto.s.v</a></p>
-</footer>
+</div>
 
 <script>
-const mq = window.matchMedia('(prefers-color-scheme: dark)');
-document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
-mq.addEventListener('change', e => document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'));
+// Кнопка появляется через 3.5 минуты = 210 000 мс
+setTimeout(function(){
+  document.getElementById('cta').classList.add('visible');
+}, 210000);
 </script>
 </body>
 </html>
