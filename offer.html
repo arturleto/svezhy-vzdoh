@@ -104,6 +104,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:56px;d
   .hi-pillar{text-align:left;}
 }
 
+/* IMAGINE BLOCK */
+.imagine-block{
+  background:linear-gradient(160deg,#061F10 0%,#0D3826 50%,#1A5C3E 100%);
+  padding:80px 24px 72px;
+  display:flex;align-items:center;justify-content:center;
+}
+.imagine-inner{
+  max-width:1000px;width:100%;
+  display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center;
+}
+.imagine-text{display:flex;flex-direction:column;gap:24px;}
+.imagine-quote{
+  font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;
+  line-height:1.15;letter-spacing:-.03em;text-wrap:balance;
+}
+.imagine-quote em{font-style:normal;color:var(--green-pale);}
+.imagine-sub{
+  font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;
+  color:rgba(255,255,255,.75);
+}
+.imagine-stat{
+  display:inline-flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(168,230,197,.2);
+  border-radius:14px;padding:14px 20px;align-self:flex-start;
+}
+.imagine-stat-num{
+  font-size:2rem;font-weight:900;color:var(--green-pale);
+  letter-spacing:-.03em;line-height:1;white-space:nowrap;
+}
+.imagine-stat-label{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.4;}
+.imagine-img{display:block;width:100%;}
+@media(max-width:780px){
+  .imagine-inner{grid-template-columns:1fr;gap:32px;text-align:center;}
+  .imagine-stat{align-self:center;}
+  .imagine-img{max-width:280px;margin:0 auto;}
+}
+
 /* COMIC BLOCK */
 .block{padding:72px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;}
 .block-dark{background:linear-gradient(160deg,#0D3826,#1A5C3E);color:#fff;}
@@ -304,11 +341,6 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
         </div>
       </div>
 
-      <div class="hi-closer">
-        <p>Представь, как ты будешь гордиться собой, когда бросишь курить.<br>
-        <strong>У тебя точно получится.</strong> Начни сейчас.</p>
-        <span class="hi-stat">Каждая сигарета отнимает 11 минут жизни</span>
-      </div>
     </div>
 
     <div class="hi-image-col">
@@ -321,9 +353,24 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   </div>
 </div>
 
+<!-- 2. IMAGINE BLOCK -->
+<div class="imagine-block">
+  <div class="imagine-inner">
+    <div class="imagine-text">
+      <p class="imagine-quote">Представь, как ты будешь <em>гордиться собой</em>, когда бросишь курить.</p>
+      <p class="imagine-sub">У тебя точно получится. Начни сейчас.</p>
+      <div class="imagine-stat">
+        <span class="imagine-stat-num">−11 мин</span>
+        <span class="imagine-stat-label">отнимает каждая<br>сигарета у твоей жизни</span>
+      </div>
+    </div>
+    <img src="img-imagine.png" alt="" class="imagine-img">
+  </div>
+</div>
+
 <hr class="section-divider">
 
-<!-- 1. ВЕЙП = ЯД -->
+<!-- 3. ВЕЙП = ЯД -->
 <div class="block block-light" style="padding-top:96px;">
   <img src="img-poison.png" alt="Вейп, кальян, айкос = яд">
   <h2 class="block-headline">Вейп. Кальян. Айкос.<br>Это всё — яд.</h2>
