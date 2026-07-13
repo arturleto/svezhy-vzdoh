@@ -29,13 +29,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:56px;d
 }
 .hi-inner{
   position:relative;z-index:1;
-  max-width:1060px;margin:0 auto;
-  display:flex;flex-direction:column;align-items:center;gap:36px;
+  max-width:900px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;gap:28px;
   text-align:center;
 }
+.hi-headline{
+  font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;color:#fff;
+  line-height:1.15;text-wrap:balance;letter-spacing:-.02em;
+}
+.hi-headline em{font-style:normal;color:var(--green-pale);}
 .hi-definition{
-  font-size:clamp(1.4rem,3vw,2.2rem);font-weight:900;color:#fff;
-  line-height:1.2;text-wrap:balance;letter-spacing:-.025em;max-width:780px;
+  font-size:clamp(1rem,2vw,1.3rem);font-weight:500;
+  color:rgba(255,255,255,.72);line-height:1.55;max-width:680px;
 }
 .hi-definition em{font-style:normal;color:var(--green-pale);}
 
@@ -269,15 +274,19 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 <div class="hero-intro">
   <div class="hi-inner">
 
-    <h1 class="hi-definition">
-      Программа в среде единомышленников<br>
-      с практиками и механиками присутствия <em>как в армии</em> —<br>
-      где невозможно просто купить и забыть
+    <h1 class="hi-headline">
+      Бросаем курить вместе —<br>
+      <em>без ломки, без стресса, без зажоров</em>
     </h1>
 
     <div class="hi-banner">
       <img src="img-hero.png" alt="Свежий Вздох">
     </div>
+
+    <p class="hi-definition">
+      Программа в среде единомышленников с практиками и механиками присутствия, <em>как в армии</em> —<br>
+      где невозможно просто купить и забыть
+    </p>
 
     <div class="hi-pillars">
       <div class="hi-pillar">
