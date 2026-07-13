@@ -21,6 +21,61 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:56px;d
 .nav-back{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
 .nav-back:hover{color:#fff}
 
+/* HERO INTRO */
+.hero-intro{
+  padding:96px 24px 72px;
+  background:linear-gradient(160deg,#061F10 0%,#0D3826 40%,#1A5C3E 100%);
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:32px;
+  position:relative;overflow:hidden;
+}
+.hero-intro::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(91,175,133,.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hi-tag{
+  display:inline-block;
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--green-soft);border:1px solid rgba(91,175,133,.35);
+  border-radius:20px;padding:.35rem 1rem;
+}
+.hi-definition{
+  font-size:clamp(1.5rem,4.5vw,2.6rem);font-weight:900;color:#fff;
+  line-height:1.15;text-wrap:balance;max-width:720px;letter-spacing:-.02em;
+}
+.hi-definition em{
+  font-style:normal;color:var(--green-pale);
+}
+.hi-together{
+  font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;
+  color:rgba(255,255,255,.85);max-width:520px;
+}
+.hi-pillars{
+  display:flex;flex-direction:column;gap:12px;width:100%;max-width:600px;
+}
+.hi-pillar{
+  display:flex;align-items:flex-start;gap:16px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(168,230,197,.15);
+  border-radius:14px;padding:16px 20px;text-align:left;
+}
+.hi-pillar-icon{font-size:1.4rem;flex-shrink:0;line-height:1;margin-top:2px;}
+.hi-pillar-text{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.6;}
+.hi-pillar-text strong{color:#fff;display:block;margin-bottom:3px;font-size:1rem;}
+.hi-closer{
+  max-width:560px;
+  background:rgba(168,230,197,.08);border:1px solid rgba(168,230,197,.2);
+  border-radius:16px;padding:24px 28px;
+}
+.hi-closer p{font-size:1.05rem;color:rgba(255,255,255,.85);line-height:1.7;}
+.hi-closer strong{color:var(--green-pale);}
+.hi-stat{
+  display:inline-block;
+  font-size:.82rem;font-weight:700;letter-spacing:.06em;
+  color:rgba(255,255,255,.45);margin-top:12px;
+  border-top:1px solid rgba(255,255,255,.1);padding-top:12px;width:100%;text-align:center;
+}
+
 /* COMIC BLOCK */
 .block{padding:72px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;}
 .block-dark{background:linear-gradient(160deg,#0D3826,#1A5C3E);color:#fff;}
@@ -166,6 +221,51 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <a class="nav-brand" href="index.html">🌿 Свежий Вздох</a>
   <a class="nav-back" href="index.html">← Назад к видео</a>
 </nav>
+
+<!-- HERO INTRO -->
+<div class="hero-intro">
+  <span class="hi-tag">🌿 Свежий Вздох</span>
+
+  <h1 class="hi-definition">
+    Программа в среде единомышленников<br>
+    с практиками и механиками присутствия <em>как в армии</em> —<br>
+    где невозможно просто купить и забыть
+  </h1>
+
+  <p class="hi-together">Здесь мы забились и бросаем курить вместе.</p>
+
+  <div class="hi-pillars">
+    <div class="hi-pillar">
+      <span class="hi-pillar-icon">🎯</span>
+      <div class="hi-pillar-text">
+        <strong>Держим фокус на дисциплине</strong>
+        Познаём метод шаг за шагом — не спеша, но каждый день.
+      </div>
+    </div>
+    <div class="hi-pillar">
+      <span class="hi-pillar-icon">🧹</span>
+      <div class="hi-pillar-text">
+        <strong>Стираем результат пропаганды</strong>
+        «Курить можно и классно» — это не твоя мысль. Это то, что в тебя вложили табачные компании.
+      </div>
+    </div>
+    <div class="hi-pillar">
+      <span class="hi-pillar-icon">✨</span>
+      <div class="hi-pillar-text">
+        <strong>Активируем новые установки</strong>
+        Курение — яд. Никотин убивает. Я люблю себя и хочу жить дольше.
+      </div>
+    </div>
+  </div>
+
+  <div class="hi-closer">
+    <p>Представь, как ты будешь гордиться собой, когда бросишь курить.<br>
+    <strong>У тебя точно получится.</strong> Начни сейчас.</p>
+    <span class="hi-stat">Каждая сигарета отнимает 11 минут жизни</span>
+  </div>
+</div>
+
+<hr class="section-divider">
 
 <!-- 1. ВЕЙП = ЯД -->
 <div class="block block-light" style="padding-top:96px;">
