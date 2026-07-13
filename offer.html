@@ -22,7 +22,7 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
 /* HERO INTRO */
 .hero-intro{
   padding:48px 24px 72px;
-  background:linear-gradient(180deg,#0D3826 0%,#0D3826 60%,rgba(13,56,38,.0) 100%);
+  background:transparent;
   position:relative;overflow:hidden;
 }
 .hi-inner{
@@ -245,9 +245,14 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
 .price-note{font-size:.9rem;color:rgba(255,255,255,.45);margin-top:8px;}
 .cta-sub{font-size:.88rem;color:rgba(255,255,255,.45);margin-top:8px;}
 
+/* TOP HERO WRAPPER — единый фон на оба блока */
+.top-hero-wrap{
+  background:linear-gradient(180deg,#061F10 0%,#0D3826 20%,#0D3826 72%,#1A5C3E 100%);
+}
+
 /* VIDEO BLOCK */
 .video-block{
-  background:linear-gradient(160deg,#061F10 0%,#0D3826 55%,#1F6B47 100%);
+  background:transparent;
   padding:56px 24px 0;
   display:flex;flex-direction:column;align-items:center;gap:28px;
   text-align:center;position:relative;overflow:hidden;
@@ -307,7 +312,8 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <a class="nav-brand" href="#">🌿 Свежий Вздох</a>
 </nav>
 
-<!-- VIDEO -->
+<!-- VIDEO + HERO INTRO — единый контейнер с одним фоном -->
+<div class="top-hero-wrap">
 <div class="video-block">
   <div class="br"></div>
   <div class="br"></div>
@@ -366,6 +372,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 
   </div>
 </div>
+</div><!-- /top-hero-wrap -->
 
 <!-- 2. IMAGINE BLOCK -->
 <div class="imagine-block">
