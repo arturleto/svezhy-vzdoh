@@ -21,8 +21,8 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
 
 /* HERO INTRO */
 .hero-intro{
-  padding:72px 24px 64px;
-  background:linear-gradient(160deg,#061F10 0%,#0D3826 40%,#1A5C3E 100%);
+  padding:48px 24px 72px;
+  background:linear-gradient(180deg,#0D3826 0%,#0D3826 60%,rgba(13,56,38,.0) 100%);
   position:relative;overflow:hidden;
 }
 .hi-inner{
@@ -248,7 +248,7 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
 /* VIDEO BLOCK */
 .video-block{
   background:linear-gradient(160deg,#061F10 0%,#0D3826 55%,#1F6B47 100%);
-  padding:56px 24px 72px;
+  padding:56px 24px 0;
   display:flex;flex-direction:column;align-items:center;gap:28px;
   text-align:center;position:relative;overflow:hidden;
 }
@@ -256,6 +256,16 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
   font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;color:#fff;
   line-height:1.15;text-wrap:balance;letter-spacing:-.025em;max-width:720px;
   position:relative;z-index:1;
+}
+.video-block h1 em{font-style:normal;color:var(--green-pale);}
+/* scroll arrow */
+.scroll-hint{
+  position:relative;z-index:1;padding:12px 0 0;
+  animation:scrollbounce 2s ease-in-out infinite;
+}
+@keyframes scrollbounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(7px);}
 }
 /* breathing rings */
 .br{position:absolute;border-radius:50%;border:1px solid rgba(168,230,197,.1);
@@ -303,15 +313,19 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <div class="br"></div>
   <div class="br"></div>
   <div class="br"></div>
-  <h1>Бросаем курить вместе —<br>без ломки, без стресса, без зажоров</h1>
+  <h1>Бросаем курить вместе —<br><em>без ломки, без стресса, без зажоров</em></h1>
   <div class="video-wrap">
     <iframe src="https://www.youtube.com/embed/KL7IzVKX-5w"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>
   </div>
+  <div class="scroll-hint">
+    <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="4,4 14,13 24,4" stroke="rgba(168,230,197,0.5)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="4,17 14,26 24,17" stroke="rgba(168,230,197,0.28)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
 </div>
-
-<hr class="section-divider">
 
 <!-- HERO INTRO -->
 <div class="hero-intro">
