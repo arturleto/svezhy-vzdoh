@@ -210,9 +210,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:56px;d
 .guarantee-detail strong{color:#fff;}
 
 /* TICKET */
-.ticket{background:linear-gradient(135deg,#2A7A55,#1A5C3E);border-radius:20px;padding:28px 32px;max-width:540px;width:100%;color:#fff;text-align:center;}
-.ticket p{font-size:1rem;line-height:1.75;opacity:.88;}
-.ticket strong{color:var(--green-pale);}
+.ticket-rows{display:flex;flex-direction:column;gap:20px;width:100%;max-width:620px;}
+.ticket-row{
+  display:flex;align-items:center;gap:24px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.15);
+  border-radius:20px;padding:22px 24px;
+}
+.ticket-row-rev{flex-direction:row-reverse;}
+.ticket-img{width:130px;flex-shrink:0;}
+.ticket-row p{font-size:.98rem;line-height:1.75;color:rgba(255,255,255,.88);text-align:left;margin:0;}
+.ticket-note{
+  font-size:.98rem;line-height:1.65;color:rgba(255,255,255,.85);text-align:center;
+  background:rgba(168,230,197,.08);border:1px solid rgba(168,230,197,.2);
+  border-radius:16px;padding:18px 24px;
+}
+.ticket-note strong{color:var(--green-pale);}
+@media(max-width:540px){
+  .ticket-row,.ticket-row-rev{flex-direction:column;text-align:center;}
+  .ticket-row p{text-align:center;}
+  .ticket-img{width:110px;}
+}
 
 /* CTA */
 .btn-main{
@@ -501,10 +518,16 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 <!-- 10. CTA -->
 <div class="block block-dark" id="join">
   <h2 class="block-headline">Купи билет.</h2>
-  <div class="ticket">
-    <p>Знаешь, как говорят: если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.<br><br>
-    Вот это и есть твой билет. Билет в жизнь, где ты не куришь. Где каждый твой вздох свежий. Где ты гордишься собой. Где твои близкие гордятся тобой.<br><br>
-    <strong>После него тебе просто остаётся делать:</strong> изучать, записывать кружочек, выбрать день, бросить.</p>
+  <div class="ticket-rows">
+    <div class="ticket-row">
+      <p>Знаешь, как говорят: если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.</p>
+      <img src="img-ticket.png" alt="" class="ticket-img">
+    </div>
+    <div class="ticket-row ticket-row-rev">
+      <img src="img-proud.png" alt="" class="ticket-img">
+      <p>Вот это и есть твой билет. Билет в жизнь, где ты не куришь. Где каждый твой вздох свежий. Где ты гордишься собой. Где твои близкие гордятся тобой.</p>
+    </div>
+    <p class="ticket-note"><strong>После него тебе просто остаётся делать:</strong> изучать, записывать кружочек, выбрать день, бросить.</p>
   </div>
   <a class="btn-main" href="https://t.me/tribute/app?startapp=sVVm" target="_blank" rel="noopener">
     Вступить в Свежий Вздох →
