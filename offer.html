@@ -41,20 +41,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:56px;d
 
 /* BANNER */
 .hi-banner{
-  position:relative;width:100%;border-radius:20px;overflow:hidden;
+  width:100%;display:flex;justify-content:center;
 }
 .hi-banner img{
-  display:block;width:100%;height:auto;
-}
-.hi-banner-brand{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(90deg,rgba(6,31,16,.45) 0%,rgba(13,56,38,.15) 40%,rgba(13,56,38,.15) 60%,rgba(6,31,16,.45) 100%);
-}
-.hi-banner-brand span{
-  font-size:clamp(2rem,5.5vw,4rem);font-weight:900;
-  color:#fff;letter-spacing:.12em;text-transform:uppercase;
-  text-shadow:0 2px 24px rgba(0,0,0,.6), 0 0 60px rgba(168,230,197,.25);
+  display:block;max-height:240px;width:auto;max-width:100%;
 }
 
 /* PILLARS — 3 cols */
@@ -286,10 +276,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     </h1>
 
     <div class="hi-banner">
-      <img src="img-hero.png" alt="">
-      <div class="hi-banner-brand">
-        <span>🌿 Свежий Вздох</span>
-      </div>
+      <img src="img-hero.png" alt="Свежий Вздох">
     </div>
 
     <div class="hi-pillars">
