@@ -247,6 +247,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 24px;height:56px;d
 .price-note{font-size:.9rem;color:rgba(255,255,255,.45);margin-top:8px;}
 .cta-sub{font-size:.88rem;color:rgba(255,255,255,.45);margin-top:8px;}
 
+/* VIDEO BLOCK */
+.video-block{
+  background:linear-gradient(160deg,#061F10 0%,#0D3826 55%,#1F6B47 100%);
+  padding:80px 24px 64px;
+  display:flex;flex-direction:column;align-items:center;gap:28px;
+  text-align:center;
+}
+.video-block h1{
+  font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;color:#fff;
+  line-height:1.15;text-wrap:balance;letter-spacing:-.025em;max-width:720px;
+}
+.video-wrap{
+  width:100%;max-width:880px;
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.55);
+  background:#081E11;aspect-ratio:16/9;position:relative;
+  border:1px solid rgba(168,230,197,.1);
+}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+
 /* DIVIDER */
 .section-divider{height:4px;background:linear-gradient(90deg,transparent,var(--green-soft),transparent);border:none;margin:0;}
 
@@ -266,9 +286,20 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 <body>
 
 <nav>
-  <a class="nav-brand" href="index.html">🌿 Свежий Вздох</a>
-  <a class="nav-back" href="index.html">← Назад к видео</a>
+  <a class="nav-brand" href="#">🌿 Свежий Вздох</a>
 </nav>
+
+<!-- VIDEO -->
+<div class="video-block">
+  <h1>Как бросить курить без ломки, без зажоров, без стресса и навсегда</h1>
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/KL7IzVKX-5w"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</div>
+
+<hr class="section-divider">
 
 <!-- HERO INTRO -->
 <div class="hero-intro">
