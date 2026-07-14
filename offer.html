@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Свежий Вздох — Программа в среде с практиками</title>
 <meta name="description" content="Бросаем курить без ломки. Биология + психология + среда в которой невозможно не бросить. 990₽ в месяц.">
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110722782', 'ym');
+    ym(110722782, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110722782" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -321,7 +335,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <div class="br"></div>
   <h1>Бросаем курить вместе —<br><em>без ломки, без стресса, без зажоров</em></h1>
   <div class="video-wrap">
-    <iframe src="https://www.youtube.com/embed/KL7IzVKX-5w"
+    <iframe id="yt-player" src="https://www.youtube.com/embed/KL7IzVKX-5w?enablejsapi=1"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>
   </div>
@@ -613,6 +627,42 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 const mq = window.matchMedia('(prefers-color-scheme: dark)');
 document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
 mq.addEventListener('change', e => document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'));
+</script>
+
+<!-- YouTube IFrame API + Яндекс.Метрика события -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+var ytPlayer, ytDuration, ytMilestones = {};
+
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('yt-player', {
+    events: {
+      onReady: function(e) { ytDuration = e.target.getDuration(); },
+      onStateChange: onYTStateChange
+    }
+  });
+}
+
+function onYTStateChange(e) {
+  if (e.data === YT.PlayerState.PLAYING) {
+    ym(110722782, 'reachGoal', 'video_start');
+    trackProgress();
+  }
+}
+
+function trackProgress() {
+  if (!ytPlayer || !ytDuration) return;
+  var pct = Math.floor(ytPlayer.getCurrentTime() / ytDuration * 100);
+  [25, 50, 75, 100].forEach(function(m) {
+    if (pct >= m && !ytMilestones[m]) {
+      ytMilestones[m] = true;
+      ym(110722782, 'reachGoal', 'video_' + m + 'pct');
+    }
+  });
+  if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+    setTimeout(trackProgress, 5000);
+  }
+}
 </script>
 </body>
 </html>
