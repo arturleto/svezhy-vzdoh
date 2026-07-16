@@ -127,6 +127,17 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
   .imagine-inner{grid-template-columns:1fr;gap:32px;text-align:center;}
   .imagine-stat{align-self:center;}
   .imagine-img{max-width:280px;margin:0 auto;}
+
+/* FEAR STATS BLOCK */
+.fear-block{background:#060D08;padding:80px 24px 88px;text-align:center;}
+.fear-stats{max-width:640px;margin:0 auto 56px;display:flex;flex-direction:column;align-items:center;}
+.fear-stat{padding:44px 0;width:100%;}
+.fear-stat+.fear-stat{border-top:1px solid rgba(255,255,255,.08);}
+.fear-num{display:block;font-size:clamp(3.8rem,13vw,7.5rem);font-weight:900;color:#fff;letter-spacing:-.04em;line-height:1;}
+.fear-label{display:block;font-size:clamp(.9rem,2.2vw,1.05rem);color:rgba(255,255,255,.38);margin-top:14px;line-height:1.55;letter-spacing:.02em;text-transform:uppercase;}
+.fear-poison{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:500px;margin:0 auto;}
+.fear-skull{font-size:2.6rem;line-height:1;}
+.fear-poison-text{font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:700;color:rgba(255,255,255,.72);line-height:1.55;}
 }
 
 /* COMIC BLOCK */
@@ -431,12 +442,28 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <div class="imagine-text">
       <p class="imagine-quote">Представь, как ты будешь <em>гордиться собой</em>, когда бросишь курить.</p>
       <p class="imagine-sub">У тебя точно получится. Начни сейчас.</p>
-      <div class="imagine-stat">
-        <span class="imagine-stat-num">−11 мин</span>
-        <span class="imagine-stat-label">отнимает каждая<br>сигарета у твоей жизни</span>
-      </div>
     </div>
     <img src="img-imagine.png" alt="" class="imagine-img">
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- 2b. СТРАШНАЯ СТАТИСТИКА -->
+<div class="fear-block">
+  <div class="fear-stats">
+    <div class="fear-stat">
+      <span class="fear-num">−11 мин</span>
+      <span class="fear-label">отнимает у твоей жизни каждая сигарета</span>
+    </div>
+    <div class="fear-stat">
+      <span class="fear-num">8 000 000</span>
+      <span class="fear-label">человек умирает от курения каждый год</span>
+    </div>
+  </div>
+  <div class="fear-poison">
+    <span class="fear-skull">💀</span>
+    <p class="fear-poison-text">Никотин — это яд. Который убивает.<br>Это не метафора и не преувеличение.</p>
   </div>
 </div>
 
