@@ -236,6 +236,41 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 
 @media(max-width:560px){.block{padding:56px 20px;}.btn-main{padding:1rem 2rem;font-size:1rem;}nav{padding:0 16px;}}
 
+/* ─── DISEASES BLOCK ─── */
+.diseases-block{background:#0A0A0A;padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:36px;}
+.diseases-headline{font-size:clamp(1.9rem,5vw,3rem);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-.03em;text-wrap:balance;max-width:640px;}
+.diseases-headline em{font-style:normal;color:#FF4D4D;}
+.diseases-sub{font-size:clamp(.95rem,2vw,1.1rem);color:rgba(255,255,255,.45);max-width:520px;line-height:1.65;}
+.diseases-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;width:100%;max-width:900px;}
+.disease-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,77,77,.15);border-radius:16px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
+.disease-icon{font-size:2rem;line-height:1;}
+.disease-name{font-size:.88rem;font-weight:800;color:#fff;line-height:1.3;}
+.disease-when{font-size:.72rem;color:rgba(255,77,77,.75);letter-spacing:.05em;text-transform:uppercase;margin-top:2px;}
+.disease-desc{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.5;margin-top:4px;}
+.disease-footer{font-size:clamp(1rem,2.5vw,1.2rem);font-weight:700;color:rgba(255,255,255,.6);max-width:560px;line-height:1.6;}
+.disease-footer strong{color:#fff;}
+@media(max-width:700px){.diseases-grid{grid-template-columns:repeat(2,1fr);}.disease-card:last-child{grid-column:1/-1;max-width:220px;margin:0 auto;}}
+
+/* ─── COMPARE BLOCK ─── */
+.compare-block{background:var(--white);padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:36px;}
+.compare-headline{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:900;color:var(--text);line-height:1.1;letter-spacing:-.03em;text-wrap:balance;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:760px;text-align:left;}
+.compare-col{border-radius:20px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;}
+.compare-col.bad{background:#FFF0EE;border:2px solid #FFCCC7;}
+.compare-col.good{background:var(--green-bg);border:2px solid #A8E6C5;}
+.compare-col-title{font-size:1rem;font-weight:900;letter-spacing:.02em;display:flex;align-items:center;gap:8px;}
+.compare-col.bad .compare-col-title{color:var(--red);}
+.compare-col.good .compare-col-title{color:var(--green-deep);}
+.compare-list{display:flex;flex-direction:column;gap:10px;list-style:none;}
+.compare-list li{font-size:.92rem;line-height:1.55;padding-left:20px;position:relative;color:var(--text);}
+.compare-list li::before{content:'';position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;}
+.compare-col.bad .compare-list li::before{background:var(--red);opacity:.6;}
+.compare-col.good .compare-list li::before{background:var(--green-soft);}
+.compare-stat{font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:10px;padding:10px 14px;text-align:center;}
+.compare-col.bad .compare-stat{background:rgba(217,48,37,.1);color:var(--red);}
+.compare-col.good .compare-stat{background:rgba(91,175,133,.15);color:var(--green-deep);}
+@media(max-width:600px){.compare-grid{grid-template-columns:1fr;}}
+
 /* ─── TIMER WIDGET ─── */
 #timer-widget{
   position:fixed;bottom:24px;right:24px;
@@ -340,6 +375,49 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 
 <hr class="section-divider">
 
+<!-- БЛОК 5 БОЛЕЗНЕЙ -->
+<div class="diseases-block">
+  <h2 class="diseases-headline">Вот что курение<br>делает с тобой <em>изнутри.</em></h2>
+  <p class="diseases-sub">Это не мгновенно. Это медленно. Именно поэтому так легко не замечать — пока не становится слишком поздно.</p>
+
+  <div class="diseases-grid">
+    <div class="disease-card">
+      <div class="disease-icon">🫁</div>
+      <div class="disease-name">Рак лёгких</div>
+      <div class="disease-when">через 15–30 лет</div>
+      <div class="disease-desc">90% всех случаев — у курильщиков. Пятилетняя выживаемость — 18%.</div>
+    </div>
+    <div class="disease-card">
+      <div class="disease-icon">😮‍💨</div>
+      <div class="disease-name">ХОБЛ и эмфизема</div>
+      <div class="disease-when">через 10–20 лет</div>
+      <div class="disease-desc">Лёгкие разрушаются необратимо. Одышка при ходьбе по комнате.</div>
+    </div>
+    <div class="disease-card">
+      <div class="disease-icon">❤️‍🔥</div>
+      <div class="disease-name">Инфаркт</div>
+      <div class="disease-when">риск в 4× выше</div>
+      <div class="disease-desc">Никотин сужает сосуды постоянно. Сердце работает на износ каждый день.</div>
+    </div>
+    <div class="disease-card">
+      <div class="disease-icon">🧠</div>
+      <div class="disease-name">Инсульт</div>
+      <div class="disease-when">через 10–20 лет</div>
+      <div class="disease-desc">Риск в 2–4 раза выше. Каждая сигарета — микроудар по сосудам мозга.</div>
+    </div>
+    <div class="disease-card">
+      <div class="disease-icon">🦷</div>
+      <div class="disease-name">Рак ротовой полости</div>
+      <div class="disease-when">через 10–15 лет</div>
+      <div class="disease-desc">Гортань, язык, пищевод. Никотин канцерогенен для всего, куда попадает дым.</div>
+    </div>
+  </div>
+
+  <p class="disease-footer">Всё это — <strong>не страшилки.</strong> Это медицинская статистика.<br>И каждая сигарета делает этот путь короче.</p>
+</div>
+
+<hr class="section-divider">
+
 <div class="block block-light" style="padding-top:96px;">
   <img src="../img-poison.png" alt="Вейп, кальян, айкос = яд">
   <h2 class="block-headline">Вейп. Кальян. Айкос.<br>Это всё — яд.</h2>
@@ -405,6 +483,39 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <li><span class="il-icon">🎯</span><div class="il-text"><strong>Механика ежедневного присутствия</strong><span>15 секунд в день — кружочек в чат. Это удерживает. Каждый раз когда заходишь — видишь людей, которые держатся. И ты держишься вместе с ними.</span></div></li>
     <li><span class="il-icon">🌿</span><div class="il-text"><strong>Личное присутствие Артура</strong><span>Человек, который прошёл через это сам — 24 года курения, 20+ попыток, вышел без ломки. Передаст тебе всё, что работает.</span></div></li>
   </ul>
+</div>
+
+<hr class="section-divider">
+
+<!-- БЛОК СРАВНЕНИЯ -->
+<div class="compare-block">
+  <h2 class="compare-headline">Бросить самому<br>или бросить вместе?</h2>
+
+  <div class="compare-grid">
+    <div class="compare-col bad">
+      <div class="compare-col-title">✗ &nbsp;Самому</div>
+      <ul class="compare-list">
+        <li>Только сила воли — она заканчивается</li>
+        <li>Не понимаешь механизм зависимости — значит, он работает против тебя</li>
+        <li>Срыв → стыд → снова куришь → снова пытаешься</li>
+        <li>Не с кем поговорить, нет поддержки</li>
+        <li>Ломка, нервы, зажоры, раздражение</li>
+      </ul>
+      <div class="compare-stat">95% возвращаются к курению в первый год</div>
+    </div>
+
+    <div class="compare-col good">
+      <div class="compare-col-title">✓ &nbsp;В Свежем Вздохе</div>
+      <ul class="compare-list">
+        <li>Метод — не сила воли. Понимаешь механизм — он перестаёт работать против тебя</li>
+        <li>Механика присутствия: невозможно просто купить и забыть</li>
+        <li>Люди рядом, которые идут тем же путём — не дадут слиться</li>
+        <li>Биология + психология + медитация — комплекс, который работает</li>
+        <li>Без ломки, без зажоров, без стресса</li>
+      </ul>
+      <div class="compare-stat">Бросаешь — и остаёшься некурящим</div>
+    </div>
+  </div>
 </div>
 
 <hr class="section-divider">
