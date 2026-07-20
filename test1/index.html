@@ -123,6 +123,7 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
 .price-good{background:var(--green-bg);border:2px solid var(--green-soft);border-radius:16px;padding:20px 32px;width:100%;text-align:center;}
 .price-good-label{display:block;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);margin-bottom:8px;opacity:.75;}
 .price-good-value{font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--green-deep);letter-spacing:-.03em;display:block;line-height:1;}
+.price-was{display:block;font-size:1.35rem;font-weight:700;color:var(--red);text-decoration:line-through;text-decoration-thickness:2px;opacity:.65;margin-bottom:2px;letter-spacing:-.01em;}
 
 /* ─── НОВЫЙ БЛОК: СКИДКА ─── */
 .discount-block{
@@ -420,6 +421,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <div class="price-arrow">↓</div>
     <div class="price-good">
       <span class="price-good-label">Свежий Вздох — сейчас</span>
+      <span class="price-was" id="price-was">2 990 ₽</span>
       <span class="price-good-value" id="hero-price">990 ₽/мес</span>
     </div>
   </div>
@@ -577,6 +579,9 @@ function tick() {
   if (hp) hp.textContent = tier.price;
   const cn = document.getElementById('cta-price-note');
   if (cn) cn.textContent = tier.note;
+  // Перечёркнутая цена — только для тиров со скидкой
+  const pw = document.getElementById('price-was');
+  if (pw) pw.style.display = (idx < TIERS.length - 1) ? 'block' : 'none';
 
   // Подсветить активный тир в таблице
   for (let i = 0; i < TIERS.length; i++) {
