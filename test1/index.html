@@ -207,9 +207,10 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
 .cta-sub{font-size:.88rem;color:rgba(255,255,255,.45);margin-top:8px;}
 
 /* ПОСЛЕДНИЙ УДАР */
-.last-punch{background:linear-gradient(160deg,#071A0D 0%,#0D3826 55%,#134D35 100%);padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;}
-.last-punch-main{font-size:clamp(2rem,6vw,3.8rem);font-weight:900;line-height:1.1;color:#fff;letter-spacing:-.03em;text-wrap:balance;max-width:760px;}
-.last-punch-sub{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;line-height:1.5;color:rgba(168,230,197,.7);max-width:560px;}
+.last-punch{background:#fff;padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;}
+.last-punch-main{font-size:clamp(2rem,6vw,3.8rem);font-weight:900;line-height:1.1;color:#071A0D;letter-spacing:-.03em;text-wrap:balance;max-width:760px;}
+.last-punch-sub{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;line-height:1.5;color:#4A6B5A;max-width:560px;}
+.last-punch-svg{width:100%;max-width:220px;height:auto;display:block;}
 
 /* TOP HERO WRAPPER */
 .top-hero-wrap{background:linear-gradient(180deg,#061F10 0%,#0D3826 20%,#0D3826 72%,#1A5C3E 100%);}
@@ -665,6 +666,51 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 <hr class="section-divider">
 
 <div class="last-punch">
+  <svg class="last-punch-svg" viewBox="0 0 280 290" xmlns="http://www.w3.org/2000/svg">
+    <!-- Торс / рубашка -->
+    <path d="M10,290 L10,212 Q10,190 55,177 L105,167 Q120,165 140,165 Q160,165 175,167 L225,177 Q270,190 270,212 L270,290 Z" fill="#1A5C3E"/>
+    <!-- V-вырез воротника -->
+    <path d="M128,166 L140,190 L152,166" fill="none" stroke="#A8E6C5" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Шея -->
+    <rect x="126" y="150" width="28" height="20" rx="8" fill="#F5CC97"/>
+    <!-- Голова -->
+    <ellipse cx="140" cy="104" rx="56" ry="58" fill="#F5CC97"/>
+    <!-- Волосы (верх + виски) -->
+    <path d="M84,90 C84,50 196,50 196,90 L194,77 C192,53 88,53 86,77 Z" fill="#1A5C3E"/>
+    <ellipse cx="90" cy="97" rx="11" ry="26" fill="#1A5C3E"/>
+    <ellipse cx="190" cy="97" rx="11" ry="26" fill="#1A5C3E"/>
+    <!-- Уши -->
+    <ellipse cx="84" cy="109" rx="9" ry="12" fill="#EBB87A"/>
+    <ellipse cx="196" cy="109" rx="9" ry="12" fill="#EBB87A"/>
+    <!-- Левый глаз -->
+    <ellipse cx="120" cy="108" rx="9" ry="8" fill="white"/>
+    <circle cx="121" cy="109" r="5" fill="#14260F"/>
+    <circle cx="123" cy="107" r="1.5" fill="white"/>
+    <!-- Правый глаз -->
+    <ellipse cx="160" cy="108" rx="9" ry="8" fill="white"/>
+    <circle cx="161" cy="109" r="5" fill="#14260F"/>
+    <circle cx="163" cy="107" r="1.5" fill="white"/>
+    <!-- Левая бровь — обычная -->
+    <path d="M111,93 Q120,88 129,91" stroke="#7A4820" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <!-- Правая бровь — чуть приподнята (задумчивость) -->
+    <path d="M151,90 Q160,84 169,87" stroke="#7A4820" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <!-- Рот — нейтральный, немного неопределённый -->
+    <path d="M128,130 Q140,135 152,130" stroke="#C08240" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <!-- Правая рука — плечо → локоть (тянется вверх) -->
+    <path d="M220,210 C240,198 250,178 244,158 C240,145 229,140 218,144 C208,148 206,164 213,177"
+          stroke="#1A5C3E" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Правое предплечье — от локтя к подбородку -->
+    <path d="M213,177 C206,166 193,154 180,146 C173,142 165,140 158,142"
+          stroke="#1A5C3E" stroke-width="24" fill="none" stroke-linecap="round"/>
+    <!-- Кисть у подбородка -->
+    <ellipse cx="148" cy="142" rx="17" ry="12" fill="#F5CC97"/>
+    <path d="M136,138 Q141,132 147,135" stroke="#D4A060" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M142,135 Q148,129 153,132" stroke="#D4A060" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <!-- Пузырьки мыслей (верхний правый угол) -->
+    <circle cx="214" cy="86" r="6.5" fill="#A8E6C5" opacity="0.65"/>
+    <circle cx="233" cy="62" r="10" fill="#A8E6C5" opacity="0.73"/>
+    <circle cx="254" cy="34" r="15" fill="#A8E6C5" opacity="0.82"/>
+  </svg>
   <p class="last-punch-main">Если не бросишь здесь —<br>честно, я не знаю,<br>что тебе ещё поможет.</p>
   <p class="last-punch-sub">Потому что здесь собрано всё:<br>метод, информация, люди и условия.</p>
 </div>
