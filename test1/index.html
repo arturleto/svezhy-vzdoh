@@ -3,18 +3,382 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Свежий Вздох — тест таймера</title>
+<title>Тест таймера — Свежий Вздох</title>
 <style>
-  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #060D08; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-  .center { text-align: center; }
-  h1 { font-size: 2rem; color: #4ADE80; }
-  p { color: rgba(255,255,255,0.5); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #060D08;
+    color: #fff;
+    min-height: 100vh;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.5);
+    font-size: 1.1rem;
+  }
+  .price-now {
+    display: inline-block;
+    margin-top: 32px;
+    background: rgba(74,222,128,0.1);
+    border: 1px solid rgba(74,222,128,0.3);
+    border-radius: 12px;
+    padding: 16px 32px;
+  }
+  .price-now .label {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+  .price-now .amount {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #4ADE80;
+  }
+
+  /* ─── PRICE LADDER BLOCK ─── */
+  .ladder-block {
+    padding: 80px 24px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .ladder-block h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: 8px;
+    scroll-margin-top: 0;
+  }
+  .ladder-block .subtitle {
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 40px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .tier-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .tier {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+  }
+  .tier:last-child { border-bottom: none; }
+
+  .tier-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .tier.active .tier-dot {
+    background: #4ADE80;
+    box-shadow: 0 0 12px rgba(74,222,128,0.5);
+  }
+  .tier.past .tier-dot {
+    background: rgba(74,222,128,0.3);
+  }
+
+  .tier-info { flex: 1; }
+  .tier-window {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+  .tier-price {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.3);
+  }
+  .tier.active .tier-price { color: #4ADE80; }
+  .tier.active .tier-window { color: rgba(74,222,128,0.7); }
+
+  .tier-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(74,222,128,0.15);
+    color: #4ADE80;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  /* ─── TIMER WIDGET ─── */
+  #timer-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 220px;
+    background: rgba(6, 13, 8, 0.92);
+    border: 1px solid rgba(74,222,128,0.25);
+    border-radius: 16px;
+    padding: 18px 20px 14px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(74,222,128,0.08);
+    z-index: 999;
+  }
+  .tw-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+  .tw-price {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #4ADE80;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .tw-countdown {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    font-family: 'SF Mono', 'Fira Mono', monospace;
+    color: #fff;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+  .tw-next {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .tw-btn {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    background: rgba(74,222,128,0.1);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 8px;
+    color: rgba(74,222,128,0.9);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    line-height: 1.35;
+  }
+  .tw-btn:hover { background: rgba(74,222,128,0.18); }
+
+  /* ─── DEBUG PANEL ─── */
+  .debug {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+  }
+  .debug button {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 5px 10px;
+    background: rgba(255,50,50,0.15);
+    border: 1px solid rgba(255,50,50,0.3);
+    border-radius: 6px;
+    color: rgba(255,100,100,0.8);
+    font-size: 0.7rem;
+    cursor: pointer;
+  }
+  .debug button:hover { background: rgba(255,50,50,0.25); }
+  .debug .elapsed {
+    font-variant-numeric: tabular-nums;
+    font-family: monospace;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+  }
 </style>
 </head>
 <body>
-<div class="center">
-  <h1>test1 — страница для экспериментов</h1>
-  <p>Здесь будет таймер</p>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Свежий Вздох</h1>
+  <p>Бросить курить без ломки и без стресса</p>
+  <div class="price-now">
+    <div class="label">Цена сейчас</div>
+    <div class="amount current-price">—</div>
+  </div>
 </div>
+
+<!-- PRICE LADDER BLOCK -->
+<div class="ladder-block">
+  <h2 id="price-ladder">Цена растёт каждый раз, когда ты откладываешь.</h2>
+  <p class="subtitle">Чем раньше ты вступаешь — тем меньше платишь. Это не маркетинг. Это честное правило клуба.</p>
+
+  <div class="tier-list">
+    <div class="tier" id="tier-0">
+      <div class="tier-dot"></div>
+      <div class="tier-info">
+        <div class="tier-window">Первые 5 часов после захода на сайт</div>
+        <div class="tier-price">990 ₽</div>
+        <span class="tier-badge">Лучшая цена</span>
+      </div>
+    </div>
+    <div class="tier" id="tier-1">
+      <div class="tier-dot"></div>
+      <div class="tier-info">
+        <div class="tier-window">До 48 часов с первого захода</div>
+        <div class="tier-price">1 300 ₽</div>
+      </div>
+    </div>
+    <div class="tier" id="tier-2">
+      <div class="tier-dot"></div>
+      <div class="tier-info">
+        <div class="tier-window">До 7 дней с первого захода</div>
+        <div class="tier-price">2 900 ₽</div>
+      </div>
+    </div>
+    <div class="tier" id="tier-3">
+      <div class="tier-dot"></div>
+      <div class="tier-info">
+        <div class="tier-window">После 7 дней — навсегда</div>
+        <div class="tier-price">9 999 ₽</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMER WIDGET -->
+<div id="timer-widget">
+  <div class="tw-label">Цена сейчас</div>
+  <div class="tw-price current-price">—</div>
+  <div class="tw-countdown" id="tw-countdown">--:--:--</div>
+  <div class="tw-next" id="tw-next">считаем...</div>
+  <a href="#price-ladder" class="tw-btn" id="tw-btn">Что случится,<br>когда время истечёт?</a>
+</div>
+
+<!-- DEBUG PANEL (убрать перед боевым запуском) -->
+<div class="debug">
+  <div>⚙️ debug</div>
+  <div class="elapsed" id="dbg-elapsed">elapsed: —</div>
+  <div class="elapsed" id="dbg-tier">tier: —</div>
+  <button onclick="resetTimer()">Сбросить таймер (тест)</button>
+</div>
+
+<script>
+  const KEY = 'svezhy_first_visit';
+
+  // Тиры: [до скольких мс от первого визита, цена, метка]
+  const TIERS = [
+    { until: 5 * 3600 * 1000,          price: '990 ₽',   next: '1 300 ₽' },
+    { until: 48 * 3600 * 1000,         price: '1 300 ₽', next: '2 900 ₽' },
+    { until: (48 + 5*24) * 3600 * 1000, price: '2 900 ₽', next: '9 999 ₽' },
+    { until: Infinity,                   price: '9 999 ₽', next: null },
+  ];
+
+  // Инициализация: запомнить первый визит
+  if (!localStorage.getItem(KEY)) {
+    localStorage.setItem(KEY, Date.now().toString());
+  }
+
+  function getFirstVisit() {
+    return parseInt(localStorage.getItem(KEY));
+  }
+
+  function getTierIndex(elapsed) {
+    for (let i = 0; i < TIERS.length; i++) {
+      if (elapsed < TIERS[i].until) return i;
+    }
+    return TIERS.length - 1;
+  }
+
+  function formatTime(ms) {
+    if (ms <= 0) return '00:00:00';
+    const totalSec = Math.floor(ms / 1000);
+    const d = Math.floor(totalSec / 86400);
+    const h = Math.floor((totalSec % 86400) / 3600);
+    const m = Math.floor((totalSec % 3600) / 60);
+    const s = totalSec % 60;
+    if (d > 0) {
+      return d + 'д ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    return pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function updateAll() {
+    const elapsed = Date.now() - getFirstVisit();
+    const idx = getTierIndex(elapsed);
+    const tier = TIERS[idx];
+
+    // Обновить цену везде
+    document.querySelectorAll('.current-price').forEach(el => {
+      el.textContent = tier.price;
+    });
+
+    // Виджет
+    if (idx === TIERS.length - 1) {
+      // Финальный тир
+      document.getElementById('tw-countdown').textContent = '∞';
+      document.getElementById('tw-next').textContent = 'Это максимальная цена';
+      document.getElementById('tw-btn').textContent = 'Как формируется цена';
+    } else {
+      const remaining = TIERS[idx].until - elapsed;
+      document.getElementById('tw-countdown').textContent = formatTime(remaining);
+      document.getElementById('tw-next').textContent = '→ потом цена: ' + tier.next;
+    }
+
+    // Подсветить активный тир в лестнице
+    for (let i = 0; i < TIERS.length; i++) {
+      const el = document.getElementById('tier-' + i);
+      el.classList.remove('active', 'past');
+      if (i < idx) el.classList.add('past');
+      if (i === idx) el.classList.add('active');
+    }
+
+    // Debug
+    const dH = Math.floor(elapsed / 3600000);
+    const dM = Math.floor((elapsed % 3600000) / 60000);
+    const dS = Math.floor((elapsed % 60000) / 1000);
+    document.getElementById('dbg-elapsed').textContent = 'elapsed: ' + dH + 'ч ' + dM + 'м ' + dS + 'с';
+    document.getElementById('dbg-tier').textContent = 'tier: ' + idx + ' (' + tier.price + ')';
+  }
+
+  function resetTimer() {
+    localStorage.setItem(KEY, Date.now().toString());
+    updateAll();
+  }
+
+  setInterval(updateAll, 1000);
+  updateAll();
+</script>
+
 </body>
 </html>
