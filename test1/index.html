@@ -416,7 +416,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <div class="price-compare">
     <div class="price-bad">
       <span class="price-bad-label">Ты тратишь на сигареты каждый месяц</span>
-      <span class="price-strike">6 000 ₽</span>
+      <span class="price-strike">6 000 ₽/мес</span>
     </div>
     <div class="price-arrow">↓</div>
     <div class="price-good">
@@ -528,7 +528,6 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 
 <!-- ─── TIMER WIDGET ─── -->
 <div id="timer-widget">
-  <div class="tw-eyebrow">Скидка активна ещё</div>
   <div class="tw-time" id="tw-time">--:--:--</div>
   <a href="#discount-ladder" class="tw-btn">Что случится,<br>когда время истечёт?</a>
 </div>
@@ -592,14 +591,11 @@ function tick() {
 
   // Виджет
   const tw = document.getElementById('tw-time');
-  const eyebrow = document.querySelector('.tw-eyebrow');
   if (idx === TIERS.length - 1) {
     tw.textContent = '—';
-    if (eyebrow) eyebrow.textContent = 'Цена максимальная';
   } else {
     const rem = TIERS[idx].until - e;
     tw.textContent = fmtRemaining(rem) || '00:00:00';
-    if (eyebrow) eyebrow.textContent = 'Скидка активна ещё';
   }
 }
 
