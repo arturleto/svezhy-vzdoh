@@ -252,24 +252,28 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 @media(max-width:600px){.diseases-grid{grid-template-columns:repeat(2,1fr);}}
 
 /* ─── COMPARE BLOCK ─── */
-.compare-block{background:var(--white);padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:36px;}
-.compare-headline{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:900;color:var(--text);line-height:1.1;letter-spacing:-.03em;text-wrap:balance;}
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:760px;text-align:left;}
-.compare-col{border-radius:20px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;}
-.compare-col.bad{background:#FFF0EE;border:2px solid #FFCCC7;}
-.compare-col.good{background:var(--green-bg);border:2px solid #A8E6C5;}
-.compare-col-title{font-size:1rem;font-weight:900;letter-spacing:.02em;display:flex;align-items:center;gap:8px;}
-.compare-col.bad .compare-col-title{color:var(--red);}
-.compare-col.good .compare-col-title{color:var(--green-deep);}
-.compare-list{display:flex;flex-direction:column;gap:10px;list-style:none;}
-.compare-list li{font-size:.92rem;line-height:1.55;padding-left:20px;position:relative;color:var(--text);}
-.compare-list li::before{content:'';position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;}
-.compare-col.bad .compare-list li::before{background:var(--red);opacity:.6;}
-.compare-col.good .compare-list li::before{background:var(--green-soft);}
-.compare-stat{font-size:.82rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:10px;padding:10px 14px;text-align:center;}
-.compare-col.bad .compare-stat{background:rgba(217,48,37,.1);color:var(--red);}
-.compare-col.good .compare-stat{background:rgba(91,175,133,.15);color:var(--green-deep);}
-@media(max-width:600px){.compare-grid{grid-template-columns:1fr;}}
+.compare-block{background:var(--white);padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:40px;}
+.compare-headline{font-size:clamp(2rem,5.5vw,3.2rem);font-weight:900;color:var(--text);line-height:1.05;letter-spacing:-.03em;text-wrap:balance;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:840px;text-align:left;}
+.compare-col{border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:20px;}
+.compare-col.bad{background:#1A0505;border:1px solid rgba(217,48,37,.25);}
+.compare-col.good{background:linear-gradient(160deg,#061F10,#0D3826);border:1px solid rgba(168,230,197,.2);}
+.compare-col-title{font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+.compare-col.bad .compare-col-title{color:rgba(255,100,100,.6);}
+.compare-col.good .compare-col-title{color:rgba(168,230,197,.5);}
+.compare-points{display:flex;flex-direction:column;gap:16px;}
+.compare-point{display:flex;flex-direction:column;gap:4px;}
+.compare-point-main{font-size:clamp(1rem,2.2vw,1.2rem);font-weight:800;line-height:1.25;color:#fff;}
+.compare-point-sub{font-size:.85rem;line-height:1.5;color:rgba(255,255,255,.4);}
+.compare-col.bad .compare-point-main{color:#fff;}
+.compare-col.good .compare-point-main{color:#fff;}
+.compare-verdict{margin-top:4px;border-radius:12px;padding:14px 18px;}
+.compare-col.bad .compare-verdict{background:rgba(217,48,37,.12);border:1px solid rgba(217,48,37,.2);}
+.compare-col.good .compare-verdict{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);}
+.compare-verdict-text{font-size:clamp(.85rem,1.8vw,.95rem);font-weight:700;line-height:1.5;}
+.compare-col.bad .compare-verdict-text{color:rgba(255,120,120,.8);}
+.compare-col.good .compare-verdict-text{color:rgba(74,222,128,.85);}
+@media(max-width:640px){.compare-grid{grid-template-columns:1fr;}}
 
 /* ─── TIMER WIDGET ─── */
 #timer-widget{
@@ -495,31 +499,57 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 
 <!-- БЛОК СРАВНЕНИЯ -->
 <div class="compare-block">
-  <h2 class="compare-headline">Бросить самому<br>или бросить вместе?</h2>
+  <h2 class="compare-headline">Самому или<br>в сообществе?</h2>
 
   <div class="compare-grid">
     <div class="compare-col bad">
-      <div class="compare-col-title">✗ &nbsp;Самому</div>
-      <ul class="compare-list">
-        <li>Только сила воли — она заканчивается</li>
-        <li>Не понимаешь механизм зависимости — значит, он работает против тебя</li>
-        <li>Срыв → стыд → снова куришь → снова пытаешься</li>
-        <li>Не с кем поговорить, нет поддержки</li>
-        <li>Ломка, нервы, зажоры, раздражение</li>
-      </ul>
-      <div class="compare-stat">95% возвращаются к курению в первый год</div>
+      <div class="compare-col-title">Самому — без знаний и поддержки</div>
+      <div class="compare-points">
+        <div class="compare-point">
+          <div class="compare-point-main">Бьёшься об стену силой воли</div>
+          <div class="compare-point-sub">Сила воли — ресурс. Он заканчивается. Это не метод, это мучение.</div>
+        </div>
+        <div class="compare-point">
+          <div class="compare-point-main">Ты терпишь — но не меняешься</div>
+          <div class="compare-point-sub">Внутри ты всё ещё хочешь курить. Механизм зависимости не тронут.</div>
+        </div>
+        <div class="compare-point">
+          <div class="compare-point-main">Срыв. Стыд. Возврат.</div>
+          <div class="compare-point-sub">И снова по кругу. Снова пытаешься. Снова срываешься. Годами.</div>
+        </div>
+        <div class="compare-point">
+          <div class="compare-point-main">Медленно. Неэффективно. Болезненно.</div>
+          <div class="compare-point-sub">Ломка, зажоры, раздражение — и всё равно риск не бросить никогда.</div>
+        </div>
+      </div>
+      <div class="compare-verdict">
+        <div class="compare-verdict-text">Реальный риск — прожить всю жизнь курящим.<br>95% без метода возвращаются к сигаретам.</div>
+      </div>
     </div>
 
     <div class="compare-col good">
-      <div class="compare-col-title">✓ &nbsp;В Свежем Вздохе</div>
-      <ul class="compare-list">
-        <li>Метод — не сила воли. Понимаешь механизм — он перестаёт работать против тебя</li>
-        <li>Механика присутствия: невозможно просто купить и забыть</li>
-        <li>Люди рядом, которые идут тем же путём — не дадут слиться</li>
-        <li>Биология + психология + медитация — комплекс, который работает</li>
-        <li>Без ломки, без зажоров, без стресса</li>
-      </ul>
-      <div class="compare-stat">Бросаешь — и остаёшься некурящим</div>
+      <div class="compare-col-title">В Свежем Вздохе — трансформация</div>
+      <div class="compare-points">
+        <div class="compare-point">
+          <div class="compare-point-main">Ты получаешь знание — не терпение</div>
+          <div class="compare-point-sub">Понимаешь механизм зависимости — и он перестаёт работать против тебя.</div>
+        </div>
+        <div class="compare-point">
+          <div class="compare-point-main">Ты становишься некурящим человеком</div>
+          <div class="compare-point-sub">Не «бросаю и терплю». А «не хочу курить вообще». Это разные вещи.</div>
+        </div>
+        <div class="compare-point">
+          <div class="compare-point-main">Быстро и без мучений</div>
+          <div class="compare-point-sub">Без ломки, без зажоров, без стресса. Потому что это не сила воли — это метод.</div>
+        </div>
+        <div class="compare-point">
+          <div class="compare-point-main">Бросаешь — и не возвращаешься</div>
+          <div class="compare-point-sub">Среда, люди, механика — всё работает на то, чтобы ты остался некурящим навсегда.</div>
+        </div>
+      </div>
+      <div class="compare-verdict">
+        <div class="compare-verdict-text">Ты бросаешь быстро, эффективно и навсегда.<br>И больше никогда не возвращаешься к курению.</div>
+      </div>
     </div>
   </div>
 </div>
