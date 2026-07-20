@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Свежий Вздох — Бросаем курить вместе без ломки, без стресса, без зажоров</title>
-<meta name="description" content="Программа в среде единомышленников с практиками и механиками присутствия, как в армии — где невозможно просто купить и забыть. 990₽ в месяц.">
+<meta name="description" content="Программа в среде единомышленников с практиками и механиками присутствия, как в армии — где невозможно просто купить и забыть. от 950₽ в месяц.">
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -612,8 +612,8 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <div class="price-arrow">↓</div>
     <div class="price-good">
       <span class="price-good-label">Свежий Вздох — сейчас</span>
-      <span class="price-was" id="price-was">2 990 ₽</span>
-      <span class="price-good-value" id="hero-price">990 ₽/мес</span>
+      <span class="price-was" id="price-was">4 900 ₽</span>
+      <span class="price-good-value" id="hero-price">950 ₽/мес</span>
     </div>
   </div>
 
@@ -633,41 +633,38 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <p class="discount-eyebrow">О цене — честно</p>
   <h2 class="discount-headline">Я хочу помочь тем,<br>кто готов прямо сейчас.</h2>
   <p class="discount-body">
-    Полная цена программы — 2 900 ₽ в месяц. Но я хочу помочь тем, кто понимает ценность и готов действовать прямо сейчас — не откладывать, не думать неделями.<br><br>
+    Полная цена программы — 4 900 ₽ в месяц. Но я хочу помочь тем, кто понимает ценность и готов действовать прямо сейчас — не откладывать, не думать неделями.<br><br>
     Поэтому для тех, кто готов действовать — цена совсем другая. Это мой способ сказать: я вижу тебя, я ценю твою готовность, и я хочу тебе помочь.
   </p>
 
   <div class="discount-tiers" id="price-ladder">
     <div class="dt" id="dt-0">
       <div class="dt-left">
-        <div class="dt-when">Первые 5 часов</div>
+        <div class="dt-when">Первые 2 часа</div>
         <div class="dt-label">Готов — и действуешь сразу</div>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
-        <div class="dt-price">990 ₽/мес</div>
-        <div class="dt-badge">Лучшая цена</div>
-      </div>
+      <div class="dt-price">950 ₽/мес</div>
     </div>
     <div class="dt" id="dt-1">
       <div class="dt-left">
-        <div class="dt-when">До 48 часов</div>
+        <div class="dt-when">До 24 часов</div>
         <div class="dt-label">Думаешь — но не тянешь</div>
       </div>
-      <div class="dt-price">1 200 ₽/мес</div>
+      <div class="dt-price">990 ₽/мес</div>
     </div>
     <div class="dt" id="dt-2">
       <div class="dt-left">
         <div class="dt-when">До 7 дней</div>
         <div class="dt-label">Откладываешь на потом</div>
       </div>
-      <div class="dt-price">1 900 ₽/мес</div>
+      <div class="dt-price">1 450 ₽/мес</div>
     </div>
     <div class="dt" id="dt-3">
       <div class="dt-left">
         <div class="dt-when">После 7 дней</div>
         <div class="dt-label">Полная цена программы</div>
       </div>
-      <div class="dt-price">2 900 ₽/мес</div>
+      <div class="dt-price">4 900 ₽/мес</div>
     </div>
   </div>
 
@@ -779,10 +776,10 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 const KEY = 'svezhy_first_visit';
 const H = 3600000;
 const TIERS = [
-  { until: 5*H,            price: '990 ₽/мес',   note: '990 ₽ в месяц · отменить в любой момент' },
-  { until: 48*H,           price: '1 200 ₽/мес', note: '1 200 ₽ в месяц · отменить в любой момент' },
-  { until: (48+5*24)*H,    price: '1 900 ₽/мес', note: '1 900 ₽ в месяц · отменить в любой момент' },
-  { until: Infinity,        price: '2 900 ₽/мес', note: '2 900 ₽ в месяц · отменить в любой момент' },
+  { until: 2*H,      price: '950 ₽/мес',   note: '950 ₽ в месяц · отменить в любой момент' },
+  { until: 24*H,     price: '990 ₽/мес',   note: '990 ₽ в месяц · отменить в любой момент' },
+  { until: 7*24*H,   price: '1 450 ₽/мес', note: '1 450 ₽ в месяц · отменить в любой момент' },
+  { until: Infinity,  price: '4 900 ₽/мес', note: '4 900 ₽ в месяц · отменить в любой момент' },
 ];
 
 if (!localStorage.getItem(KEY)) {
