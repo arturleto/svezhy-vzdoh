@@ -275,6 +275,21 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 .compare-col.good .compare-verdict-text{color:rgba(74,222,128,.85);}
 @media(max-width:640px){.compare-grid{grid-template-columns:1fr;}}
 
+/* ─── INLINE TIMER ─── */
+.inline-timer{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;
+  background:rgba(0,0,0,.25);border:1px solid rgba(168,230,197,.15);
+  border-radius:14px;padding:16px 24px;max-width:480px;
+}
+.it-prefix{font-size:clamp(1rem,2.5vw,1.2rem);color:rgba(255,255,255,.5);font-weight:500;}
+.it-countdown{
+  font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;color:#fff;
+  font-variant-numeric:tabular-nums;font-family:'SF Mono','Fira Mono',monospace;
+  letter-spacing:.04em;line-height:1;
+}
+.it-suffix{font-size:clamp(1rem,2.5vw,1.2rem);color:rgba(255,255,255,.5);font-weight:500;}
+.it-suffix strong{color:#4ADE80;font-weight:900;}
+
 /* ─── TIMER WIDGET ─── */
 #timer-widget{
   position:fixed;bottom:24px;right:24px;
@@ -573,6 +588,13 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     </div>
   </div>
   <p class="block-body">И это только деньги. Про здоровье даже не начинаем.</p>
+
+  <div class="inline-timer" id="inline-timer">
+    <span class="it-prefix">Через</span>
+    <span class="it-countdown" id="it-countdown">--:--:--</span>
+    <span class="it-suffix">цена повысится до <strong id="it-next-price">—</strong></span>
+  </div>
+
   <a href="https://t.me/tribute/app?startapp=sVVm" class="btn-main" target="_blank" rel="noopener" style="margin-top:8px;">Вступить в Свежий Вздох →</a>
 </div>
 
@@ -737,11 +759,20 @@ function tick() {
 
   // Виджет
   const tw = document.getElementById('tw-time');
+  const itBlock = document.getElementById('inline-timer');
+  const itCountdown = document.getElementById('it-countdown');
+  const itNext = document.getElementById('it-next-price');
+
   if (idx === TIERS.length - 1) {
     tw.textContent = '—';
+    if (itBlock) itBlock.style.display = 'none';
   } else {
     const rem = TIERS[idx].until - e;
-    tw.textContent = fmtRemaining(rem) || '00:00:00';
+    const fmt = fmtRemaining(rem) || '00:00:00';
+    tw.textContent = fmt;
+    if (itCountdown) itCountdown.textContent = fmt;
+    if (itNext) itNext.textContent = TIERS[idx + 1].price;
+    if (itBlock) itBlock.style.display = 'flex';
   }
 }
 
