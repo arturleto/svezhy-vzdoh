@@ -1,383 +1,630 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Тест таймера — Свежий Вздох</title>
+<title>Свежий Вздох — Бросаем курить вместе без ломки, без стресса, без зажоров</title>
+<meta name="description" content="Программа в среде единомышленников с практиками и механиками присутствия, как в армии — где невозможно просто купить и забыть. 990₽ в месяц.">
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-deep:#1A5C3E;--green-mid:#2A7A55;--green-soft:#5BAF85;
+  --green-pale:#A8E6C5;--green-bg:#F0F9F4;--white:#FFFFFF;
+  --text:#0D1F15;--muted:#5A7568;--red:#D93025;--red-light:#FFF0EE;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--white);color:var(--text);line-height:1.5;font-size:18px;}
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #060D08;
-    color: #fff;
-    min-height: 100vh;
-  }
+/* NAV */
+nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(26,92,62,.97);}
+.nav-brand{font-size:1rem;font-weight:700;color:#fff;letter-spacing:.04em;text-decoration:none;}
 
-  /* ─── HERO ─── */
-  .hero {
-    padding: 80px 24px;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-  .hero p {
-    color: rgba(255,255,255,0.5);
-    font-size: 1.1rem;
-  }
-  .price-now {
-    display: inline-block;
-    margin-top: 32px;
-    background: rgba(74,222,128,0.1);
-    border: 1px solid rgba(74,222,128,0.3);
-    border-radius: 12px;
-    padding: 16px 32px;
-  }
-  .price-now .label {
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 6px;
-  }
-  .price-now .amount {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #4ADE80;
-  }
+/* HERO INTRO */
+.hero-intro{padding:48px 24px 72px;background:transparent;position:relative;overflow:hidden;}
+.hi-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;}
+.hi-headline{font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;color:#fff;line-height:1.15;text-wrap:balance;letter-spacing:-.02em;}
+.hi-headline em{font-style:normal;color:var(--green-pale);}
+.hi-definition{font-size:clamp(1rem,2vw,1.3rem);font-weight:500;color:rgba(255,255,255,.72);line-height:1.55;max-width:680px;}
+.hi-definition em{font-style:normal;color:var(--green-pale);}
+.hi-banner{width:100%;display:flex;justify-content:center;}
+.hi-banner img{display:block;max-height:240px;width:auto;max-width:100%;}
+.hi-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;}
+.hi-pillar{display:flex;flex-direction:column;align-items:flex-start;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(168,230,197,.15);border-radius:14px;padding:16px 18px;text-align:left;}
+.hi-pillar-icon{font-size:1.4rem;line-height:1;}
+.hi-pillar-text{font-size:.88rem;color:rgba(255,255,255,.72);line-height:1.55;}
+.hi-pillar-text strong{color:#fff;display:block;margin-bottom:4px;font-size:.92rem;}
+@media(max-width:700px){.hi-pillars{grid-template-columns:1fr;}}
 
-  /* ─── PRICE LADDER BLOCK ─── */
-  .ladder-block {
-    padding: 80px 24px;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-  .ladder-block h2 {
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: 900;
-    margin-bottom: 8px;
-    scroll-margin-top: 0;
-  }
-  .ladder-block .subtitle {
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 40px;
-    font-size: 1rem;
-    line-height: 1.6;
-  }
+/* IMAGINE BLOCK */
+.imagine-block{background:linear-gradient(160deg,#061F10 0%,#0D3826 50%,#1A5C3E 100%);padding:80px 24px 72px;display:flex;align-items:center;justify-content:center;}
+.imagine-inner{max-width:1000px;width:100%;display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center;}
+.imagine-text{display:flex;flex-direction:column;gap:24px;}
+.imagine-quote{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;letter-spacing:-.03em;text-wrap:balance;}
+.imagine-quote em{font-style:normal;color:var(--green-pale);}
+.imagine-sub{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:rgba(255,255,255,.75);}
+.imagine-stat{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(168,230,197,.2);border-radius:14px;padding:14px 20px;align-self:flex-start;}
+.imagine-stat-num{font-size:2rem;font-weight:900;color:var(--green-pale);letter-spacing:-.03em;line-height:1;white-space:nowrap;}
+.imagine-stat-label{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.4;}
+.imagine-img{display:block;width:100%;}
+@media(max-width:780px){.imagine-inner{grid-template-columns:1fr;gap:32px;text-align:center;}.imagine-stat{align-self:center;}.imagine-img{max-width:280px;margin:0 auto;}}
 
-  .tier-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .tier {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 24px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    position: relative;
-  }
-  .tier:last-child { border-bottom: none; }
+/* FEAR STATS BLOCK */
+.fear-block{background:#F4F7F4;padding:80px 24px 88px;text-align:center;}
+.fear-stats{max-width:640px;margin:0 auto 56px;display:flex;flex-direction:column;align-items:center;}
+.fear-stat{padding:44px 0;width:100%;}
+.fear-stat+.fear-stat{border-top:1px solid rgba(13,42,26,.12);}
+.fear-num{display:block;font-size:clamp(3.8rem,13vw,7.5rem);font-weight:900;color:#0D2A1A;letter-spacing:-.04em;line-height:1;}
+.fear-label{display:block;font-size:clamp(.9rem,2.2vw,1.05rem);color:rgba(13,42,26,.45);margin-top:14px;line-height:1.55;letter-spacing:.08em;text-transform:uppercase;}
+.fear-poison{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:500px;margin:0 auto;}
+.fear-skull{font-size:2.6rem;line-height:1;}
+.fear-poison-text{font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:700;color:rgba(13,42,26,.75);line-height:1.55;}
 
-  .tier-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    margin-top: 5px;
-    flex-shrink: 0;
-  }
-  .tier.active .tier-dot {
-    background: #4ADE80;
-    box-shadow: 0 0 12px rgba(74,222,128,0.5);
-  }
-  .tier.past .tier-dot {
-    background: rgba(74,222,128,0.3);
-  }
+/* BLOCKS */
+.block{padding:72px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;}
+.block-dark{background:linear-gradient(160deg,#0D3826,#1A5C3E);color:#fff;}
+.block-light{background:var(--white);}
+.block-green{background:var(--green-bg);}
+.block-red{background:var(--red-light);}
+.block-black{background:#0A0A0A;color:#fff;}
+.block img{width:100%;max-width:280px;border-radius:20px;display:block;}
+.block-dark img,.block-black img{box-shadow:0 16px 48px rgba(0,0,0,.5);}
+.block-light img,.block-green img{box-shadow:0 12px 36px rgba(26,92,62,.15);}
+.block-headline{font-size:clamp(2rem,6vw,3.4rem);font-weight:900;line-height:1.05;text-wrap:balance;letter-spacing:-.03em;max-width:640px;}
+.block-dark .block-headline,.block-black .block-headline{color:#fff;}
+.block-light .block-headline,.block-green .block-headline{color:var(--text);}
+.block-red .block-headline{color:var(--red);}
+.block-body{font-size:clamp(1rem,2.5vw,1.15rem);line-height:1.7;max-width:580px;}
+.block-dark .block-body,.block-black .block-body{color:rgba(255,255,255,.78);}
+.block-light .block-body,.block-green .block-body{color:var(--muted);}
+.block-red .block-body{color:#8B1A1A;}
 
-  .tier-info { flex: 1; }
-  .tier-window {
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 4px;
-  }
-  .tier-price {
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: rgba(255,255,255,0.3);
-  }
-  .tier.active .tier-price { color: #4ADE80; }
-  .tier.active .tier-window { color: rgba(74,222,128,0.7); }
+/* STEPS */
+.steps-wrap{display:flex;flex-direction:column;gap:16px;width:100%;max-width:600px;text-align:left;}
+.step{background:var(--white);border:2px solid #DCF0E5;border-radius:16px;padding:20px 24px;display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;}
+.step-num{width:52px;height:52px;border-radius:50%;background:var(--green-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;flex-shrink:0;}
+.step h3{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:6px;}
+.step p{font-size:.95rem;color:var(--muted);line-height:1.65;margin:0;}
 
-  .tier-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 20px;
-    background: rgba(74,222,128,0.15);
-    color: #4ADE80;
-    margin-top: 4px;
-    display: inline-block;
-  }
+/* STAT */
+.stat-big{font-size:clamp(4rem,14vw,8rem);font-weight:900;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums;}
+.block-dark .stat-big{color:var(--green-pale);}
 
-  /* ─── TIMER WIDGET ─── */
-  #timer-widget {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 220px;
-    background: rgba(6, 13, 8, 0.92);
-    border: 1px solid rgba(74,222,128,0.25);
-    border-radius: 16px;
-    padding: 18px 20px 14px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(74,222,128,0.08);
-    z-index: 999;
-  }
-  .tw-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 4px;
-  }
-  .tw-price {
-    font-size: 1.7rem;
-    font-weight: 900;
-    color: #4ADE80;
-    line-height: 1;
-    margin-bottom: 10px;
-  }
-  .tw-countdown {
-    font-size: 1.3rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    font-family: 'SF Mono', 'Fira Mono', monospace;
-    color: #fff;
-    letter-spacing: 0.04em;
-    margin-bottom: 2px;
-  }
-  .tw-next {
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 12px;
-    line-height: 1.4;
-  }
-  .tw-btn {
-    display: block;
-    width: 100%;
-    padding: 8px 10px;
-    background: rgba(74,222,128,0.1);
-    border: 1px solid rgba(74,222,128,0.2);
-    border-radius: 8px;
-    color: rgba(74,222,128,0.9);
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s;
-    line-height: 1.35;
-  }
-  .tw-btn:hover { background: rgba(74,222,128,0.18); }
+/* MECHANIC CARDS */
+.mechanic-cards{display:flex;flex-direction:column;gap:14px;width:100%;max-width:600px;text-align:left;}
+.mc{background:rgba(255,255,255,.08);border:1px solid rgba(168,230,197,.2);border-radius:16px;padding:20px 24px;}
+.mc h3{font-size:1rem;font-weight:800;color:var(--green-pale);margin-bottom:8px;}
+.mc p{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.65;margin:0;}
+.mc strong{color:#fff;}
 
-  /* ─── DEBUG PANEL ─── */
-  .debug {
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(0,0,0,0.7);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-size: 0.72rem;
-    color: rgba(255,255,255,0.4);
-  }
-  .debug button {
-    display: block;
-    width: 100%;
-    margin-top: 6px;
-    padding: 5px 10px;
-    background: rgba(255,50,50,0.15);
-    border: 1px solid rgba(255,50,50,0.3);
-    border-radius: 6px;
-    color: rgba(255,100,100,0.8);
-    font-size: 0.7rem;
-    cursor: pointer;
-  }
-  .debug button:hover { background: rgba(255,50,50,0.25); }
-  .debug .elapsed {
-    font-variant-numeric: tabular-nums;
-    font-family: monospace;
-    color: rgba(255,255,255,0.3);
-    margin-top: 4px;
-  }
+/* PENALTY */
+.penalty-cards{display:flex;flex-direction:column;gap:12px;width:100%;max-width:520px;}
+.pc{border-radius:14px;padding:18px 22px;text-align:left;}
+.pc.bad{background:#FFF0EE;border:2px solid #FFCCC7;}
+.pc.good{background:var(--green-bg);border:2px solid #A8E6C5;}
+.pc .pc-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:block;}
+.pc.bad .pc-label{color:var(--red);}
+.pc.good .pc-label{color:var(--green-deep);}
+.pc .pc-text{font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.5;}
+
+/* INSIDE */
+.inside-list{list-style:none;display:flex;flex-direction:column;gap:12px;width:100%;max-width:560px;text-align:left;}
+.inside-list li{background:var(--white);border:2px solid #DCF0E5;border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;}
+.il-icon{font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:2px;}
+.il-text strong{display:block;font-size:1rem;font-weight:800;margin-bottom:3px;}
+.il-text span{font-size:.88rem;color:var(--muted);line-height:1.5;}
+
+/* PRICE COMPARE */
+.price-compare{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:480px;}
+.price-bad{background:#fff0ee;border:2px solid #ffccc7;border-radius:16px;padding:20px 32px;width:100%;text-align:center;}
+.price-bad-label{display:block;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#B91C1C;margin-bottom:8px;opacity:.75;}
+.price-strike{font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--red);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:5px;letter-spacing:-.03em;display:block;line-height:1;}
+.price-arrow{font-size:2.2rem;color:var(--green-deep);font-weight:900;line-height:1;}
+.price-good{background:var(--green-bg);border:2px solid var(--green-soft);border-radius:16px;padding:20px 32px;width:100%;text-align:center;}
+.price-good-label{display:block;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);margin-bottom:8px;opacity:.75;}
+.price-good-value{font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--green-deep);letter-spacing:-.03em;display:block;line-height:1;}
+
+/* ─── НОВЫЙ БЛОК: СКИДКА ─── */
+.discount-block{
+  background:var(--green-bg);
+  padding:80px 24px 88px;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:28px;
+}
+.discount-eyebrow{
+  font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--green-deep);opacity:.6;
+}
+.discount-headline{
+  font-size:clamp(1.9rem,5vw,3rem);font-weight:900;line-height:1.1;
+  letter-spacing:-.03em;text-wrap:balance;max-width:600px;color:var(--text);
+}
+.discount-body{
+  font-size:clamp(1rem,2.2vw,1.15rem);line-height:1.75;max-width:560px;color:var(--muted);
+}
+.discount-tiers{
+  display:flex;flex-direction:column;gap:0;width:100%;max-width:520px;
+  border:2px solid #DCF0E5;border-radius:20px;overflow:hidden;
+  background:var(--white);
+}
+.dt{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;border-bottom:1px solid #E8F4ED;
+  gap:16px;
+}
+.dt:last-child{border-bottom:none;}
+.dt.active{background:var(--green-deep);}
+.dt-left{text-align:left;}
+.dt-when{
+  font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:3px;
+}
+.dt.active .dt-when{color:rgba(168,230,197,.65);}
+.dt-label{font-size:.95rem;font-weight:700;color:var(--text);}
+.dt.active .dt-label{color:#fff;}
+.dt-price{
+  font-size:1.3rem;font-weight:900;color:var(--green-deep);
+  white-space:nowrap;letter-spacing:-.02em;
+}
+.dt.active .dt-price{color:#4ADE80;}
+.dt-badge{
+  font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;
+  background:rgba(74,222,128,.2);color:#4ADE80;
+  white-space:nowrap;
+}
+.discount-hint{
+  font-size:.9rem;color:var(--muted);line-height:1.6;max-width:440px;
+  background:rgba(26,92,62,.06);border-radius:12px;padding:14px 20px;
+}
+.discount-hint strong{color:var(--green-deep);}
+
+/* GUARANTEE */
+.guarantee-wrap{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;max-width:560px;}
+.guarantee-headline{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:900;color:#fff;text-align:center;letter-spacing:-.03em;line-height:1.05;}
+.guarantee-detail{background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.2);border-left:4px solid var(--green-soft);border-radius:16px;padding:24px 28px;text-align:left;width:100%;}
+.guarantee-detail p{font-size:1rem;color:rgba(255,255,255,.78);line-height:1.65;}
+.guarantee-detail strong{color:#fff;}
+
+/* TICKET */
+.ticket-rows{display:flex;flex-direction:column;gap:20px;width:100%;max-width:620px;}
+.ticket-row{display:flex;align-items:center;gap:24px;background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.15);border-radius:20px;padding:22px 24px;}
+.ticket-row-rev{flex-direction:row-reverse;}
+.ticket-img{width:130px;flex-shrink:0;}
+.ticket-row p{font-size:.98rem;line-height:1.75;color:rgba(255,255,255,.88);text-align:left;margin:0;}
+.ticket-note{font-size:.98rem;line-height:1.65;color:rgba(255,255,255,.85);text-align:center;background:rgba(168,230,197,.08);border:1px solid rgba(168,230,197,.2);border-radius:16px;padding:18px 24px;}
+.ticket-note strong{color:var(--green-pale);}
+@media(max-width:540px){.ticket-row,.ticket-row-rev{flex-direction:column;text-align:center;}.ticket-row p{text-align:center;}.ticket-img{width:110px;}}
+
+/* CTA */
+.btn-main{display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4);animation:btnpulse 2.4s ease-in-out infinite;}
+@keyframes btnpulse{0%,100%{box-shadow:0 6px 24px rgba(26,92,62,.4);}50%{box-shadow:0 6px 36px rgba(91,175,133,.7),0 0 0 8px rgba(91,175,133,.15);}}
+@media(prefers-reduced-motion:reduce){.btn-main{animation:none;}}
+.btn-main:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,92,62,.45);animation:none;}
+.btn-main:active{transform:translateY(0)}
+.price-note{font-size:.9rem;color:rgba(255,255,255,.45);margin-top:8px;}
+.cta-sub{font-size:.88rem;color:rgba(255,255,255,.45);margin-top:8px;}
+
+/* ПОСЛЕДНИЙ УДАР */
+.last-punch{background:linear-gradient(160deg,#071A0D 0%,#0D3826 55%,#134D35 100%);padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;}
+.last-punch-main{font-size:clamp(2rem,6vw,3.8rem);font-weight:900;line-height:1.1;color:#fff;letter-spacing:-.03em;text-wrap:balance;max-width:760px;}
+.last-punch-sub{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;line-height:1.5;color:rgba(168,230,197,.7);max-width:560px;}
+
+/* TOP HERO WRAPPER */
+.top-hero-wrap{background:linear-gradient(180deg,#061F10 0%,#0D3826 20%,#0D3826 72%,#1A5C3E 100%);}
+
+/* VIDEO BLOCK */
+.video-block{background:transparent;padding:56px 24px 0;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;position:relative;overflow:hidden;}
+.video-block h1{font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;color:#fff;line-height:1.15;text-wrap:balance;letter-spacing:-.025em;max-width:720px;position:relative;z-index:1;}
+.video-block h1 em{font-style:normal;color:var(--green-pale);}
+.scroll-hint{position:relative;z-index:1;padding:12px 0 0;animation:scrollbounce 2s ease-in-out infinite;}
+@keyframes scrollbounce{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+.br{position:absolute;border-radius:50%;border:1px solid rgba(168,230,197,.1);animation:breathe 4s ease-in-out infinite;pointer-events:none;z-index:0;}
+.br:nth-child(1){width:400px;height:400px;animation-delay:0s}.br:nth-child(2){width:700px;height:700px;animation-delay:.7s}.br:nth-child(3){width:1050px;height:1050px;animation-delay:1.4s}.br:nth-child(4){width:1450px;height:1450px;animation-delay:2.1s}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.03);opacity:.1}}
+@media(prefers-reduced-motion:reduce){.br{animation:none}}
+.video-wrap{width:100%;max-width:880px;border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.55);background:#081E11;aspect-ratio:16/9;position:relative;z-index:1;border:1px solid rgba(168,230,197,.1);}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+
+/* DIVIDER */
+.section-divider{height:4px;background:linear-gradient(90deg,transparent,var(--green-soft),transparent);border:none;margin:0;}
+
+/* FOOTER */
+footer{background:var(--green-deep);color:rgba(255,255,255,.6);padding:28px 24px;text-align:center;font-size:.82rem;line-height:1.7;}
+footer a{color:rgba(255,255,255,.5);text-decoration:none;}
+
+@media(max-width:560px){.block{padding:56px 20px;}.btn-main{padding:1rem 2rem;font-size:1rem;}nav{padding:0 16px;}}
+
+/* ─── TIMER WIDGET ─── */
+#timer-widget{
+  position:fixed;bottom:24px;right:24px;
+  width:186px;
+  background:rgba(7,26,13,.93);
+  border:1px solid rgba(168,230,197,.2);
+  border-radius:16px;
+  padding:16px 18px 13px;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  z-index:999;
+}
+.tw-eyebrow{
+  font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(168,230,197,.5);margin-bottom:6px;
+}
+.tw-time{
+  font-size:1.55rem;font-weight:800;letter-spacing:.03em;
+  font-variant-numeric:tabular-nums;
+  font-family:'SF Mono','Fira Mono',monospace;
+  color:#fff;line-height:1;margin-bottom:10px;
+}
+.tw-btn{
+  display:block;width:100%;padding:7px 10px;
+  background:rgba(168,230,197,.08);
+  border:1px solid rgba(168,230,197,.18);
+  border-radius:8px;
+  color:rgba(168,230,197,.8);
+  font-size:.68rem;font-weight:600;
+  text-align:center;cursor:pointer;text-decoration:none;
+  transition:background .2s;line-height:1.4;
+}
+.tw-btn:hover{background:rgba(168,230,197,.15);}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Свежий Вздох</h1>
-  <p>Бросить курить без ломки и без стресса</p>
-  <div class="price-now">
-    <div class="label">Цена сейчас</div>
-    <div class="amount current-price">—</div>
+<nav>
+  <a class="nav-brand" href="#">🌿 Свежий Вздох</a>
+</nav>
+
+<div class="top-hero-wrap">
+<div class="video-block">
+  <div class="br"></div><div class="br"></div><div class="br"></div><div class="br"></div>
+  <h1>Бросаем курить вместе —<br><em>без ломки, без стресса, без зажоров</em></h1>
+  <div class="video-wrap">
+    <iframe id="yt-player" src="https://www.youtube.com/embed/-r1a5vtq0jw?enablejsapi=1"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+  <a href="#price" class="btn-main">Вступить в Свежий Вздох →</a>
+  <div class="scroll-hint">
+    <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
+      <polyline points="4,4 14,13 24,4" stroke="rgba(168,230,197,0.5)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="4,17 14,26 24,17" stroke="rgba(168,230,197,0.28)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 </div>
 
-<!-- PRICE LADDER BLOCK -->
-<div class="ladder-block">
-  <h2 id="price-ladder">Цена растёт каждый раз, когда ты откладываешь.</h2>
-  <p class="subtitle">Чем раньше ты вступаешь — тем меньше платишь. Это не маркетинг. Это честное правило клуба.</p>
+<div class="hero-intro">
+  <div class="hi-inner">
+    <div class="hi-banner"><img src="../img-hero.png" alt="Свежий Вздох"></div>
+    <p class="hi-definition">Программа в среде единомышленников с практиками и механиками присутствия, <em>как в армии</em> —<br>где невозможно просто купить и забыть</p>
+    <div class="hi-pillars">
+      <div class="hi-pillar"><span class="hi-pillar-icon">🎯</span><div class="hi-pillar-text"><strong>Держим фокус на дисциплине</strong>Познаём метод шаг за шагом — не спеша, но каждый день.</div></div>
+      <div class="hi-pillar"><span class="hi-pillar-icon">🧹</span><div class="hi-pillar-text"><strong>Стираем результат пропаганды</strong>«Курить можно и классно» — это не твоя мысль. Это то, что в тебя вложили табачные компании.</div></div>
+      <div class="hi-pillar"><span class="hi-pillar-icon">✨</span><div class="hi-pillar-text"><strong>Активируем новые установки</strong>«Курение — яд. Никотин убивает. Я люблю себя и хочу жить дольше.»</div></div>
+    </div>
+  </div>
+</div>
+</div>
 
-  <div class="tier-list">
-    <div class="tier" id="tier-0">
-      <div class="tier-dot"></div>
-      <div class="tier-info">
-        <div class="tier-window">Первые 5 часов после захода на сайт</div>
-        <div class="tier-price">990 ₽</div>
-        <span class="tier-badge">Лучшая цена</span>
-      </div>
+<div class="imagine-block">
+  <div class="imagine-inner">
+    <div class="imagine-text">
+      <p class="imagine-quote">Представь, как ты будешь <em>гордиться собой</em>, когда бросишь курить.</p>
+      <p class="imagine-sub">У тебя точно получится. Начни сейчас.</p>
     </div>
-    <div class="tier" id="tier-1">
-      <div class="tier-dot"></div>
-      <div class="tier-info">
-        <div class="tier-window">До 48 часов с первого захода</div>
-        <div class="tier-price">1 300 ₽</div>
-      </div>
+    <img src="../img-imagine.png" alt="" class="imagine-img">
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="fear-block">
+  <div class="fear-stats">
+    <div class="fear-stat">
+      <span class="fear-num">−11 мин</span>
+      <span class="fear-label">отнимает у твоей жизни каждая сигарета</span>
     </div>
-    <div class="tier" id="tier-2">
-      <div class="tier-dot"></div>
-      <div class="tier-info">
-        <div class="tier-window">До 7 дней с первого захода</div>
-        <div class="tier-price">2 900 ₽</div>
-      </div>
+    <div class="fear-stat">
+      <span class="fear-num">8 000 000</span>
+      <span class="fear-label">человек умирает от курения каждый год</span>
     </div>
-    <div class="tier" id="tier-3">
-      <div class="tier-dot"></div>
-      <div class="tier-info">
-        <div class="tier-window">После 7 дней — навсегда</div>
-        <div class="tier-price">9 999 ₽</div>
-      </div>
+  </div>
+  <div class="fear-poison">
+    <span class="fear-skull">💀</span>
+    <p class="fear-poison-text">Никотин — это яд. Который убивает.<br>Это статистические данные. И они реально пугают.</p>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="block block-light" style="padding-top:96px;">
+  <img src="../img-poison.png" alt="Вейп, кальян, айкос = яд">
+  <h2 class="block-headline">Вейп. Кальян. Айкос.<br>Это всё — яд.</h2>
+  <p class="block-body">Другой вкус. Другая форма. Тот же никотин. Та же зависимость. Те же последствия — просто приходят чуть позже. Пока одни переходят на «вкусненький» вейп, думая что это лучше — они просто продолжают принимать яд под другим названием.</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="block block-green">
+  <h2 class="block-headline" style="color:var(--green-deep)">Ты не куришь.<br>Ты снимаешь ломку.</h2>
+  <p class="block-body">Никотин создаёт дефицит — и ты идёшь его восполнить. Тебе кажется, что ты хочешь курить. На самом деле ты просто снимаешь ломку, которую сам себе создал. Это ловушка. Когда понимаешь механизм — он перестаёт работать против тебя.</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="block block-dark">
+  <img src="../img-brain.png" alt="Перепрограммирование мозга">
+  <h2 class="block-headline">Мы перепрограммируем мозг.</h2>
+  <p class="block-body">Изучаем биологию — и ловушка перестаёт работать. Изучаем психологию — и желание курить исчезает. Потом перезаписываем нейронные связи. После этого просто не куришь. Без ломки. Без зажоров. Без стресса.</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="block block-dark">
+  <img src="../img-circle.png" alt="Кружочек 15 секунд">
+  <div class="stat-big">15 сек</div>
+  <h2 class="block-headline">В день.<br>И ты не один.</h2>
+  <div class="mechanic-cards">
+    <div class="mc">
+      <h3>Как это работает</h3>
+      <p>Каждый день — 15-секундный кружочек в общий чат. Просто говоришь, на какой стадии ты сейчас. <strong>Изучаю. Готовлюсь. Уже не курю — день пять.</strong> Всё.<br><br>Зайдёшь записать кружочек — увидишь других — посмотришь одно видео. Вот так оно и работает. Без насилия над собой. Каждый день на шаг ближе к цели.</p>
     </div>
   </div>
 </div>
 
-<!-- TIMER WIDGET -->
+<hr class="section-divider">
+
+<div class="block block-red">
+  <h2 class="block-headline">Пропустил?<br>Платишь.</h2>
+  <div class="penalty-cards">
+    <div class="pc bad">
+      <span class="pc-label">Если не выложил кружочек до полуночи</span>
+      <div class="pc-text">Каждый участник в начале ставит себе <strong>цену слова</strong> — сумму штрафа за пропуск. Минимум 200 ₽. Можно 1000, можно 5000 — это твоё дело. Любой участник, который это заметил, пишет: «поймал, жду штраф». И ты платишь. Не заплатил — вылетаешь.</div>
+    </div>
+    <div class="pc good">
+      <span class="pc-label">Если ты поймал кого-то</span>
+      <div class="pc-text">Деньги твои. Ты тоже можешь следить за другими — если хочешь. Поймал на пропуске — получил его цену слова.</div>
+    </div>
+  </div>
+  <p class="block-body">Каждый день ты возвращаешься. Не потому что обязан. А потому что либо пишешь кружочек — либо платишь. И платить не хочется. Это и есть условия, в которых не бросают бросать.</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="block block-green">
+  <h2 class="block-headline" style="color:var(--green-deep)">Что тебя<br>ждёт внутри.</h2>
+  <p class="block-body" style="margin-bottom:8px;color:var(--muted);">Я собрал всё. Один раз — и по порядку. Ничего лишнего.</p>
+  <ul class="inside-list">
+    <li><span class="il-icon">🧠</span><div class="il-text"><strong>Биология — ты прозреешь</strong><span>Видеокурс от доктора: как молекула никотина работает в твоём организме. После просмотра ты будешь другим. Обратного пути не будет — ты поймёшь механизм, и он перестанет работать против тебя.</span></div></li>
+    <li><span class="il-icon">🧩</span><div class="il-text"><strong>Психология — новые нейронные связи</strong><span>Как перестать думать о сигарете как о подруге и помощнице. Ты узнаешь, как тебя запрограммировали — и как это переписать. Прежнего тебя уже не будет.</span></div></li>
+    <li><span class="il-icon">🧘</span><div class="il-text"><strong>Медитация — без ломки</strong><span>Конкретная практика, которая переключает организм с режима курильщика на режим некурящего. Просто повторяешь — и после не хочешь курить. Не терпишь. Именно не хочешь.</span></div></li>
+    <li><span class="il-icon">👥</span><div class="il-text"><strong>Живое сообщество — ты не один</strong><span>Люди, которые идут тем же путём. Как солдаты в одной казарме — одна среда, одна цель. Поддержат, подскажут, не дадут слиться. В одиночку срываются чаще. В сообществе — статистика на твоей стороне.</span></div></li>
+    <li><span class="il-icon">🎯</span><div class="il-text"><strong>Механика ежедневного присутствия</strong><span>15 секунд в день — кружочек в чат. Это удерживает. Каждый раз когда заходишь — видишь людей, которые держатся. И ты держишься вместе с ними.</span></div></li>
+    <li><span class="il-icon">🌿</span><div class="il-text"><strong>Личное присутствие Артура</strong><span>Человек, который прошёл через это сам — 24 года курения, 20+ попыток, вышел без ломки. Передаст тебе всё, что работает.</span></div></li>
+  </ul>
+</div>
+
+<hr class="section-divider">
+
+<!-- ─── БЛОК ЦЕНЫ: новый формат ─── -->
+<div class="block block-dark" id="price" style="scroll-margin-top:0">
+  <img src="../img-money.png" alt="">
+  <h2 class="block-headline">Сигареты стоят дороже.</h2>
+  <div class="price-compare">
+    <div class="price-bad">
+      <span class="price-bad-label">Ты тратишь на сигареты каждый месяц</span>
+      <span class="price-strike">6 000 ₽</span>
+    </div>
+    <div class="price-arrow">↓</div>
+    <div class="price-good">
+      <span class="price-good-label">Свежий Вздох — сейчас</span>
+      <span class="price-good-value" id="hero-price">990 ₽/мес</span>
+    </div>
+  </div>
+  <p class="block-body">И это только деньги. Про здоровье даже не начинаем.</p>
+  <a href="https://t.me/tribute/app?startapp=sVVm" class="btn-main" target="_blank" rel="noopener" style="margin-top:8px;">Вступить в Свежий Вздох →</a>
+</div>
+
+<hr class="section-divider">
+
+<!-- ─── БЛОК: ПОЧЕМУ ТАКАЯ ЦЕНА ─── -->
+<div class="discount-block" id="discount-ladder">
+  <p class="discount-eyebrow">О цене — честно</p>
+  <h2 class="discount-headline">Я хочу помочь тем,<br>кто готов прямо сейчас.</h2>
+  <p class="discount-body">
+    Полная цена программы — 2 900 ₽ в месяц. Но я хочу помочь тем, кто понимает ценность и готов действовать прямо сейчас — не откладывать, не думать неделями.<br><br>
+    Поэтому для тех, кто зашёл на сайт и сразу принял решение, цена совсем другая. Это мой способ сказать: я вижу тебя, я ценю твою готовность, и я хочу тебе помочь.<br><br>
+    Смотри на таймер в правом нижнем углу. Он считает с момента твоего первого захода на сайт.
+  </p>
+
+  <div class="discount-tiers" id="price-ladder">
+    <div class="dt" id="dt-0">
+      <div class="dt-left">
+        <div class="dt-when">Первые 5 часов</div>
+        <div class="dt-label">Готов — и действуешь сразу</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
+        <div class="dt-price">990 ₽/мес</div>
+        <div class="dt-badge">Лучшая цена</div>
+      </div>
+    </div>
+    <div class="dt" id="dt-1">
+      <div class="dt-left">
+        <div class="dt-when">До 48 часов</div>
+        <div class="dt-label">Думаешь — но не тянешь</div>
+      </div>
+      <div class="dt-price">1 200 ₽/мес</div>
+    </div>
+    <div class="dt" id="dt-2">
+      <div class="dt-left">
+        <div class="dt-when">До 7 дней</div>
+        <div class="dt-label">Откладываешь на потом</div>
+      </div>
+      <div class="dt-price">1 900 ₽/мес</div>
+    </div>
+    <div class="dt" id="dt-3">
+      <div class="dt-left">
+        <div class="dt-when">После 7 дней</div>
+        <div class="dt-label">Полная цена программы</div>
+      </div>
+      <div class="dt-price">2 900 ₽/мес</div>
+    </div>
+  </div>
+
+  <p class="discount-hint">
+    <strong>Цена не меняется обратно.</strong> Когда таймер переходит на следующую отметку — предыдущая цена больше не вернётся. Это не маркетинговый трюк — это просто честное правило для тех, кто ценит своё время.
+  </p>
+
+  <a href="https://t.me/tribute/app?startapp=sVVm" class="btn-main" target="_blank" rel="noopener">Вступить — пока цена минимальная →</a>
+</div>
+
+<hr class="section-divider">
+
+<div class="block block-black">
+  <img src="../img-shield.png" alt="Гарантия — ты ничего не теряешь" style="max-width:240px;border-radius:16px;box-shadow:0 20px 60px rgba(0,200,80,.2);">
+  <div class="guarantee-wrap">
+    <h2 class="guarantee-headline">Гарантия 3 дня</h2>
+    <div class="guarantee-detail">
+      <p>Ты <strong>ничего не теряешь</strong>. Если зайдёшь и поймёшь, что не твоё, — напиши мне в течение 3 дней. Верну <strong>80% без вопросов</strong>. 20% уходит на комиссии сторонних сервисов — это вне моего контроля.<br><br>Просто попробуй. Три дня — этого достаточно, чтобы понять.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="last-punch">
+  <p class="last-punch-main">Если не бросишь здесь —<br>честно, я не знаю,<br>что тебе ещё поможет.</p>
+  <p class="last-punch-sub">Потому что здесь собрано всё:<br>метод, информация, люди и условия.</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="block block-dark" id="join">
+  <h2 class="block-headline">Купи билет.</h2>
+  <div class="ticket-rows">
+    <div class="ticket-row">
+      <p>Знаешь, как говорят: если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.</p>
+      <img src="../img-ticket.png" alt="" class="ticket-img">
+    </div>
+    <div class="ticket-row ticket-row-rev">
+      <img src="../img-proud.png" alt="" class="ticket-img">
+      <p>Вот это и есть твой билет. Билет в жизнь, где ты не куришь. Где каждый твой вздох свежий. Где ты гордишься собой. Где твои близкие гордятся тобой.</p>
+    </div>
+    <p class="ticket-note"><strong>После него тебе просто остаётся делать:</strong> изучать, записывать кружочек, выбрать день, бросить.</p>
+  </div>
+  <a class="btn-main" href="#price">Вступить в Свежий Вздох →</a>
+  <p class="price-note" id="cta-price-note">990 ₽ в месяц · отменить в любой момент</p>
+  <p class="cta-sub">Мы уже собрались. Одному — не вариант. Вместе — другое дело.</p>
+</div>
+
+<footer>
+  <p>Свежий Вздох · Программа по отказу от курения<br>
+  Артур Лето · <a href="https://instagram.com/leto.s.v" target="_blank">@leto.s.v</a></p>
+</footer>
+
+<!-- ─── TIMER WIDGET ─── -->
 <div id="timer-widget">
-  <div class="tw-label">Цена сейчас</div>
-  <div class="tw-price current-price">—</div>
-  <div class="tw-countdown" id="tw-countdown">--:--:--</div>
-  <div class="tw-next" id="tw-next">считаем...</div>
-  <a href="#price-ladder" class="tw-btn" id="tw-btn">Что случится,<br>когда время истечёт?</a>
-</div>
-
-<!-- DEBUG PANEL (убрать перед боевым запуском) -->
-<div class="debug">
-  <div>⚙️ debug</div>
-  <div class="elapsed" id="dbg-elapsed">elapsed: —</div>
-  <div class="elapsed" id="dbg-tier">tier: —</div>
-  <button onclick="resetTimer()">Сбросить таймер (тест)</button>
+  <div class="tw-eyebrow">Скидка активна ещё</div>
+  <div class="tw-time" id="tw-time">--:--:--</div>
+  <a href="#discount-ladder" class="tw-btn">Что случится,<br>когда время истечёт?</a>
 </div>
 
 <script>
-  const KEY = 'svezhy_first_visit';
+// ─── ТИРЫ ───────────────────────────────────
+const KEY = 'svezhy_first_visit';
+const H = 3600000;
+const TIERS = [
+  { until: 5*H,            price: '990 ₽/мес',   note: '990 ₽ в месяц · отменить в любой момент' },
+  { until: 48*H,           price: '1 200 ₽/мес', note: '1 200 ₽ в месяц · отменить в любой момент' },
+  { until: (48+5*24)*H,    price: '1 900 ₽/мес', note: '1 900 ₽ в месяц · отменить в любой момент' },
+  { until: Infinity,        price: '2 900 ₽/мес', note: '2 900 ₽ в месяц · отменить в любой момент' },
+];
 
-  // Тиры: [до скольких мс от первого визита, цена, метка]
-  const TIERS = [
-    { until: 5 * 3600 * 1000,          price: '990 ₽',   next: '1 300 ₽' },
-    { until: 48 * 3600 * 1000,         price: '1 300 ₽', next: '2 900 ₽' },
-    { until: (48 + 5*24) * 3600 * 1000, price: '2 900 ₽', next: '9 999 ₽' },
-    { until: Infinity,                   price: '9 999 ₽', next: null },
-  ];
+if (!localStorage.getItem(KEY)) {
+  localStorage.setItem(KEY, Date.now().toString());
+}
 
-  // Инициализация: запомнить первый визит
-  if (!localStorage.getItem(KEY)) {
-    localStorage.setItem(KEY, Date.now().toString());
+function elapsed() { return Date.now() - parseInt(localStorage.getItem(KEY)); }
+
+function tierIdx() {
+  const e = elapsed();
+  for (let i = 0; i < TIERS.length; i++) if (e < TIERS[i].until) return i;
+  return TIERS.length - 1;
+}
+
+function pad(n) { return String(n).padStart(2, '0'); }
+
+function fmtRemaining(ms) {
+  if (ms <= 0) return null;
+  const s = Math.floor(ms / 1000);
+  const d = Math.floor(s / 86400);
+  const h = Math.floor((s % 86400) / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const sec = s % 60;
+  return d > 0 ? d + 'д ' + pad(h) + ':' + pad(m) + ':' + pad(sec)
+               : pad(h) + ':' + pad(m) + ':' + pad(sec);
+}
+
+function tick() {
+  const e = elapsed();
+  const idx = tierIdx();
+  const tier = TIERS[idx];
+
+  // Обновить цену в hero-блоке и в CTA
+  const hp = document.getElementById('hero-price');
+  if (hp) hp.textContent = tier.price;
+  const cn = document.getElementById('cta-price-note');
+  if (cn) cn.textContent = tier.note;
+
+  // Подсветить активный тир в таблице
+  for (let i = 0; i < TIERS.length; i++) {
+    const el = document.getElementById('dt-' + i);
+    if (!el) continue;
+    el.classList.toggle('active', i === idx);
   }
 
-  function getFirstVisit() {
-    return parseInt(localStorage.getItem(KEY));
+  // Виджет
+  const tw = document.getElementById('tw-time');
+  const eyebrow = document.querySelector('.tw-eyebrow');
+  if (idx === TIERS.length - 1) {
+    tw.textContent = '—';
+    if (eyebrow) eyebrow.textContent = 'Цена максимальная';
+  } else {
+    const rem = TIERS[idx].until - e;
+    tw.textContent = fmtRemaining(rem) || '00:00:00';
+    if (eyebrow) eyebrow.textContent = 'Скидка активна ещё';
   }
+}
 
-  function getTierIndex(elapsed) {
-    for (let i = 0; i < TIERS.length; i++) {
-      if (elapsed < TIERS[i].until) return i;
+setInterval(tick, 1000);
+tick();
+</script>
+
+<script>
+const mq = window.matchMedia('(prefers-color-scheme: dark)');
+document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
+mq.addEventListener('change', e => document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'));
+</script>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+var ytPlayer, ytDuration, ytMilestones = {};
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('yt-player', {
+    events: {
+      onReady: function(e) { ytDuration = e.target.getDuration(); },
+      onStateChange: function(e) { if (e.data === YT.PlayerState.PLAYING) trackProgress(); }
     }
-    return TIERS.length - 1;
-  }
-
-  function formatTime(ms) {
-    if (ms <= 0) return '00:00:00';
-    const totalSec = Math.floor(ms / 1000);
-    const d = Math.floor(totalSec / 86400);
-    const h = Math.floor((totalSec % 86400) / 3600);
-    const m = Math.floor((totalSec % 3600) / 60);
-    const s = totalSec % 60;
-    if (d > 0) {
-      return d + 'д ' + pad(h) + ':' + pad(m) + ':' + pad(s);
-    }
-    return pad(h) + ':' + pad(m) + ':' + pad(s);
-  }
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function updateAll() {
-    const elapsed = Date.now() - getFirstVisit();
-    const idx = getTierIndex(elapsed);
-    const tier = TIERS[idx];
-
-    // Обновить цену везде
-    document.querySelectorAll('.current-price').forEach(el => {
-      el.textContent = tier.price;
-    });
-
-    // Виджет
-    if (idx === TIERS.length - 1) {
-      // Финальный тир
-      document.getElementById('tw-countdown').textContent = '∞';
-      document.getElementById('tw-next').textContent = 'Это максимальная цена';
-      document.getElementById('tw-btn').textContent = 'Как формируется цена';
-    } else {
-      const remaining = TIERS[idx].until - elapsed;
-      document.getElementById('tw-countdown').textContent = formatTime(remaining);
-      document.getElementById('tw-next').textContent = '→ потом цена: ' + tier.next;
-    }
-
-    // Подсветить активный тир в лестнице
-    for (let i = 0; i < TIERS.length; i++) {
-      const el = document.getElementById('tier-' + i);
-      el.classList.remove('active', 'past');
-      if (i < idx) el.classList.add('past');
-      if (i === idx) el.classList.add('active');
-    }
-
-    // Debug
-    const dH = Math.floor(elapsed / 3600000);
-    const dM = Math.floor((elapsed % 3600000) / 60000);
-    const dS = Math.floor((elapsed % 60000) / 1000);
-    document.getElementById('dbg-elapsed').textContent = 'elapsed: ' + dH + 'ч ' + dM + 'м ' + dS + 'с';
-    document.getElementById('dbg-tier').textContent = 'tier: ' + idx + ' (' + tier.price + ')';
-  }
-
-  function resetTimer() {
-    localStorage.setItem(KEY, Date.now().toString());
-    updateAll();
-  }
-
-  setInterval(updateAll, 1000);
-  updateAll();
+  });
+}
+function trackProgress() {
+  if (!ytPlayer || !ytDuration) return;
+  var pct = Math.floor(ytPlayer.getCurrentTime() / ytDuration * 100);
+  [25,50,75,100].forEach(function(m){if(pct>=m&&!ytMilestones[m]){ytMilestones[m]=true;}});
+  if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) setTimeout(trackProgress, 5000);
+}
 </script>
 
 </body>
