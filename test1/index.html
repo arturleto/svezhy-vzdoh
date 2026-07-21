@@ -143,6 +143,15 @@ nav{padding:0 24px;height:56px;display:flex;align-items:center;background:rgba(2
 .discount-body{
   font-size:clamp(1rem,2.2vw,1.15rem);line-height:1.75;max-width:560px;color:var(--muted);
 }
+/* REPRO CHECKLIST */
+.repro-checklist{list-style:none;display:flex;flex-direction:column;gap:14px;width:100%;max-width:560px;}
+.repro-item{display:flex;align-items:flex-start;gap:14px;font-size:clamp(1rem,2.5vw,1.2rem);font-weight:600;color:rgba(255,255,255,.88);line-height:1.5;
+  opacity:0;transform:translateX(-48px);transition:opacity .5s ease,transform .5s ease;}
+.repro-item.visible{opacity:1;transform:translateX(0);}
+.repro-check{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--green-soft);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:900;color:#fff;margin-top:1px;}
+.repro-item-final{color:var(--green-pale);font-size:clamp(1.05rem,2.8vw,1.3rem);}
+.repro-item-final .repro-check{background:#4ADE80;}
+
 .discount-tiers{
   display:flex;flex-direction:column;gap:0;width:100%;max-width:520px;
   border:2px solid #DCF0E5;border-radius:20px;overflow:hidden;
@@ -462,7 +471,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
       <p class="mutation-body">Даже если ты бросишь курить — некоторые мутации в клетках уже произошли. Они никуда не исчезают. Организм может годами держать их «в узде», но в какой-то момент — нет.</p>
       <div class="mutation-story">
         <span class="mutation-story-icon">💬</span>
-        <p>Алик бросил курить в 45. Умер от рака лёгких в 68 — через <strong>23 года</strong> после того, как затушил последнюю сигарету. Врачи сказали: это те клетки, которые успели измениться тогда.</p>
+        <p>Аллен Карр бросил курить в 49. Умер от рака лёгких в 72 — через <strong>23 года</strong> после того, как затушил последнюю сигарету. Врачи сказали: это те клетки, которые успели измениться тогда.</p>
       </div>
       <p class="mutation-conclusion">Каждая выкуренная сигарета — это не просто «сегодняшний вред». Это вклад в счёт, который может прийти через десятилетия. <strong>Чем раньше ты останавливаешься — тем меньше счёт.</strong></p>
     </div>
@@ -493,7 +502,13 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 <div class="block block-dark">
   <img src="../img-brain.png" alt="Перепрограммирование мозга">
   <h2 class="block-headline">Мы перепрограммируем мозг.</h2>
-  <p class="block-body">Изучаем биологию — и ловушка перестаёт работать. Изучаем психологию — и желание курить исчезает. Потом перезаписываем нейронные связи. После этого просто не куришь. Без ломки. Без зажоров. Без стресса.</p>
+  <ul class="repro-checklist" id="repro-checklist">
+    <li class="repro-item"><span class="repro-check">✓</span><span>Изучаем биологию — и ловушка перестаёт работать.</span></li>
+    <li class="repro-item"><span class="repro-check">✓</span><span>Изучаем психологию — и желание курить исчезает.</span></li>
+    <li class="repro-item"><span class="repro-check">✓</span><span>Перезаписываем нейронные связи.</span></li>
+    <li class="repro-item"><span class="repro-check">✓</span><span>После этого просто не куришь.</span></li>
+    <li class="repro-item repro-item-final"><span class="repro-check">✓</span><span>Без ломки. Без зажоров. Без стресса.</span></li>
+  </ul>
 </div>
 
 <hr class="section-divider">
@@ -855,6 +870,24 @@ function tick() {
 
 setInterval(tick, 1000);
 tick();
+
+// Checklist scroll animation
+(function(){
+  const list = document.getElementById('repro-checklist');
+  if (!list) return;
+  const items = list.querySelectorAll('.repro-item');
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        items.forEach(function(item, i){
+          setTimeout(function(){ item.classList.add('visible'); }, i * 180);
+        });
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+  obs.observe(list);
+})();
 </script>
 
 <script>
