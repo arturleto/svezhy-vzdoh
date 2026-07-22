@@ -1,6 +1,6 @@
 # RULES.md — Свежий Вздох (GitHub Pages)
 
-> Последнее обновление: 2026-07-13 (сессия 2)
+> Последнее обновление: 2026-07-22 (сессия 3)
 
 ## СТРУКТУРА ПРОЕКТА
 - `index.html` = копия `offer.html` — корневой URL открывает полную страницу напрямую (без отдельной видео-страницы)
@@ -32,16 +32,31 @@
 
 ## ССЫЛКИ
 - Сайт: https://arturleto.github.io/svezhy-vzdoh/
+- Тест-версия: https://arturleto.github.io/svezhy-vzdoh/test1/
 - Оффер: https://arturleto.github.io/svezhy-vzdoh/offer.html
-- Оплата (Tribute): https://t.me/tribute/app?startapp=sVVm
 - Instagram: @leto.s.v
+
+### Tribute — ссылки оплаты по тирам (TG-бот, НЕ web)
+- 950 ₽/мес (первые 2ч): https://t.me/tribute/app?startapp=s11nt
+- 990 ₽/мес (до 24ч):    https://t.me/tribute/app?startapp=sVVm
+- 1 450 ₽/мес (до 7д):   https://t.me/tribute/app?startapp=s11nv
+- 4 900 ₽/мес (базовая): https://t.me/tribute/app?startapp=s11nx
 
 ### PNG — очистка внутренних белых
 - После flood-fill внешнего фона оставшиеся белые opaque-пиксели = внутренность букв
 - Убирать через numpy: `data[(a>30) & (r>200) & (g>200) & (b>200), 3] = 0`
 - Апскейл логотипа: `img.resize((w*3, h*3), Image.LANCZOS)` — гладкие края без AI
 
+## АРХИТЕКТУРА ТАЙМЕРА (test1/index.html)
+- Таймер работает на `localStorage` — при первом визите пишет timestamp, каждую секунду считает elapsed
+- TIERS массив: `{ until, price, note, link }` — у каждого тира своя Tribute-ссылка
+- Кнопка покупки: `id="buy-btn"` — href обновляется в `tick()` через `bb.href = tier.link`
+- Все остальные кнопки на сайте → якорь `#price`, только одна кнопка ведёт на Tribute
+- Таймер vs редирект: localStorage-подход лучше для GitHub Pages (без сервера); редирект не даёт защиты сильнее
+- `.compare-col-title` — стиль заголовков колонок сравнения (строка ~282): font-size и opacity
+
 ## ГРАБЛИ
 - `<title>` влияет на Telegram-превью, не только `<h1>` — при переименовании менять оба
 - `img-hero-backup.png` — бэкап заглавной картинки (не коммитить если не нужен)
 - Два блока с разными градиентами = резкая линия стыка → всегда оборачивать в общий контейнер с одним фоном
+- Нельзя читать chatgpt.com/share через WebFetch (SPA) — использовать curl с Mozilla user-agent + Python regex (см. memory reference_chatgpt_links)
