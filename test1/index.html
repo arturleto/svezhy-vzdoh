@@ -215,14 +215,11 @@ nav{display:none;}
 
 /* CTA */
 @keyframes btnshine{0%,100%{transform:skewX(-20deg) translateX(-250%);}20%{transform:skewX(-20deg) translateX(600%);}}
-.btn-wrap{display:inline-block;border-radius:50px;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;transition:box-shadow .2s,transform .15s;}
-.btn-wrap:has(.btn-main:hover){box-shadow:0 10px 32px rgba(26,92,62,.5),0 4px 0 #122b1c;transform:translateY(-2px);}
-.btn-wrap:has(.btn-main:active){box-shadow:0 2px 12px rgba(26,92,62,.4),0 2px 0 #122b1c;transform:translateY(1px);}
-.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s;-webkit-transform:translateZ(0);transform:translateZ(0);clip-path:inset(0 round 50px);}
-.btn-main::after{content:'';position:absolute;top:-30%;left:0;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.22),transparent);will-change:transform;animation:btnshine 8s ease-in-out infinite;}
+.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;-webkit-transform:translateZ(0);transform:translateZ(0);}
+.btn-main::after{content:'';position:absolute;top:-30%;left:0;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.22),transparent);animation:btnshine 8s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){.btn-main::after{animation:none;}}
-.btn-main:hover{background:var(--green-mid);}
-.btn-main:active{background:var(--green-deep);}
+.btn-main:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,92,62,.45),0 4px 0 #122b1c;}
+.btn-main:active{transform:translateY(1px);box-shadow:0 2px 12px rgba(26,92,62,.4),0 2px 0 #122b1c;}
 .price-note{font-size:.9rem;color:rgba(255,255,255,.45);margin-top:8px;}
 .cta-sub{font-size:1.32rem;color:#fff;margin-top:8px;font-weight:600;}
 
@@ -380,7 +377,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>
   </div>
-  <span class="btn-wrap" style="margin-top:36px;"><a href="#price" class="btn-main">Выйти из зависимости без ломки и навсегда →</a></span>
+  <a href="#price" class="btn-main" style="margin-top:36px;">Выйти из зависимости без ломки и навсегда →</a>
   <div class="scroll-hint">
     <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
       <polyline points="4,4 14,13 24,4" stroke="rgba(168,230,197,0.5)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -660,7 +657,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <span class="it-suffix">цена повысится до <strong id="it-next-price">—</strong></span>
   </div>
 
-  <span class="btn-wrap" style="margin-top:8px;"><a id="buy-btn" href="https://t.me/tribute/app?startapp=s11nx" class="btn-main" target="_blank" rel="noopener">Стать некурящим без ломки и навсегда →</a></span>
+  <a id="buy-btn" href="https://t.me/tribute/app?startapp=s11nx" class="btn-main" target="_blank" rel="noopener" style="margin-top:8px;">Стать некурящим без ломки и навсегда →</a>
 </div>
 
 <hr class="section-divider">
@@ -715,7 +712,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <p class="urgency-bottom">Выбор простой: <em>99% шанс бросить навсегда</em> вместе с экспертом и единомышленниками — или вечные попытки на силе воли в одиночку.<br><strong>Действуй.</strong></p>
   </div>
 
-  <span class="btn-wrap"><a href="#price" class="btn-main">Бросить курить легко, быстро и навсегда →</a></span>
+  <a href="#price" class="btn-main">Бросить курить легко, быстро и навсегда →</a>
 </div>
 
 <hr class="section-divider">
@@ -812,7 +809,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
       <polyline points="4,17 14,26 24,17" stroke="rgba(168,230,197,0.28)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </div>
-  <span class="btn-wrap"><a class="btn-main" href="#price">Стать свободным от никотина →</a></span>
+  <a class="btn-main" href="#price">Стать свободным от никотина →</a>
   <p class="price-note" id="cta-price-note">990 ₽ в месяц · отменить в любой момент</p>
   <p class="cta-sub">Мы уже собрались. Одному — не вариант. Вместе — другое дело.</p>
 </div>
