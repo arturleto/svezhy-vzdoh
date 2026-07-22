@@ -217,7 +217,7 @@ nav{display:none;}
 /* CTA */
 @keyframes btnpulse{0%,100%{box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;}50%{box-shadow:0 6px 36px rgba(91,175,133,.7),0 0 0 8px rgba(91,175,133,.15),0 4px 0 #122b1c;}}
 @keyframes btnshine{0%,100%{left:-80%}20%{left:130%}}
-.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;animation:btnpulse 2.4s ease-in-out infinite;}
+.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;animation:btnpulse 2.4s ease-in-out infinite;-webkit-mask-image:-webkit-radial-gradient(white,black);}
 .btn-main::after{content:'';position:absolute;top:-30%;left:-80%;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);animation:btnshine 8s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){.btn-main{animation:none;}.btn-main::after{animation:none;}}
 .btn-main:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,92,62,.45),0 4px 0 #122b1c;animation:none;}
@@ -358,6 +358,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   font-size:.68rem;font-weight:600;
   text-align:center;cursor:pointer;text-decoration:none;
   transition:background .2s;line-height:1.4;
+  -webkit-mask-image:-webkit-radial-gradient(white,black);
 }
 .tw-btn::after{content:'';position:absolute;top:-30%;left:-80%;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);animation:twshine 10s ease-in-out infinite;}
 .tw-btn:hover{background:rgba(168,230,197,.15);}
@@ -392,7 +393,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <div class="hi-banner"><img src="../img-hero.png" alt="Свежий Вздох"></div>
     <p class="hi-definition" style="font-style:italic;"><em>Программа в среде единомышленников с практиками и механиками присутствия, как в армии — где невозможно просто купить и забыть.<br><span style="font-size:clamp(1.7rem,3.4vw,2.21rem);font-weight:900;line-height:1.2;display:inline-block;margin-top:6px;">ТЫ ТОЧНО БРОСИШЬ ПРИНИМАТЬ ЯД 🫵</span></em></p>
     <div class="hi-pillars">
-      <div class="hi-pillar"><span class="hi-pillar-icon">🧹</span><div class="hi-pillar-text"><strong>Стираем результат пропаганды</strong>«Курить можно и классно» — это не твоя мысль. Это то, что в тебя вложили табачные компании.</div></div>
+      <div class="hi-pillar"><span class="hi-pillar-icon">🧹</span><div class="hi-pillar-text"><strong>Стираем результат пропаганды</strong>«Курить модно и классно» — это не твоя мысль. Это то, что в тебя вложили табачные компании.</div></div>
       <div class="hi-pillar"><span class="hi-pillar-icon">✨</span><div class="hi-pillar-text"><strong>Активируем новые установки</strong>«Курение — яд. Никотин убивает. Я люблю себя и хочу жить дольше.»</div></div>
       <div class="hi-pillar"><span class="hi-pillar-icon">🎯</span><div class="hi-pillar-text"><strong>Держим фокус на дисциплине</strong>Познаём метод шаг за шагом — не спеша, но каждый день.</div></div>
     </div>
