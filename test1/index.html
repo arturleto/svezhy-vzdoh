@@ -642,7 +642,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     <span class="it-suffix">цена повысится до <strong id="it-next-price">—</strong></span>
   </div>
 
-  <a href="https://t.me/tribute/app?startapp=sVVm" class="btn-main" target="_blank" rel="noopener" style="margin-top:8px;">Стать некурящим без ломки и навсегда →</a>
+  <a id="buy-btn" href="https://t.me/tribute/app?startapp=s11nx" class="btn-main" target="_blank" rel="noopener" style="margin-top:8px;">Стать некурящим без ломки и навсегда →</a>
 </div>
 
 <hr class="section-divider">
@@ -801,10 +801,10 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 const KEY = 'svezhy_first_visit';
 const H = 3600000;
 const TIERS = [
-  { until: 2*H,      price: '950 ₽/мес',   note: '950 ₽ в месяц · отменить в любой момент' },
-  { until: 24*H,     price: '990 ₽/мес',   note: '990 ₽ в месяц · отменить в любой момент' },
-  { until: 7*24*H,   price: '1 450 ₽/мес', note: '1 450 ₽ в месяц · отменить в любой момент' },
-  { until: Infinity,  price: '4 900 ₽/мес', note: '4 900 ₽ в месяц · отменить в любой момент' },
+  { until: 2*H,      price: '950 ₽/мес',   note: '950 ₽ в месяц · отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=s11nt' },
+  { until: 24*H,     price: '990 ₽/мес',   note: '990 ₽ в месяц · отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=sVVm' },
+  { until: 7*24*H,   price: '1 450 ₽/мес', note: '1 450 ₽ в месяц · отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nv' },
+  { until: Infinity,  price: '4 900 ₽/мес', note: '4 900 ₽ в месяц · отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nx' },
 ];
 
 if (!localStorage.getItem(KEY)) {
@@ -842,6 +842,8 @@ function tick() {
   if (hp) hp.textContent = tier.price;
   const cn = document.getElementById('cta-price-note');
   if (cn) cn.textContent = tier.note;
+  const bb = document.getElementById('buy-btn');
+  if (bb) bb.href = tier.link;
   // Перечёркнутая цена — только для тиров со скидкой
   const pw = document.getElementById('price-was');
   if (pw) pw.style.display = (idx < TIERS.length - 1) ? 'block' : 'none';
