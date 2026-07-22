@@ -185,6 +185,11 @@ nav{display:none;}
   background:rgba(26,92,62,.06);border-radius:12px;padding:14px 20px;
 }
 .discount-hint strong{color:var(--green-deep);}
+.urgency-block{max-width:560px;background:rgba(255,77,77,.07);border:1px solid rgba(255,77,77,.2);border-radius:16px;padding:24px 28px;text-align:center;display:flex;flex-direction:column;gap:12px;}
+.urgency-top{font-size:clamp(.95rem,2.2vw,1.05rem);color:rgba(255,255,255,.85);line-height:1.6;}
+.urgency-top strong{color:#FF4D4D;}
+.urgency-bottom{font-size:clamp(1rem,2.3vw,1.1rem);color:#fff;font-weight:700;line-height:1.55;}
+.urgency-bottom em{font-style:normal;color:rgba(168,230,197,.9);}
 
 /* GUARANTEE */
 .guarantee-wrap{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;max-width:560px;}
@@ -664,28 +669,28 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <div class="discount-tiers" id="price-ladder">
     <div class="dt" id="dt-0">
       <div class="dt-left">
-        <div class="dt-when">Первые 2 часа</div>
+        <div class="dt-when">2 часа</div>
         <div class="dt-label">Готов — и действуешь сразу</div>
       </div>
       <div class="dt-price">950 ₽/мес</div>
     </div>
     <div class="dt" id="dt-1">
       <div class="dt-left">
-        <div class="dt-when">До 24 часов</div>
+        <div class="dt-when">24 часа</div>
         <div class="dt-label">Думаешь — но не тянешь</div>
       </div>
       <div class="dt-price">990 ₽/мес</div>
     </div>
     <div class="dt" id="dt-2">
       <div class="dt-left">
-        <div class="dt-when">До 7 дней</div>
+        <div class="dt-when">7 дней</div>
         <div class="dt-label">Откладываешь на потом</div>
       </div>
       <div class="dt-price">1 450 ₽/мес</div>
     </div>
     <div class="dt" id="dt-3">
       <div class="dt-left">
-        <div class="dt-when">После 7 дней</div>
+        <div class="dt-when">навсегда</div>
         <div class="dt-label">Полная цена программы</div>
       </div>
       <div class="dt-price">4 900 ₽/мес</div>
@@ -695,6 +700,11 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   <p class="discount-hint">
     <strong>Цена не меняется обратно.</strong> Когда таймер переходит на следующую отметку — предыдущая цена больше не вернётся. Это не маркетинговый трюк — это просто честное правило для тех, кто ценит своё время.
   </p>
+
+  <div class="urgency-block">
+    <p class="urgency-top">Ты прекрасно знаешь, что <strong>«потом», «завтра», «с понедельника»</strong> — это отмазки. «Завтра» не наступает никогда. Лучшее время для принятия выгодного решения — <strong>ЗДЕСЬ и СЕЙЧАС.</strong></p>
+    <p class="urgency-bottom">Выбор простой: <em>99% шанс бросить навсегда</em> вместе с экспертом и единомышленниками — или вечные попытки на силе воли в одиночку.<br><strong>Действуй.</strong></p>
+  </div>
 
   <a href="#price" class="btn-main">Бросить курить легко, быстро и навсегда →</a>
 </div>
