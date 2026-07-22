@@ -203,11 +203,11 @@ nav{display:none;}
 .ticket-rows{display:flex;flex-direction:column;gap:20px;width:100%;max-width:620px;}
 .ticket-row{display:flex;align-items:center;gap:24px;background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.15);border-radius:20px;padding:22px 24px;}
 .ticket-row-rev{flex-direction:row-reverse;}
-.ticket-img{width:48px;flex-shrink:0;}
+.ticket-img{width:48px;max-width:48px;flex-shrink:0;}
 .ticket-row p{font-size:clamp(.83rem,1.9vw,1.18rem);line-height:1.75;color:rgba(255,255,255,.88);text-align:left;margin:0;}
 .ticket-note{font-size:clamp(.83rem,1.9vw,1.18rem);line-height:1.65;color:rgba(255,255,255,.85);text-align:center;background:rgba(168,230,197,.08);border:1px solid rgba(168,230,197,.2);border-radius:16px;padding:18px 24px;}
 .ticket-note strong{color:var(--green-pale);}
-@media(max-width:540px){.ticket-row,.ticket-row-rev{flex-direction:column;text-align:center;}.ticket-row p{text-align:center;}.ticket-img{width:77px;}}
+@media(max-width:540px){.ticket-row,.ticket-row-rev{flex-direction:column;text-align:center;}.ticket-row p{text-align:center;}.ticket-img{width:77px;max-width:77px;}}
 
 /* CTA */
 @keyframes btnpulse{0%,100%{box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;}50%{box-shadow:0 6px 36px rgba(91,175,133,.7),0 0 0 8px rgba(91,175,133,.15),0 4px 0 #122b1c;}}
@@ -779,7 +779,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
 <hr class="section-divider">
 
 <div class="block block-dark" id="join">
-  <h2 class="block-headline">Купи билет.</h2>
+  <h2 class="block-headline">«Купи билет»</h2>
   <div class="ticket-rows">
     <div class="ticket-row">
       <p>Знаешь, как говорят: если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.</p>
