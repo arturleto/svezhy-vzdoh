@@ -217,7 +217,7 @@ nav{display:none;}
 /* CTA */
 @keyframes btnpulse{0%,100%{box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;}50%{box-shadow:0 6px 36px rgba(91,175,133,.7),0 0 0 8px rgba(91,175,133,.15),0 4px 0 #122b1c;}}
 @keyframes btnshine{0%,100%{left:-80%}20%{left:130%}}
-.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;animation:btnpulse 2.4s ease-in-out infinite;-webkit-mask-image:-webkit-radial-gradient(white,black);}
+.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;animation:btnpulse 2.4s ease-in-out infinite;-webkit-transform:translateZ(0);transform:translateZ(0);clip-path:inset(0 round 50px);}
 .btn-main::after{content:'';position:absolute;top:-30%;left:-80%;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);animation:btnshine 8s ease-in-out infinite;}
 @media(prefers-reduced-motion:reduce){.btn-main{animation:none;}.btn-main::after{animation:none;}}
 .btn-main:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,92,62,.45),0 4px 0 #122b1c;animation:none;}
@@ -358,7 +358,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   font-size:.68rem;font-weight:600;
   text-align:center;cursor:pointer;text-decoration:none;
   transition:background .2s;line-height:1.4;
-  -webkit-mask-image:-webkit-radial-gradient(white,black);
+  -webkit-transform:translateZ(0);transform:translateZ(0);clip-path:inset(0 round 8px);
 }
 .tw-btn::after{content:'';position:absolute;top:-30%;left:-80%;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);animation:twshine 10s ease-in-out infinite;}
 .tw-btn:hover{background:rgba(168,230,197,.15);}
