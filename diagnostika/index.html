@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110722782', 'ym');
+    ym(110722782, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110722782" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#080B0A">
+<title>Диагностика зависимости — Свежий Вздох</title>
+<meta name="description" content="Узнайте, почему именно вы до сих пор не можете бросить курить. Бесплатная диагностика за 3 минуты: определим главную причину вашей зависимости.">
+<meta property="og:title" content="Почему именно вы до сих пор не бросили курить">
+<meta property="og:description" content="Бесплатная диагностика за 3 минуты. Определим главную причину вашей зависимости и подберём путь отказа.">
+<meta property="og:image" content="https://arturleto.github.io/svezhy-vzdoh/img-brain.png">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#080B0A;
+  --bg-soft:#0E1412;
+  --acc:#A8E6C5;
+  --acc-dim:rgba(168,230,197,.16);
+  --acc-line:rgba(168,230,197,.34);
+  --w:#FFFFFF;
+  --w86:rgba(255,255,255,.86);
+  --w70:rgba(255,255,255,.70);
+  --card:rgba(255,255,255,.055);
+  --card-line:rgba(255,255,255,.11);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html,body{height:100%}
+body{
+  background:var(--bg);
+  color:var(--w);
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(120% 70% at 50% -10%, rgba(26,92,62,.42) 0%, transparent 62%),
+    radial-gradient(90% 55% at 50% 108%, rgba(26,92,62,.20) 0%, transparent 60%);
+}
+
+/* ─── КАРКАС ─── */
+.app{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column;}
+.topbar{
+  position:sticky;top:0;z-index:20;
+  padding:calc(env(safe-area-inset-top) + 12px) 20px 12px;
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(to bottom, rgba(8,11,10,.95), rgba(8,11,10,.75) 70%, transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.topbar.on{opacity:1;pointer-events:auto;}
+.back{
+  width:38px;height:38px;flex-shrink:0;border:none;background:transparent;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;border-radius:50%;
+  transition:background .2s;
+}
+.back:hover{background:rgba(255,255,255,.08)}
+.back svg{width:19px;height:19px;stroke:var(--w70);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.track{flex:1;height:3px;border-radius:50px;background:rgba(255,255,255,.13);overflow:hidden}
+.fill{height:100%;width:0;border-radius:50px;background:var(--acc);transition:width .55s var(--ease)}
+.step-n{font-size:.8rem;color:var(--w70);font-variant-numeric:tabular-nums;flex-shrink:0;min-width:44px;text-align:right}
+
+.stage{flex:1;display:flex;flex-direction:column;padding:0 20px calc(env(safe-area-inset-bottom) + 28px);}
+.screen{
+  flex:1;display:flex;flex-direction:column;
+  max-width:520px;width:100%;margin:0 auto;
+  animation:enter .42s var(--ease) both;
+}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.screen.leaving{animation:leave .2s ease both}
+@keyframes leave{to{opacity:0;transform:translateY(-10px)}}
+@media(prefers-reduced-motion:reduce){.screen,.screen.leaving{animation:none}}
+
+/* ─── ИНТРО ─── */
+.intro{justify-content:center;text-align:center;gap:26px;padding:40px 0 20px;}
+.intro-badge{
+  align-self:center;display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:50px;
+  background:var(--acc-dim);border:1px solid var(--acc-line);
+  font-size:.76rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--acc);
+}
+.intro h1{
+  font-size:clamp(1.9rem,7.6vw,2.9rem);font-weight:800;line-height:1.11;
+  letter-spacing:-.035em;text-wrap:balance;
+}
+.intro h1 em{font-style:normal;color:var(--acc)}
+.intro p{font-size:clamp(1rem,4vw,1.13rem);color:var(--w86);line-height:1.62;text-wrap:balance}
+.intro-meta{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:2px}
+.im{display:flex;flex-direction:column;gap:2px;align-items:center}
+.im b{font-size:1.35rem;font-weight:800;color:var(--acc);letter-spacing:-.02em}
+.im span{font-size:.78rem;color:var(--w70)}
+.intro-note{font-size:.85rem;color:var(--w70)}
+
+/* ─── ВОПРОС ─── */
+.qwrap{justify-content:flex-start;padding-top:24px;gap:24px}
+.q{font-size:clamp(1.45rem,5.6vw,1.95rem);font-weight:800;line-height:1.2;letter-spacing:-.028em;text-wrap:balance}
+.qhint{font-size:.95rem;color:var(--w70);margin-top:-14px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:2px;padding-bottom:16px}
+.opt{
+  position:relative;width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1.5px solid var(--card-line);border-radius:15px;
+  padding:17px 52px 17px 19px;
+  font:inherit;font-size:1.02rem;font-weight:500;color:var(--w);line-height:1.35;
+  transition:background .18s,border-color .18s,transform .12s;
+}
+.opt:hover{background:rgba(255,255,255,.085);border-color:rgba(255,255,255,.2)}
+.opt:active{transform:scale(.985)}
+.opt::after{
+  content:'';position:absolute;right:18px;top:50%;transform:translateY(-50%);
+  width:21px;height:21px;border-radius:50%;
+  border:1.8px solid rgba(255,255,255,.22);
+  transition:border-color .18s,background .18s;
+}
+.opt.sel{background:var(--acc-dim);border-color:var(--acc)}
+.opt.sel::after{
+  border-color:var(--acc);background:var(--acc);
+  box-shadow:inset 0 0 0 3.5px var(--bg);
+}
+
+/* ─── ВСТАВНОЙ ЭКРАН ─── */
+.mid{justify-content:center;text-align:center;gap:22px;padding:30px 0}
+.mid-icon{font-size:3.2rem;line-height:1;animation:pop .5s var(--ease) both .1s}
+@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+.mid h2{font-size:clamp(1.5rem,5.6vw,2rem);font-weight:800;line-height:1.18;letter-spacing:-.03em;text-wrap:balance}
+.mid p{font-size:clamp(.98rem,3.9vw,1.08rem);color:var(--w86);line-height:1.66;text-wrap:balance}
+.money{
+  display:flex;flex-direction:column;gap:4px;padding:22px 20px;
+  background:var(--card);border:1px solid var(--card-line);border-radius:18px;
+}
+.money+.money{margin-top:-8px}
+.money b{font-size:clamp(2rem,8vw,2.7rem);font-weight:800;color:var(--acc);letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}
+.money span{font-size:.88rem;color:var(--w70)}
+
+/* ─── АНАЛИЗ ─── */
+.an{justify-content:center;gap:30px;padding:30px 0;text-align:center}
+.an h2{font-size:clamp(1.35rem,5.2vw,1.75rem);font-weight:800;letter-spacing:-.028em}
+.an-list{display:flex;flex-direction:column;gap:16px;text-align:left;width:100%}
+.an-row{display:flex;flex-direction:column;gap:8px;opacity:.32;transition:opacity .5s}
+.an-row.on{opacity:1}
+.an-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.an-name{font-size:.97rem;color:var(--w86);font-weight:500}
+.an-val{font-size:.85rem;color:var(--acc);font-variant-numeric:tabular-nums;min-width:40px;text-align:right;font-weight:600}
+.an-val.done{color:var(--acc)}
+.an-bar{height:5px;border-radius:50px;background:rgba(255,255,255,.1);overflow:hidden}
+.an-bar i{display:block;height:100%;width:0;border-radius:50px;background:var(--acc);transition:width .35s linear}
+
+/* ─── РЕЗУЛЬТАТ ─── */
+.res{gap:26px;padding:26px 0 0;flex:0 0 auto}
+.res .cta-dock{margin-top:18px}
+.res-eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);text-align:center}
+.res h1{font-size:clamp(1.75rem,6.6vw,2.5rem);font-weight:800;line-height:1.13;letter-spacing:-.033em;text-align:center;text-wrap:balance}
+.bars{display:flex;flex-direction:column;gap:14px;padding:22px 20px;background:var(--card);border:1px solid var(--card-line);border-radius:20px}
+.bar-row{display:flex;flex-direction:column;gap:7px}
+.bar-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bar-name{font-size:.93rem;color:var(--w86);display:flex;align-items:center;gap:8px;line-height:1.3}
+.bar-row.top .bar-name{color:var(--w);font-weight:700}
+.bar-pct{font-size:.95rem;font-weight:800;color:var(--w70);font-variant-numeric:tabular-nums;flex-shrink:0}
+.bar-row.top .bar-pct{color:var(--acc);font-size:1.05rem}
+.bar-track{height:7px;border-radius:50px;background:rgba(255,255,255,.09);overflow:hidden}
+.bar-track i{display:block;height:100%;width:0;border-radius:50px;background:rgba(255,255,255,.3);transition:width 1s var(--ease)}
+.bar-row.top .bar-track i{background:linear-gradient(90deg,#5BAF85,var(--acc))}
+
+.card{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:24px 22px;display:flex;flex-direction:column;gap:12px}
+.card h3{font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.card p{font-size:1.02rem;color:var(--w86);line-height:1.66}
+.card p strong{color:var(--w)}
+.plan{list-style:none;display:flex;flex-direction:column;gap:13px}
+.plan li{display:flex;gap:13px;align-items:flex-start;font-size:.99rem;color:var(--w86);line-height:1.55}
+.plan li b{color:var(--acc);font-weight:800;flex-shrink:0}
+
+.video-box{border-radius:20px;overflow:hidden;background:var(--bg-soft);border:1px solid var(--card-line)}
+.video-box video{display:block;width:100%;height:auto}
+.video-ph{padding:38px 22px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+.video-ph .vi{font-size:2.3rem;line-height:1}
+.video-ph b{font-size:1.02rem;font-weight:700}
+.video-ph span{font-size:.88rem;color:var(--w70);line-height:1.5}
+
+.outro{text-align:center;display:flex;flex-direction:column;gap:12px;padding:6px 0 0}
+.outro h2{font-size:clamp(1.4rem,5.4vw,1.85rem);font-weight:800;letter-spacing:-.03em}
+.outro p{font-size:1rem;color:var(--w86);line-height:1.65}
+.res-foot{text-align:center;font-size:.83rem;color:var(--w70);line-height:1.55;padding-bottom:8px}
+
+/* ─── КНОПКИ ─── */
+.cta-dock{
+  position:sticky;bottom:0;z-index:15;
+  padding:16px 0 calc(env(safe-area-inset-bottom) + 12px);
+  margin-top:auto;
+  background:linear-gradient(to top, var(--bg) 58%, rgba(8,11,10,.86) 82%, transparent);
+}
+.btn{
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  width:100%;border:none;cursor:pointer;font:inherit;
+  background:var(--acc);color:#062015;
+  font-size:1.06rem;font-weight:800;letter-spacing:.005em;
+  padding:1.12rem 1.5rem;border-radius:50px;text-decoration:none;
+  transition:transform .13s,box-shadow .2s,opacity .2s;
+  box-shadow:0 8px 30px rgba(168,230,197,.2);
+}
+.btn:active{transform:scale(.982)}
+.btn:disabled{opacity:.35;cursor:default}
+.btn-ghost{
+  background:transparent;color:var(--w86);box-shadow:none;
+  border:1.5px solid var(--card-line);font-weight:600;font-size:1rem;margin-top:10px;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.05)}
+
+.privacy{text-align:center;font-size:.78rem;color:var(--w70);margin-top:12px;line-height:1.5}
+.privacy a{color:var(--w86)}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar" id="topbar">
+    <button class="back" id="back" aria-label="Назад">
+      <svg viewBox="0 0 24 24"><polyline points="15,5 8,12 15,19"/></svg>
+    </button>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="step-n" id="stepn"></div>
+  </div>
+  <main class="stage" id="stage"></main>
+</div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+'use strict';
+
+const stage  = document.getElementById('stage');
+const topbar = document.getElementById('topbar');
+const fill   = document.getElementById('fill');
+const stepn  = document.getElementById('stepn');
+const backBt = document.getElementById('back');
+
+const STORE = 'vzdoh_diag_v1';
+const LETTER = { habit:'h', psycho:'p', stress:'s', physical:'f', social:'o',
+                 fear_break:'b', fear_weight:'w', low_belief:'l', focus:'c' };
+
+let answers = [];   // индексы выбранных вариантов
+let pos     = -1;   // -1 интро, 0..N-1 вопросы, N анализ, N+1 результат
+
+/* ─── СОХРАНЕНИЕ ─── */
+function save(){
+  try { localStorage.setItem(STORE, JSON.stringify({ a: answers, p: pos })); } catch(e){}
+}
+function load(){
+  try {
+    const d = JSON.parse(localStorage.getItem(STORE) || 'null');
+    if (d && Array.isArray(d.a)) { answers = d.a; pos = typeof d.p === 'number' ? d.p : -1; }
+  } catch(e){}
+}
+function goal(name){ if (window.ym) try { ym(CONFIG.metrikaId, 'reachGoal', name); } catch(e){} }
+
+/* ─── ПОДСЧЁТ ПРОФИЛЯ ─── */
+function score(){
+  const raw = {}, max = {};
+  CATEGORIES.forEach(c => { raw[c.code] = 0; max[c.code] = 0; });
+
+  QUESTIONS.forEach((q, i) => {
+    // потолок по вопросу — самый щедрый вариант для каждой категории
+    CATEGORIES.forEach(c => {
+      let best = 0;
+      q.a.forEach(o => { const v = (o.s && o.s[c.code]) || 0; if (v > best) best = v; });
+      max[c.code] += best;
+    });
+    const chosen = q.a[answers[i]];
+    if (chosen && chosen.s) {
+      for (const k in chosen.s) if (raw[k] !== undefined) raw[k] += chosen.s[k];
+    }
+  });
+
+  const list = CATEGORIES.map(c => {
+    const m = max[c.code] || 1;
+    let pct = Math.round((raw[c.code] / m) * 100);
+    // держим в живом диапазоне: без 0% и без 100%
+    pct = Math.max(8, Math.min(94, pct));
+    return { code:c.code, label:c.label, icon:c.icon, pct:pct, raw:raw[c.code] };
+  });
+
+  // сортируем по проценту — именно он показывается человеку,
+  // порядок баров обязан совпадать с цифрами
+  list.sort((a,b) => b.pct - a.pct || b.raw - a.raw);
+  // верхнюю подтягиваем повыше, чтобы диагноз читался уверенно
+  if (list[0].pct < 72) list[0].pct = 72 + (list[0].raw % 9);
+  return list;
+}
+
+function payload(list){
+  const digits = QUESTIONS.map((q,i) => (answers[i] == null ? 'x' : String(answers[i]))).join('');
+  const top3 = list.slice(0,3).map(x => LETTER[x.code] || 'x').join('');
+  return 'd1' + digits + top3;
+}
+
+/* ─── ОТРИСОВКА ─── */
+function paint(html, cls){
+  const old = stage.querySelector('.screen');
+  const draw = () => {
+    stage.innerHTML = '<div class="screen ' + (cls||'') + '">' + html + '</div>';
+    window.scrollTo(0,0);
+  };
+  if (old) { old.classList.add('leaving'); setTimeout(draw, 170); }
+  else draw();
+}
+
+function chrome(){
+  const total = QUESTIONS.length;
+  if (pos >= 0 && pos < total) {
+    topbar.classList.add('on');
+    fill.style.width = ((pos) / total * 100) + '%';
+    stepn.textContent = (pos + 1) + ' / ' + total;
+    backBt.style.visibility = 'visible';
+  } else if (pos >= total) {
+    topbar.classList.add('on');
+    fill.style.width = '100%';
+    stepn.textContent = '';
+    backBt.style.visibility = 'hidden';
+  } else {
+    topbar.classList.remove('on');
+  }
+}
+
+/* ─── ЭКРАНЫ ─── */
+function screenIntro(){
+  pos = -1; save(); chrome();
+  paint(
+    '<div class="intro-badge">Бесплатная диагностика</div>' +
+    '<h1>Почему <em>именно вы</em> до сих пор не бросили курить</h1>' +
+    '<p>15 вопросов о том, как устроено ваше курение. По ответам я определю главную причину вашей зависимости и покажу, что именно ломало ваши прошлые попытки.</p>' +
+    '<div class="intro-meta">' +
+      '<div class="im"><b>15</b><span>вопросов</span></div>' +
+      '<div class="im"><b>3</b><span>минуты</span></div>' +
+      '<div class="im"><b>9</b><span>типов зависимости</span></div>' +
+    '</div>' +
+    '<div class="cta-dock">' +
+      '<button class="btn" id="go">Начать диагностику</button>' +
+      '<p class="privacy">Без регистрации и без почты. Ответы остаются в вашем браузере.</p>' +
+    '</div>',
+    'intro'
+  );
+  document.getElementById('go').onclick = () => { goal('diag_start'); step(0); };
+}
+
+function screenQuestion(i){
+  const q = QUESTIONS[i];
+  const opts = q.a.map((o, n) =>
+    '<button class="opt' + (answers[i] === n ? ' sel' : '') + '" data-n="' + n + '">' + o.t + '</button>'
+  ).join('');
+
+  paint(
+    '<h2 class="q">' + q.q + '</h2>' +
+    (q.hint ? '<p class="qhint">' + q.hint + '</p>' : '') +
+    '<div class="opts">' + opts + '</div>',
+    'qwrap'
+  );
+
+  setTimeout(() => {
+    stage.querySelectorAll('.opt').forEach(b => {
+      b.onclick = () => {
+        const n = +b.dataset.n;
+        answers[i] = n;
+        stage.querySelectorAll('.opt').forEach(x => x.classList.remove('sel'));
+        b.classList.add('sel');
+        save();
+        setTimeout(() => step(i + 1), 250);
+      };
+    });
+  }, 180);
+}
+
+function screenInterlude(it, nextPos){
+  let body = '';
+  if (it.kind === 'money') {
+    const perDay = [3, 8, 13, 18, 25][answers[1] != null ? answers[1] : 2];
+    const years  = [3, 8, 15, 25, 34][answers[0] != null ? answers[0] : 2];
+    const yearRub  = Math.round(perDay / 20 * CONFIG.packPrice * 365);
+    const spentRub = yearRub * years;
+    const fmt = n => n.toLocaleString('ru-RU');
+    body =
+      '<div class="money"><b>' + fmt(yearRub) + ' ₽</b><span>вы отдаёте за сигареты каждый год</span></div>' +
+      '<div class="money"><b>' + fmt(spentRub) + ' ₽</b><span>уже ушло дымом за ' + years + ' ' + plural(years,'год','года','лет') + ' курения</span></div>' +
+      '<p>И это только деньги. Время, здоровье и то, чего вы уже не сделали, сюда не входят.</p>';
+  } else {
+    body = '<p>' + it.body + '</p>';
+  }
+
+  paint(
+    '<div class="mid-icon">' + it.icon + '</div>' +
+    '<h2>' + it.title + '</h2>' +
+    body +
+    '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>',
+    'mid'
+  );
+  setTimeout(() => {
+    const c = document.getElementById('cont');
+    if (c) c.onclick = () => step(nextPos, true);
+  }, 180);
+}
+
+function screenAnalysis(){
+  pos = QUESTIONS.length; save(); chrome(); goal('diag_analysis');
+
+  const rows = ANALYSIS_STEPS.map((s, i) =>
+    '<div class="an-row" id="ar' + i + '">' +
+      '<div class="an-head"><span class="an-name">' + s + '</span><span class="an-val" id="av' + i + '">0%</span></div>' +
+      '<div class="an-bar"><i id="ab' + i + '"></i></div>' +
+    '</div>'
+  ).join('');
+
+  paint('<h2>Анализируем ваши ответы</h2><div class="an-list">' + rows + '</div>', 'an');
+
+  const per = CONFIG.analysisMs / ANALYSIS_STEPS.length;
+  setTimeout(() => {
+    ANALYSIS_STEPS.forEach((s, i) => {
+      setTimeout(() => {
+        const row = document.getElementById('ar' + i);
+        const val = document.getElementById('av' + i);
+        const bar = document.getElementById('ab' + i);
+        if (!row) return;
+        row.classList.add('on');
+        let p = 0;
+        const tick = setInterval(() => {
+          p += Math.random() * 13 + 5;
+          if (p >= 100) { p = 100; clearInterval(tick); }
+          if (val) val.textContent = Math.round(p) + '%';
+          if (bar) bar.style.width = p + '%';
+          if (p === 100 && val) val.innerHTML = '&#10003;';
+        }, per / 11);
+      }, i * per);
+    });
+    setTimeout(screenResult, CONFIG.analysisMs + 350);
+  }, 200);
+}
+
+function screenResult(){
+  pos = QUESTIONS.length + 1; save(); chrome(); goal('diag_result');
+
+  const list = score();
+  const top  = list[0];
+  const prof = PROFILES[top.code] || PROFILES.habit;
+  const shown = list.slice(0, 5);
+
+  const bars = shown.map((c, i) =>
+    '<div class="bar-row' + (i === 0 ? ' top' : '') + '">' +
+      '<div class="bar-head">' +
+        '<span class="bar-name">' + c.icon + ' ' + c.label + '</span>' +
+        '<span class="bar-pct">' + c.pct + '%</span>' +
+      '</div>' +
+      '<div class="bar-track"><i data-w="' + c.pct + '"></i></div>' +
+    '</div>'
+  ).join('');
+
+  const planLis = prof.plan.map(p => '<li><b>—</b><span>' + p + '</span></li>').join('');
+
+  const video = prof.video
+    ? '<div class="video-box"><video src="' + prof.video + '" controls playsinline preload="metadata"></video></div>'
+    : '<div class="video-box"><div class="video-ph"><span class="vi">🎬</span><b>Здесь будет видео Артура</b>' +
+      '<span>Разбор именно вашего типа зависимости — записывается</span></div></div>';
+
+  const pl   = payload(list);
+  const bot  = CONFIG.botLink.replace('{payload}', pl);
+  const land = CONFIG.landingLink.replace('{code}', top.code);
+
+  paint(
+    '<div class="res-eyebrow">Ваш результат</div>' +
+    '<h1>' + prof.title + '</h1>' +
+    '<div class="bars">' + bars + '</div>' +
+    '<div class="card"><h3>Что это значит</h3><p>' + prof.verdict + '</p></div>' +
+    '<div class="card"><h3>Почему срывались раньше</h3><p>' + prof.why + '</p></div>' +
+    video +
+    '<div class="card"><h3>Что с этим делаем</h3><ul class="plan">' + planLis + '</ul></div>' +
+    '<div class="outro"><h2>' + OUTRO.title + '</h2><p>' + OUTRO.body + '</p></div>' +
+    '<div class="cta-dock">' +
+      '<a class="btn" id="toplan" href="' + land + '">' + OUTRO.cta + '</a>' +
+      '<a class="btn btn-ghost" id="tobot" href="' + bot + '" target="_blank" rel="noopener">Отправить результат Артуру</a>' +
+      '<p class="privacy">Результат сохранён в этом браузере. Диагностика носит информационный характер и не является медицинским заключением.</p>' +
+    '</div>',
+    'res'
+  );
+
+  setTimeout(() => {
+    stage.querySelectorAll('.bar-track i').forEach((el, i) => {
+      setTimeout(() => { el.style.width = el.dataset.w + '%'; }, 90 + i * 110);
+    });
+    const a = document.getElementById('toplan');
+    if (a) a.onclick = () => goal('diag_to_landing');
+    const b = document.getElementById('tobot');
+    if (b) b.onclick = () => goal('diag_to_bot');
+  }, 220);
+}
+
+/* ─── НАВИГАЦИЯ ─── */
+function step(i, skipInterlude){
+  if (i < 0) return screenIntro();
+  if (i >= QUESTIONS.length) return screenAnalysis();
+
+  if (!skipInterlude) {
+    const it = INTERLUDES.find(x => x.after === i);
+    if (it) { pos = i; save(); chrome(); return screenInterlude(it, i); }
+  }
+  pos = i; save(); chrome(); screenQuestion(i);
+}
+
+backBt.onclick = () => {
+  if (pos <= 0) return screenIntro();
+  step(pos - 1, true);
+};
+
+/* ─── СТАРТ ─── */
+load();
+if (pos >= QUESTIONS.length + 1 && answers.filter(x => x != null).length === QUESTIONS.length) screenResult();
+else if (pos >= 0 && pos < QUESTIONS.length) step(pos, true);
+else screenIntro();
+
+function plural(n, one, few, many){
+  const a = n % 10, b = n % 100;
+  if (a === 1 && b !== 11) return one;
+  if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return few;
+  return many;
+}
+})();
+</script>
+</body>
+</html>
