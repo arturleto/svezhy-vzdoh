@@ -375,6 +375,8 @@ function screenIntro(){
 
 function screenQuestion(i){
   const q=QUESTIONS[i];
+  const act=activeList(), n=act.indexOf(i), T=act.length;
+  if(T){ [25,50,75].forEach(m=>{ if(Math.round(n/T*100)===m) goal('diag_'+m); }); }
   paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
     '<div class="opts">'+q.a.map((o,n)=>'<button class="opt'+(answers[i]===n?' sel':'')+'" data-n="'+n+'">'+o.t+'</button>').join('')+'</div>','qwrap');
   setTimeout(()=>{
@@ -473,7 +475,12 @@ function screenResult(){
 
   const pl=payload(list);
   const bot=CONFIG.botLink.replace('{payload}',pl);
-  const land=CONFIG.landingLink.replace('{code}',top.code);
+  let lid='';
+  try{ lid=localStorage.getItem('vzdoh_lid')||''; if(!lid){ lid='l'+Math.abs(Date.parse(new Date().toISOString())%1e9).toString(36)+Math.floor(performance.now()).toString(36); localStorage.setItem('vzdoh_lid',lid);} }catch(e){}
+  const utm=[]; try{ const u=new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{ if(u.get(k)) utm.push(k+'='+encodeURIComponent(u.get(k))); }); }catch(e){}
+  let land=CONFIG.landingLink.replace('{code}',top.code);
+  land += (land.indexOf('?')>-1?'&':'?')+'lid='+encodeURIComponent(lid)+'&stage='+st+(utm.length?'&'+utm.join('&'):'');
 
   paint(
     '<div class="eyebrow">Ваш результат</div>'+
