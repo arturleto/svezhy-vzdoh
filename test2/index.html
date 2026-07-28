@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru">
 <head>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -9,697 +9,502 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/110722782" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Первый пилотный поток «Свежий Вздох» — 30 дней вместе</title>
-<meta name="description" content="30-дневный пилотный поток: подготовка к дате отказа, ежедневный план, закрытая группа, живые встречи и поддержка в самые сложные недели. Первый поток — 2 990 ₽.">
-<meta property="og:title" content="Первый пилотный поток «Свежий Вздох» — 30 дней вместе">
-<meta property="og:description" content="Бросить никотин легче, когда ты проходишь это не один. Первый поток — 2 990 ₽, 25 мест.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F7F8F3">
+<title>Свежий Вздох — 30 дней, за которые ты перестаёшь курить</title>
+<meta name="description" content="Первый пилотный поток: ежедневный план, закрытая группа и моя поддержка все 30 дней. Для тех, кто уже пытался бросить и возвращался.">
+<meta property="og:title" content="Возможно, эта попытка станет последней">
+<meta property="og:description" content="30 дней с ежедневным планом и поддержкой. Первый пилотный поток — 2 990 ₽, группа до 25 человек.">
 <meta property="og:image" content="https://arturleto.github.io/svezhy-vzdoh/img-hero.png">
 
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --green-deep:#1A5C3E;--green-mid:#2A7A55;--green-soft:#5BAF85;
-  --green-pale:#A8E6C5;--green-bg:#F0F9F4;--white:#FFFFFF;
-  --text:#0D1F15;--muted:#3E5A4C;--red:#C62828;--red-light:#FFF0EE;
-  --max:1000px;
+  --bg:#F7F8F3; --card:#FFFFFF; --ink:#17211B; --ink70:#4A5A51; --ink50:#6E7D74;
+  --green:#42A866; --green-dk:#247747; --green-soft:#EAF6EE; --air:#EAF5F8;
+  --line:#E2E7E1; --amber:#B9861F; --amber-soft:#FDF6E7;
+  --max:1120px; --ease:cubic-bezier(.22,1,.36,1);
 }
 html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--white);color:var(--text);line-height:1.55;font-size:18px;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:82px;}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;
+  line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:86px}
+@media(min-width:900px){body{padding-bottom:0}}
 
-/* ─── ОБЩЕЕ ─── */
-.block{padding:72px 24px;display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center;}
-.block-dark{background:linear-gradient(160deg,#0D3826,#1A5C3E);color:#fff;}
-.block-black{background:#0A0A0A;color:#fff;}
-.block-light{background:var(--white);}
-.block-green{background:var(--green-bg);}
-.inner{width:100%;max-width:var(--max);margin:0 auto;}
-.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green-mid);}
-.block-dark .eyebrow,.block-black .eyebrow{color:var(--green-pale);}
-h2.headline{font-size:clamp(1.75rem,5vw,2.9rem);font-weight:900;line-height:1.1;letter-spacing:-.025em;text-wrap:balance;max-width:720px;}
-.block-dark h2.headline,.block-black h2.headline{color:#fff;}
-.lead{font-size:clamp(1rem,2.4vw,1.15rem);line-height:1.7;max-width:680px;color:var(--muted);}
-.block-dark .lead,.block-black .lead{color:rgba(255,255,255,.86);}
-.divider{border:none;border-top:1px solid rgba(13,42,26,.1);margin:0;}
+section{padding:76px 20px}
+.in{max-width:var(--max);margin:0 auto}
+.narrow{max-width:760px;margin:0 auto}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green-dk);margin-bottom:16px}
+h2{font-size:clamp(1.75rem,5.2vw,2.7rem);font-weight:800;line-height:1.13;letter-spacing:-.032em;text-wrap:balance}
+h2 em{font-style:normal;color:var(--green-dk)}
+.sub{font-size:clamp(1.02rem,2.6vw,1.16rem);color:var(--ink70);line-height:1.65;margin-top:18px;text-wrap:balance}
+.center{text-align:center}
 
-/* ─── КНОПКИ ─── */
-.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.1rem;font-weight:800;padding:1.15rem 2.6rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;-webkit-transform:translateZ(0);transform:translateZ(0);text-wrap:balance;}
-.btn-main::after{content:'';position:absolute;top:-30%;left:0;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.22),transparent);animation:btnshine 8s ease-in-out infinite;}
-@keyframes btnshine{0%,100%{transform:translateX(-160%);}18%{transform:translateX(420%);}}
-@media(prefers-reduced-motion:reduce){.btn-main::after{animation:none;}}
-.btn-main:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,92,62,.45),0 4px 0 #122b1c;}
-.btn-main:active{transform:translateY(1px);box-shadow:0 2px 12px rgba(26,92,62,.4),0 2px 0 #122b1c;}
-.btn-light{background:var(--green-pale);color:#0D2A1A;box-shadow:0 6px 24px rgba(0,0,0,.35),0 4px 0 #6FBF95;}
-.btn-light:hover{background:#BDEFD3;}
-.btn-note{font-size:.9rem;color:var(--muted);margin-top:-8px;}
-.block-dark .btn-note,.block-black .btn-note{color:rgba(255,255,255,.72);}
+/* КНОПКИ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-align:center;
+  background:var(--green-dk);color:#fff;font-size:1.06rem;font-weight:800;padding:1.12rem 2.3rem;border-radius:50px;
+  text-decoration:none;border:none;cursor:pointer;font-family:inherit;min-height:56px;
+  box-shadow:0 10px 28px rgba(36,119,71,.24);transition:transform .14s,box-shadow .2s,background .2s}
+.btn:hover{background:#2C8C55;transform:translateY(-2px);box-shadow:0 14px 34px rgba(36,119,71,.3)}
+.btn:active{transform:translateY(0)}
+.btn-2{background:transparent;color:var(--green-dk);border:1.8px solid #BEDCC8;box-shadow:none;font-weight:700}
+.btn-2:hover{background:var(--green-soft);color:var(--green-dk);transform:none;box-shadow:none}
+.btns{display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:30px}
+.btns .btn{width:100%;max-width:420px}
+.undertext{font-size:.9rem;color:var(--ink50);margin-top:14px;line-height:1.55;text-wrap:balance}
 
-/* ─── HERO ─── */
-.hero{background:linear-gradient(165deg,#061F10 0%,#0D3826 55%,#1A5C3E 100%);padding:56px 24px 68px;color:#fff;position:relative;overflow:hidden;}
-.hero-inner{max-width:860px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center;position:relative;z-index:1;}
-.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(168,230,197,.14);border:1px solid rgba(168,230,197,.34);border-radius:50px;padding:8px 18px;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-pale);}
-.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:#5BE39A;box-shadow:0 0 0 0 rgba(91,227,154,.7);animation:pulse 2.4s infinite;}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(91,227,154,.6)}70%{box-shadow:0 0 0 9px rgba(91,227,154,0)}100%{box-shadow:0 0 0 0 rgba(91,227,154,0)}}
-.hero h1{font-size:clamp(2rem,6.2vw,3.5rem);font-weight:900;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;}
-.hero h1 em{font-style:normal;color:var(--green-pale);white-space:nowrap;}
-.hero-sub{font-size:clamp(1.05rem,2.6vw,1.32rem);color:rgba(255,255,255,.88);line-height:1.6;max-width:660px;font-weight:500;}
-.hero-for{font-size:clamp(.95rem,2.2vw,1.05rem);color:rgba(255,255,255,.78);line-height:1.65;max-width:640px;}
-.hero-logo{max-height:150px;width:auto;max-width:88%;display:block;}
-.hero-inside{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%;max-width:660px;text-align:left;}
-.hero-inside li{display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.2);border-radius:13px;padding:13px 16px;font-size:.95rem;color:rgba(255,255,255,.9);line-height:1.45;}
-.hero-inside li span{color:var(--green-pale);font-weight:900;flex-shrink:0;}
-@media(max-width:640px){.hero-inside{grid-template-columns:1fr;}}
-.hero-price{display:flex;flex-direction:column;align-items:center;gap:5px;margin-top:6px;}
-.hero-price-main{font-size:clamp(1.5rem,4.4vw,2.1rem);font-weight:900;color:#fff;letter-spacing:-.02em;}
-.hero-price-main s{color:rgba(255,255,255,.5);font-weight:700;font-size:.62em;margin-right:10px;text-decoration-thickness:2px;}
-.hero-price-note{font-size:.92rem;color:var(--green-pale);font-weight:600;}
-.hero-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:2px;}
-.hm{background:rgba(255,255,255,.08);border:1px solid rgba(168,230,197,.22);border-radius:11px;padding:9px 16px;font-size:.88rem;color:rgba(255,255,255,.86);}
-.hm strong{color:#fff;font-weight:800;}
+/* ─── 1. ПЕРВЫЙ ЭКРАН ─── */
+.hero{background:linear-gradient(170deg,#FFFFFF 0%,var(--green-soft) 62%,#DDF0E4 100%);padding:34px 20px 72px;position:relative;overflow:hidden}
+.hero-top{max-width:var(--max);margin:0 auto 34px;display:flex;justify-content:center}
+.hero-logo{max-height:74px;width:auto;max-width:74%}
+.hero-in{max-width:820px;margin:0 auto;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid #CBE6D5;border-radius:50px;
+  padding:9px 18px;font-size:.83rem;font-weight:700;color:var(--green-dk);margin-bottom:26px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--green);display:block;flex-shrink:0}
+h1{font-size:clamp(2.05rem,7vw,3.6rem);font-weight:800;line-height:1.06;letter-spacing:-.04em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--green-dk)}
+.hero-sub{font-size:clamp(1.05rem,2.9vw,1.32rem);color:var(--ink70);line-height:1.6;margin-top:22px;max-width:640px;margin-left:auto;margin-right:auto;text-wrap:balance}
+.hero-sub strong{color:var(--ink);font-weight:700}
+.trust{display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:rgba(255,255,255,.75);
+  border:1px solid #CBE6D5;border-radius:14px;padding:12px 18px;font-size:.94rem;color:var(--ink70);text-align:left}
+.facts{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:26px}
+.fact{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:.88rem;color:var(--ink70)}
+.fact b{color:var(--ink);font-weight:800}
 
-/* ─── УЗНАВАНИЕ ─── */
-.mirror{background:#0A0A0A;color:#fff;padding:72px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px;}
-.mirror-list{display:flex;flex-direction:column;gap:11px;max-width:600px;width:100%;text-align:left;}
-.mirror-list p{background:rgba(255,255,255,.06);border-left:3px solid var(--green-soft);border-radius:0 12px 12px 0;padding:14px 18px;font-size:1rem;color:rgba(255,255,255,.88);line-height:1.55;font-style:italic;}
-.mirror-punch{font-size:clamp(1.15rem,3.2vw,1.5rem);font-weight:800;color:var(--green-pale);max-width:640px;line-height:1.4;text-wrap:balance;}
+/* персональная плашка из диагностики */
+.perso{display:none;max-width:640px;margin:0 auto 24px;background:#fff;border:1.5px solid #BEDCC8;border-radius:16px;
+  padding:16px 20px;text-align:left;font-size:.97rem;color:var(--ink70);line-height:1.55}
+.perso.on{display:block}
+.perso b{color:var(--green-dk)}
 
-/* ─── ДВЕ КОЛОНКИ: КОМУ ─── */
-.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;width:100%;text-align:left;}
-@media(max-width:760px){.fit-grid{grid-template-columns:1fr;}}
-.fit-col{border-radius:18px;padding:26px 24px;}
-.fit-yes{background:var(--green-bg);border:2px solid #BCE7CE;}
-.fit-no{background:#FBF4F3;border:2px solid #F0D3D0;}
-.fit-col h3{font-size:1.1rem;font-weight:900;margin-bottom:16px;display:flex;align-items:center;gap:9px;}
-.fit-yes h3{color:var(--green-deep);}
-.fit-no h3{color:var(--red);}
-.fit-col ul{list-style:none;display:flex;flex-direction:column;gap:11px;}
-.fit-col li{display:flex;gap:11px;align-items:flex-start;font-size:.97rem;line-height:1.55;color:var(--text);}
-.fit-col li b{font-weight:900;flex-shrink:0;}
-.fit-yes li b{color:var(--green-mid);}
-.fit-no li b{color:var(--red);}
+/* ─── 2. УЗНАВАНИЕ ─── */
+.mirror-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:38px}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;font-size:1.04rem;line-height:1.5;
+  box-shadow:0 2px 10px rgba(23,33,27,.04)}
+.mcard b{display:block;font-weight:800;margin-bottom:6px}
+.mcard span{color:var(--ink70);font-size:.99rem}
 
-/* ─── ЧТО ВНУТРИ ─── */
-.get-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;text-align:left;}
-@media(max-width:900px){.get-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.get-grid{grid-template-columns:1fr;}}
-.get-card{background:rgba(255,255,255,.08);border:1px solid rgba(168,230,197,.22);border-radius:16px;padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;}
-.get-icon{font-size:1.6rem;line-height:1;}
-.get-card h3{font-size:1rem;font-weight:800;color:#fff;line-height:1.35;}
-.get-card p{font-size:.92rem;color:rgba(255,255,255,.8);line-height:1.6;}
+/* ─── 3. ЧТО ИЗМЕНИТСЯ ─── */
+.change{background:linear-gradient(165deg,#1A5C3E,#0D3826);color:#fff}
+.change h2{color:#fff}
+.change .sub{color:rgba(255,255,255,.86)}
+.change .eyebrow{color:#A8E6C5}
+.chg-list{display:flex;flex-direction:column;gap:12px;max-width:660px;margin:40px auto 0}
+.chg{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.2);
+  border-radius:16px;padding:18px 20px}
+.chg-i{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:#A8E6C5;color:#0D3826;display:flex;
+  align-items:center;justify-content:center;font-size:.85rem;font-weight:900;margin-top:1px}
+.chg-t b{display:block;font-size:1.03rem;font-weight:700;color:#fff;margin-bottom:3px}
+.chg-t span{font-size:.98rem;color:rgba(255,255,255,.82);line-height:1.5}
 
-/* ─── 30 ДНЕЙ ─── */
-.weeks{display:flex;flex-direction:column;gap:14px;width:100%;max-width:760px;text-align:left;}
-.week{background:var(--white);border:2px solid #DCF0E5;border-radius:18px;padding:24px 26px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;}
-@media(max-width:600px){.week{grid-template-columns:1fr;gap:12px;padding:20px;}}
-.week-num{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:78px;background:var(--green-deep);color:#fff;border-radius:14px;padding:12px 10px;}
-.week-num span:first-child{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;opacity:.85;}
-.week-num span:last-child{font-size:1.7rem;font-weight:900;line-height:1.1;}
-@media(max-width:600px){.week-num{flex-direction:row;gap:8px;min-width:0;align-self:flex-start;padding:8px 14px;}.week-num span:last-child{font-size:1.1rem;}}
-.week h3{font-size:1.12rem;font-weight:900;color:var(--text);margin-bottom:7px;}
-.week p{font-size:.97rem;color:var(--muted);line-height:1.68;}
-.week-daily{background:linear-gradient(160deg,#0D3826,#1A5C3E);color:#fff;border:none;display:block;padding:26px;}
-.week-daily h3{color:var(--green-pale);}
-.week-daily p{color:rgba(255,255,255,.86);}
+/* ─── 4. ПОЧЕМУ НЕ ПОЛУЧАЛОСЬ ─── */
+.why{text-align:center}
+.why-lines{display:flex;flex-direction:column;gap:8px;margin-top:34px;font-size:clamp(1.1rem,3.4vw,1.45rem);
+  font-weight:600;color:var(--ink50);line-height:1.5}
+.why-lines .hit{color:var(--ink);font-weight:800;font-size:clamp(1.3rem,4.4vw,1.95rem);margin-top:18px;letter-spacing:-.025em;text-wrap:balance}
 
-/* ─── КТО Я ─── */
-.me-facts{display:flex;flex-direction:column;gap:11px;max-width:620px;width:100%;text-align:left;}
-.me-facts li{list-style:none;display:flex;gap:13px;align-items:flex-start;font-size:1rem;line-height:1.6;color:rgba(255,255,255,.88);}
-.me-facts li b{color:var(--green-pale);font-weight:900;flex-shrink:0;}
-.me-honest{background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.24);border-radius:16px;padding:22px 24px;max-width:620px;font-size:1rem;line-height:1.7;color:rgba(255,255,255,.9);text-align:left;}
-.me-honest strong{color:#fff;}
+/* ─── 5. ЧТО ВНУТРИ ─── */
+.inside{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:38px}
+.icard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.icard .ico{font-size:1.7rem;line-height:1}
+.icard b{font-size:1.03rem;font-weight:800;line-height:1.35}
+.icard span{font-size:.95rem;color:var(--ink70);line-height:1.55}
 
-/* ─── ЦЕНА ─── */
-.price-box{background:var(--white);border:2px solid #DCF0E5;border-radius:22px;padding:32px 28px;max-width:560px;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 12px 40px rgba(26,92,62,.1);}
-.price-row{display:flex;align-items:baseline;justify-content:center;gap:16px;flex-wrap:wrap;}
-.price-old{font-size:1.35rem;font-weight:700;color:#96A79D;text-decoration:line-through;text-decoration-thickness:2px;}
-.price-now{font-size:clamp(2.4rem,8vw,3.4rem);font-weight:900;color:var(--green-deep);letter-spacing:-.03em;line-height:1;}
-.price-cap{font-size:.95rem;color:var(--muted);line-height:1.6;text-align:center;}
-.price-why{display:flex;flex-direction:column;gap:12px;max-width:640px;text-align:left;}
-.price-why p{font-size:1rem;line-height:1.7;color:var(--muted);}
-.price-why strong{color:var(--text);}
-.price-vs{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;background:var(--green-bg);border:2px solid #CDEBDB;border-radius:16px;padding:20px 24px;max-width:640px;width:100%;}
-.pv{display:flex;flex-direction:column;gap:3px;text-align:center;}
-.pv-num{font-size:1.5rem;font-weight:900;letter-spacing:-.02em;}
-.pv-lab{font-size:.83rem;color:var(--muted);line-height:1.4;}
-.pv-arrow{font-size:1.5rem;color:var(--green-mid);}
+/* ─── 6. ОДИН ДЕНЬ ─── */
+.day{background:var(--air)}
+.day-flow{display:flex;flex-direction:column;gap:0;max-width:560px;margin:38px auto 0}
+.dstep{display:flex;gap:18px;align-items:flex-start;position:relative;padding-bottom:26px}
+.dstep:last-child{padding-bottom:0}
+.dstep::before{content:'';position:absolute;left:15px;top:34px;bottom:0;width:2px;background:#C6DDE5}
+.dstep:last-child::before{display:none}
+.dnum{width:32px;height:32px;flex-shrink:0;border-radius:50%;background:#fff;border:2px solid #A9CEDA;
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;color:#2A6E82;position:relative;z-index:1}
+.dtxt b{display:block;font-size:1.04rem;font-weight:800;margin-bottom:3px}
+.dtxt span{font-size:.97rem;color:var(--ink70);line-height:1.55}
 
-/* ─── СРЫВ ─── */
-.relapse-cards{display:flex;flex-direction:column;gap:12px;max-width:640px;width:100%;text-align:left;}
-.rc{border-radius:14px;padding:18px 22px;}
-.rc.bad{background:#FBF4F3;border:2px solid #F0D3D0;}
-.rc.good{background:var(--green-bg);border:2px solid #BCE7CE;}
-.rc-label{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px;}
-.rc.bad .rc-label{color:var(--red);}
-.rc.good .rc-label{color:var(--green-deep);}
-.rc p{font-size:1.02rem;font-weight:600;color:var(--text);line-height:1.55;}
+/* ─── 7. ПОЧЕМУ 25 ─── */
+.quote{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:0 20px 20px 0;
+  padding:30px 28px;max-width:680px;margin:34px auto 0;font-size:clamp(1.05rem,2.7vw,1.2rem);line-height:1.65;color:var(--ink70)}
+.quote strong{color:var(--ink)}
 
-/* ─── ОГРАНИЧЕНИЯ ─── */
-.limits{display:flex;flex-direction:column;gap:12px;max-width:680px;width:100%;text-align:left;}
-.limit{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:17px 20px;display:flex;gap:13px;align-items:flex-start;}
-.limit-icon{font-size:1.2rem;line-height:1.4;flex-shrink:0;}
-.limit p{font-size:.96rem;line-height:1.65;color:rgba(255,255,255,.85);}
-.limit p strong{color:#fff;}
+/* ─── 8. АРТУР ─── */
+.author{background:var(--green-soft)}
+.author-grid{display:grid;grid-template-columns:230px 1fr;gap:40px;align-items:center;max-width:900px;margin:0 auto}
+@media(max-width:760px){.author-grid{grid-template-columns:1fr;gap:26px;text-align:center;justify-items:center}}
+.author-img{width:100%;max-width:230px;border-radius:24px;display:block;box-shadow:0 16px 40px rgba(23,33,27,.14)}
+.author-txt p{font-size:clamp(1.05rem,2.7vw,1.22rem);line-height:1.62;color:var(--ink70);margin-bottom:14px}
+.author-txt p:last-child{margin-bottom:0}
+.author-txt strong{color:var(--ink);font-weight:700}
+.author-name{font-size:.92rem;color:var(--ink50);margin-top:16px}
+.author-name a{color:var(--green-dk);font-weight:700;text-decoration:none}
+
+/* ─── 9. ЦЕНА ─── */
+.price-card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:38px 30px;max-width:520px;margin:0 auto;
+  box-shadow:0 18px 50px rgba(23,33,27,.09);text-align:center}
+.price-name{font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-dk)}
+.price-big{font-size:clamp(2.8rem,10vw,3.9rem);font-weight:800;color:var(--ink);letter-spacing:-.04em;line-height:1;margin:14px 0 6px}
+.price-cap{font-size:.95rem;color:var(--ink50)}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:11px;text-align:left;margin:26px 0 4px}
+.price-list li{display:flex;gap:11px;align-items:flex-start;font-size:.99rem;color:var(--ink70);line-height:1.5}
+.price-list li b{color:var(--green);font-weight:900;flex-shrink:0}
+.price-meta{display:flex;flex-direction:column;gap:9px;margin:24px 0 0;padding-top:22px;border-top:1px solid var(--line)}
+.pm{display:flex;justify-content:space-between;gap:14px;font-size:.97rem}
+.pm span{color:var(--ink50)}
+.pm b{color:var(--ink);font-weight:800;text-align:right}
 
 /* ─── FAQ ─── */
-.faq{display:flex;flex-direction:column;gap:10px;max-width:720px;width:100%;text-align:left;}
-.faq details{background:var(--white);border:2px solid #DCF0E5;border-radius:14px;overflow:hidden;}
-.faq summary{cursor:pointer;list-style:none;padding:18px 22px;font-size:1.02rem;font-weight:800;color:var(--text);display:flex;justify-content:space-between;gap:14px;align-items:center;}
+.faq{display:flex;flex-direction:column;gap:10px;max-width:760px;margin:36px auto 0}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:20px 24px;font-size:1.03rem;font-weight:800;
+  display:flex;justify-content:space-between;gap:16px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:'+';font-size:1.5rem;font-weight:400;color:var(--green-mid);flex-shrink:0;line-height:1;}
-.faq details[open] summary::after{content:'−';}
-.faq details[open] summary{border-bottom:1px solid #EAF5EE;}
-.faq-body{padding:16px 22px 20px;font-size:.98rem;line-height:1.7;color:var(--muted);}
-.faq-body strong{color:var(--text);}
-
-/* ─── СТАРТ ─── */
-.start-card{background:rgba(255,255,255,.08);border:1px solid rgba(168,230,197,.28);border-radius:20px;padding:28px 26px;max-width:560px;width:100%;display:flex;flex-direction:column;gap:18px;}
-.start-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14);}
-.start-row:last-child{border-bottom:none;padding-bottom:0;}
-.start-key{font-size:.95rem;color:rgba(255,255,255,.78);text-align:left;}
-.start-val{font-size:1.15rem;font-weight:900;color:#fff;text-align:right;}
-.start-val em{font-style:normal;color:var(--green-pale);}
-.seats-bar{width:100%;height:9px;border-radius:50px;background:rgba(255,255,255,.14);overflow:hidden;}
-.seats-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--green-soft),var(--green-pale));transition:width .6s ease;}
+.faq summary::after{content:'+';font-size:1.55rem;font-weight:400;color:var(--green);flex-shrink:0;line-height:1}
+.faq details[open] summary::after{content:'−'}
+.faq-b{padding:0 24px 22px;font-size:.99rem;line-height:1.7;color:var(--ink70)}
+.faq-b strong{color:var(--ink)}
 
 /* ─── ФИНАЛ ─── */
-.final-img{max-width:250px;width:100%;border-radius:20px;display:block;box-shadow:0 20px 60px rgba(0,0,0,.45);}
+.final{background:linear-gradient(165deg,#1A5C3E,#0B3122);color:#fff;text-align:center}
+.final h2{color:#fff}
+.final .sub{color:rgba(255,255,255,.88)}
+.final .btn{background:#A8E6C5;color:#0A2417;box-shadow:0 12px 34px rgba(168,230,197,.26)}
+.final .btn:hover{background:#C2F0D8}
+.final .btn-2{background:transparent;color:rgba(255,255,255,.92);border-color:rgba(255,255,255,.3)}
+.final .btn-2:hover{background:rgba(255,255,255,.08);color:#fff}
+.final .undertext{color:rgba(255,255,255,.72)}
 
-/* ─── STICKY BAR ─── */
-#sticky{position:fixed;left:0;right:0;bottom:0;z-index:999;background:rgba(7,26,13,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(168,230,197,.24);padding:11px 18px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;box-shadow:0 -6px 28px rgba(0,0,0,.4);}
-.sb-info{display:flex;flex-direction:column;gap:2px;text-align:left;}
-.sb-price{font-size:1.05rem;font-weight:900;color:#fff;line-height:1.2;}
-.sb-price s{color:rgba(255,255,255,.5);font-weight:600;font-size:.8em;margin-right:7px;}
-.sb-meta{font-size:.78rem;color:var(--green-pale);line-height:1.3;}
-.sb-btn{background:var(--green-pale);color:#0A2417;font-size:.98rem;font-weight:800;padding:.72rem 1.6rem;border-radius:50px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .15s;box-shadow:0 4px 16px rgba(0,0,0,.3);}
-.sb-btn:hover{background:#C6F2D9;transform:translateY(-1px);}
-@media(max-width:520px){#sticky{gap:12px;padding:10px 14px;}.sb-price{font-size:.95rem;}.sb-btn{padding:.65rem 1.15rem;font-size:.9rem;}}
+/* ─── ДИСКЛЕЙМЕР + ФУТЕР ─── */
+.legal{padding:44px 20px;background:#EFF1EC}
+.legal p{max-width:760px;margin:0 auto;font-size:.83rem;line-height:1.65;color:var(--ink50);text-align:center}
+footer{background:#17211B;color:rgba(255,255,255,.66);text-align:center;padding:38px 20px 46px;font-size:.9rem;line-height:1.7}
+footer a{color:#A8E6C5;text-decoration:none}
 
-footer{background:#050807;color:rgba(255,255,255,.68);text-align:center;padding:44px 24px 52px;font-size:.9rem;line-height:1.75;}
-footer a{color:var(--green-pale);text-decoration:none;}
-footer a:hover{text-decoration:underline;}
-
-@media(max-width:560px){
-  body{font-size:17px;}
-  .block{padding:56px 20px;}
-  .hero{padding:44px 20px 56px;}
-  .btn-main{padding:1rem 1.8rem;font-size:1.02rem;}
-}
+/* ─── ЛИПКАЯ ПАНЕЛЬ ─── */
+#dock{position:fixed;left:0;right:0;bottom:0;z-index:99;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);box-shadow:0 -6px 24px rgba(23,33,27,.09);
+  padding:11px 18px calc(11px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:16px}
+@media(min-width:900px){#dock{display:none}}
+.dk-l b{display:block;font-size:1.08rem;font-weight:800;line-height:1.15}
+.dk-l span{font-size:.76rem;color:var(--ink50)}
+.dk-b{background:var(--green-dk);color:#fff;font-size:.97rem;font-weight:800;padding:.8rem 1.5rem;border-radius:50px;
+  text-decoration:none;white-space:nowrap;min-height:46px;display:flex;align-items:center}
 </style>
 </head>
 <body>
 
-<!-- ═══ 1. ПЕРВЫЙ ЭКРАН ═══ -->
+<!-- ═══ 1. ПОЧЕМУ РЕШЕНИЕ СЕГОДНЯ ═══ -->
 <header class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge"><span class="dot"></span>Первый пилотный поток</div>
-
-    <img src="../img-hero.png" alt="Свежий Вздох" class="hero-logo">
-
-    <h1>Бросить никотин легче,<br>когда ты проходишь это <em>не один</em></h1>
-
-    <p class="hero-sub">30 дней вместе: готовимся, выбираем твой день отказа и проходим самые тяжёлые первые недели — с группой, ежедневным планом и моими ответами.</p>
-
-    <p class="hero-for">Для тех, кто курит сигареты, парит вейп или пользуется системами нагревания и снюсом — и хочет отказаться в ближайший месяц, но боится тяги, раздражительности или очередного срыва.</p>
-
-    <ul class="hero-inside">
-      <li><span>→</span>Подготовка к дате отказа</li>
-      <li><span>→</span>Ежедневный план на 30 дней</li>
-      <li><span>→</span>Закрытая группа в Telegram</li>
-      <li><span>→</span>4 живые встречи со мной</li>
-      <li><span>→</span>Поддержка в сложные моменты</li>
-      <li><span>→</span>Разбор срыва без стыда и обнуления</li>
-    </ul>
-
-    <div class="hero-price">
-      <div class="hero-price-main"><s id="h-old">9 900 ₽</s><span id="h-now">2 990 ₽</span></div>
-      <div class="hero-price-note">Первый поток. Следующий будет дороже.</div>
+  <div class="hero-top"><img src="../img-hero.png" alt="Свежий Вздох" class="hero-logo"></div>
+  <div class="hero-in">
+    <div class="perso" id="perso"></div>
+    <div class="pill"><i></i><span id="pill-txt">Первый поток · старт 20 августа</span></div>
+    <h1>Ты уже знаешь, что курить вредно.<br><em>Проблема в другом.</em></h1>
+    <p class="hero-sub">Ты пытался бросать. Читал книги, смотрел ролики, обещал себе с понедельника. И каждый раз возвращался. <strong>Не потому что слабый</strong> — а потому что тебе никто не показал, как спокойно пройти первые недели.</p>
+    <div class="trust">🎧 <span>Первый пилотный поток. Я веду группу лично и отвечаю участникам каждый день.</span></div>
+    <div class="btns">
+      <a class="btn" href="#pay" data-ev="hero_cta">Хочу пройти эти 30 дней</a>
+      <p class="undertext" id="hero-under">Старт 20 августа · группа до 25 человек · 2 990 ₽ · оплата один раз</p>
     </div>
-
-    <div class="hero-meta">
-      <div class="hm">Старт — <strong id="h-date">уточняется</strong></div>
-      <div class="hm">Мест в группе — <strong id="h-seats">25</strong></div>
-      <div class="hm" id="hm-left">Осталось — <strong id="h-left">25</strong></div>
-    </div>
-
-    <a href="#pay" class="btn-main btn-light">Войти в первый поток →</a>
   </div>
 </header>
 
-<!-- ═══ 2. УЗНАВАНИЕ СЕБЯ ═══ -->
-<section class="mirror">
-  <span class="eyebrow">Если это про тебя — читай дальше</span>
-  <h2 class="headline">Ты не боишься бросить.<br>Ты боишься, что <em style="font-style:normal;color:var(--green-pale)">не выдержишь</em>.</h2>
-  <div class="mirror-list">
-    <p>«Вечером решаю, что всё — завтра последний день. Утром снова покупаю пачку.»</p>
-    <p>«Я уже бросал. Держался месяц, потом один стресс — и всё вернулось.»</p>
-    <p>«Боюсь стать раздражительным. Боюсь набрать вес. Боюсь, что не смогу отдыхать.»</p>
-    <p>«Я знаю всё про вред. Это не помогает.»</p>
-    <p>«Пробовал сам — не вышло. Значит, дело во мне.»</p>
-  </div>
-  <p class="mirror-punch">Дело не в силе воли. Дело в том, что ты проходишь это один, без плана и без понимания, что вообще происходит с твоим телом.</p>
-</section>
-
-<!-- ═══ 3. КОМУ ПОДХОДИТ ═══ -->
-<section class="block block-light">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:26px;">
-    <span class="eyebrow">Честно, без попытки продать всем</span>
-    <h2 class="headline">Кому подойдёт первый поток</h2>
-    <div class="fit-grid">
-      <div class="fit-col fit-yes">
-        <h3>✅ Подойдёт, если</h3>
-        <ul>
-          <li><b>—</b>Ты куришь сигареты, вейп, айкос или употребляешь снюс</li>
-          <li><b>—</b>Хочешь отказаться в ближайший месяц, а не «когда-нибудь»</li>
-          <li><b>—</b>Уже пробовал и срывался — не раз</li>
-          <li><b>—</b>Боишься тяги, раздражительности, набора веса</li>
-          <li><b>—</b>Готов тратить 10–15 минут в день на задания</li>
-          <li><b>—</b>Понимаешь, что в одиночку у тебя не получается</li>
-        </ul>
-      </div>
-      <div class="fit-col fit-no">
-        <h3>⛔ Не подойдёт, если</h3>
-        <ul>
-          <li><b>—</b>Ты только присматриваешься и бросать пока не собираешься</li>
-          <li><b>—</b>Ждёшь, что всё произойдёт само, без твоего участия</li>
-          <li><b>—</b>Не готов появляться в группе и отвечать на задания</li>
-          <li><b>—</b>Ищешь медицинское лечение зависимости — тогда сначала к врачу</li>
-          <li><b>—</b>Хочешь гарантию, что не будет ни одного тяжёлого дня</li>
-        </ul>
-      </div>
+<!-- ═══ 2. ЭТО ПРО МЕНЯ? ═══ -->
+<section>
+  <div class="in">
+    <div class="center narrow">
+      <div class="eyebrow">Знакомо?</div>
+      <h2>Ты узнаёшь себя?</h2>
     </div>
-    <p class="lead">Если по левой колонке — минимум четыре пункта твои, поток тебе подойдёт. Если больше половины правой — лучше не заходи, потерю денег я тебе не компенсирую нервами.</p>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ 4. ЧТО ПОЛУЧАЕШЬ ═══ -->
-<section class="block block-dark">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:26px;">
-    <span class="eyebrow">Что входит</span>
-    <h2 class="headline">Что ты получаешь за 30 дней</h2>
-    <p class="lead">Это не библиотека из пятидесяти лекций, которую ты не досмотришь. Это сопровождение: каждый день ты знаешь, что именно тебе сегодня делать.</p>
-    <div class="get-grid">
-      <div class="get-card"><span class="get-icon">💬</span><h3>Закрытая группа в Telegram</h3><p>На все 30 дней. Живые люди, которые идут тем же путём в то же время, а не «сообщество», где все молчат.</p></div>
-      <div class="get-card"><span class="get-icon">🎥</span><h3>Стартовая встреча</h3><p>Разбираем, как устроена зависимость и как будет устроен наш месяц. Отвечаю на вопросы каждого.</p></div>
-      <div class="get-card"><span class="get-icon">📋</span><h3>Ежедневные задания</h3><p>Короткие, 10–15 минут. Каждое утро понятно: сегодня нужно сделать вот это.</p></div>
-      <div class="get-card"><span class="get-icon">📅</span><h3>Подготовка ко дню Х</h3><p>Вместе выбираем твою дату отказа и готовим тебя к ней, а не бросаем с понедельника наугад.</p></div>
-      <div class="get-card"><span class="get-icon">⏱️</span><h3>План первых 72 часов</h3><p>По часам: что делать, что есть, что пить, куда деть руки, что говорить себе при накате тяги.</p></div>
-      <div class="get-card"><span class="get-icon">🎯</span><h3>Карта твоих триггеров</h3><p>Кофе, алкоголь, дорога, перерыв, ссора. Разбираем твои личные точки срыва и заменяем ритуал.</p></div>
-      <div class="get-card"><span class="get-icon">🎙️</span><h3>Мои голосовые и ответы</h3><p>Я в группе каждый день. Накрыло — пишешь, отвечаю. Это и есть то, за что ты платишь.</p></div>
-      <div class="get-card"><span class="get-icon">📞</span><h3>4 общих созвона</h3><p>Раз в неделю собираемся вживую: разбираем, у кого что происходит, снимаем страхи.</p></div>
-      <div class="get-card"><span class="get-icon">🛟</span><h3>Протокол «сорвался»</h3><p>Что делать в первые пять минут после сигареты, чтобы одна затяжка не превратилась обратно в пачку в день.</p></div>
+    <div class="mirror-grid">
+      <div class="mcard"><b>«Сегодня последняя»</b><span>Утром решаешь твёрдо. К вечеру уже покупаешь новую пачку.</span></div>
+      <div class="mcard"><b>Закуриваешь на автомате</b><span>Даже не замечаешь момент, когда сигарета оказалась в руке.</span></div>
+      <div class="mcard"><b>Боишься стать невыносимым</b><span>Что будешь злым, дёрганым и сорвёшься на близких.</span></div>
+      <div class="mcard"><b>Не хочешь снова через это</b><span>Ты уже помнишь, каково это — первые дни. И не хочешь повторять.</span></div>
+      <div class="mcard"><b>Устал начинать сначала</b><span>Столько раз бросал, что уже стыдно говорить об этом вслух.</span></div>
+      <div class="mcard"><b>Ждёшь подходящего момента</b><span>После отпуска, после проекта, после праздников. Он не наступает.</span></div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<!-- ═══ 3. ЧТО ИЗМЕНИТСЯ ═══ -->
+<section class="change">
+  <div class="in">
+    <div class="center narrow">
+      <div class="eyebrow">Главное</div>
+      <h2>Что изменится через месяц</h2>
+      <p class="sub">Не «чему ты научишься». А как будет выглядеть твой обычный день.</p>
+    </div>
+    <div class="chg-list">
+      <div class="chg"><span class="chg-i">✓</span><span class="chg-t"><b>Проснулся</b><span>И не думаешь о сигарете первым делом.</span></span></div>
+      <div class="chg"><span class="chg-i">✓</span><span class="chg-t"><b>Выпил кофе</b><span>И не тянет выйти на балкон.</span></span></div>
+      <div class="chg"><span class="chg-i">✓</span><span class="chg-t"><b>Поругался</b><span>И рука не идёт автоматически за пачкой.</span></span></div>
+      <div class="chg"><span class="chg-i">✓</span><span class="chg-t"><b>Едешь за рулём</b><span>Спокойно. Просто едешь.</span></span></div>
+      <div class="chg"><span class="chg-i">✓</span><span class="chg-t"><b>Закончил работу</b><span>И не идёшь на перекур, потому что «заслужил».</span></span></div>
+      <div class="chg"><span class="chg-i">✓</span><span class="chg-t"><b>Лёг спать</b><span>И впервые за много лет не думаешь, когда покуришь завтра.</span></span></div>
+    </div>
+    <div class="btns"><a class="btn" href="#pay" data-ev="change_cta">Хочу так же →</a></div>
+  </div>
+</section>
 
-<!-- ═══ 5. КАК ПРОЙДУТ 30 ДНЕЙ ═══ -->
-<section class="block block-green">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:26px;">
-    <span class="eyebrow">Маршрут, а не архив уроков</span>
-    <h2 class="headline">Как пройдут эти 30 дней</h2>
-    <div class="weeks">
-
-      <div class="week">
-        <div class="week-num"><span>Неделя</span><span>1</span></div>
-        <div>
-          <h3>Подготовка. Ты ещё куришь</h3>
-          <p>Не бросаем в первый день — это главная ошибка. Разбираем биологию: что никотин делает с рецепторами и почему тебе только кажется, что ты «хочешь курить». Пишешь свой список «зачем». Ведёшь дневник триггеров — просто наблюдаешь, когда и почему тянешься. В конце недели выбираем твою дату отказа.</p>
-        </div>
-      </div>
-
-      <div class="week">
-        <div class="week-num"><span>Неделя</span><span>2</span></div>
-        <div>
-          <h3>День Х и первые 72 часа</h3>
-          <p>Накануне — медитация и манифест: даёшь организму чёткую команду. Дальше самые важные трое суток: подробный план по часам, что делать при накате тяги, ежедневная перекличка в группе, я на связи. Именно здесь люди обычно ломаются в одиночку — и именно здесь ты будешь не один.</p>
-        </div>
-      </div>
-
-      <div class="week">
-        <div class="week-num"><span>Неделя</span><span>3</span></div>
-        <div>
-          <h3>Обычная жизнь без никотина</h3>
-          <p>Кофе, алкоголь, компания курящих друзей, стресс на работе, дорога, перерыв. Разбираем каждую ситуацию, в которой ты раньше срывался, и заменяем ритуал на другой. Отдельно — что делать с руками, ртом и паузой, которую раньше занимала сигарета.</p>
-        </div>
-      </div>
-
-      <div class="week">
-        <div class="week-num"><span>Неделя</span><span>4</span></div>
-        <div>
-          <h3>Закрепление и защита от срыва</h3>
-          <p>Разбираем «а можно одну?», откат мотивации на третьей-четвёртой неделе и что происходит дальше — через месяц, три месяца, год. Собираем твою личную систему защиты, чтобы через полгода стресса ты не оказался с пачкой в руках.</p>
-        </div>
-      </div>
-
-      <div class="week week-daily">
-        <h3>И каждый день — одна маленькая вещь</h3>
-        <p>Короткий кружок в общий чат: на какой ты сейчас стадии. Изучаю. Готовлюсь. Не курю пятый день. Всё. Это занимает пятнадцать секунд, но именно это не даёт тебе тихо выпасть и забыть — как забывается любой курс, который ты купил и закрыл.</p>
-      </div>
-
+<!-- ═══ 4. ПОЧЕМУ РАНЬШЕ НЕ ПОЛУЧАЛОСЬ ═══ -->
+<section class="why">
+  <div class="narrow">
+    <div class="eyebrow">Без обвинений</div>
+    <h2>Почему прошлые попытки не сработали</h2>
+    <div class="why-lines">
+      <span>Не потому что ты слабый.</span>
+      <span>Не потому что у тебя нет силы воли.</span>
+      <span>И не потому что мало мотивации.</span>
+      <span class="hit">А потому что каждый раз ты оставался с этим один.</span>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- ═══ 6. КТО Я ═══ -->
-<section class="block block-dark">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:24px;">
-    <span class="eyebrow">Кто ведёт</span>
-    <h2 class="headline">Меня зовут Артур.<br>Я курил 24 года.</h2>
-    <ul class="me-facts">
-      <li><b>—</b>Курил 24 года. Бросал больше двадцати раз — и возвращался.</li>
-      <li><b>—</b>На випассане в Индии, где сдаёшь все вещи и сигареты, впервые не ломало вообще. Это перевернуло моё понимание.</li>
-      <li><b>—</b>Разобрался, почему так вышло, и последние разы бросал уже без мучительной борьбы с собой.</li>
-      <li><b>—</b>Я не врач и не нарколог. Я человек, который прошёл это сам и разобрался в механизме.</li>
-    </ul>
-    <div class="me-honest">
-      <strong>Честно, сразу.</strong> Я не обещаю, что тебе будет легко каждый день — так не бывает, и любой, кто это обещает, тебе врёт. Я обещаю другое: ты будешь понимать, что происходит с тобой и почему, у тебя будет план на каждый день, и ты не пройдёшь ни одного тяжёлого дня в одиночку.
+<!-- ═══ 5. ЧТО ВНУТРИ ═══ -->
+<section style="background:#fff">
+  <div class="in">
+    <div class="center narrow">
+      <div class="eyebrow">Что входит</div>
+      <h2>30 дней, собранные по шагам</h2>
+    </div>
+    <div class="inside">
+      <div class="icard"><span class="ico">📅</span><b>Ежедневный план</b><span>Каждое утро — одно конкретное действие. Никаких лекций на два часа.</span></div>
+      <div class="icard"><span class="ico">💬</span><b>Закрытая группа</b><span>Живые люди, которые идут тем же путём в те же дни, что и ты.</span></div>
+      <div class="icard"><span class="ico">🎧</span><b>Мои ответы каждый день</b><span>Накрыло — пишешь. Отвечаю лично. Это и есть то, за что ты платишь.</span></div>
+      <div class="icard"><span class="ico">📞</span><b>4 живые встречи</b><span>Раз в неделю собираемся вместе, разбираем, у кого что происходит.</span></div>
+      <div class="icard"><span class="ico">🎯</span><b>Твоя дата отказа</b><span>Готовим её заранее, вместе, а не «с понедельника наугад».</span></div>
+      <div class="icard"><span class="ico">⏱️</span><b>План первых 72 часов</b><span>По часам: что делать, что есть, куда деть руки, что говорить себе.</span></div>
+      <div class="icard"><span class="ico">🗺️</span><b>Карта твоих триггеров</b><span>Кофе, алкоголь, дорога, стресс — разбираем каждую твою точку срыва.</span></div>
+      <div class="icard"><span class="ico">🛟</span><b>Помощь в трудный момент</b><span>Отдельный план на случай, когда очень захотелось. Чтобы не решать в одиночку.</span></div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- ═══ 7. ПОЧЕМУ 2 990 ═══ -->
-<section class="block block-light" id="price">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:24px;">
-    <span class="eyebrow">О цене — начистоту</span>
-    <h2 class="headline">Почему первый поток стоит <span id="p-now-head">2 990 ₽</span></h2>
-
-    <div class="price-box">
-      <div class="price-row">
-        <span class="price-old" id="p-old">9 900 ₽</span>
-        <span class="price-now" id="p-now">2 990 ₽</span>
-      </div>
-      <p class="price-cap">Один раз за весь месяц сопровождения. Не подписка.</p>
+<!-- ═══ 6. ОДИН ДЕНЬ ═══ -->
+<section class="day">
+  <div class="in">
+    <div class="center narrow">
+      <div class="eyebrow">Изнутри</div>
+      <h2>Как проходит один твой день</h2>
+      <p class="sub">Всего 10–15 минут. Программа встраивается в жизнь, а не заменяет её.</p>
     </div>
-
-    <div class="price-why">
-      <p>Постоянная цена программы — <strong id="p-old-2">9 900 ₽</strong>. Первый поток стоит дешевле не потому, что «акция» или «скидка 70%».</p>
-      <p>А потому, что он <strong>пилотный</strong>: я веду его лично, от начала до конца, программа дорабатывается прямо по ходу — под ваши реальные вопросы, а не под мои предположения. Взамен я прошу подробную обратную связь и честный отзыв в конце месяца.</p>
-      <p>Это цена первого набора. <strong>Второй поток будет дороже, и этой цены больше не будет.</strong> Не потому, что я хочу на тебя надавить — просто у второго потока уже будут отзывы, результаты и готовая программа.</p>
+    <div class="day-flow">
+      <div class="dstep"><span class="dnum">1</span><span class="dtxt"><b>Утром открываешь Telegram</b><span>Там тебя ждёт задание на сегодня.</span></span></div>
+      <div class="dstep"><span class="dnum">2</span><span class="dtxt"><b>Три минуты читаешь</b><span>Коротко и по делу: что делаем сегодня и зачем.</span></span></div>
+      <div class="dstep"><span class="dnum">3</span><span class="dtxt"><b>Делаешь</b><span>Одно небольшое действие. Не десять.</span></span></div>
+      <div class="dstep"><span class="dnum">4</span><span class="dtxt"><b>Стало тяжело — пишешь</b><span>В группу или лично мне. Не держишь в себе.</span></span></div>
+      <div class="dstep"><span class="dnum">5</span><span class="dtxt"><b>Получаешь ответ</b><span>Разбираем конкретно твою ситуацию, а не «в общем».</span></span></div>
+      <div class="dstep"><span class="dnum">6</span><span class="dtxt"><b>Вечером отмечаешь день</b><span>Пятнадцать секунд. И идёшь дальше.</span></span></div>
     </div>
+    <div class="btns"><a class="btn" href="#pay" data-ev="day_cta">Войти в поток →</a></div>
+  </div>
+</section>
 
-    <div class="price-vs">
-      <div class="pv">
-        <span class="pv-num" style="color:var(--red)">≈ 6 000 ₽</span>
-        <span class="pv-lab">в месяц ты отдаёшь<br>за то, чтобы себя травить</span>
-      </div>
-      <span class="pv-arrow">→</span>
-      <div class="pv">
-        <span class="pv-num" style="color:var(--green-deep)" id="p-now-3">2 990 ₽</span>
-        <span class="pv-lab">один раз, чтобы<br>перестать это делать</span>
-      </div>
+<!-- ═══ 7. ПОЧЕМУ 25 ═══ -->
+<section>
+  <div class="narrow center">
+    <div class="eyebrow">Про размер группы</div>
+    <h2>Почему всего 25 человек</h2>
+    <div class="quote">Я хочу знать каждого участника по имени. Читать, что человек пишет. Отвечать лично, а не рассылать всем одинаковые сообщения. <strong>Больше 25 человек я так вести не смогу</strong> — поэтому и не беру.</div>
+  </div>
+</section>
+
+<!-- ═══ 8. АРТУР ═══ -->
+<section class="author">
+  <div class="author-grid">
+    <img src="../img-proud.png" alt="Артур Лето" class="author-img">
+    <div class="author-txt">
+      <div class="eyebrow">Кто ведёт</div>
+      <p><strong>Я тоже сотни раз обещал себе «эта — последняя».</strong></p>
+      <p>Я тоже был уверен, что дело в моей слабой воле. Что другие как-то могут, а я нет. Так продолжалось годами — пока я не понял, что проблема вообще не в силе воли.</p>
+      <p>После этого я полностью изменил подход. И теперь хочу провести этим путём тебя — так, как мне самому в своё время никто не помог.</p>
+      <p class="author-name">Артур Лето · <a href="https://instagram.com/leto.s.v" target="_blank" rel="noopener" data-ev="ig_click">@leto.s.v</a></p>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- ═══ 8. ЕСЛИ СОРВЁШЬСЯ ═══ -->
-<section class="block block-light">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:24px;">
-    <span class="eyebrow">Главный страх</span>
-    <h2 class="headline">А если я сорвусь?</h2>
-
-    <div class="relapse-cards">
-      <div class="rc bad">
-        <span class="rc-label">Что тебе обычно говорят</span>
-        <p>«Ничего страшного, это всего одна сигарета. Просто продолжай дальше, как будто ничего не было.»</p>
-      </div>
-      <div class="rc good">
-        <span class="rc-label">Что происходит на самом деле</span>
-        <p>Одна сигарета — это настоящий откат. Не «в голове». В теле.</p>
-      </div>
-    </div>
-
-    <p class="lead">Как только никотин снова заходит, мозг получает сигнал: внешний источник вернулся. И разворачивает назад то, что уже начал делать — перестаёт разбирать лишние рецепторы и снова садится на подачку извне. Дни, за которые тело успело отойти к норме, откатываются.</p>
-
-    <p class="lead" style="font-weight:700;color:var(--text);">Поэтому я не стану успокаивать тебя тем, что «одна не считается». Считается. Ты и сам это почувствуешь — и как раз на этом самообмане люди обычно и возвращаются к пачке.</p>
-
-    <div class="fit-grid" style="max-width:760px;">
-      <div class="fit-col fit-no">
-        <h3>⛔ Как не надо</h3>
-        <ul>
-          <li><b>—</b>Делать вид, что срыва не было, и «продолжать счёт»</li>
-          <li><b>—</b>Курить дальше вполсилы, тайком, с чувством вины — неделями</li>
-          <li><b>—</b>Решить, что раз сорвался, значит, ты не способен, и бросить бросать</li>
-        </ul>
-      </div>
-      <div class="fit-col fit-yes">
-        <h3>✅ Как надо</h3>
-        <ul>
-          <li><b>—</b>Признать: откат случился, тело снова в никотине</li>
-          <li><b>—</b>Не растягивать. Закрыть вопрос коротко и осознанно, а не тянуть полгода</li>
-          <li><b>—</b>Назначить новую дату и заново, чётко поставить намерение</li>
-          <li><b>—</b>Разобрать, что именно тебя сбило, — и заходить уже с этим знанием</li>
-        </ul>
-      </div>
-    </div>
-
-    <p class="lead">Правда в том, что после срыва почти никто не может «просто пойти дальше»: внутри остаётся незакрытый вопрос, и человек всё равно докуривает — неделю, две, три. Так работает голова. Наша задача — не притворяться, что этого не происходит, а не дать этому превратиться в возврат на годы: закрыть вопрос коротко, поставить новую дату и зайти заново — уже осознанно.</p>
-
-    <p class="lead" style="font-weight:700;color:var(--text);">И вот что важно: второй заход почти всегда легче первого. В первый раз ты шёл вслепую. Теперь ты знаешь свой триггер, знаешь, на каком дне тебя накрыло, и знаешь, что делать в эти часы.</p>
-
-    <p class="lead">Я сам бросал больше двадцати раз. Каждая сигарета забирает около одиннадцати минут жизни — ты имеешь полное право хотя бы на десять попыток выйти.</p>
-
-    <p class="lead" style="font-weight:700;color:var(--text);">Из потока за срыв не выгоняют. Срыв — это часть маршрута, а не выход из него. Выпадает только тот, кто пропал и перестал появляться, потому что стало стыдно.</p>
+<!-- ═══ 9. ПОЧЕМУ 2990 ═══ -->
+<section style="background:#fff">
+  <div class="narrow center">
+    <div class="eyebrow">О цене честно</div>
+    <h2>Почему сейчас <span id="why-price">2 990 ₽</span></h2>
+    <div class="quote">Не потому что скидка. Это первый поток, и я не хочу брать полную цену, пока не проведу программу несколько раз и не доведу её до ума. Поэтому сейчас <strong>ты получаешь программу дешевле, а я — твою обратную связь</strong>. Честный обмен. Дальше цена будет другой.</div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- ═══ 9. ОГРАНИЧЕНИЯ ═══ -->
-<section class="block block-black">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:24px;">
-    <span class="eyebrow">Что важно знать до оплаты</span>
-    <h2 class="headline">Ограничения</h2>
-    <div class="limits">
-      <div class="limit"><span class="limit-icon">⚕️</span><p><strong>Это не медицинская услуга и не лечение зависимости.</strong> Я не врач и не нарколог. Программа — это обучение, план действий и поддержка в группе.</p></div>
-      <div class="limit"><span class="limit-icon">🩺</span><p><strong>Если у тебя сильная зависимость, беременность, сердечно-сосудистые или психические заболевания</strong> — сначала проконсультируйся с врачом. ВОЗ рекомендует сочетать поведенческую поддержку с медикаментозной терапией, когда она показана. Одно другому не мешает — наоборот.</p></div>
-      <div class="limit"><span class="limit-icon">🤝</span><p><strong>Я не могу обещать, что ты бросишь.</strong> Кнопку в итоге нажимаешь ты. Я даю метод, ежедневный план, среду и своё присутствие — но за тебя не проживу твой месяц.</p></div>
-      <div class="limit"><span class="limit-icon">↩️</span><p><strong>Возврат — 3 дня с момента старта.</strong> Зашёл, посмотрел, понял, что не твоё, — написал мне, верну 80%. Оставшиеся 20% забирают комиссии платёжных сервисов, это вне моего контроля.</p></div>
-      <div class="limit"><span class="limit-icon">🚪</span><p><strong>После старта вход закрывается.</strong> Группа идёт вместе, одним темпом — присоединяться на середине бессмысленно. Опоздал — ждёшь следующий поток по новой цене.</p></div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ FAQ ═══ -->
-<section class="block block-light">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:24px;">
-    <span class="eyebrow">Частые вопросы</span>
-    <h2 class="headline">Что обычно спрашивают</h2>
+<!-- ═══ 10. FAQ ═══ -->
+<section>
+  <div class="in">
+    <div class="center narrow"><div class="eyebrow">Последние вопросы</div><h2>Коротко о главном</h2></div>
     <div class="faq">
-
-      <details>
-        <summary>Чем это отличается от твоих бесплатных роликов?</summary>
-        <div class="faq-body">Ролики объясняют, <strong>почему</strong> так происходит. Поток отвечает на вопрос <strong>что делать сегодня</strong> — и следит, чтобы ты это сделал. Информация у тебя и так уже есть: ты прекрасно знаешь, что курить вредно, и это ни разу тебе не помогло. Не хватает не знаний, а плана, среды и того, кто рядом в тяжёлый день.</div>
-      </details>
-
-      <details>
-        <summary>Я могу бесплатно прочитать Аллена Карра. Зачем платить?</summary>
-        <div class="faq-body">Можешь и нужно — я сам его рекомендую, и аудиоверсия будет внутри. Но Карр — это один заход в один вечер, а дальше ты остаёшься с этим один. Здесь книга становится частью месяца: разбираем, что именно у него работает, что не сработало лично у тебя, и что делать в те дни, про которые в книге ничего не написано.</div>
-      </details>
-
-      <details>
-        <summary>Я наберу вес? Начнётся зажор?</summary>
-        <div class="faq-body">Если метод установлен правильно — нет. Питание у тебя вообще не изменится.<br><br>Смотри, откуда берётся зажор. Человек бросает на силе воли: внутри остаётся дыра от сигареты, нехватка и стресс — и он затыкает эту дыру едой. Рот ищет, чем себя занять, потому что внутри пусто.<br><br>Мы закрываем эту дыру на биологическом уровне. В твой день Х ты даёшь организму чёткую команду: вырабатывать все нужные вещества самому, без никотина извне. И вместе с ней ставишь намерение — <strong>ломки не будет, стресса не будет, зажора не будет.</strong><br><br>Когда это встало как надо, не происходит ровным счётом ничего. Обычное двух-трёхразовое питание, как всегда. Может чуть прибавиться аппетит в сами приёмы пищи — к тебе возвращается вкус еды. Это некритично, разница минимальная.<br><br>А вот если тебя тянет на постоянные перекусы, если ты нервничаешь и лезешь в холодильник — это сигнал, что <strong>программа установлена неправильно.</strong> Не «ты слабый» — просто не докрутили. Возвращаемся, разбираем, где именно, и ставим заново. Ровно за этим здесь группа и я — чтобы ты не остался с этим один и не решил, что метод не работает.</div>
-      </details>
-
-      <details>
-        <summary>У меня сейчас стресс. Может, лучше подождать спокойного периода?</summary>
-        <div class="faq-body">Спокойного периода не будет. Всегда есть работа, дедлайн, ремонт, дети, деньги — именно поэтому люди откладывают годами.<br><br>И смотри: тяжёлые дни бывают у всех. У некурящих они точно такие же — просто они проходят их без никотина. И прекрасно проходят. Сигарета не помогает тебе пережить стресс: она снимает ломку, которую сама же и создала. Ты не успокаиваешься — ты просто возвращаешься в норму, из которой тебя вывела предыдущая доза.<br><br>А если острый стресс у тебя прямо сейчас — это тем более не повод пропускать поток. <strong>Первая неделя у нас и есть подготовка: ты ещё куришь.</strong> Просто изучаешь материалы, разбираешь биологию, ведёшь дневник триггеров. За эту неделю острое обычно уже отпускает.<br><br>А день Х ты выбираешь сам — и мы специально ставим его на спокойный, лёгкий день, а не на пик завала. В этом и смысл подготовительной недели: не бросать наугад с понедельника, а войти в это в нормальном состоянии.</div>
-      </details>
-
-      <details>
-        <summary>Что, если я не смогу быть на созвонах?</summary>
-        <div class="faq-body">Созвоны записываются, запись остаётся в группе. Но если ты понимаешь, что не сможешь появляться совсем — лучше зайти в следующий поток. Основная ценность здесь не в записях, а в том, что ты внутри живой группы, которая идёт одновременно с тобой.</div>
-      </details>
-
-      <details>
-        <summary>Как проходит оплата и что дальше?</summary>
-        <div class="faq-body">Нажимаешь кнопку ниже, оплачиваешь, и я лично добавляю тебя в закрытую группу. За несколько дней до старта присылаю подготовительные материалы и ссылку на стартовую встречу. Если что-то пойдёт не так с оплатой — просто напиши мне, разберёмся вручную.</div>
-      </details>
-
+      <details><summary>Нужно бросать в первый же день?</summary><div class="faq-b">Нет. Сначала идёт этап подготовки, и дату отказа ты выбираешь сам — вместе со мной, на спокойный день, а не на пик завала.</div></details>
+      <details><summary>А если я курю вейп, IQOS или снюс?</summary><div class="faq-b">Подойдёт. Программа про никотиновую зависимость и про ритуалы вокруг неё, а не только про обычные сигареты.</div></details>
+      <details><summary>Чем это отличается от твоих бесплатных роликов?</summary><div class="faq-b">Ролики объясняют, <strong>почему</strong> так происходит. Программа отвечает на вопрос <strong>что делать сегодня</strong> — и рядом есть человек в тот момент, когда тяжело. Информации у тебя и так хватает: ты прекрасно знаешь, что курить вредно, и это ни разу не помогло.</div></details>
+      <details><summary>У меня сейчас стресс. Может, подождать?</summary><div class="faq-b">Спокойного периода не будет — всегда работа, дедлайны, дети, деньги. Именно поэтому люди откладывают годами. Первая неделя — подготовка, ты ещё куришь, и за неё острое обычно отпускает.</div></details>
+      <details><summary>Ты врач?</summary><div class="faq-b">Нет. Я не врач и не нарколог. Это обучение, план действий и поддержка — не медицинская услуга. При серьёзных заболеваниях, беременности или сильной зависимости стоит дополнительно поговорить с врачом.</div></details>
+      <details><summary>А если не подойдёт?</summary><div class="faq-b">До старта потока можно отказаться и вернуть оплату полностью. Если после первых дней поймёшь, что формат не твой, — напиши мне, решим по-человечески.</div></details>
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<!-- ═══ 11. ОПЛАТА ═══ -->
+<section class="final" id="pay">
+  <div class="in">
+    <div class="center narrow">
+      <div class="eyebrow">Первый поток</div>
+      <h2>Возможно, эта попытка станет последней</h2>
+      <p class="sub">Не надо обещать себе бросить когда-нибудь. Достаточно решить пройти следующие 30 дней с планом и не в одиночку.</p>
+    </div>
 
-<!-- ═══ 10. СТАРТ + ОПЛАТА ═══ -->
-<section class="block block-dark" id="pay">
-  <div class="inner" style="display:flex;flex-direction:column;align-items:center;gap:26px;">
-    <img src="../img-proud.png" alt="" class="final-img">
-    <span class="eyebrow">Первый набор</span>
-    <h2 class="headline">Стартуем <span id="f-date">скоро</span></h2>
-
-    <div class="start-card">
-      <div class="start-row">
-        <span class="start-key">Старт потока</span>
-        <span class="start-val" id="s-date">уточняется</span>
-      </div>
-      <div class="start-row">
-        <span class="start-key">Длительность</span>
-        <span class="start-val">30 дней</span>
-      </div>
-      <div class="start-row">
-        <span class="start-key">Набор закрывается</span>
-        <span class="start-val" id="s-close">уточняется</span>
-      </div>
-      <div class="start-row">
-        <span class="start-key">Мест в группе</span>
-        <span class="start-val" id="s-seats-val">25</span>
-      </div>
-      <div class="seats-bar" id="s-bar-wrap" style="display:none"><div class="seats-fill" id="s-bar" style="width:100%"></div></div>
-      <div class="start-row">
-        <span class="start-key">Стоимость участия</span>
-        <span class="start-val"><s style="color:rgba(255,255,255,.5);font-weight:600;font-size:.78em;margin-right:8px;" id="s-old">9 900 ₽</s><span id="s-now">2 990 ₽</span></span>
+    <div class="price-card" style="margin-top:40px">
+      <div class="price-name">Пилотный поток</div>
+      <div class="price-big" id="price-big">2 990 ₽</div>
+      <div class="price-cap">Один раз за все 30 дней. Не подписка.</div>
+      <ul class="price-list">
+        <li><b>✓</b><span>30 дней программы и закрытая группа</span></li>
+        <li><b>✓</b><span>Ежедневные задания и мои ответы</span></li>
+        <li><b>✓</b><span>Четыре живые встречи</span></li>
+        <li><b>✓</b><span>Подготовка к дате отказа и план первых 72 часов</span></li>
+        <li><b>✓</b><span>Материалы остаются у тебя после потока</span></li>
+      </ul>
+      <div class="price-meta">
+        <div class="pm"><span>Старт</span><b id="pm-date">20 августа</b></div>
+        <div class="pm"><span>Набор закрывается</span><b id="pm-close">19 августа</b></div>
+        <div class="pm"><span>Группа</span><b id="pm-seats">до 25 человек</b></div>
+        <div class="pm"><span>Полная цена дальше</span><b id="pm-full">9 900 ₽</b></div>
       </div>
     </div>
 
-    <a href="#" id="pay-btn" class="btn-main btn-light" target="_blank" rel="noopener">Войти в первый поток →</a>
-    <p class="btn-note">Возврат 80% в первые 3 дня · после старта вход закрыт</p>
-
-    <p class="lead" style="font-weight:600;color:#fff;max-width:600px;">Ты не первый раз читаешь страницу про то, как бросить курить. Разница только в одном: в этот раз есть конкретная дата, конкретная группа и человек, который будет рядом все тридцать дней.</p>
+    <div class="btns">
+      <a class="btn" id="pay-btn" href="#" data-ev="pay_click">Забронировать место</a>
+      <a class="btn btn-2" id="ask-btn" href="#" data-ev="ask_click">Сначала задать вопрос Артуру</a>
+      <a class="btn btn-2" id="diag-btn" href="../diagnostika/" data-ev="diag_click">Пока сомневаюсь — пройти диагностику</a>
+      <p class="undertext">Полный возврат до старта потока</p>
+    </div>
   </div>
 </section>
+
+<div class="legal">
+  <p>Программа «Свежий Вздох» носит информационный и образовательный характер и не является медицинской услугой. Она не заменяет консультацию врача, диагностику и лечение. При хронических заболеваниях, беременности, выраженных психических или физических симптомах, а также при приёме лекарственных препаратов рекомендуется обратиться к врачу.</p>
+</div>
 
 <footer>
-  <p>Свежий Вздох · Программа по отказу от никотина<br>
-  Артур Лето · <a href="https://instagram.com/leto.s.v" target="_blank" rel="noopener">@leto.s.v</a></p>
-  <p style="margin-top:14px;font-size:.82rem;color:rgba(255,255,255,.6);max-width:560px;margin-left:auto;margin-right:auto;">Материалы сайта носят информационный характер и не являются медицинской услугой. Не является публичной офертой.</p>
+  <p>Свежий Вздох · Артур Лето<br><a href="https://instagram.com/leto.s.v" target="_blank" rel="noopener">@leto.s.v</a></p>
 </footer>
 
-<!-- ═══ STICKY BAR ═══ -->
-<div id="sticky">
-  <div class="sb-info">
-    <div class="sb-price"><s id="sb-old">9 900 ₽</s><span id="sb-now">2 990 ₽</span></div>
-    <div class="sb-meta" id="sb-meta">Старт уточняется · осталось 25 мест</div>
-  </div>
-  <a href="#pay" class="sb-btn">Войти в поток</a>
+<div id="dock">
+  <div class="dk-l"><b id="dk-price">2 990 ₽</b><span id="dk-meta">Старт 20 августа</span></div>
+  <a class="dk-b" href="#pay" data-ev="dock_cta">Войти в поток</a>
 </div>
 
 <script>
 /* ══════════════════════════════════════════════════════════
-   НАСТРОЙКИ ПОТОКА — МЕНЯТЬ ТОЛЬКО ЗДЕСЬ
+   НАСТРОЙКИ — МЕНЯТЬ ТОЛЬКО ЗДЕСЬ
    ══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  // Дата старта потока. Формат: 'ГГГГ-ММ-ДД'. Пустая строка → «уточняется»
-  startDate:   '2026-08-20',
-
-  // За сколько дней до старта закрывается набор
+  startDate:       '2026-08-20',   // 'ГГГГ-ММ-ДД'
   closeDaysBefore: 1,
 
-  // Цены
-  priceNow:    '2 990 ₽',
-  priceFull:   '9 900 ₽',
+  price:      '2 990 ₽',
+  fullPrice:  '9 900 ₽',
 
-  // Места
-  seatsTotal:  25,
+  totalSeats: 25,
+  // Пока продаж нет — null. Пишем «группа до 25 человек».
+  // Когда войдут реальные люди — поставь число ЗАНЯТЫХ мест: 7
+  takenSeats: null,
 
-  // Счётчик «осталось N мест».
-  // false → на странице просто «мест в группе — 25» и «успей занять место».
-  //         Так и держим, пока продаж нет: «осталось 25 из 25» читается как «никто не идёт».
-  // true  → показываем реальный остаток. Включать, когда зайдут первые 3 человека.
-  showSeatsLeft: false,
+  // Оплата. Пока — личка Артура, продажи идут вручную.
+  // Появится Tribute — заменить на его ссылку.
+  payUrl:     'https://t.me/arturleto',
+  askUrl:     'https://ig.me/m/leto.s.v',
 
-  // Сколько мест реально осталось. Работает только при showSeatsLeft: true.
-  // Ставить ТОЛЬКО настоящее число — это то, что человек проверит в первой же переписке.
-  seatsLeft:   25,
-
-  // ССЫЛКА ОПЛАТЫ. Пока стоит личка Артура — первые продажи идут вручную,
-  // так и задумано. Когда будет Tribute — заменить на его ссылку.
-  payUrl:      'https://t.me/arturleto'
+  metrikaId:  110722782
 };
 /* ══════════════════════════════════════════════════════════ */
 
 (function(){
-  const $ = id => document.getElementById(id);
-  const set = (id, val) => { const el = $(id); if (el) el.textContent = val; };
+  var $ = function(id){ return document.getElementById(id); };
+  var set = function(id, v){ var e = $(id); if (e) e.textContent = v; };
+  var M = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  var fmt = function(d){ return d.getDate() + ' ' + M[d.getMonth()]; };
 
-  const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля',
-                  'августа','сентября','октября','ноября','декабря'];
-
-  function fmt(d){ return d.getDate() + ' ' + MONTHS[d.getMonth()]; }
-
-  // ── Даты ──
-  let dateStr = 'уточняется', closeStr = 'уточняется', headStr = 'скоро';
+  /* ── даты ── */
+  var dateStr = 'скоро', closeStr = 'скоро';
   if (CONFIG.startDate) {
-    const start = new Date(CONFIG.startDate + 'T00:00:00');
-    if (!isNaN(start)) {
-      const close = new Date(start);
-      close.setDate(close.getDate() - CONFIG.closeDaysBefore);
-      dateStr  = fmt(start);
-      closeStr = fmt(close);
-      headStr  = fmt(start);
+    var s = new Date(CONFIG.startDate + 'T00:00:00');
+    if (!isNaN(s)) {
+      var c = new Date(s); c.setDate(c.getDate() - CONFIG.closeDaysBefore);
+      dateStr = fmt(s); closeStr = fmt(c);
     }
   }
-  set('h-date', dateStr);
-  set('s-date', dateStr);
-  set('s-close', closeStr);
-  set('f-date', headStr);
+  set('pm-date', dateStr);
+  set('pm-close', closeStr);
+  set('pill-txt', 'Первый поток · старт ' + dateStr);
+  set('dk-meta', 'Старт ' + dateStr);
 
-  // ── Цены ──
-  ['h-now','p-now','p-now-head','p-now-3','s-now','sb-now'].forEach(id => set(id, CONFIG.priceNow));
-  ['h-old','p-old','p-old-2','s-old','sb-old'].forEach(id => set(id, CONFIG.priceFull));
+  /* ── цены ── */
+  ['price-big','why-price','dk-price'].forEach(function(i){ set(i, CONFIG.price); });
+  set('pm-full', CONFIG.fullPrice);
+  set('hero-under', 'Старт ' + dateStr + ' · группа до ' + CONFIG.totalSeats + ' человек · ' + CONFIG.price + ' · оплата один раз');
 
-  // ── Места ──
-  const total = CONFIG.seatsTotal;
-  const left  = Math.max(0, Math.min(CONFIG.seatsLeft, total));
-  const showLeft = CONFIG.showSeatsLeft === true;
-
-  set('h-seats', total);
-
-  const hmLeft = $('hm-left');
-  const barWrap = $('s-bar-wrap');
-
-  if (showLeft) {
-    set('h-left', left);
-    set('s-seats-val', left + ' из ' + total);
-    if (hmLeft) hmLeft.style.display = '';
-    if (barWrap) barWrap.style.display = '';
-    const bar = $('s-bar');
-    if (bar) bar.style.width = (total ? (left / total) * 100 : 0) + '%';
+  /* ── места: только честные цифры ── */
+  if (CONFIG.takenSeats && CONFIG.takenSeats > 0) {
+    var left = Math.max(0, CONFIG.totalSeats - CONFIG.takenSeats);
+    set('pm-seats', 'уже ' + CONFIG.takenSeats + ' · свободно ' + left);
   } else {
-    set('s-seats-val', total);
-    if (hmLeft) hmLeft.style.display = 'none';
-    if (barWrap) barWrap.style.display = 'none';
+    set('pm-seats', 'до ' + CONFIG.totalSeats + ' человек');
   }
 
-  // ── Плашка снизу ──
-  const metaParts = [];
-  metaParts.push(CONFIG.startDate ? ('Старт ' + dateStr) : 'Старт уточняется');
-  if (showLeft) {
-    metaParts.push(left > 0 ? ('осталось ' + left + ' ' + plural(left, 'место','места','мест')) : 'мест нет');
-  } else {
-    metaParts.push('успей занять место');
-  }
-  set('sb-meta', metaParts.join(' · '));
-
-  function plural(n, one, few, many){
-    const n10 = n % 10, n100 = n % 100;
-    if (n10 === 1 && n100 !== 11) return one;
-    if (n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14)) return few;
-    return many;
-  }
-
-  // ── Кнопка оплаты ──
-  const pay = $('pay-btn');
-  if (pay) {
-    pay.href = CONFIG.payUrl;
-    pay.addEventListener('click', function(){
-      if (window.ym) ym(110722782, 'reachGoal', 'pilot_pay_click');
+  /* ── ссылки + проброс UTM ── */
+  var utm = [];
+  try {
+    var p = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+      if (p.get(k)) utm.push(k + '=' + encodeURIComponent(p.get(k)));
     });
-  }
+  } catch(e){}
+  var withUtm = function(u){
+    if (!utm.length || u.indexOf('t.me') > -1) return u;
+    return u + (u.indexOf('?') > -1 ? '&' : '?') + utm.join('&');
+  };
+  var pb = $('pay-btn'); if (pb) { pb.href = withUtm(CONFIG.payUrl); pb.target = '_blank'; pb.rel = 'noopener'; }
+  var ab = $('ask-btn'); if (ab) { ab.href = withUtm(CONFIG.askUrl); ab.target = '_blank'; ab.rel = 'noopener'; }
+  var db = $('diag-btn'); if (db && utm.length) db.href = withUtm(db.getAttribute('href'));
+  set('pay-btn', 'Забронировать место за ' + CONFIG.price);
+
+  /* ── подхват диагноза из диагностики (?d=stress) ── */
+  var NAMES = {
+    habit:'автоматические ритуалы', psycho:'психологическая связка с сигаретой',
+    stress:'снятие стресса', physical:'физическая зависимость',
+    social:'компания и социальные триггеры', fear_break:'страх ломки',
+    fear_weight:'страх набрать вес', low_belief:'неверие в себя после прошлых попыток',
+    focus:'сигарета как пауза'
+  };
+  try {
+    var d = new URLSearchParams(location.search).get('d');
+    if (d && NAMES[d]) {
+      var box = $('perso');
+      box.innerHTML = 'По результатам вашей диагностики главный механизм — <b>' + NAMES[d] +
+                      '</b>. В программе это разбирается отдельно, под вашу ситуацию.';
+      box.classList.add('on');
+      if (window.ym) ym(CONFIG.metrikaId, 'reachGoal', 'land_from_diag');
+    }
+  } catch(e){}
+
+  /* ── аналитика ── */
+  var goal = function(n){ if (window.ym) try { ym(CONFIG.metrikaId, 'reachGoal', n); } catch(e){} };
+  document.querySelectorAll('[data-ev]').forEach(function(el){
+    el.addEventListener('click', function(){ goal(el.dataset.ev); });
+  });
+  document.querySelectorAll('.faq summary').forEach(function(s){
+    s.addEventListener('click', function(){ goal('faq_open'); }, { once:true });
+  });
+  var marks = [25,50,75,90], hit = {};
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    marks.forEach(function(m){ if (!hit[m] && pct >= m) { hit[m] = 1; goal('scroll_' + m); } });
+  }, { passive:true });
 })();
 </script>
-
 </body>
 </html>
