@@ -186,10 +186,44 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 const stage=document.getElementById('stage'), topbar=document.getElementById('topbar');
 const fill=document.getElementById('fill'), stepn=document.getElementById('stepn'), backBt=document.getElementById('back');
 
-const STORE='vzdoh_diag_v2';
+const STORE='vzdoh_diag_v3';
 const LETTER={habit:'h',psycho:'p',stress:'s',physical:'f',social:'o',fear_break:'b',fear_weight:'w',low_belief:'l',focus:'c'};
 
 let answers=[], pos=-1, moneyK=1;
+
+/* ─── АКТИВНЫЕ ВОПРОСЫ ───────────────────────────────────────────
+   Вопрос про продукт не показываем, если этот продукт человек
+   уже назвал основным. «Несколько сразу» — показываем все.      */
+function mainProduct(){
+  const i = QUESTIONS.findIndex(q => q.key === 'product');
+  if (i < 0 || answers[i] == null) return null;
+  const o = QUESTIONS[i].a[answers[i]];
+  return o ? o.v : null;
+}
+function isActive(qi){
+  const q = QUESTIONS[qi], main = mainProduct();
+  // «а что у вас с …» — про всё, кроме основного
+  if (q.product){
+    if (main === null) return false;
+    if (main === 'mix') return true;
+    return q.product !== main;
+  }
+  // расход и цена — только под основной продукт
+  if (q.onlyProduct){
+    if (main === null) return false;
+    if (main === 'mix') return q.onlyProduct === 'cig';
+    return q.onlyProduct === main;
+  }
+  return true;
+}
+function nextActive(from){ for(let i=Math.max(from,0);i<QUESTIONS.length;i++) if(isActive(i)) return i; return -1; }
+function prevActive(before){ for(let i=before-1;i>=0;i--) if(isActive(i)) return i; return -1; }
+function keyOf(qi){ return qi>=0 && QUESTIONS[qi] ? QUESTIONS[qi].key : null; }
+function activeList(){
+  const out = [];
+  for (let i = 0; i < QUESTIONS.length; i++) if (isActive(i)) out.push(i);
+  return out;
+}
 
 function save(){ try{ localStorage.setItem(STORE, JSON.stringify({a:answers,p:pos,k:moneyK})); }catch(e){} }
 function load(){ try{ const d=JSON.parse(localStorage.getItem(STORE)||'null');
@@ -209,12 +243,19 @@ function val(key){
 
 /* ─── ДЕНЬГИ ─── */
 function moneyCalc(){
-  const perday = val('perday') || 12;      // условных единиц в день
-  const price  = val('price')  || 220;     // цена одной покупки
-  const years  = val('years')  || 7;
-  const perUnit = price / 20;              // пачка ≈ 20 единиц
-  const day   = perUnit * perday * moneyK;
-  return { month: day*30, year: day*365, total: day*365*years, years: years };
+  // расход и цена берутся под основной продукт человека:
+  // units — сколько покупок (пачек / флаконов / банок) уходит в день
+  const P = ['cig','vape','heat','snus','hookah'];
+  let units=null, price=null;
+  P.forEach(p=>{
+    const u=val('use_'+p);   if(u!==null && units===null) units=u;
+    const c=val('price_'+p); if(c!==null && price===null) price=c;
+  });
+  if(units===null) units=1;
+  if(price===null) price=220;
+  const years = val('years') || 7;
+  const day = units * price * moneyK;
+  return { month: day*30, year: day*365, total: day*365*years, years: years, day: day };
 }
 
 /* ─── СТАДИЯ ЗАВИСИМОСТИ (по классификации доктора Звягина) ─── */
@@ -246,7 +287,10 @@ function stageOf(){
 function score(){
   const raw={}, max={};
   CATEGORIES.forEach(c=>{raw[c.code]=0;max[c.code]=0;});
-  QUESTIONS.forEach((q,i)=>{
+  // потолок считаем только по показанным вопросам — иначе пропущенные
+  // ветки занижали бы проценты
+  activeList().forEach(i=>{
+    const q=QUESTIONS[i];
     CATEGORIES.forEach(c=>{ let b=0; q.a.forEach(o=>{const v=(o.s&&o.s[c.code])||0; if(v>b)b=v;}); max[c.code]+=b; });
     const ch=q.a[answers[i]];
     if(ch&&ch.s) for(const k in ch.s) if(raw[k]!==undefined) raw[k]+=ch.s[k];
@@ -273,9 +317,15 @@ function paint(html,cls){
   if(old){ old.classList.add('leaving'); setTimeout(draw,170); } else draw();
 }
 function chrome(){
-  const T=QUESTIONS.length;
-  if(pos>=0&&pos<T){ topbar.classList.add('on'); fill.style.width=(pos/T*100)+'%'; stepn.textContent=(pos+1)+' / '+T; backBt.style.visibility='visible'; }
-  else if(pos>=T){ topbar.classList.add('on'); fill.style.width='100%'; stepn.textContent=''; backBt.style.visibility='hidden'; }
+  const act=activeList(), T=act.length;
+  if(pos>=0&&pos<QUESTIONS.length){
+    const n=act.indexOf(pos);
+    topbar.classList.add('on');
+    fill.style.width=(T?(Math.max(n,0)/T*100):0)+'%';
+    stepn.textContent=(n>=0?n+1:1)+' / '+T;
+    backBt.style.visibility='visible';
+  }
+  else if(pos>=QUESTIONS.length){ topbar.classList.add('on'); fill.style.width='100%'; stepn.textContent=''; backBt.style.visibility='hidden'; }
   else topbar.classList.remove('on');
 }
 
@@ -349,19 +399,30 @@ function screenAnalysis(){
   paint('<h2>Анализируем ваши ответы</h2><div class="an-list">'+
     ANALYSIS_STEPS.map((s,i)=>'<div class="an-row" id="ar'+i+'"><div class="an-head"><span class="an-name">'+s+'</span><span class="an-val" id="av'+i+'">0%</span></div><div class="an-bar"><i id="ab'+i+'"></i></div></div>').join('')+
     '</div>','an');
-  const per=CONFIG.analysisMs/ANALYSIS_STEPS.length;
+  // у каждой полоски своя длительность: первая самая долгая,
+  // остальные вразнобой — так это выглядит как настоящая работа,
+  // а не как ровный прогрессбар
+  const W=[2.5,0.7,1.5,0.6,1.1], sum=W.reduce((a,b)=>a+b,0);
+  const dur=W.map(w=>CONFIG.analysisMs*w/sum);
+  const startAt=[]; dur.reduce((acc,d,i)=>{startAt[i]=acc; return acc+d;},0);
+
   setTimeout(()=>{
     ANALYSIS_STEPS.forEach((s,i)=>{
       setTimeout(()=>{
         const row=document.getElementById('ar'+i),v=document.getElementById('av'+i),bar=document.getElementById('ab'+i);
         if(!row)return; row.classList.add('on');
-        let p=0; const tick=setInterval(()=>{ p+=Math.random()*13+5; if(p>=100){p=100;clearInterval(tick);}
+        const d=dur[i]||1000, ticks=Math.max(6,Math.round(d/90));
+        let p=0,k=0;
+        const tick=setInterval(()=>{
+          k++; p+=(100/ticks)*(0.55+Math.random()*0.95);
+          if(k>=ticks||p>=100){p=100;clearInterval(tick);}
           if(v)v.textContent=Math.round(p)+'%'; if(bar)bar.style.width=p+'%';
-          if(p===100&&v)v.innerHTML='&#10003;'; },per/11);
-      },i*per);
+          if(p===100&&v)v.innerHTML='&#10003;';
+        },d/ticks);
+      },startAt[i]||0);
     });
-    setTimeout(screenResult,CONFIG.analysisMs+350);
-  },200);
+    setTimeout(screenResult,CONFIG.analysisMs+300);
+  },180);
 }
 
 function screenResult(){
@@ -426,17 +487,27 @@ function screenResult(){
 /* ─── НАВИГАЦИЯ ─── */
 function step(i,skipInterlude){
   if(i<0) return screenIntro();
-  if(i>=QUESTIONS.length) return screenAnalysis();
-  if(!skipInterlude){
-    const it=INTERLUDES.find(x=>x.after===i);
-    if(it){ pos=i; save(); chrome(); return screenInterlude(it,i); }
+  const qi = nextActive(i);
+
+  // вопросы кончились — последняя вставка, затем анализ
+  if(qi<0){
+    if(!skipInterlude){
+      const last=INTERLUDES.find(x=>x.last);
+      if(last){ pos=QUESTIONS.length-1; save(); chrome(); return screenInterlude(last,QUESTIONS.length); }
+    }
+    return screenAnalysis();
   }
-  pos=i; save(); chrome(); screenQuestion(i);
+
+  if(!skipInterlude){
+    const it=INTERLUDES.find(x=>x.beforeKey && x.beforeKey===keyOf(qi));
+    if(it){ pos=qi; save(); chrome(); return screenInterlude(it,qi); }
+  }
+  pos=qi; save(); chrome(); screenQuestion(qi);
 }
-backBt.onclick=()=>{ if(pos<=0) return screenIntro(); step(pos-1,true); };
+backBt.onclick=()=>{ const p=prevActive(pos); if(p<0) return screenIntro(); step(p,true); };
 
 load();
-if(pos>=QUESTIONS.length+1 && answers.filter(x=>x!=null).length===QUESTIONS.length) screenResult();
+if(pos>=QUESTIONS.length+1 && activeList().every(i=>answers[i]!=null)) screenResult();
 else if(pos>=0 && pos<QUESTIONS.length) step(pos,true);
 else screenIntro();
 })();
