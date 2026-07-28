@@ -237,8 +237,8 @@ footer a:hover{text-decoration:underline;}
 
     <div class="hero-meta">
       <div class="hm">Старт — <strong id="h-date">уточняется</strong></div>
-      <div class="hm">Мест — <strong id="h-seats">25</strong></div>
-      <div class="hm">Осталось — <strong id="h-left">25</strong></div>
+      <div class="hm">Мест в группе — <strong id="h-seats">25</strong></div>
+      <div class="hm" id="hm-left">Осталось — <strong id="h-left">25</strong></div>
     </div>
 
     <a href="#pay" class="btn-main btn-light">Войти в первый поток →</a>
@@ -555,9 +555,9 @@ footer a:hover{text-decoration:underline;}
       </div>
       <div class="start-row">
         <span class="start-key">Мест в группе</span>
-        <span class="start-val"><em id="s-left">25</em> из <span id="s-total">25</span></span>
+        <span class="start-val" id="s-seats-val">25</span>
       </div>
-      <div class="seats-bar"><div class="seats-fill" id="s-bar" style="width:100%"></div></div>
+      <div class="seats-bar" id="s-bar-wrap" style="display:none"><div class="seats-fill" id="s-bar" style="width:100%"></div></div>
       <div class="start-row">
         <span class="start-key">Стоимость участия</span>
         <span class="start-val"><s style="color:rgba(255,255,255,.5);font-weight:600;font-size:.78em;margin-right:8px;" id="s-old">9 900 ₽</s><span id="s-now">2 990 ₽</span></span>
@@ -603,6 +603,15 @@ const CONFIG = {
 
   // Места
   seatsTotal:  25,
+
+  // Счётчик «осталось N мест».
+  // false → на странице просто «мест в группе — 25» и «успей занять место».
+  //         Так и держим, пока продаж нет: «осталось 25 из 25» читается как «никто не идёт».
+  // true  → показываем реальный остаток. Включать, когда зайдут первые 3 человека.
+  showSeatsLeft: false,
+
+  // Сколько мест реально осталось. Работает только при showSeatsLeft: true.
+  // Ставить ТОЛЬКО настоящее число — это то, что человек проверит в первой же переписке.
   seatsLeft:   25,
 
   // ССЫЛКА ОПЛАТЫ. Пока стоит личка Артура — первые продажи идут вручную,
@@ -644,17 +653,34 @@ const CONFIG = {
   // ── Места ──
   const total = CONFIG.seatsTotal;
   const left  = Math.max(0, Math.min(CONFIG.seatsLeft, total));
+  const showLeft = CONFIG.showSeatsLeft === true;
+
   set('h-seats', total);
-  set('h-left', left);
-  set('s-left', left);
-  set('s-total', total);
-  const bar = $('s-bar');
-  if (bar) bar.style.width = (total ? (left / total) * 100 : 0) + '%';
+
+  const hmLeft = $('hm-left');
+  const barWrap = $('s-bar-wrap');
+
+  if (showLeft) {
+    set('h-left', left);
+    set('s-seats-val', left + ' из ' + total);
+    if (hmLeft) hmLeft.style.display = '';
+    if (barWrap) barWrap.style.display = '';
+    const bar = $('s-bar');
+    if (bar) bar.style.width = (total ? (left / total) * 100 : 0) + '%';
+  } else {
+    set('s-seats-val', total);
+    if (hmLeft) hmLeft.style.display = 'none';
+    if (barWrap) barWrap.style.display = 'none';
+  }
 
   // ── Плашка снизу ──
   const metaParts = [];
   metaParts.push(CONFIG.startDate ? ('Старт ' + dateStr) : 'Старт уточняется');
-  metaParts.push(left > 0 ? ('осталось ' + left + ' ' + plural(left, 'место','места','мест')) : 'мест нет');
+  if (showLeft) {
+    metaParts.push(left > 0 ? ('осталось ' + left + ' ' + plural(left, 'место','места','мест')) : 'мест нет');
+  } else {
+    metaParts.push('успей занять место');
+  }
   set('sb-meta', metaParts.join(' · '));
 
   function plural(n, one, few, many){
