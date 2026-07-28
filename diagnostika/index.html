@@ -96,6 +96,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .money b{font-size:clamp(1.9rem,7.6vw,2.6rem);font-weight:800;color:var(--acc);letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}
 .money span{font-size:.87rem;color:var(--w70)}
 .money.alt b{color:var(--warn)}
+.mid-img{width:100%;max-width:420px;margin:0 auto;border-radius:18px;display:block;border:1px solid var(--card-line)}
 
 /* АНАЛИЗ */
 .an{justify-content:center;gap:30px;padding:30px 0;text-align:center}
@@ -252,6 +253,14 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 function fmt(n){ return Math.round(n).toLocaleString('ru-RU'); }
 function plural(n,a,b,c){ const x=n%10,y=n%100; if(x===1&&y!==11)return a; if(x>=2&&x<=4&&(y<12||y>14))return b; return c; }
 
+/* подстановка названия продукта: {что} → «пачку сигарет» и т.п. */
+function subst(t){
+  if (!t || t.indexOf('{что}') < 0) return t;
+  const m = mainProduct();
+  const w = (typeof PRODUCT_WORDS !== 'undefined' && PRODUCT_WORDS[m]) || 'запас никотина';
+  return t.split('{что}').join(w);
+}
+
 /* значение ответа по служебному ключу */
 function val(key){
   const i = QUESTIONS.findIndex(q => q.key === key);
@@ -289,6 +298,7 @@ function stageOf(){
   if (control === 'lost') third++;
   if (morning !== null && morning <= 30) third++;
   if (carry === 'always') third++;
+  if (alone === 'always') third++;   // курит непрерывно — маркер третьей стадии
   if (third >= 4) return 3;
 
   // 1-я: мало лет, не носит с собой, только в компании, есть длинные перерывы
@@ -365,7 +375,7 @@ function screenIntro(){
 
 function screenQuestion(i){
   const q=QUESTIONS[i];
-  paint('<h2 class="q">'+q.q+'</h2>'+(q.hint?'<p class="qhint">'+q.hint+'</p>':'')+
+  paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
     '<div class="opts">'+q.a.map((o,n)=>'<button class="opt'+(answers[i]===n?' sel':'')+'" data-n="'+n+'">'+o.t+'</button>').join('')+'</div>','qwrap');
   setTimeout(()=>{
     stage.querySelectorAll('.opt').forEach(b=>{
@@ -408,7 +418,8 @@ function screenMoney2(nextPos){
 
 function screenInterlude(it,nextPos){
   if(it.kind==='money') return screenMoney(nextPos);
-  paint('<div class="mid-icon">'+it.icon+'</div><h2>'+it.title+'</h2><p>'+it.body+'</p>'+
+  const pic = it.img ? '<img src="'+it.img+'" alt="" class="mid-img">' : '';
+  paint((it.icon?'<div class="mid-icon">'+it.icon+'</div>':'')+'<h2>'+it.title+'</h2>'+pic+'<p>'+it.body+'</p>'+
     '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>','mid');
   setTimeout(()=>{ const c=document.getElementById('cont'); if(c) c.onclick=()=>step(nextPos,true); },180);
 }
