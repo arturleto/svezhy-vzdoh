@@ -455,7 +455,7 @@ function screenResult(){
     : '<div class="video-box"><div class="video-ph"><span class="vi">🎬</span><b>Здесь будет видео Артура</b><span>Разбор именно вашего типа зависимости — записывается</span></div></div>';
 
   const steps=METHOD.steps.map((s,i)=>
-    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4><p>'+s.d+'</p>'+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
+    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4><p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
 
   const pl=payload(list);
   const bot=CONFIG.botLink.replace('{payload}',pl);
