@@ -150,6 +150,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .mstep-cat{font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .mstep h4{font-size:1.13rem;font-weight:800;line-height:1.3}
 .mstep p{font-size:.97rem;color:var(--w86);line-height:1.65}
+.mstep-you{margin-top:4px;padding:14px 16px;background:var(--acc-dim);border:1px solid var(--acc-line);border-radius:13px;color:#fff !important}
+.mstep-you strong{color:var(--acc)}
 
 .alone{display:flex;flex-direction:column;gap:10px}
 .al{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:17px 19px}
@@ -220,6 +222,13 @@ function isActive(qi){
     if (main === null) return false;
     if (main === 'mix') return q.onlyProduct === 'cig';
     return q.onlyProduct === main;
+  }
+  // условие по ответу на другой вопрос
+  if (q.showIf){
+    const v = val(q.showIf.key);
+    if (v === null) return false;
+    if (q.showIf.not !== undefined && v === q.showIf.not) return false;
+    if (q.showIf.is  !== undefined && v !== q.showIf.is)  return false;
   }
   return true;
 }
@@ -446,7 +455,7 @@ function screenResult(){
     : '<div class="video-box"><div class="video-ph"><span class="vi">🎬</span><b>Здесь будет видео Артура</b><span>Разбор именно вашего типа зависимости — записывается</span></div></div>';
 
   const steps=METHOD.steps.map((s,i)=>
-    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4><p>'+s.d+'</p></div>').join('');
+    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4><p>'+s.d+'</p>'+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
 
   const pl=payload(list);
   const bot=CONFIG.botLink.replace('{payload}',pl);
