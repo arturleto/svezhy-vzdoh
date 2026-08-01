@@ -381,7 +381,7 @@ footer a{color:#A8E6C5;text-decoration:none}
     </div>
 
     <div class="btns">
-      <a class="btn" id="pay-btn" href="https://t.me/arturleto" target="_blank" rel="noopener" data-ev="pay_click">Забронировать место</a>
+      <a class="btn" id="pay-btn" href="https://web.tribute.tg/p/AQN" target="_blank" rel="noopener" data-ev="pay_click">Забронировать место</a>
       <a class="btn btn-2" id="ask-btn" href="https://ig.me/m/leto.s.v" target="_blank" rel="noopener" data-ev="ask_click">Сначала задать вопрос Артуру</a>
       <a class="btn btn-2" id="diag-btn" href="../diagnostika/" data-ev="diag_click">Пока сомневаюсь — пройти диагностику</a>
       <p class="undertext">Возврат до старта и в первые 3 дня потока</p>
@@ -418,9 +418,8 @@ const CONFIG = {
   // Когда войдут реальные люди — поставь число ЗАНЯТЫХ мест: 7
   takenSeats: null,
 
-  // Оплата. Пока — личка Артура, продажи идут вручную.
-  // Появится Tribute — заменить на его ссылку.
-  payUrl:     'https://t.me/arturleto',
+  // Оплата через Tribute
+  payUrl:     'https://web.tribute.tg/p/AQN',
   askUrl:     'https://ig.me/m/leto.s.v',
 
   metrikaId:  110722782
@@ -469,7 +468,7 @@ const CONFIG = {
     });
   } catch(e){}
   var withUtm = function(u){
-    if (!utm.length || u.indexOf('t.me') > -1) return u;
+    if (!utm.length || u.indexOf('t.me') > -1 || u.indexOf('tribute.tg') > -1) return u;
     return u + (u.indexOf('?') > -1 ? '&' : '?') + utm.join('&');
   };
   var lid = ''; try { lid = new URLSearchParams(location.search).get('lid') || ''; if (lid) localStorage.setItem('vzdoh_lid', lid); else lid = localStorage.getItem('vzdoh_lid') || ''; } catch(e){}
