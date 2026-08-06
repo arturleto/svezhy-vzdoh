@@ -42,6 +42,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background:radial-gradient(120% 70% at 50% -10%, var(--glow) 0%, transparent 62%),
              radial-gradient(90% 55% at 50% 108%, var(--glow-soft) 0%, transparent 60%);}
 
+/* тонкое зерно поверх всего: убирает «пластик» плоских градиентов и
+   полосы на тёмном фоне (banding) на дешёвых экранах. Держать ниже
+   .06 — выше начинает мылить текст */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
 .app{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column}
 .topbar{position:sticky;top:0;z-index:20;padding:calc(env(safe-area-inset-top) + 12px) 20px 12px;
   display:flex;align-items:center;gap:14px;
@@ -65,15 +71,65 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 /* ИНТРО */
 /* safe center — при контенте выше экрана обычный center срезал бы
    верх; safe в этом случае прижимает к началу вместо обрезки */
-.intro{justify-content:safe center;text-align:center;gap:18px;padding:24px 0 16px}
-.badge{align-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:50px;
-  background:var(--acc-dim);border:1px solid var(--acc-line);font-size:.75rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--acc)}
+/* padding снизу больше верхнего: блок садится в ОПТИЧЕСКИЙ центр —
+   геометрический центр глаз читает как «съехало вниз» */
+.intro{position:relative;justify-content:safe center;text-align:center;gap:20px;padding:24px 0 78px}
+
+/* ── АВРОРА ─────────────────────────────────────────────────────────
+   Два мягких пятна (мятное сверху, синее снизу) медленно дышат в
+   ритме дыхания — 14с на цикл. Экран перестаёт быть плоской заливкой
+   и «живёт», пока человек читает оффер. Только на интро: на вопросах
+   движущийся фон отвлекал бы от выбора.
+   z-index:-1 — .app создаёт свой контекст наложения, поэтому слой
+   уходит под контент, но остаётся над общим градиентом body::before */
+.intro::before{content:'';position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 24% at 50% 45%, rgba(168,230,197,.22) 0%, transparent 72%),
+             radial-gradient(55% 34% at 12% 58%, rgba(44,124,214,.34) 0%, transparent 70%),
+             radial-gradient(55% 34% at 90% 48%, rgba(30,86,160,.32) 0%, transparent 70%),
+             radial-gradient(70% 40% at 50% 8%, rgba(20,58,110,.30) 0%, transparent 72%);
+  filter:blur(16px);animation:aurora 14s ease-in-out infinite}
+/* виньетка — гасит углы и собирает взгляд в центр, где оффер и кнопка */
+.intro::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(78% 58% at 50% 46%, transparent 30%, rgba(4,8,15,.55) 78%, rgba(3,6,12,.82) 100%)}
+@keyframes aurora{
+  0%,100%{transform:translate3d(-2%,-1%,0) scale(1)}
+  50%    {transform:translate3d(2%,2%,0)  scale(1.1)}}
+
+/* появление лесенкой: строки встают одна за другой, а не всё разом —
+   взгляд ведут сверху вниз ровно до кнопки */
+.screen.intro{animation:none}
+.intro>*{animation:rise .78s var(--ease) both}
+.intro .badge{animation-delay:.06s}
+.intro h1{animation-delay:.16s}
+.intro p{animation-delay:.28s}
+.intro .cta-dock{animation-delay:.42s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* стеклянный бейдж с живой точкой — «вы здесь, вас узнали» */
+.badge{position:relative;align-self:center;display:inline-flex;align-items:center;gap:9px;padding:9px 18px 9px 15px;border-radius:50px;
+  background:linear-gradient(180deg, rgba(168,230,197,.14), rgba(168,230,197,.07));
+  border:1px solid var(--acc-line);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 4px 22px rgba(168,230,197,.10), inset 0 1px 0 rgba(255,255,255,.10)}
+.badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--acc);flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(168,230,197,.6);animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{
+  0%  {box-shadow:0 0 0 0 rgba(168,230,197,.55)}
+  70% {box-shadow:0 0 0 9px rgba(168,230,197,0)}
+  100%{box-shadow:0 0 0 0 rgba(168,230,197,0)}}
+
 /* заголовок и подзаголовок держим почти в одном кегле: экран читается
    как одно связное предложение, а не «шапка + мелкий текст под ней» */
-.intro h1{font-size:clamp(1.5rem,5.4vw,1.85rem);font-weight:800;line-height:1.2;letter-spacing:-.02em;text-wrap:balance}
-.intro h1 em{font-style:normal;color:var(--acc)}
-.intro p{font-size:clamp(1.2rem,4.6vw,1.45rem);color:var(--w86);line-height:1.5;text-wrap:balance}
-.intro p em{font-style:normal;font-weight:800;color:var(--acc)}
+.intro h1{font-size:clamp(1.62rem,5.8vw,2.05rem);font-weight:800;line-height:1.18;letter-spacing:-.028em;text-wrap:balance}
+/* акцент — не плоская заливка, а градиент по тексту + мягкое свечение:
+   строка светится изнутри, как подсвеченная вывеска */
+.intro h1 em{font-style:normal;
+  background:linear-gradient(103deg,#E4FBEE 0%,var(--acc) 42%,#79D3AC 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 22px rgba(168,230,197,.30))}
+.intro p{font-size:clamp(1.12rem,4.3vw,1.34rem);color:var(--w86);line-height:1.52;text-wrap:balance;max-width:23ch;margin:0 auto}
+.intro p em{font-style:normal;font-weight:800;color:var(--acc);
+  text-shadow:0 0 18px rgba(168,230,197,.28)}
 .getlist{display:flex;flex-direction:column;gap:9px;text-align:left;width:100%;margin-top:2px}
 .getlist li{list-style:none;display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:13px 16px;font-size:.96rem;color:var(--w86);line-height:1.4}
 .getlist li b{color:var(--acc);flex-shrink:0;font-weight:900}
@@ -210,6 +266,29 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background:var(--acc);color:var(--on-acc);font-size:1.05rem;font-weight:800;padding:1.12rem 1.5rem;border-radius:50px;text-decoration:none;
   transition:transform .13s,box-shadow .2s,opacity .2s;box-shadow:0 8px 30px rgba(168,230,197,.2)}
 .btn:active{transform:scale(.982)}
+
+/* ── ГЛАВНАЯ КНОПКА НА ИНТРО ────────────────────────────────────────
+   Ореол под кнопкой дышит в такт авроре, по кнопке раз в 5с проходит
+   блик. Блик — только на ::after: своя animation на самой кнопке
+   гасит анимацию псевдоэлемента в iOS Safari (грабля из RULES),
+   поэтому кнопка сама не двигается, дышит подложка */
+.intro .cta-dock{position:relative}
+.intro .cta-dock::before{content:'';position:absolute;left:50%;top:50%;width:78%;height:120%;translate:-50% -50%;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(168,230,197,.30) 0%, transparent 70%);
+  filter:blur(26px);pointer-events:none;animation:halo 5.5s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+.intro .btn{position:relative;overflow:hidden;transform:translateZ(0);
+  background:linear-gradient(135deg,#D6F7E6 0%,var(--acc) 48%,#8ADCB6 100%);
+  box-shadow:0 12px 38px rgba(168,230,197,.28), inset 0 1px 0 rgba(255,255,255,.55);
+  letter-spacing:-.012em}
+.intro .btn::after{content:'';position:absolute;top:0;left:0;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg, transparent 0%, rgba(255,255,255,.62) 50%, transparent 100%);
+  transform:translateX(-160%);animation:shine 5s ease-in-out 1.2s infinite}
+@keyframes shine{0%{transform:translateX(-160%)}28%,100%{transform:translateX(320%)}}
+
+@media(prefers-reduced-motion:reduce){
+  .intro::before,.badge::before,.intro .cta-dock::before,.intro .btn::after,.intro>*{animation:none}
+  .intro>*{opacity:1;transform:none}}
 .btn-ghost{background:transparent;color:var(--w86);box-shadow:none;border:1.5px solid var(--card-line);font-weight:600;font-size:1rem;margin-top:10px}
 .btn-ghost:hover{background:rgba(255,255,255,.05)}
 /* вторая ссылка — текстом, чтобы не конкурировать с главной кнопкой */
@@ -237,7 +316,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 <!-- ?v=N — бампать при КАЖДОЙ правке config.js, иначе браузер отдаёт
      старый конфиг из кэша и правки «не появляются» на живом сайте -->
-<script src="config.js?v=2"></script>
+<script src="config.js?v=3"></script>
 <script>
 (function(){
 'use strict';
