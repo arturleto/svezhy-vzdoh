@@ -10,7 +10,7 @@
 <!-- /Yandex.Metrika counter -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
-<meta name="theme-color" content="#080B0A">
+<meta name="theme-color" content="#070C16">
 <title>Диагностика зависимости — Свежий Вздох</title>
 <meta name="description" content="Короткая диагностика: определим, что держит именно вас на никотине, на какой вы стадии — и сработает ли метод в вашем случае. Метод высылаю сразу после.">
 <meta property="og:title" content="Метод — сразу после диагностики">
@@ -23,8 +23,14 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#080B0A; --bg-soft:#0E1412;
+  /* Фон синий — холодный «медицинский» тон, он же читается как доверие.
+     Акцент оставлен мятным: связка с брендом и с лендингом, куда человек
+     уходит сразу после диагностики. Чтобы увести акцент в синий —
+     менять только --acc / --acc-dim / --acc-line и --on-acc. */
+  --bg:#070C16; --bg-soft:#0D1523;
+  --glow:rgba(26,74,138,.46); --glow-soft:rgba(26,74,138,.20);
   --acc:#A8E6C5; --acc-dim:rgba(168,230,197,.16); --acc-line:rgba(168,230,197,.34);
+  --on-acc:#04121F;
   --w:#FFFFFF; --w86:rgba(255,255,255,.86); --w70:rgba(255,255,255,.70);
   --card:rgba(255,255,255,.055); --card-line:rgba(255,255,255,.11);
   --warn:#FFD08A; --warn-dim:rgba(255,208,138,.12); --warn-line:rgba(255,208,138,.3);
@@ -33,13 +39,13 @@
 html,body{height:100%}
 body{background:var(--bg);color:var(--w);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(120% 70% at 50% -10%, rgba(26,92,62,.42) 0%, transparent 62%),
-             radial-gradient(90% 55% at 50% 108%, rgba(26,92,62,.20) 0%, transparent 60%);}
+  background:radial-gradient(120% 70% at 50% -10%, var(--glow) 0%, transparent 62%),
+             radial-gradient(90% 55% at 50% 108%, var(--glow-soft) 0%, transparent 60%);}
 
 .app{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column}
 .topbar{position:sticky;top:0;z-index:20;padding:calc(env(safe-area-inset-top) + 12px) 20px 12px;
   display:flex;align-items:center;gap:14px;
-  background:linear-gradient(to bottom, rgba(8,11,10,.95), rgba(8,11,10,.75) 70%, transparent);
+  background:linear-gradient(to bottom, rgba(7,12,22,.95), rgba(7,12,22,.75) 70%, transparent);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .3s}
 .topbar.on{opacity:1;pointer-events:auto}
 .back{width:38px;height:38px;flex-shrink:0;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
@@ -57,7 +63,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 @media(prefers-reduced-motion:reduce){.screen,.screen.leaving{animation:none}}
 
 /* ИНТРО */
-.intro{justify-content:center;text-align:center;gap:22px;padding:36px 0 20px}
+/* safe center — при контенте выше экрана обычный center срезал бы
+   верх; safe в этом случае прижимает к началу вместо обрезки */
+.intro{justify-content:safe center;text-align:center;gap:18px;padding:24px 0 16px}
 .badge{align-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:50px;
   background:var(--acc-dim);border:1px solid var(--acc-line);font-size:.75rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--acc)}
 .intro h1{font-size:clamp(1.9rem,7.4vw,2.8rem);font-weight:800;line-height:1.11;letter-spacing:-.035em;text-wrap:balance}
@@ -66,10 +74,18 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .getlist{display:flex;flex-direction:column;gap:9px;text-align:left;width:100%;margin-top:2px}
 .getlist li{list-style:none;display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:13px 16px;font-size:.96rem;color:var(--w86);line-height:1.4}
 .getlist li b{color:var(--acc);flex-shrink:0;font-weight:900}
-.intro-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:4px}
-.im{display:flex;flex-direction:column;gap:2px;align-items:center}
-.im b{font-size:1.3rem;font-weight:800;color:var(--acc);letter-spacing:-.02em}
-.im span{font-size:.77rem;color:var(--w70)}
+/* автор — лицо на входе, до первого вопроса */
+.author{display:flex;align-items:center;gap:14px;text-align:left;background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:14px 16px;width:100%}
+.author img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex-shrink:0;border:1.5px solid var(--acc-line)}
+.author-t b{display:block;font-size:.99rem;font-weight:800;margin-bottom:3px;line-height:1.25}
+.author-t span{font-size:.88rem;color:var(--w70);line-height:1.46}
+/* цифры стоят под кнопкой одной строкой: так они попадаются на глаза
+   ровно в момент решения и не отъедают высоту у самого экрана */
+.intro-meta{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-top:11px}
+.im{display:flex;align-items:baseline;gap:5px}
+.im+.im::before{content:'·';color:var(--w70);margin-right:5px}
+.im b{font-size:.95rem;font-weight:800;color:var(--acc);letter-spacing:-.01em}
+.im span{font-size:.85rem;color:var(--w70)}
 
 /* ВОПРОС */
 .qwrap{justify-content:flex-start;padding-top:24px;gap:24px}
@@ -85,6 +101,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   border:1.8px solid rgba(255,255,255,.22);transition:border-color .18s,background .18s}
 .opt.sel{background:var(--acc-dim);border-color:var(--acc)}
 .opt.sel::after{border-color:var(--acc);background:var(--acc);box-shadow:inset 0 0 0 3.5px var(--bg)}
+/* мультивыбор: квадрат вместо кружка — сразу видно, что можно отметить несколько */
+.opt.multi::after{border-radius:7px}
+.opt.multi.sel::after{box-shadow:none;
+  background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304121F' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/13px no-repeat}
 
 /* ВСТАВКА */
 .mid{justify-content:center;text-align:center;gap:20px;padding:30px 0}
@@ -150,9 +170,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .method-head p{font-size:1rem;color:var(--w86);line-height:1.64}
 .mstep{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:9px}
 .mstep-n{display:flex;align-items:center;gap:10px}
-.mstep-num{width:27px;height:27px;flex-shrink:0;border-radius:50%;background:var(--acc);color:#062015;font-size:.87rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.mstep-num{width:27px;height:27px;flex-shrink:0;border-radius:50%;background:var(--acc);color:var(--on-acc);font-size:.87rem;font-weight:900;display:flex;align-items:center;justify-content:center}
 .mstep-cat{font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
 .mstep h4{font-size:1.13rem;font-weight:800;line-height:1.3}
+.mstep-sub{font-size:1rem;font-weight:700;color:var(--acc) !important;line-height:1.45;margin-top:-3px}
 .mstep p{font-size:.97rem;color:var(--w86);line-height:1.65}
 .mstep-you{margin-top:4px;padding:14px 16px;background:var(--acc-dim);border:1px solid var(--acc-line);border-radius:13px;color:#fff !important}
 .mstep-you strong{color:var(--acc)}
@@ -170,13 +191,22 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 
 /* КНОПКИ */
 .cta-dock{position:sticky;bottom:0;z-index:15;padding:16px 0 calc(env(safe-area-inset-bottom) + 12px);margin-top:auto;
-  background:linear-gradient(to top, var(--bg) 58%, rgba(8,11,10,.86) 82%, transparent)}
+  background:linear-gradient(to top, var(--bg) 58%, rgba(7,12,22,.86) 82%, transparent)}
 .btn{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;border:none;cursor:pointer;font:inherit;
-  background:var(--acc);color:#062015;font-size:1.05rem;font-weight:800;padding:1.12rem 1.5rem;border-radius:50px;text-decoration:none;
+  background:var(--acc);color:var(--on-acc);font-size:1.05rem;font-weight:800;padding:1.12rem 1.5rem;border-radius:50px;text-decoration:none;
   transition:transform .13s,box-shadow .2s,opacity .2s;box-shadow:0 8px 30px rgba(168,230,197,.2)}
 .btn:active{transform:scale(.982)}
 .btn-ghost{background:transparent;color:var(--w86);box-shadow:none;border:1.5px solid var(--card-line);font-weight:600;font-size:1rem;margin-top:10px}
 .btn-ghost:hover{background:rgba(255,255,255,.05)}
+/* вторая ссылка — текстом, чтобы не конкурировать с главной кнопкой */
+.btn-link{display:block;text-align:center;margin-top:14px;font-size:.94rem;color:var(--w70);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.28)}
+.btn-link:hover{color:var(--w86)}
+/* ⚠️ отладочная ссылка — намеренно невзрачная, чтобы не спутать с
+   боевым элементом и не забыть выключить (CONFIG.restartBtn) */
+.btn-debug{display:block;text-align:center;margin-top:14px;padding:9px;font-size:.82rem;color:var(--w70);
+  text-decoration:none;border:1px dashed rgba(255,255,255,.22);border-radius:11px}
+.btn-debug i{font-style:normal;opacity:.6}
+.btn-debug:hover{color:var(--w);border-color:rgba(255,255,255,.4)}
 .privacy{text-align:center;font-size:.77rem;color:var(--w70);margin-top:12px;line-height:1.5}
 </style>
 </head>
@@ -213,24 +243,30 @@ function mainProduct(){
   const o = QUESTIONS[i].a[answers[i]];
   return o ? o.v : null;
 }
-function isActive(qi){
+/* opt = «оптимистично»: условие ещё не разрешилось (человек не дошёл
+   до вопроса, от которого зависит ветка) — считаем, что вопрос будет.
+   Нужно только для знаменателя прогресса. Без этого счётчик стартовал
+   с 19, а после ответа про попытки бросить прыгал на 21 — и полоска
+   ехала НАЗАД. Теперь знаменатель сразу 21 и может только уменьшиться,
+   то есть прогресс прыгает вперёд, а не назад.                        */
+function isActive(qi, opt){
   const q = QUESTIONS[qi], main = mainProduct();
   // «а что у вас с …» — про всё, кроме основного
   if (q.product){
-    if (main === null) return false;
+    if (main === null) return !!opt;
     if (main === 'mix') return true;
     return q.product !== main;
   }
   // расход и цена — только под основной продукт
   if (q.onlyProduct){
-    if (main === null) return false;
+    if (main === null) return !!opt && q.onlyProduct === 'cig';
     if (main === 'mix') return q.onlyProduct === 'cig';
     return q.onlyProduct === main;
   }
   // условие по ответу на другой вопрос
   if (q.showIf){
     const v = val(q.showIf.key);
-    if (v === null) return false;
+    if (v === null) return !!opt;
     if (q.showIf.not !== undefined && v === q.showIf.not) return false;
     if (q.showIf.is  !== undefined && v !== q.showIf.is)  return false;
   }
@@ -239,12 +275,19 @@ function isActive(qi){
 function nextActive(from){ for(let i=Math.max(from,0);i<QUESTIONS.length;i++) if(isActive(i)) return i; return -1; }
 function prevActive(before){ for(let i=before-1;i>=0;i--) if(isActive(i)) return i; return -1; }
 function keyOf(qi){ return qi>=0 && QUESTIONS[qi] ? QUESTIONS[qi].key : null; }
-function activeList(){
+function activeList(opt){
   const out = [];
-  for (let i = 0; i < QUESTIONS.length; i++) if (isActive(i)) out.push(i);
+  for (let i = 0; i < QUESTIONS.length; i++) if (isActive(i, opt)) out.push(i);
   return out;
 }
 
+/* Полный сброс: чистим сохранённые ответы и начинаем с интро.
+   Дёргается ссылкой «Пройти заново» и адресом ?reset            */
+function resetAll(){
+  try{ localStorage.removeItem(STORE); }catch(e){}
+  answers=[]; pos=-1; moneyK=1;
+  screenIntro();
+}
 function save(){ try{ localStorage.setItem(STORE, JSON.stringify({a:answers,p:pos,k:moneyK})); }catch(e){} }
 function load(){ try{ const d=JSON.parse(localStorage.getItem(STORE)||'null');
   if(d&&Array.isArray(d.a)){ answers=d.a; pos=typeof d.p==='number'?d.p:-1; moneyK=d.k||1; } }catch(e){} }
@@ -320,9 +363,22 @@ function score(){
   // ветки занижали бы проценты
   activeList().forEach(i=>{
     const q=QUESTIONS[i];
-    CATEGORIES.forEach(c=>{ let b=0; q.a.forEach(o=>{const v=(o.s&&o.s[c.code])||0; if(v>b)b=v;}); max[c.code]+=b; });
-    const ch=q.a[answers[i]];
-    if(ch&&ch.s) for(const k in ch.s) if(raw[k]!==undefined) raw[k]+=ch.s[k];
+    CATEGORIES.forEach(c=>{
+      let b=0;
+      if(q.multi){
+        // потолок мультивыбора — две самые весомые отметки: реально
+        // больше двух почти никто не ставит, а брать сумму всех
+        // вариантов значило бы занизить проценты у всех
+        const v=q.a.map(o=>(o.s&&o.s[c.code])||0).sort((x,y)=>y-x);
+        b=(v[0]||0)+(v[1]||0);
+      } else q.a.forEach(o=>{const v=(o.s&&o.s[c.code])||0; if(v>b)b=v;});
+      max[c.code]+=b;
+    });
+    const picked = q.multi ? (Array.isArray(answers[i])?answers[i]:[]) : [answers[i]];
+    picked.forEach(n=>{
+      const ch=q.a[n];
+      if(ch&&ch.s) for(const k in ch.s) if(raw[k]!==undefined) raw[k]+=ch.s[k];
+    });
   });
   const list=CATEGORIES.map(c=>{
     let pct=Math.round((raw[c.code]/(max[c.code]||1))*100);
@@ -335,7 +391,10 @@ function score(){
 }
 
 function payload(list){
-  const d=QUESTIONS.map((q,i)=>answers[i]==null?'x':String(answers[i])).join('');
+  const d=QUESTIONS.map((q,i)=>{
+    if(answers[i]==null) return 'x';
+    return Array.isArray(answers[i]) ? '('+answers[i].join('')+')' : String(answers[i]);
+  }).join('');
   return 'd2'+d+list.slice(0,3).map(x=>LETTER[x.code]||'x').join('')+'s'+stageOf();
 }
 
@@ -343,15 +402,22 @@ function payload(list){
 function paint(html,cls){
   const old=stage.querySelector('.screen');
   const draw=()=>{ stage.innerHTML='<div class="screen '+(cls||'')+'">'+html+'</div>'; window.scrollTo(0,0); };
-  if(old){ old.classList.add('leaving'); setTimeout(draw,170); } else draw();
+  if(old){ old.classList.add('leaving'); setTimeout(draw,130); } else draw();
 }
+/* Прогресс. Два отличия от прежнего:
+   1) считаем (n+1)/T, а не n/T — раньше после первого ответа полоска
+      всё ещё стояла на нуле, и человек не видел, что продвинулся;
+   2) стартовый кредит BASE% — эффект «выданного прогресса»: путь,
+      начатый не с нуля, доходят заметно чаще.                       */
+const PROGRESS_BASE = 9;
 function chrome(){
-  const act=activeList(), T=act.length;
+  // счётчик и полоска считаются по оптимистичному списку — он не растёт
+  const act=activeList(true), T=act.length;
   if(pos>=0&&pos<QUESTIONS.length){
-    const n=act.indexOf(pos);
+    const n=act.indexOf(pos), done=Math.max(n,0)+1;
     topbar.classList.add('on');
-    fill.style.width=(T?(Math.max(n,0)/T*100):0)+'%';
-    stepn.textContent=(n>=0?n+1:1)+' / '+T;
+    fill.style.width=(T?(PROGRESS_BASE+done/T*(100-PROGRESS_BASE)):PROGRESS_BASE)+'%';
+    stepn.textContent=done+' / '+T;
     backBt.style.visibility='visible';
   }
   else if(pos>=QUESTIONS.length){ topbar.classList.add('on'); fill.style.width='100%'; stepn.textContent=''; backBt.style.visibility='hidden'; }
@@ -361,31 +427,87 @@ function chrome(){
 /* ─── ЭКРАНЫ ─── */
 function screenIntro(){
   pos=-1; save(); chrome();
+  const author = INTRO.author
+    ? '<div class="author"><img src="'+INTRO.author.img+'" alt="'+INTRO.author.name+'">'+
+      '<span class="author-t"><b>'+INTRO.author.name+'</b><span>'+INTRO.author.line+'</span></span></div>'
+    : '';
   paint(
     '<div class="badge">'+INTRO.badge+'</div>'+
     '<h1>'+INTRO.title+'</h1>'+
     '<p>'+INTRO.lead+'</p>'+
+    author+
     '<p>'+INTRO.lead2+'</p>'+
     '<ul class="getlist">'+INTRO.bullets.map(b=>'<li><b>→</b><span>'+b+'</span></li>').join('')+'</ul>'+
-    '<div class="intro-meta">'+INTRO.meta.map(m=>'<div class="im"><b>'+m.b+'</b><span>'+m.s+'</span></div>').join('')+'</div>'+
-    '<div class="cta-dock"><button class="btn" id="go">'+INTRO.cta+'</button>'+(INTRO.note?'<p class="privacy">'+INTRO.note+'</p>':'')+'</div>',
+    '<div class="cta-dock"><button class="btn" id="go">'+INTRO.cta+'</button>'+
+      '<div class="intro-meta">'+INTRO.meta.map(m=>'<div class="im"><b>'+m.b+'</b><span>'+m.s+'</span></div>').join('')+'</div>'+
+      (INTRO.note?'<p class="privacy">'+INTRO.note+'</p>':'')+'</div>',
     'intro');
-  document.getElementById('go').onclick=()=>{ goal('diag_start'); step(0); };
+  // обработчик — только после отрисовки: paint() откладывает её на 130мс,
+  // когда на экране уже есть предыдущий кадр (возврат «Назад» с первого
+  // вопроса, «Пройти заново»). Синхронно здесь ловился null, и кнопка
+  // «Пройти диагностику» оставалась мёртвой — человек застревал на интро
+  setTimeout(()=>{
+    const g=document.getElementById('go');
+    if(g) g.onclick=()=>{ goal('diag_start'); step(0); };
+  },140);
 }
 
 function screenQuestion(i){
   const q=QUESTIONS[i];
-  const act=activeList(), n=act.indexOf(i), T=act.length;
+  const act=activeList(true), n=act.indexOf(i), T=act.length;   // та же шкала, что видит человек
   if(T){ [25,50,75].forEach(m=>{ if(Math.round(n/T*100)===m) goal('diag_'+m); }); }
+  if(q.multi) return screenMulti(i);
   paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
     '<div class="opts">'+q.a.map((o,n)=>'<button class="opt'+(answers[i]===n?' sel':'')+'" data-n="'+n+'">'+o.t+'</button>').join('')+'</div>','qwrap');
   setTimeout(()=>{
     stage.querySelectorAll('.opt').forEach(b=>{
       b.onclick=()=>{ answers[i]=+b.dataset.n;
         stage.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
-        save(); setTimeout(()=>step(i+1),250); };
+        save(); setTimeout(()=>step(i+1),120); };
     });
-  },180);
+  },140);
+}
+
+/* ─── ЭКРАН С МУЛЬТИВЫБОРОМ ───────────────────────────────────────
+   Вариант с основным продуктом человека прячем — спрашивать «а что
+   у вас с сигаретами» того, кто только что выбрал сигареты, глупо.
+   Вариант none («ничего, только основное») взаимоисключающий.
+   Кнопка активна всегда: если ничего не отмечено, она честно
+   называется «Ничего из этого» — тупика с неактивной кнопкой нет. */
+function screenMulti(i){
+  const q=QUESTIONS[i], main=mainProduct();
+  if(!Array.isArray(answers[i])) answers[i]=[];
+  // если человек вернулся назад и сменил основной продукт — снимаем
+  // отметку, которая теперь спрятана, иначе она молча шла бы в баллы
+  answers[i]=answers[i].filter(n=>!(q.a[n] && q.a[n].p && q.a[n].p===main));
+  save();
+  const shown=q.a.map((o,n)=>({o:o,n:n})).filter(x=>!(x.o.p && x.o.p===main));
+  const sel=()=>answers[i];
+
+  paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
+    '<div class="opts">'+shown.map(x=>
+      '<button class="opt multi'+(sel().indexOf(x.n)>-1?' sel':'')+'" data-n="'+x.n+'"'+(x.o.none?' data-none="1"':'')+'>'+x.o.t+'</button>'
+    ).join('')+'</div>'+
+    '<div class="cta-dock"><button class="btn" id="mgo"></button></div>','qwrap');
+
+  setTimeout(()=>{
+    const go=document.getElementById('mgo');
+    const label=()=>{ if(go) go.textContent = sel().length ? 'Продолжить' : 'Ничего из этого'; };
+    stage.querySelectorAll('.opt').forEach(b=>{
+      b.onclick=()=>{
+        const n=+b.dataset.n, isNone=b.dataset.none==='1', at=sel().indexOf(n);
+        if(at>-1) answers[i].splice(at,1);
+        else {
+          if(isNone) answers[i]=[n];                                   // «ничего» гасит остальное
+          else answers[i]=sel().filter(k=>!q.a[k].none).concat(n);     // любой другой гасит «ничего»
+        }
+        stage.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel', sel().indexOf(+x.dataset.n)>-1));
+        save(); label();
+      };
+    });
+    label();
+    if(go) go.onclick=()=>{ save(); step(i+1); };
+  },140);
 }
 
 function screenMoney(nextPos){
@@ -466,15 +588,15 @@ function screenResult(){
   const bars=list.slice(0,5).map((c,i)=>
     '<div class="bar-row'+(i===0?' top':'')+'"><div class="bar-head"><span class="bar-name">'+c.icon+' '+c.label+'</span><span class="bar-pct">'+c.pct+'%</span></div><div class="bar-track"><i data-w="'+c.pct+'"></i></div></div>').join('');
 
+  // Пока видео нет — не показываем ничего. Плейсхолдер «скоро будет»
+  // стоял в точке принятия решения и читался как «продукт сырой».
   const video=prof.video
     ? '<div class="video-box"><video src="'+prof.video+'" controls playsinline preload="metadata"></video></div>'
-    : '<div class="video-box"><div class="video-ph"><span class="vi">🎬</span><b>Здесь будет видео Артура</b><span>Разбор именно вашего типа зависимости — записывается</span></div></div>';
+    : '';
 
   const steps=METHOD.steps.map((s,i)=>
-    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4><p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
+    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4>'+(s.sub?'<p class="mstep-sub">'+s.sub+'</p>':'')+'<p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
 
-  const pl=payload(list);
-  const bot=CONFIG.botLink.replace('{payload}',pl);
   let lid='';
   try{ lid=localStorage.getItem('vzdoh_lid')||''; if(!lid){ lid='l'+Math.abs(Date.parse(new Date().toISOString())%1e9).toString(36)+Math.floor(performance.now()).toString(36); localStorage.setItem('vzdoh_lid',lid);} }catch(e){}
   const utm=[]; try{ const u=new URLSearchParams(location.search);
@@ -512,16 +634,17 @@ function screenResult(){
       (OUTRO.points||[]).map((p,i)=>'<div class="al"><span class="al-n">'+(i+1)+'</span><span class="al-t"><b>'+p.t+'</b><span>'+p.d+'</span></span></div>').join('')+
     '</div>'+
     (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
+    // ровно одна кнопка — ничто не делит внимание в точке решения
     '<div class="cta-dock">'+
       '<a class="btn" id="toplan" href="'+land+'">'+OUTRO.cta+'</a>'+
-      '<a class="btn btn-ghost" id="tobot" href="'+bot+'" target="_blank" rel="noopener">Отправить результат Артуру</a>'+
       '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
+      (CONFIG.restartBtn?'<a class="btn-debug" id="restart" href="#">↻ Пройти диагностику заново <i>(отладка)</i></a>':'')+
     '</div>','res');
 
   setTimeout(()=>{
     stage.querySelectorAll('.bar-track i').forEach((el,i)=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},90+i*110));
     const a=document.getElementById('toplan'); if(a)a.onclick=()=>goal('diag_to_landing');
-    const b=document.getElementById('tobot'); if(b)b.onclick=()=>goal('diag_to_bot');
+    const r=document.getElementById('restart'); if(r)r.onclick=e=>{ e.preventDefault(); resetAll(); };
   },220);
 }
 
@@ -546,6 +669,10 @@ function step(i,skipInterlude){
   pos=qi; save(); chrome(); screenQuestion(qi);
 }
 backBt.onclick=()=>{ const p=prevActive(pos); if(p<0) return screenIntro(); step(p,true); };
+
+// .../diagnostika/?reset — начать с чистого листа. Не зависит от
+// CONFIG.restartBtn, так что остаётся рабочим и после отладки
+try{ if(new URLSearchParams(location.search).has('reset')) localStorage.removeItem(STORE); }catch(e){}
 
 load();
 if(pos>=QUESTIONS.length+1 && activeList().every(i=>answers[i]!=null)) screenResult();
