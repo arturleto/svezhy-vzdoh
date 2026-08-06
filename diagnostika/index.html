@@ -12,9 +12,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
 <meta name="theme-color" content="#070C16">
 <title>Диагностика зависимости — Свежий Вздох</title>
-<meta name="description" content="Короткая диагностика: определим, что держит именно вас на никотине, на какой вы стадии — и сработает ли метод в вашем случае. Метод высылаю сразу после.">
-<meta property="og:title" content="Метод — сразу после диагностики">
-<meta property="og:description" content="3 минуты: ваш профиль зависимости, её стадия и честный вывод, сработает ли метод именно у вас.">
+<meta name="description" content="Трёхминутная диагностика курильщика: что держит на никотине именно вас, на какой вы стадии — и метод выхода из зависимости без ломки, без стресса, без зажоров.">
+<meta property="og:title" content="Диагностика курильщика — и метод выхода в конце">
+<meta property="og:description" content="3 минуты: что держит вас на никотине, ваша стадия — и метод выхода из зависимости без ломки, без стресса, без зажоров.">
 <meta property="og:image" content="https://arturleto.github.io/svezhy-vzdoh/og-artur.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -74,11 +74,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .getlist{display:flex;flex-direction:column;gap:9px;text-align:left;width:100%;margin-top:2px}
 .getlist li{list-style:none;display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:13px 16px;font-size:.96rem;color:var(--w86);line-height:1.4}
 .getlist li b{color:var(--acc);flex-shrink:0;font-weight:900}
-/* автор — лицо на входе, до первого вопроса */
-.author{display:flex;align-items:center;gap:14px;text-align:left;background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:14px 16px;width:100%}
-.author img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex-shrink:0;border:1.5px solid var(--acc-line)}
-.author-t b{display:block;font-size:.99rem;font-weight:800;margin-bottom:3px;line-height:1.25}
-.author-t span{font-size:.88rem;color:var(--w70);line-height:1.46}
+/* автор — короткая подпись под кнопкой: лицо для доверия, без плашки
+   и без рассказа о себе. Экран весь про посетителя, автор тут — сноска */
+.author{display:flex;align-items:center;justify-content:center;gap:9px;width:100%}
+.author img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex-shrink:0;border:1.5px solid var(--acc-line)}
+.author-t{font-size:.83rem;color:var(--w70);line-height:1.4}
+.author-t b{font-weight:700;color:var(--w86)}
 /* цифры стоят под кнопкой одной строкой: так они попадаются на глаза
    ровно в момент решения и не отъедают высоту у самого экрана */
 .intro-meta{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-top:11px}
@@ -153,6 +154,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .card.warn{background:var(--warn-dim);border-color:var(--warn-line)}
 .card.warn h3{color:var(--warn)}
 .stage-badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:7px 14px;border-radius:50px;background:rgba(255,208,138,.16);border:1px solid var(--warn-line);font-size:.88rem;font-weight:800;color:var(--warn)}
+/* список заболеваний в блоке риска */
+.risk{list-style:none;display:flex;flex-direction:column;gap:9px;margin:2px 0}
+.risk li{position:relative;padding-left:20px;font-size:.99rem;color:var(--w);line-height:1.45}
+.risk li::before{content:'';position:absolute;left:2px;top:.52em;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.risk-note{font-size:.87rem !important;color:var(--w70) !important;line-height:1.5;
+  padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
 .plan{list-style:none;display:flex;flex-direction:column;gap:13px}
 .plan li{display:flex;gap:13px;align-items:flex-start;font-size:.98rem;color:var(--w86);line-height:1.55}
 .plan li b{color:var(--acc);font-weight:800;flex-shrink:0}
@@ -427,19 +434,20 @@ function chrome(){
 /* ─── ЭКРАНЫ ─── */
 function screenIntro(){
   pos=-1; save(); chrome();
+  // автор ушёл под кнопку и стал подписью в одну строку: экран про человека,
+  // а не про меня — но лицо перед первым вопросом всё равно нужно
   const author = INTRO.author
     ? '<div class="author"><img src="'+INTRO.author.img+'" alt="'+INTRO.author.name+'">'+
-      '<span class="author-t"><b>'+INTRO.author.name+'</b><span>'+INTRO.author.line+'</span></span></div>'
+      '<span class="author-t">'+INTRO.author.line+' <b>'+INTRO.author.name+'</b></span></div>'
     : '';
   paint(
     '<div class="badge">'+INTRO.badge+'</div>'+
     '<h1>'+INTRO.title+'</h1>'+
     '<p>'+INTRO.lead+'</p>'+
-    author+
-    '<p>'+INTRO.lead2+'</p>'+
     '<ul class="getlist">'+INTRO.bullets.map(b=>'<li><b>→</b><span>'+b+'</span></li>').join('')+'</ul>'+
     '<div class="cta-dock"><button class="btn" id="go">'+INTRO.cta+'</button>'+
-      '<div class="intro-meta">'+INTRO.meta.map(m=>'<div class="im"><b>'+m.b+'</b><span>'+m.s+'</span></div>').join('')+'</div>'+
+      ((INTRO.meta&&INTRO.meta.length)?'<div class="intro-meta">'+INTRO.meta.map(m=>'<div class="im"><b>'+m.b+'</b>'+(m.s?'<span>'+m.s+'</span>':'')+'</div>').join('')+'</div>':'')+
+      author+
       (INTRO.note?'<p class="privacy">'+INTRO.note+'</p>':'')+'</div>',
     'intro');
   // обработчик — только после отрисовки: paint() откладывает её на 130мс,
@@ -579,6 +587,24 @@ function screenAnalysis(){
   },180);
 }
 
+/* Зона риска по стажу. Диагноз не ставим — только принадлежность к
+   группе. Блок обязательно заканчивается тем, что восстанавливается
+   после отказа: страх без выхода люди закрывают, а не решают.      */
+function riskCard(){
+  if(typeof RISK==='undefined' || !RISK.tiers) return '';
+  const y = val('years');
+  if(y===null) return '';
+  const t = RISK.tiers.find(x=>y>=x.minYears);
+  if(!t) return '';
+  // при ответе «меньше года» round дал бы «1 год» — это уже неправда
+  const срок = y<1 ? 'меньше года' : fmt(y)+' '+plural(Math.round(y),'год','года','лет');
+  return '<div class="card warn"><h3>'+RISK.title+'</h3>'+
+    '<p>Вы употребляете никотин '+срок+'. '+t.lead+'</p>'+
+    '<ul class="risk">'+t.items.map(i=>'<li>'+i+'</li>').join('')+'</ul>'+
+    '<p>'+t.back+'</p>'+
+    '<p class="risk-note">'+RISK.note+'</p></div>';
+}
+
 function screenResult(){
   pos=QUESTIONS.length+1; save(); chrome(); goal('diag_result');
 
@@ -620,6 +646,7 @@ function screenResult(){
     '<div class="card"><h3>За это время вы отдали</h3>'+
       '<p style="font-size:1.5rem;font-weight:800;color:var(--acc);letter-spacing:-.02em">'+fmt(m.total)+' ₽</p>'+
       '<p>И продолжаете отдавать примерно '+fmt(m.month)+' ₽ каждый месяц.</p></div>'+
+    riskCard()+
 
     video+
     '<div class="card"><h3>Что с этим делаем</h3><ul class="plan">'+prof.plan.map(p=>'<li><b>—</b><span>'+p+'</span></li>').join('')+'</ul></div>'+
