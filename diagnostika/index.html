@@ -235,7 +235,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   <main class="stage" id="stage"></main>
 </div>
 
-<script src="config.js"></script>
+<!-- ?v=N — бампать при КАЖДОЙ правке config.js, иначе браузер отдаёт
+     старый конфиг из кэша и правки «не появляются» на живом сайте -->
+<script src="config.js?v=2"></script>
 <script>
 (function(){
 'use strict';
