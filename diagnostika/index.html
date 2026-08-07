@@ -323,7 +323,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opa
 
 <!-- ?v=N — бампать при КАЖДОЙ правке config.js, иначе браузер отдаёт
      старый конфиг из кэша и правки «не появляются» на живом сайте -->
-<script src="config.js?v=10"></script>
+<script src="config.js?v=11"></script>
 <script>
 (function(){
 'use strict';
@@ -658,8 +658,13 @@ function screenMoney2(nextPos){
     '<div class="mid-icon">🔥</div>'+
     '<h2>Тогда вот полная картина</h2>'+
     '<div class="money"><b>'+fmt(m.year)+' ₽</b><u>≈ '+usd(m.year)+'</u><span>вы отдаёте за никотин каждый год</span></div>'+
-    '<div class="money alt"><b>'+fmt(m.total)+' ₽</b><u>≈ '+usd(m.total)+'</u><span>уже ушло дымом за '+m.years+' '+plural(Math.round(m.years),'год','года','лет')+'</span></div>'+
-    '<p>'+MONEY.outro+'</p>'+
+    // «уже ушло за N лет» — только при стаже от года: на ответе
+    // «меньше года» (v=0.7) выходило «за 0.7 год», да и считать
+    // накопленный итог там ещё не о чем
+    (m.years >= 1
+      ? '<div class="money alt"><b>'+fmt(m.total)+' ₽</b><u>≈ '+usd(m.total)+'</u><span>уже ушло дымом за '+fmt(m.years)+' '+plural(Math.round(m.years),'год','года','лет')+'</span></div>'
+      : '')+
+    '<p>'+(m.years>=1 ? MONEY.outro : MONEY.outroShort || MONEY.outro)+'</p>'+
     '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>','mid');
   setTimeout(()=>{ const c=document.getElementById('cont'); if(c) c.onclick=()=>step(nextPos,true); },180);
 }
@@ -751,7 +756,12 @@ function screenResult(){
     '<h1>'+prof.title+'</h1>'+
     '<div class="bars">'+bars+'</div>'+
     '<div class="card"><h3>Что это значит</h3><p>'+prof.verdict+'</p></div>'+
-    '<div class="card"><h3>Почему срывались раньше</h3><p>'+prof.why+'</p></div>'+
+    // тем, кто ни разу не пробовал бросать, «почему срывались раньше»
+    // говорить нельзя: срывов не было, и человек сразу видит, что текст
+    // писали не про него — доверие ко всему разбору падает
+    (val('tries')==='none' && prof.whyNone
+      ? '<div class="card"><h3>Где это обычно срывается</h3><p>'+prof.whyNone+'</p></div>'
+      : '<div class="card"><h3>Почему срывались раньше</h3><p>'+prof.why+'</p></div>')+
 
     '<div class="card warn"><span class="stage-badge">'+S.n+'</span>'+
       '<h3 style="margin-top:2px">'+S.lead+'</h3>'+
