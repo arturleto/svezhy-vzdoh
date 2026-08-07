@@ -347,6 +347,9 @@ const STORE='vzdoh_diag_v3';
 const LETTER={habit:'h',psycho:'p',stress:'s',physical:'f',social:'o',fear_break:'b',fear_weight:'w',low_belief:'l',focus:'c'};
 
 let answers=[], pos=-1, moneyK=1;
+// какие отметки прохождения (25/50/75%) уже ушли в Метрику — чтобы при
+// возврате «Назад» цель не отправлялась второй раз
+const marksSent = new Set();
 
 /* ─── АКТИВНЫЕ ВОПРОСЫ ───────────────────────────────────────────
    Вопрос про продукт не показываем, если этот продукт человек
@@ -399,7 +402,7 @@ function activeList(opt){
    Дёргается ссылкой «Пройти заново» и адресом ?reset            */
 function resetAll(){
   try{ localStorage.removeItem(STORE); }catch(e){}
-  answers=[]; pos=-1; moneyK=1;
+  answers=[]; pos=-1; moneyK=1; marksSent.clear();
   screenIntro();
 }
 function save(){ try{ localStorage.setItem(STORE, JSON.stringify({a:answers,p:pos,k:moneyK})); }catch(e){} }
@@ -587,7 +590,12 @@ function screenIntro(){
 function screenQuestion(i){
   const q=QUESTIONS[i];
   const act=activeList(true), n=act.indexOf(i), T=act.length;   // та же шкала, что видит человек
-  if(T){ [25,50,75].forEach(m=>{ if(Math.round(n/T*100)===m) goal('diag_'+m); }); }
+  // Отметки прохождения. Раньше стояло Math.round(n/T*100)===m — точное
+  // равенство, и при 21 вопросе шаг составляет ~4.8%, так что круглые
+  // 25/50/75 не выпадали НИКОГДА: цели молчали, воронка была слепой.
+  // Теперь шлём при первом пересечении порога, по разу за визит.
+  if(T){ const pct = n/T*100;
+    [25,50,75].forEach(m=>{ if(pct>=m && !marksSent.has(m)){ marksSent.add(m); goal('diag_'+m); } }); }
   if(q.multi) return screenMulti(i);
   paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
     '<div class="opts">'+q.a.map((o,n)=>'<button class="opt'+(answers[i]===n?' sel':'')+'" data-n="'+n+'">'+o.t+
