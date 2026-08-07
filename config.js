@@ -8,7 +8,7 @@
 
 const CONFIG = {
   botLink:      'https://t.me/SvezhiyVzdohBot?start={payload}',
-  landingLink:  'test2/?d={code}',
+  landingLink:  'programma/?d={code}',
   analysisMs:   7000,
   metrikaId:    110722782,
 
