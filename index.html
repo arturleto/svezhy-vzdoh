@@ -177,6 +177,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opa
 @keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
 .mid h2{font-size:clamp(1.5rem,5.4vw,1.95rem);font-weight:800;line-height:1.18;letter-spacing:-.03em;text-wrap:balance}
 .mid p{font-size:clamp(.98rem,3.8vw,1.07rem);color:var(--w86);line-height:1.64;text-wrap:balance}
+/* список внутри вставки: сам блок центрируем, а пункты внутри него
+   выравниваем по левому краю — центрированный список читается рвано */
+.pts{list-style:none;display:inline-block;text-align:left;margin:-6px auto 0}
+.pts li{position:relative;padding-left:22px;font-size:clamp(.98rem,3.8vw,1.07rem);color:var(--w86);line-height:1.5}
+.pts li+li{margin-top:9px}
+.pts li::before{content:'';position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;
+  background:var(--acc);box-shadow:0 0 10px rgba(168,230,197,.5)}
 .money{display:flex;flex-direction:column;gap:4px;padding:20px;background:var(--card);border:1px solid var(--card-line);border-radius:18px}
 .money b{font-size:clamp(1.9rem,7.6vw,2.6rem);font-weight:800;color:var(--acc);letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}
 .money span{font-size:.87rem;color:var(--w70)}
@@ -328,7 +335,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opa
 
 <!-- ?v=N — бампать при КАЖДОЙ правке config.js, иначе браузер отдаёт
      старый конфиг из кэша и правки «не появляются» на живом сайте -->
-<script src="config.js?v=13"></script>
+<script src="config.js?v=14"></script>
 <script>
 (function(){
 'use strict';
