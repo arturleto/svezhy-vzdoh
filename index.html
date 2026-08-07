@@ -335,7 +335,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opa
 
 <!-- ?v=N — бампать при КАЖДОЙ правке config.js, иначе браузер отдаёт
      старый конфиг из кэша и правки «не появляются» на живом сайте -->
-<script src="config.js?v=18"></script>
+<script src="config.js?v=19"></script>
 <script>
 (function(){
 'use strict';
@@ -413,20 +413,22 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 function fmt(n){ return Math.round(n).toLocaleString('ru-RU'); }
 /* ─── ДОЛЛАРЫ ───────────────────────────────────────────────────────
    Диагностику проходят из Казахстана, Европы, Индонезии — там рубль
-   ни о чём не говорит. Рядом с каждой суммой идёт «≈ $N».
-   Крупные суммы округляем: «$18 400» вместо «$18 437» — это оценка,
+   ни о чём не говорит. Рядом с каждой суммой идёт «≈ N$».
+   ⚠️ ЗНАК ДОЛЛАРА ТОЛЬКО ПОСЛЕ ЧИСЛА: «150$», не «$150» — правило
+   Артура для всех текстов, см. memory/feedback_style.md
+   Крупные суммы округляем: «18 400$» вместо «18 437$» — это оценка,
    и лишние цифры в ней выглядят как ложная точность.             */
 function usd(rub){
   const r = (typeof CONFIG!=='undefined' && CONFIG.usdRate) || 80;
   const d = rub / r;
-  // до $10 нужна десятая: пачка за 150₽ и за 200₽ иначе обе дают «$2»,
+  // до 10$ нужна десятая: пачка за 150₽ и за 200₽ иначе обе дают «2$»,
   // и соседние варианты выглядят одинаковыми — как ошибка
-  if (d < 10) return '$' + d.toFixed(1).replace('.', ',').replace(',0', '');
+  if (d < 10) return d.toFixed(1).replace('.', ',').replace(',0', '') + '$';
   let x = d;
   if (x >= 1000)     x = Math.round(x/100)*100;
   else if (x >= 100) x = Math.round(x/10)*10;
   else               x = Math.round(x);
-  return '$' + x.toLocaleString('ru-RU');
+  return x.toLocaleString('ru-RU') + '$';
 }
 function plural(n,a,b,c){ const x=n%10,y=n%100; if(x===1&&y!==11)return a; if(x>=2&&x<=4&&(y<12||y>14))return b; return c; }
 
