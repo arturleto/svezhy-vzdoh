@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru">
 <head>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -9,973 +9,829 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/110722782" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Свежий Вздох — Бросаем курить вместе без ломки, без стресса, без зажоров</title>
-<meta name="description" content="Программа в среде единомышленников с практиками и механиками присутствия, как в армии — где невозможно просто купить и забыть. от 950₽ в месяц.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#070C16">
+<title>Диагностика зависимости — Свежий Вздох</title>
+<meta name="description" content="Трёхминутная диагностика курильщика: что держит на никотине именно вас, на какой вы стадии — и метод выхода из зависимости без ломки, без стресса, без зажоров.">
+<meta property="og:title" content="Диагностика курильщика — и метод выхода в конце">
+<meta property="og:description" content="3 минуты: что держит вас на никотине, ваша стадия — и метод выхода из зависимости без ломки, без стресса, без зажоров.">
+<meta property="og:image" content="https://arturleto.github.io/svezhy-vzdoh/og-artur.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --green-deep:#1A5C3E;--green-mid:#2A7A55;--green-soft:#5BAF85;
-  --green-pale:#A8E6C5;--green-bg:#F0F9F4;--white:#FFFFFF;
-  --text:#0D1F15;--muted:#5A7568;--red:#D93025;--red-light:#FFF0EE;
+  /* Фон синий — холодный «медицинский» тон, он же читается как доверие.
+     Акцент оставлен мятным: связка с брендом и с лендингом, куда человек
+     уходит сразу после диагностики. Чтобы увести акцент в синий —
+     менять только --acc / --acc-dim / --acc-line и --on-acc. */
+  --bg:#070C16; --bg-soft:#0D1523;
+  --glow:rgba(26,74,138,.46); --glow-soft:rgba(26,74,138,.20);
+  --acc:#A8E6C5; --acc-dim:rgba(168,230,197,.16); --acc-line:rgba(168,230,197,.34);
+  --on-acc:#04121F;
+  --w:#FFFFFF; --w86:rgba(255,255,255,.86); --w70:rgba(255,255,255,.70);
+  --card:rgba(255,255,255,.055); --card-line:rgba(255,255,255,.11);
+  --warn:#FFD08A; --warn-dim:rgba(255,208,138,.12); --warn-line:rgba(255,208,138,.3);
+  --ease:cubic-bezier(.22,1,.36,1);
 }
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--white);color:var(--text);line-height:1.5;font-size:18px;}
+html,body{height:100%}
+body{background:var(--bg);color:var(--w);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 70% at 50% -10%, var(--glow) 0%, transparent 62%),
+             radial-gradient(90% 55% at 50% 108%, var(--glow-soft) 0%, transparent 60%);}
 
-/* NAV */
-nav{display:none;}
+/* тонкое зерно поверх всего: убирает «пластик» плоских градиентов и
+   полосы на тёмном фоне (banding) на дешёвых экранах. Держать ниже
+   .06 — выше начинает мылить текст */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* HERO INTRO */
-.hero-intro{padding:48px 24px 72px;background:transparent;position:relative;overflow:hidden;}
-.hi-inner{position:relative;z-index:1;max-width:900px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;}
-.hi-headline{font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;color:#fff;line-height:1.15;text-wrap:balance;letter-spacing:-.02em;}
-.hi-headline em{font-style:normal;color:var(--green-pale);}
-.hi-definition{font-size:clamp(1rem,2vw,1.3rem);font-weight:500;color:rgba(255,255,255,.72);line-height:1.55;max-width:680px;}
-.hi-definition em{font-style:normal;color:var(--green-pale);}
-.hi-banner{width:100%;display:flex;justify-content:center;}
-.hi-banner img{display:block;max-height:240px;width:auto;max-width:100%;}
-.hi-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;}
-.hi-pillar{display:flex;flex-direction:column;align-items:flex-start;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(168,230,197,.15);border-radius:14px;padding:16px 18px;text-align:left;}
-.hi-pillar-icon{font-size:1.4rem;line-height:1;}
-.hi-pillar-text{font-size:.88rem;color:rgba(255,255,255,.72);line-height:1.55;}
-.hi-pillar-text strong{color:#fff;display:block;margin-bottom:4px;font-size:.92rem;}
-@media(max-width:700px){.hi-pillars{grid-template-columns:1fr;}}
+.app{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:20;padding:calc(env(safe-area-inset-top) + 12px) 20px 12px;
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(to bottom, rgba(7,12,22,.95), rgba(7,12,22,.75) 70%, transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .3s}
+.topbar.on{opacity:1;pointer-events:auto}
+.back{width:38px;height:38px;flex-shrink:0;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
+.back:hover{background:rgba(255,255,255,.08)}
+.back svg{width:19px;height:19px;stroke:var(--w70);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.track{flex:1;height:3px;border-radius:50px;background:rgba(255,255,255,.13);overflow:hidden}
+.fill{height:100%;width:0;border-radius:50px;background:var(--acc);transition:width .55s var(--ease)}
+.step-n{font-size:.8rem;color:var(--w70);font-variant-numeric:tabular-nums;flex-shrink:0;min-width:46px;text-align:right}
 
-/* IMAGINE BLOCK */
-.imagine-block{background:linear-gradient(160deg,#061F10 0%,#0D3826 50%,#1A5C3E 100%);padding:80px 24px 72px;display:flex;align-items:center;justify-content:center;}
-.imagine-inner{max-width:1000px;width:100%;display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:center;}
-.imagine-text{display:flex;flex-direction:column;gap:24px;}
-.imagine-quote{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;letter-spacing:-.03em;text-wrap:balance;}
-.imagine-quote em{font-style:normal;color:var(--green-pale);}
-.imagine-sub{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:rgba(255,255,255,.75);}
-.imagine-stat{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(168,230,197,.2);border-radius:14px;padding:14px 20px;align-self:flex-start;}
-.imagine-stat-num{font-size:2rem;font-weight:900;color:var(--green-pale);letter-spacing:-.03em;line-height:1;white-space:nowrap;}
-.imagine-stat-label{font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.4;}
-.imagine-img{display:block;width:100%;}
-@media(max-width:780px){.imagine-inner{grid-template-columns:1fr;gap:32px;text-align:center;}.imagine-stat{align-self:center;}.imagine-img{max-width:280px;margin:0 auto;}}
+.stage{flex:1;display:flex;flex-direction:column;padding:0 20px calc(env(safe-area-inset-bottom) + 28px)}
+.screen{flex:1;display:flex;flex-direction:column;max-width:520px;width:100%;margin:0 auto;animation:enter .42s var(--ease) both}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.screen.leaving{animation:leave .2s ease both}
+@keyframes leave{to{opacity:0;transform:translateY(-10px)}}
+@media(prefers-reduced-motion:reduce){.screen,.screen.leaving{animation:none}}
 
-/* FEAR STATS BLOCK */
-.fear-block{background:#F4F7F4;padding:80px 24px 88px;text-align:center;}
-.fear-stats{max-width:640px;margin:0 auto 56px;display:flex;flex-direction:column;align-items:center;}
-.fear-stat{padding:44px 0;width:100%;}
-.fear-stat+.fear-stat{border-top:1px solid rgba(13,42,26,.12);}
-.fear-num{display:block;font-size:clamp(3.8rem,13vw,7.5rem);font-weight:900;color:#0D2A1A;letter-spacing:-.04em;line-height:1;}
-.fear-label{display:block;font-size:clamp(.9rem,2.2vw,1.05rem);color:rgba(13,42,26,.45);margin-top:14px;line-height:1.55;letter-spacing:.08em;text-transform:uppercase;}
-.fear-poison{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:500px;margin:0 auto;}
-.fear-skull{font-size:2.6rem;line-height:1;}
-.fear-poison-text{font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:700;color:rgba(13,42,26,.75);line-height:1.55;}
+/* ИНТРО */
+/* safe center — при контенте выше экрана обычный center срезал бы
+   верх; safe в этом случае прижимает к началу вместо обрезки */
+/* padding снизу больше верхнего: блок садится в ОПТИЧЕСКИЙ центр —
+   геометрический центр глаз читает как «съехало вниз» */
+.intro{position:relative;justify-content:safe center;text-align:center;gap:20px;padding:24px 0 78px}
 
-/* BLOCKS */
-.block{padding:72px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;}
-.block-dark{background:linear-gradient(160deg,#0D3826,#1A5C3E);color:#fff;}
-.block-light{background:var(--white);}
-.block-green{background:var(--green-bg);}
-.block-red{background:var(--red-light);}
-.block-black{background:#0A0A0A;color:#fff;}
-.block img{width:100%;max-width:364px;border-radius:20px;display:block;}
-.block-dark img,.block-black img{box-shadow:0 16px 48px rgba(0,0,0,.5);}
-.block-light img,.block-green img{box-shadow:0 12px 36px rgba(26,92,62,.15);}
-.block-headline{font-size:clamp(2rem,6vw,3.4rem);font-weight:900;line-height:1.05;text-wrap:balance;letter-spacing:-.03em;max-width:640px;}
-.block-dark .block-headline,.block-black .block-headline{color:#fff;}
-.block-light .block-headline,.block-green .block-headline{color:var(--text);}
-.block-red .block-headline{color:var(--red);}
-.block-body{font-size:clamp(1rem,2.5vw,1.15rem);line-height:1.7;max-width:580px;}
-.block-dark .block-body,.block-black .block-body{color:rgba(255,255,255,.78);}
-.block-light .block-body,.block-green .block-body{color:var(--muted);}
-.block-red .block-body{color:#8B1A1A;}
+/* ── АВРОРА ─────────────────────────────────────────────────────────
+   Два мягких пятна (мятное сверху, синее снизу) медленно дышат в
+   ритме дыхания — 14с на цикл. Экран перестаёт быть плоской заливкой
+   и «живёт», пока человек читает оффер. Только на интро: на вопросах
+   движущийся фон отвлекал бы от выбора.
+   z-index:-1 — .app создаёт свой контекст наложения, поэтому слой
+   уходит под контент, но остаётся над общим градиентом body::before */
+.intro::before{content:'';position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 24% at 50% 45%, rgba(168,230,197,.22) 0%, transparent 72%),
+             radial-gradient(55% 34% at 12% 58%, rgba(44,124,214,.34) 0%, transparent 70%),
+             radial-gradient(55% 34% at 90% 48%, rgba(30,86,160,.32) 0%, transparent 70%),
+             radial-gradient(70% 40% at 50% 8%, rgba(20,58,110,.30) 0%, transparent 72%);
+  filter:blur(16px);animation:aurora 14s ease-in-out infinite}
+/* виньетка — гасит углы и собирает взгляд в центр, где оффер и кнопка */
+.intro::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(78% 58% at 50% 46%, transparent 30%, rgba(4,8,15,.55) 78%, rgba(3,6,12,.82) 100%)}
+@keyframes aurora{
+  0%,100%{transform:translate3d(-2%,-1%,0) scale(1)}
+  50%    {transform:translate3d(2%,2%,0)  scale(1.1)}}
 
-/* STEPS */
-.steps-wrap{display:flex;flex-direction:column;gap:16px;width:100%;max-width:600px;text-align:left;}
-.step{background:var(--white);border:2px solid #DCF0E5;border-radius:16px;padding:20px 24px;display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;}
-.step-num{width:52px;height:52px;border-radius:50%;background:var(--green-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;flex-shrink:0;}
-.step h3{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:6px;}
-.step p{font-size:.95rem;color:var(--muted);line-height:1.65;margin:0;}
+/* появление лесенкой: строки встают одна за другой, а не всё разом —
+   взгляд ведут сверху вниз ровно до кнопки */
+.screen.intro{animation:none}
+.intro>*{animation:rise .78s var(--ease) both}
+.intro .badge{animation-delay:.06s}
+.intro h1{animation-delay:.16s}
+.intro p{animation-delay:.28s}
+.intro .cta-dock{animation-delay:.42s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-/* STAT */
-.stat-big{font-size:clamp(4rem,14vw,8rem);font-weight:900;line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums;}
-.block-dark .stat-big{color:var(--green-pale);}
+/* стеклянный бейдж с живой точкой — «вы здесь, вас узнали» */
+.badge{position:relative;align-self:center;display:inline-flex;align-items:center;gap:9px;padding:9px 18px 9px 15px;border-radius:50px;
+  background:linear-gradient(180deg, rgba(168,230,197,.14), rgba(168,230,197,.07));
+  border:1px solid var(--acc-line);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 4px 22px rgba(168,230,197,.10), inset 0 1px 0 rgba(255,255,255,.10)}
+.badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--acc);flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(168,230,197,.6);animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{
+  0%  {box-shadow:0 0 0 0 rgba(168,230,197,.55)}
+  70% {box-shadow:0 0 0 9px rgba(168,230,197,0)}
+  100%{box-shadow:0 0 0 0 rgba(168,230,197,0)}}
 
-/* MECHANIC CARDS */
-.mechanic-cards{display:flex;flex-direction:column;gap:14px;width:100%;max-width:600px;text-align:left;}
-.mc{background:rgba(255,255,255,.08);border:1px solid rgba(168,230,197,.2);border-radius:16px;padding:20px 24px;}
-.mc h3{font-size:1rem;font-weight:800;color:var(--green-pale);margin-bottom:8px;}
-.mc p{font-size:.95rem;color:rgba(255,255,255,.72);line-height:1.65;margin:0;}
-.mc strong{color:#fff;}
+/* заголовок и подзаголовок держим почти в одном кегле: экран читается
+   как одно связное предложение, а не «шапка + мелкий текст под ней» */
+.intro h1{font-size:clamp(1.62rem,5.8vw,2.05rem);font-weight:800;line-height:1.18;letter-spacing:-.028em;text-wrap:balance}
+/* акцент — не плоская заливка, а градиент по тексту + мягкое свечение:
+   строка светится изнутри, как подсвеченная вывеска */
+.intro h1 em{font-style:normal;
+  background:linear-gradient(103deg,#E4FBEE 0%,var(--acc) 42%,#79D3AC 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 22px rgba(168,230,197,.30))}
+.intro p{font-size:clamp(1.12rem,4.3vw,1.34rem);color:var(--w86);line-height:1.52;text-wrap:balance;max-width:23ch;margin:0 auto}
+.intro p em{font-style:normal;font-weight:800;color:var(--acc);
+  text-shadow:0 0 18px rgba(168,230,197,.28)}
+.getlist{display:flex;flex-direction:column;gap:9px;text-align:left;width:100%;margin-top:2px}
+.getlist li{list-style:none;display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:13px 16px;font-size:.96rem;color:var(--w86);line-height:1.4}
+.getlist li b{color:var(--acc);flex-shrink:0;font-weight:900}
+/* автор — короткая подпись под кнопкой: лицо для доверия, без плашки
+   и без рассказа о себе. Экран весь про посетителя, автор тут — сноска */
+.author{display:flex;align-items:center;justify-content:center;gap:9px;width:100%}
+.author img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex-shrink:0;border:1.5px solid var(--acc-line)}
+.author-t{font-size:.83rem;color:var(--w70);line-height:1.4}
+.author-t b{font-weight:700;color:var(--w86)}
+/* цифры стоят под кнопкой одной строкой: так они попадаются на глаза
+   ровно в момент решения и не отъедают высоту у самого экрана */
+.intro-meta{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-top:11px}
+.im{display:flex;align-items:baseline;gap:5px}
+.im+.im::before{content:'·';color:var(--w70);margin-right:5px}
+.im b{font-size:.95rem;font-weight:800;color:var(--acc);letter-spacing:-.01em}
+.im span{font-size:.85rem;color:var(--w70)}
 
-/* PENALTY */
-.penalty-cards{display:flex;flex-direction:column;gap:12px;width:100%;max-width:520px;}
-.pc{border-radius:14px;padding:18px 22px;text-align:left;}
-.pc.bad{background:#FFF0EE;border:2px solid #FFCCC7;}
-.pc.good{background:var(--green-bg);border:2px solid #A8E6C5;}
-.pc .pc-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:block;}
-.pc.bad .pc-label{color:var(--red);}
-.pc.good .pc-label{color:var(--green-deep);}
-.pc .pc-text{font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.5;}
+/* ВОПРОС */
+.qwrap{justify-content:flex-start;padding-top:24px;gap:24px}
+.q{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;line-height:1.2;letter-spacing:-.028em;text-wrap:balance}
+.qhint{font-size:.94rem;color:var(--w70);margin-top:-14px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:2px;padding-bottom:16px}
+.opt{position:relative;width:100%;text-align:left;cursor:pointer;background:var(--card);border:1.5px solid var(--card-line);border-radius:15px;
+  padding:17px 52px 17px 19px;font:inherit;font-size:1.01rem;font-weight:500;color:var(--w);line-height:1.35;
+  transition:background .18s,border-color .18s,transform .12s}
+.opt:hover{background:rgba(255,255,255,.085);border-color:rgba(255,255,255,.2)}
+.opt:active{transform:scale(.985)}
+.opt::after{content:'';position:absolute;right:18px;top:50%;transform:translateY(-50%);width:21px;height:21px;border-radius:50%;
+  border:1.8px solid rgba(255,255,255,.22);transition:border-color .18s,background .18s}
+.opt.sel{background:var(--acc-dim);border-color:var(--acc)}
+.opt.sel::after{border-color:var(--acc);background:var(--acc);box-shadow:inset 0 0 0 3.5px var(--bg)}
+/* мультивыбор: квадрат вместо кружка — сразу видно, что можно отметить несколько */
+.opt.multi::after{border-radius:7px}
+.opt.multi.sel::after{box-shadow:none;
+  background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304121F' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/13px no-repeat}
 
-/* INSIDE */
-.inside-list{list-style:none;display:flex;flex-direction:column;gap:12px;width:100%;max-width:560px;text-align:left;}
-.inside-list li{background:var(--white);border:2px solid #DCF0E5;border-radius:14px;padding:16px 20px;display:flex;gap:16px;align-items:flex-start;}
-.il-icon{font-size:1.6rem;flex-shrink:0;line-height:1;margin-top:2px;}
-.il-text strong{display:block;font-size:1rem;font-weight:800;margin-bottom:3px;}
-.il-text span{font-size:.88rem;color:var(--muted);line-height:1.5;}
+/* ВСТАВКА */
+.mid{justify-content:center;text-align:center;gap:20px;padding:30px 0}
+.mid-icon{font-size:3.1rem;line-height:1;animation:pop .5s var(--ease) both .1s}
+@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+.mid h2{font-size:clamp(1.5rem,5.4vw,1.95rem);font-weight:800;line-height:1.18;letter-spacing:-.03em;text-wrap:balance}
+.mid p{font-size:clamp(.98rem,3.8vw,1.07rem);color:var(--w86);line-height:1.64;text-wrap:balance}
+.money{display:flex;flex-direction:column;gap:4px;padding:20px;background:var(--card);border:1px solid var(--card-line);border-radius:18px}
+.money b{font-size:clamp(1.9rem,7.6vw,2.6rem);font-weight:800;color:var(--acc);letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}
+.money span{font-size:.87rem;color:var(--w70)}
+/* доллары — второй строкой под суммой: рублёвая цифра остаётся главной,
+   а тем, кто не в России, сразу виден понятный порядок величины */
+.money u{text-decoration:none;font-size:1rem;font-weight:700;color:var(--w70);letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin-top:-1px}
+.money.alt u{color:rgba(255,208,138,.62)}
+.usd-inline{text-decoration:none;color:var(--w70);font-weight:600;font-size:.86em;white-space:nowrap}
+/* на вариантах цены доллары уходят вправо серым — не спорят с рублями */
+.opt .usd{display:block;margin-top:3px;font-style:normal;font-size:.83rem;font-weight:600;color:var(--w70);letter-spacing:-.01em}
+.money.alt b{color:var(--warn)}
+.mid-img{width:100%;max-width:420px;margin:0 auto;border-radius:18px;display:block;border:1px solid var(--card-line)}
 
-/* PRICE COMPARE */
-.price-compare{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:480px;}
-.price-bad{background:#fff0ee;border:2px solid #ffccc7;border-radius:16px;padding:20px 32px;width:100%;text-align:center;}
-.price-bad-label{display:block;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#B91C1C;margin-bottom:8px;opacity:.75;}
-.price-strike{font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--red);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:5px;letter-spacing:-.03em;display:block;line-height:1;}
-.price-arrow{font-size:2.2rem;color:var(--green-deep);font-weight:900;line-height:1;}
-.price-good{background:var(--green-bg);border:2px solid var(--green-soft);border-radius:16px;padding:20px 32px;width:100%;text-align:center;}
-.price-good-label{display:block;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);margin-bottom:8px;opacity:.75;}
-.price-good-value{font-size:clamp(2.4rem,7vw,4rem);font-weight:900;color:var(--green-deep);letter-spacing:-.03em;display:block;line-height:1;}
-.price-was{display:block;font-size:1.35rem;font-weight:700;color:var(--red);text-decoration:line-through;text-decoration-thickness:2px;opacity:.65;margin-bottom:2px;letter-spacing:-.01em;}
+/* АНАЛИЗ */
+.an{justify-content:center;gap:30px;padding:30px 0;text-align:center}
+.an h2{font-size:clamp(1.35rem,5.2vw,1.75rem);font-weight:800;letter-spacing:-.028em}
+.an-list{display:flex;flex-direction:column;gap:16px;text-align:left;width:100%}
+.an-row{display:flex;flex-direction:column;gap:8px;opacity:.32;transition:opacity .5s}
+.an-row.on{opacity:1}
+.an-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.an-name{font-size:.96rem;color:var(--w86);font-weight:500}
+.an-val{font-size:.85rem;color:var(--acc);font-variant-numeric:tabular-nums;min-width:40px;text-align:right;font-weight:600}
+.an-bar{height:5px;border-radius:50px;background:rgba(255,255,255,.1);overflow:hidden}
+.an-bar i{display:block;height:100%;width:0;border-radius:50px;background:var(--acc);transition:width .35s linear}
 
-/* ─── НОВЫЙ БЛОК: СКИДКА ─── */
-.discount-block{
-  background:var(--green-bg);
-  padding:80px 24px 88px;
-  text-align:center;
-  display:flex;flex-direction:column;align-items:center;gap:28px;
-}
-.discount-eyebrow{
-  font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--green-deep);opacity:.6;
-}
-.discount-headline{
-  font-size:clamp(1.9rem,5vw,3rem);font-weight:900;line-height:1.1;
-  letter-spacing:-.03em;text-wrap:balance;max-width:600px;color:var(--text);
-}
-.discount-body{
-  font-size:clamp(1rem,2.2vw,1.15rem);line-height:1.75;max-width:560px;color:var(--muted);
-}
-/* REPRO CHECKLIST */
-.repro-checklist{list-style:none;display:flex;flex-direction:column;gap:14px;width:100%;max-width:560px;}
-.repro-item{display:flex;align-items:flex-start;gap:14px;font-size:clamp(1rem,2.5vw,1.2rem);font-weight:600;color:rgba(255,255,255,.88);line-height:1.5;
-  opacity:0;transform:translateX(-48px);transition:opacity .5s ease,transform .5s ease;}
-.repro-item.visible{opacity:1;transform:translateX(0);}
-.repro-check{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--green-soft);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:900;color:#fff;margin-top:1px;}
-.repro-item-final{color:var(--green-pale);font-size:clamp(1.05rem,2.8vw,1.3rem);}
-.repro-item-final .repro-check{background:#4ADE80;}
+/* РЕЗУЛЬТАТ */
+.res{gap:24px;padding:26px 0 0;flex:0 0 auto}
+.res .cta-dock{margin-top:18px}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);text-align:center}
+.res h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-spacing:-.033em;text-align:center;text-wrap:balance}
+.bars{display:flex;flex-direction:column;gap:14px;padding:22px 20px;background:var(--card);border:1px solid var(--card-line);border-radius:20px}
+.bar-row{display:flex;flex-direction:column;gap:7px}
+.bar-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bar-name{font-size:.92rem;color:var(--w86);display:flex;align-items:center;gap:8px;line-height:1.3}
+.bar-row.top .bar-name{color:var(--w);font-weight:700}
+.bar-pct{font-size:.94rem;font-weight:800;color:var(--w70);font-variant-numeric:tabular-nums;flex-shrink:0}
+.bar-row.top .bar-pct{color:var(--acc);font-size:1.04rem}
+.bar-track{height:7px;border-radius:50px;background:rgba(255,255,255,.09);overflow:hidden}
+.bar-track i{display:block;height:100%;width:0;border-radius:50px;background:rgba(255,255,255,.3);transition:width 1s var(--ease)}
+.bar-row.top .bar-track i{background:linear-gradient(90deg,#5BAF85,var(--acc))}
 
-.discount-tiers{
-  display:flex;flex-direction:column;gap:0;width:100%;max-width:520px;
-  border:2px solid #DCF0E5;border-radius:20px;overflow:hidden;
-  background:var(--white);
-}
-.dt{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 24px;border-bottom:1px solid #E8F4ED;
-  gap:16px;
-}
-.dt:last-child{border-bottom:none;}
-.dt.active{background:var(--green-deep);}
-.dt-left{text-align:left;}
-.dt-when{
-  font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:3px;
-}
-.dt.active .dt-when{color:rgba(168,230,197,.65);}
-.dt-label{font-size:.95rem;font-weight:700;color:var(--text);}
-.dt.active .dt-label{color:#fff;}
-.dt-price{
-  font-size:1.3rem;font-weight:900;color:var(--green-deep);
-  white-space:nowrap;letter-spacing:-.02em;
-}
-.dt.active .dt-price{color:#4ADE80;}
-.dt-badge{display:none;}
-.dt.past{opacity:.28;pointer-events:none;}
-.dt.past .dt-price{text-decoration:line-through;text-decoration-thickness:2px;}
-.dt.future{opacity:.5;}
-.discount-hint{
-  font-size:.9rem;color:var(--muted);line-height:1.6;max-width:440px;
-  background:rgba(26,92,62,.06);border-radius:12px;padding:14px 20px;
-}
-.discount-hint strong{color:var(--green-deep);}
-.urgency-block{max-width:560px;text-align:center;display:flex;flex-direction:column;gap:14px;}
-.urgency-top{font-size:clamp(.95rem,2.2vw,1.08rem);color:var(--muted);line-height:1.65;}
-.urgency-top strong{color:#E03030;}
-.urgency-reality{font-size:clamp(1.1rem,2.8vw,1.4rem);font-weight:900;color:#E03030;letter-spacing:.02em;margin-top:4px;}
-.urgency-bottom{font-size:clamp(1rem,2.3vw,1.12rem);color:var(--text);font-weight:700;line-height:1.55;}
-.urgency-bottom em{font-style:normal;color:var(--green-deep);}
+.card{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:24px 22px;display:flex;flex-direction:column;gap:12px}
+.card h3{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.card p{font-size:1.01rem;color:var(--w86);line-height:1.66}
+.card p strong{color:var(--w)}
+.card.warn{background:var(--warn-dim);border-color:var(--warn-line)}
+.card.warn h3{color:var(--warn)}
+.stage-badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:7px 14px;border-radius:50px;background:rgba(255,208,138,.16);border:1px solid var(--warn-line);font-size:.88rem;font-weight:800;color:var(--warn)}
+/* список заболеваний в блоке риска */
+.risk{list-style:none;display:flex;flex-direction:column;gap:9px;margin:2px 0}
+.risk li{position:relative;padding-left:20px;font-size:.99rem;color:var(--w);line-height:1.45}
+.risk li::before{content:'';position:absolute;left:2px;top:.52em;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.risk-note{font-size:.87rem !important;color:var(--w70) !important;line-height:1.5;
+  padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
+.plan{list-style:none;display:flex;flex-direction:column;gap:13px}
+.plan li{display:flex;gap:13px;align-items:flex-start;font-size:.98rem;color:var(--w86);line-height:1.55}
+.plan li b{color:var(--acc);font-weight:800;flex-shrink:0}
 
-/* GUARANTEE */
-.guarantee-wrap{display:flex;flex-direction:column;align-items:center;gap:24px;width:100%;max-width:560px;}
-.guarantee-headline{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:900;color:#fff;text-align:center;letter-spacing:-.03em;line-height:1.05;}
-.guarantee-detail{background:rgba(255,255,255,.07);border:1px solid rgba(168,230,197,.2);border-left:4px solid var(--green-soft);border-radius:16px;padding:24px 28px;text-align:left;width:100%;}
-.guarantee-detail p{font-size:1rem;color:rgba(255,255,255,.78);line-height:1.65;}
-.guarantee-detail strong{color:#fff;}
+.video-box{border-radius:20px;overflow:hidden;background:var(--bg-soft);border:1px solid var(--card-line)}
+.video-box video{display:block;width:100%;height:auto}
+.video-ph{padding:36px 22px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+.video-ph .vi{font-size:2.2rem;line-height:1}
+.video-ph b{font-size:1.01rem;font-weight:700}
+.video-ph span{font-size:.87rem;color:var(--w70);line-height:1.5}
 
-/* TICKET */
-.ticket-rows{display:flex;flex-direction:column;gap:48px;width:100%;max-width:560px;}
-.ticket-row{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;}
-.ticket-row p{font-size:clamp(.95rem,2vw,1.1rem);line-height:1.75;color:rgba(255,255,255,.88);margin:0;padding:0 8px 20px;}
-.ticket-img{width:100%;max-width:420px;border-radius:16px;display:block;}
-.ticket-row-rev p{order:1;}
-.ticket-row-rev .ticket-img{order:2;}
-.ticket-checklist{list-style:none;display:flex;flex-direction:column;gap:12px;max-width:440px;padding:0;margin:0 auto;}
-.tc-item{display:flex;align-items:center;gap:14px;font-size:clamp(.95rem,2.2vw,1.15rem);font-weight:600;color:rgba(255,255,255,.9);line-height:1.4;
-  opacity:0;transform:translateX(-44px);transition:opacity .45s ease,transform .45s ease;}
-.tc-item.visible{opacity:1;transform:translateX(0);}
-.tc-icon{font-size:1.5rem;flex-shrink:0;width:36px;text-align:center;}
-.tc-item-final{color:#4ADE80;font-size:clamp(1rem,2.4vw,1.2rem);}
+/* МЕТОД */
+.method-head{text-align:center;display:flex;flex-direction:column;gap:11px;padding-top:14px}
+.method-head h2{font-size:clamp(1.6rem,6vw,2.15rem);font-weight:800;letter-spacing:-.032em;line-height:1.14}
+.method-head p{font-size:1rem;color:var(--w86);line-height:1.64}
+.mstep{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:9px}
+.mstep-n{display:flex;align-items:center;gap:10px}
+.mstep-num{width:27px;height:27px;flex-shrink:0;border-radius:50%;background:var(--acc);color:var(--on-acc);font-size:.87rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.mstep-cat{font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.mstep h4{font-size:1.13rem;font-weight:800;line-height:1.3}
+.mstep-sub{font-size:1rem;font-weight:700;color:var(--acc) !important;line-height:1.45;margin-top:-3px}
+.mstep p{font-size:.97rem;color:var(--w86);line-height:1.65}
+.mstep-you{margin-top:4px;padding:14px 16px;background:var(--acc-dim);border:1px solid var(--acc-line);border-radius:13px;color:#fff !important}
+.mstep-you strong{color:var(--acc)}
 
-/* CTA */
-@keyframes btnshine{0%,100%{transform:skewX(-20deg) translateX(-250%);}20%{transform:skewX(-20deg) translateX(600%);}}
-.btn-main{position:relative;overflow:hidden;display:inline-block;background:var(--green-deep);color:#fff;font-size:1.15rem;font-weight:800;padding:1.2rem 3rem;border-radius:50px;text-decoration:none;letter-spacing:.01em;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 6px 24px rgba(26,92,62,.4),0 4px 0 #122b1c;-webkit-transform:translateZ(0);transform:translateZ(0);}
-.btn-main::after{content:'';position:absolute;top:-30%;left:0;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.22),transparent);animation:btnshine 8s ease-in-out infinite;}
-@media(prefers-reduced-motion:reduce){.btn-main::after{animation:none;}}
-.btn-main:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 10px 32px rgba(26,92,62,.45),0 4px 0 #122b1c;}
-.btn-main:active{transform:translateY(1px);box-shadow:0 2px 12px rgba(26,92,62,.4),0 2px 0 #122b1c;}
-.price-note{font-size:.9rem;color:rgba(255,255,255,.45);margin-top:8px;}
-.cta-sub{font-size:1.32rem;color:#fff;margin-top:8px;font-weight:600;}
+.alone{display:flex;flex-direction:column;gap:10px}
+.al{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:17px 19px}
+.al-n{width:25px;height:25px;flex-shrink:0;border-radius:50%;background:rgba(255,208,138,.18);border:1px solid var(--warn-line);
+  color:var(--warn);font-size:.82rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.al-t b{display:block;font-size:1.02rem;font-weight:800;margin-bottom:3px;line-height:1.3}
+.al-t span{font-size:.95rem;color:var(--w86);line-height:1.58}
+.outro-after{text-align:center;font-size:1.05rem;font-weight:700;color:var(--acc);line-height:1.5;padding:2px 6px}
+.outro{text-align:center;display:flex;flex-direction:column;gap:11px;padding:8px 0 0}
+.outro h2{font-size:clamp(1.35rem,5.2vw,1.8rem);font-weight:800;letter-spacing:-.03em}
+.outro p{font-size:1rem;color:var(--w86);line-height:1.65}
 
-/* ПОСЛЕДНИЙ УДАР */
-.last-punch{background:#fff;padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;}
-.last-punch-main{font-size:clamp(2rem,6vw,3.8rem);font-weight:900;line-height:1.1;color:#071A0D;letter-spacing:-.03em;text-wrap:balance;max-width:760px;}
-.last-punch-sub{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:500;line-height:1.5;color:#4A6B5A;max-width:560px;}
-.last-punch-svg{width:100%;max-width:528px;height:auto;display:block;}
+/* КНОПКИ */
+/* на интро кнопка идёт сразу под текстом, а не прижата к низу: после
+   удаления списка «что вы получите» sticky-док оставлял полэкрана пустоты
+   между оффером и кнопкой. Здесь контента мало — собираем всё в центр */
+.intro .cta-dock{position:static;margin-top:10px;padding:0 0 calc(env(safe-area-inset-bottom) + 4px);background:none}
+.cta-dock{position:sticky;bottom:0;z-index:15;padding:16px 0 calc(env(safe-area-inset-bottom) + 12px);margin-top:auto;
+  background:linear-gradient(to top, var(--bg) 58%, rgba(7,12,22,.86) 82%, transparent)}
+.btn{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;border:none;cursor:pointer;font:inherit;
+  background:var(--acc);color:var(--on-acc);font-size:1.05rem;font-weight:800;padding:1.12rem 1.5rem;border-radius:50px;text-decoration:none;
+  transition:transform .13s,box-shadow .2s,opacity .2s;box-shadow:0 8px 30px rgba(168,230,197,.2)}
+.btn:active{transform:scale(.982)}
 
-/* TOP HERO WRAPPER */
-.top-hero-wrap{background:linear-gradient(180deg,#061F10 0%,#0D3826 20%,#0D3826 72%,#1A5C3E 100%);}
+/* ── ГЛАВНАЯ КНОПКА НА ИНТРО ────────────────────────────────────────
+   Ореол под кнопкой дышит в такт авроре, по кнопке раз в 5с проходит
+   блик. Блик — только на ::after: своя animation на самой кнопке
+   гасит анимацию псевдоэлемента в iOS Safari (грабля из RULES),
+   поэтому кнопка сама не двигается, дышит подложка */
+.intro .cta-dock{position:relative}
+.intro .cta-dock::before{content:'';position:absolute;left:50%;top:50%;width:78%;height:120%;translate:-50% -50%;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(168,230,197,.30) 0%, transparent 70%);
+  filter:blur(26px);pointer-events:none;animation:halo 5.5s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+.intro .btn{position:relative;overflow:hidden;transform:translateZ(0);
+  background:linear-gradient(135deg,#D6F7E6 0%,var(--acc) 48%,#8ADCB6 100%);
+  box-shadow:0 12px 38px rgba(168,230,197,.28), inset 0 1px 0 rgba(255,255,255,.55);
+  letter-spacing:-.012em}
+.intro .btn::after{content:'';position:absolute;top:0;left:0;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg, transparent 0%, rgba(255,255,255,.62) 50%, transparent 100%);
+  transform:translateX(-160%);animation:shine 5s ease-in-out 1.2s infinite}
+@keyframes shine{0%{transform:translateX(-160%)}28%,100%{transform:translateX(320%)}}
 
-/* VIDEO BLOCK */
-.video-block{background:transparent;padding:56px 24px 0;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;position:relative;overflow:hidden;}
-.video-block h1{font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:900;color:#fff;line-height:1.15;text-wrap:balance;letter-spacing:-.025em;max-width:720px;position:relative;z-index:1;}
-.video-block h1 em{font-style:normal;color:var(--green-pale);}
-.scroll-hint{position:relative;z-index:1;padding:12px 0 0;animation:scrollbounce 2s ease-in-out infinite;}
-@keyframes scrollbounce{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
-.br{position:absolute;border-radius:50%;border:1px solid rgba(168,230,197,.1);animation:breathe 4s ease-in-out infinite;pointer-events:none;z-index:0;}
-.br:nth-child(1){width:400px;height:400px;animation-delay:0s}.br:nth-child(2){width:700px;height:700px;animation-delay:.7s}.br:nth-child(3){width:1050px;height:1050px;animation-delay:1.4s}.br:nth-child(4){width:1450px;height:1450px;animation-delay:2.1s}
-@keyframes breathe{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.03);opacity:.1}}
-@media(prefers-reduced-motion:reduce){.br{animation:none}}
-.video-wrap{width:100%;max-width:880px;border-radius:14px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.55);background:#081E11;aspect-ratio:16/9;position:relative;z-index:1;border:1px solid rgba(168,230,197,.1);}
-.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
-
-/* DIVIDER */
-.section-divider{height:4px;background:linear-gradient(90deg,transparent,var(--green-soft),transparent);border:none;margin:0;}
-
-/* FOOTER */
-footer{background:var(--green-deep);color:rgba(255,255,255,.6);padding:28px 24px;text-align:center;font-size:.82rem;line-height:1.7;}
-footer a{color:rgba(255,255,255,.5);text-decoration:none;}
-
-@media(max-width:560px){.block{padding:56px 20px;}.btn-main{padding:1rem 2rem;font-size:1rem;}nav{padding:0 16px;}}
-
-/* ─── DISEASES BLOCK ─── */
-.diseases-block{background:#0A0A0A;padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:36px;}
-.diseases-headline{font-size:clamp(1.9rem,5vw,3rem);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-.03em;text-wrap:balance;max-width:640px;}
-.diseases-headline em{font-style:normal;color:#FF4D4D;}
-.diseases-sub{font-size:clamp(1.05rem,2.2vw,1.21rem);color:#fff;max-width:520px;line-height:1.65;}
-.diseases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:720px;}
-.disease-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,77,77,.15);border-radius:16px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
-.disease-icon{font-size:2rem;line-height:1;}
-.disease-name{font-size:.88rem;font-weight:800;color:#fff;line-height:1.3;}
-.disease-when{font-size:.72rem;color:#FF3030;letter-spacing:.05em;text-transform:uppercase;margin-top:2px;font-weight:700;}
-.disease-desc{font-size:.78rem;color:#fff;line-height:1.5;margin-top:4px;}
-.disease-footer{font-size:clamp(1rem,2.5vw,1.2rem);font-weight:700;color:rgba(255,255,255,.6);max-width:560px;line-height:1.6;}
-.disease-footer strong{color:#fff;}
-.mutation-warning{width:100%;max-width:720px;margin-top:8px;}
-.mutation-warning-inner{background:rgba(255,77,77,.07);border:1px solid rgba(255,77,77,.25);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:18px;text-align:left;}
-.mutation-title{font-size:clamp(1.1rem,2.5vw,1.35rem);font-weight:800;color:#fff;line-height:1.3;}
-.mutation-body{font-size:clamp(.9rem,2vw,1rem);color:rgba(255,255,255,.6);line-height:1.7;}
-.mutation-story{background:rgba(255,255,255,.05);border-left:3px solid #FF4D4D;border-radius:0 12px 12px 0;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;}
-.mutation-story-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px;}
-.mutation-story p{font-size:clamp(.88rem,2vw,.98rem);color:rgba(255,255,255,.7);line-height:1.7;margin:0;}
-.mutation-story strong{color:#fff;}
-.mutation-conclusion{font-size:clamp(.9rem,2vw,1rem);color:rgba(255,255,255,.55);line-height:1.7;}
-.mutation-conclusion strong{color:#fff;}
-.mutation-knowit{margin-top:32px;padding-top:0;display:flex;flex-direction:column;gap:8px;text-align:center;width:100%;max-width:720px;}
-.mutation-knowit-line1{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:rgba(255,255,255,.75);line-height:1.4;}
-.mutation-knowit-line2{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;color:#fff;letter-spacing:-.02em;}
-@media(max-width:600px){.diseases-grid{grid-template-columns:repeat(2,1fr);}}
-
-/* ─── COMPARE BLOCK ─── */
-.compare-block{background:var(--white);padding:80px 24px 88px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:40px;}
-.compare-headline{font-size:clamp(2rem,5.5vw,3.2rem);font-weight:900;color:var(--text);line-height:1.05;letter-spacing:-.03em;text-wrap:balance;}
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:840px;text-align:left;}
-.compare-col{border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:20px;}
-.compare-col.bad{background:#1A0505;border:1px solid rgba(217,48,37,.25);}
-.compare-col.good{background:linear-gradient(160deg,#061F10,#0D3826);border:1px solid rgba(168,230,197,.2);}
-.compare-col-title{font-size:1.41rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;}
-.compare-col.bad .compare-col-title{color:rgba(255,100,100,.9);}
-.compare-col.good .compare-col-title{color:rgba(168,230,197,.9);}
-.compare-points{display:flex;flex-direction:column;gap:16px;}
-.compare-point{display:flex;flex-direction:column;gap:4px;}
-.compare-point-main{font-size:clamp(1rem,2.2vw,1.2rem);font-weight:800;line-height:1.25;color:#fff;}
-.compare-point-sub{font-size:.85rem;line-height:1.5;color:#fff;}
-.compare-col.bad .compare-point-main{color:#fff;}
-.compare-col.good .compare-point-main{color:#fff;}
-.compare-verdict{margin-top:4px;border-radius:12px;padding:14px 18px;}
-.compare-col.bad .compare-verdict{background:rgba(217,48,37,.12);border:1px solid rgba(217,48,37,.2);}
-.compare-col.good .compare-verdict{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);}
-.compare-verdict-text{font-size:clamp(.85rem,1.8vw,.95rem);font-weight:700;line-height:1.5;}
-.compare-col.bad .compare-verdict-text{color:rgba(255,120,120,.8);}
-.compare-col.good .compare-verdict-text{color:rgba(74,222,128,.85);}
-@media(max-width:640px){.compare-grid{grid-template-columns:1fr;}}
-
-/* ─── INLINE TIMER ─── */
-.inline-timer{
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;
-  background:rgba(0,0,0,.25);border:1px solid rgba(168,230,197,.15);
-  border-radius:14px;padding:16px 24px;max-width:480px;
-}
-.it-prefix{font-size:clamp(1rem,2.5vw,1.2rem);color:rgba(255,255,255,.5);font-weight:500;}
-.it-countdown{
-  font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;color:#fff;
-  font-variant-numeric:tabular-nums;font-family:'SF Mono','Fira Mono',monospace;
-  letter-spacing:.04em;line-height:1;
-}
-.it-suffix{font-size:clamp(1rem,2.5vw,1.2rem);color:rgba(255,255,255,.5);font-weight:500;}
-.it-suffix strong{color:#4ADE80;font-weight:900;}
-
-/* ─── TIMER WIDGET ─── */
-#timer-widget{
-  position:fixed;bottom:24px;right:24px;
-  width:186px;
-  background:rgba(7,26,13,.93);
-  border:1px solid rgba(168,230,197,.2);
-  border-radius:16px;
-  padding:16px 18px 13px;
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  box-shadow:0 8px 32px rgba(0,0,0,.5);
-  z-index:999;
-}
-.tw-eyebrow{
-  font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(168,230,197,.5);margin-bottom:6px;
-}
-.tw-time{
-  font-size:1.25rem;font-weight:800;letter-spacing:.03em;
-  font-variant-numeric:tabular-nums;
-  font-family:'SF Mono','Fira Mono',monospace;
-  color:#fff;line-height:1;margin-bottom:10px;
-  white-space:nowrap;
-}
-@keyframes twshine{0%,100%{transform:skewX(-20deg) translateX(-250%);}20%{transform:skewX(-20deg) translateX(600%);}}
-.tw-btn{
-  position:relative;overflow:hidden;
-  display:block;width:100%;padding:7px 10px;
-  background:rgba(168,230,197,.08);
-  border:1px solid rgba(168,230,197,.18);
-  border-radius:8px;
-  color:rgba(168,230,197,.8);
-  font-size:.68rem;font-weight:600;
-  text-align:center;cursor:pointer;text-decoration:none;
-  transition:background .2s;line-height:1.4;
-  -webkit-transform:translateZ(0);transform:translateZ(0);clip-path:inset(0 round 8px);
-}
-.tw-btn::after{content:'';position:absolute;top:-30%;left:0;width:40%;height:160%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.18),transparent);will-change:transform;animation:twshine 10s ease-in-out infinite;}
-.tw-btn:hover{background:rgba(168,230,197,.15);}
+@media(prefers-reduced-motion:reduce){
+  .intro::before,.badge::before,.intro .cta-dock::before,.intro .btn::after,.intro>*{animation:none}
+  .intro>*{opacity:1;transform:none}}
+.btn-ghost{background:transparent;color:var(--w86);box-shadow:none;border:1.5px solid var(--card-line);font-weight:600;font-size:1rem;margin-top:10px}
+.btn-ghost:hover{background:rgba(255,255,255,.05)}
+/* вторая ссылка — текстом, чтобы не конкурировать с главной кнопкой */
+.btn-link{display:block;text-align:center;margin-top:14px;font-size:.94rem;color:var(--w70);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.28)}
+.btn-link:hover{color:var(--w86)}
+/* ⚠️ отладочная ссылка — намеренно невзрачная, чтобы не спутать с
+   боевым элементом и не забыть выключить (CONFIG.restartBtn) */
+.btn-debug{display:block;text-align:center;margin-top:14px;padding:9px;font-size:.82rem;color:var(--w70);
+  text-decoration:none;border:1px dashed rgba(255,255,255,.22);border-radius:11px}
+.btn-debug i{font-style:normal;opacity:.6}
+.btn-debug:hover{color:var(--w);border-color:rgba(255,255,255,.4)}
+.privacy{text-align:center;font-size:.77rem;color:var(--w70);margin-top:12px;line-height:1.5}
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="#">🌿 Свежий Вздох</a>
-</nav>
-
-<div class="top-hero-wrap">
-<div class="video-block">
-  <div class="br"></div><div class="br"></div><div class="br"></div><div class="br"></div>
-  <h1>Бросаем курить вместе —<br><em>без ломки, без стресса, без зажоров</em></h1>
-  <div class="video-wrap">
-    <iframe id="yt-player" src="https://www.youtube.com/embed/0W9kBXsJuJw?enablejsapi=1"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
+<div class="app">
+  <div class="topbar" id="topbar">
+    <button class="back" id="back" aria-label="Назад"><svg viewBox="0 0 24 24"><polyline points="15,5 8,12 15,19"/></svg></button>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="step-n" id="stepn"></div>
   </div>
-  <a href="#price" class="btn-main" style="margin-top:36px;">Выйти из зависимости без ломки и навсегда →</a>
-  <div class="scroll-hint">
-    <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
-      <polyline points="4,4 14,13 24,4" stroke="rgba(168,230,197,0.5)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <polyline points="4,17 14,26 24,17" stroke="rgba(168,230,197,0.28)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>
+  <main class="stage" id="stage"></main>
 </div>
 
-<div class="hero-intro">
-  <div class="hi-inner">
-    <div class="hi-banner"><img src="img-hero.png" alt="Свежий Вздох"></div>
-    <p class="hi-definition" style="font-style:italic;"><em>Программа в среде единомышленников с практиками и механиками присутствия, как в армии — где невозможно просто купить и забыть.<br><span style="font-size:clamp(1.7rem,3.4vw,2.21rem);font-weight:900;line-height:1.2;display:inline-block;margin-top:6px;">ТЫ ТОЧНО БРОСИШЬ ПРИНИМАТЬ ЯД 🫵</span></em></p>
-    <div class="hi-pillars">
-      <div class="hi-pillar"><span class="hi-pillar-icon">🧹</span><div class="hi-pillar-text"><strong>Стираем результат пропаганды</strong>«Курить модно и классно» — это не твоя мысль. Это то, что в тебя вложили табачные компании.</div></div>
-      <div class="hi-pillar"><span class="hi-pillar-icon">✨</span><div class="hi-pillar-text"><strong>Активируем новые установки</strong>«Курение — яд. Никотин убивает. Я люблю себя и хочу жить дольше.»</div></div>
-      <div class="hi-pillar"><span class="hi-pillar-icon">🎯</span><div class="hi-pillar-text"><strong>Держим фокус на дисциплине</strong>Познаём метод шаг за шагом — не спеша, но каждый день.</div></div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px;text-align:center;padding:8px 0;">
-      <p style="font-size:clamp(1.1rem,3vw,1.6rem);font-weight:800;color:#fff;line-height:1.35;text-wrap:balance;letter-spacing:.01em;">Если ты не хочешь бросать курить — тебя никто никак никогда не заставит.</p>
-      <p style="font-size:clamp(1.1rem,3vw,1.6rem);font-weight:800;color:var(--green-pale);line-height:1.35;text-wrap:balance;letter-spacing:.01em;">Если ты хочешь — то здесь ты бросишь с вероятностью в 99% быстрее и проще.</p>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="imagine-block">
-  <div class="imagine-inner">
-    <div class="imagine-text">
-      <p class="imagine-quote">Представь, как ты будешь <em>гордиться собой</em>, когда бросишь курить.</p>
-      <p class="imagine-sub">У тебя точно получится. Начни сейчас.</p>
-    </div>
-    <img src="img-imagine.png" alt="" class="imagine-img">
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<div class="fear-block">
-  <div class="fear-stats">
-    <div class="fear-stat">
-      <span class="fear-num">−11 мин</span>
-      <span class="fear-label">отнимает у твоей жизни каждая сигарета</span>
-    </div>
-    <div class="fear-stat">
-      <span class="fear-num">8 000 000</span>
-      <span class="fear-label">человек умирает от курения каждый год</span>
-    </div>
-  </div>
-  <div class="fear-poison">
-    <span class="fear-skull">💀</span>
-    <p class="fear-poison-text">Никотин — это яд. Который убивает.<br>Это статистические данные. И они реально пугают.</p>
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<!-- БЛОК 5 БОЛЕЗНЕЙ -->
-<div class="diseases-block">
-  <h2 class="diseases-headline">Вот что курение<br>делает с тобой <em>изнутри.</em></h2>
-  <p class="diseases-sub">Это не мгновенно. Это медленно. 10–30 лет! Именно поэтому так легко не замечать — пока не становится слишком поздно.</p>
-
-  <div class="diseases-grid">
-    <div class="disease-card">
-      <div class="disease-icon">🫁</div>
-      <div class="disease-name">Рак лёгких</div>
-      <div class="disease-when">через 15–30 лет</div>
-      <div class="disease-desc">90% всех случаев — у курильщиков. Через 5 лет после диагноза в живых остаётся лишь каждый пятый.</div>
-    </div>
-    <div class="disease-card">
-      <div class="disease-icon">😮‍💨</div>
-      <div class="disease-name">ХОБЛ и эмфизема</div>
-      <div class="disease-when">через 10–20 лет</div>
-      <div class="disease-desc">Лёгкие разрушаются необратимо. Одышка при ходьбе по комнате.</div>
-    </div>
-    <div class="disease-card">
-      <div class="disease-icon">❤️‍🔥</div>
-      <div class="disease-name">Инфаркт</div>
-      <div class="disease-when">риск в 4× выше</div>
-      <div class="disease-desc">Никотин сужает сосуды постоянно. Сердце работает на износ каждый день.</div>
-    </div>
-    <div class="disease-card">
-      <div class="disease-icon">🧠</div>
-      <div class="disease-name">Инсульт</div>
-      <div class="disease-when">через 10–20 лет</div>
-      <div class="disease-desc">Риск в 2–4 раза выше. Каждая сигарета — микроудар по сосудам мозга.</div>
-    </div>
-    <div class="disease-card">
-      <div class="disease-icon">🦷</div>
-      <div class="disease-name">Рак ротовой полости</div>
-      <div class="disease-when">через 10–15 лет</div>
-      <div class="disease-desc">Гортань, язык, пищевод. Никотин канцерогенен для всего, куда попадает дым.</div>
-    </div>
-    <div class="disease-card">
-      <div class="disease-icon">🫧</div>
-      <div class="disease-name">Рак мочевого пузыря</div>
-      <div class="disease-when">причина №1 — курение</div>
-      <div class="disease-desc">50–65% всех случаев — у курильщиков. В 3× чаще, чем у некурящих. Канцерогены оседают в моче и часами разрушают стенки пузыря.</div>
-    </div>
-  </div>
-
-  <p class="disease-footer">Всё это — <strong>не страшилки.</strong> Это медицинская статистика.<br>И каждая сигарета делает этот путь короче.</p>
-
-  <div class="mutation-warning">
-    <div class="mutation-warning-inner">
-      <p class="mutation-title">Но есть кое-что, о чём обычно не говорят.</p>
-      <p class="mutation-body">Даже если ты бросишь курить — некоторые мутации в клетках уже произошли. Они никуда не исчезают. Организм может годами держать их «в узде», но в какой-то момент — нет.</p>
-      <div class="mutation-story">
-        <span class="mutation-story-icon">💬</span>
-        <p>Аллен Карр бросил курить в 49. Умер от рака лёгких в 72 — через <strong>23 года</strong> после того, как затушил последнюю сигарету. Врачи сказали: это те клетки, которые успели измениться тогда.</p>
-      </div>
-      <p class="mutation-conclusion">Каждая выкуренная сигарета — это не просто «сегодняшний вред». Это вклад в счёт, который может прийти через десятилетия. <strong>Чем раньше ты останавливаешься — тем меньше счёт.</strong></p>
-    </div>
-  </div>
-  <div class="mutation-knowit">
-    <p class="mutation-knowit-line1">👆 Если бы я знал это раньше —<br>я бы бросил курить раньше.</p>
-    <p class="mutation-knowit-line2">Теперь ты знаешь.</p>
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-light" style="padding-top:96px;">
-  <img src="img-poison.png" alt="Вейп, кальян, айкос, снюс = яд">
-  <h2 class="block-headline">Вейп. Кальян. Айкос. Снюс.<br>Это всё — яд.</h2>
-  <p class="block-body">Другой вкус. Другая форма. Тот же никотин. Та же зависимость. Те же последствия — просто приходят чуть позже. Снюс «без дыма» — не безопаснее: никотин всасывается через дёсны напрямую в кровь, минуя лёгкие. Пока одни переходят на «вкусненький» вейп или снюс, думая что это лучше — они просто продолжают принимать яд под другим названием.</p>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-green">
-  <h2 class="block-headline" style="color:var(--green-deep)">Ты не куришь.<br>Ты снимаешь ломку.</h2>
-  <p class="block-body">Никотин создаёт дефицит — и ты идёшь его восполнить. Тебе кажется, что ты хочешь курить. На самом деле ты просто снимаешь ломку, которую сам себе создал. Это ловушка. Когда понимаешь механизм — он перестаёт работать против тебя.</p>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-dark">
-  <img src="img-brain.png" alt="Перепрограммирование мозга">
-  <h2 class="block-headline">Мы перепрограммируем мозг.</h2>
-  <ul class="repro-checklist" id="repro-checklist">
-    <li class="repro-item"><span class="repro-check">✓</span><span>Изучаем биологию — и ловушка перестаёт работать.</span></li>
-    <li class="repro-item"><span class="repro-check">✓</span><span>Изучаем психологию — и желание курить исчезает.</span></li>
-    <li class="repro-item"><span class="repro-check">✓</span><span>Перезаписываем нейронные связи.</span></li>
-    <li class="repro-item"><span class="repro-check">✓</span><span>После этого просто не куришь.</span></li>
-    <li class="repro-item repro-item-final"><span class="repro-check">✓</span><span>Без ломки. Без зажоров. Без стресса.</span></li>
-  </ul>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-dark">
-  <img src="img-circle.png" alt="Кружочек 15 секунд">
-  <div class="stat-big">15 сек</div>
-  <h2 class="block-headline">В день.<br>И ты не один.</h2>
-  <div class="mechanic-cards">
-    <div class="mc">
-      <h3>Как это работает</h3>
-      <p>Каждый день — 15-секундный кружочек в общий чат. Просто говоришь, на какой стадии ты сейчас. <strong>Изучаю. Готовлюсь. Уже не курю — день пять.</strong> Всё.<br><br>Зайдёшь записать кружочек — увидишь других — посмотришь одно видео. Вот так оно и работает. Без насилия над собой. Каждый день на шаг ближе к цели.</p>
-    </div>
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-red">
-  <h2 class="block-headline">Пропустил?<br>Платишь.</h2>
-  <div class="penalty-cards">
-    <div class="pc bad">
-      <span class="pc-label">Если не выложил кружочек до полуночи</span>
-      <div class="pc-text">Каждый участник в начале ставит себе <strong>цену слова</strong> — сумму штрафа за пропуск. Минимум 200 ₽. Можно 1000, можно 5000 — это твоё дело. Любой участник, который это заметил, пишет: «поймал, жду штраф». И ты платишь. Не заплатил — вылетаешь.</div>
-    </div>
-    <div class="pc good">
-      <span class="pc-label">Если ты поймал кого-то</span>
-      <div class="pc-text">Деньги твои. Ты тоже можешь следить за другими — если хочешь. Поймал на пропуске — получил его цену слова.</div>
-    </div>
-  </div>
-  <p class="block-body">Каждый день ты возвращаешься. Не потому что обязан. А потому что либо пишешь кружочек — либо платишь. И платить не хочется. Это и есть условия, в которых не бросают бросать.</p>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-green">
-  <h2 class="block-headline" style="color:var(--green-deep)">Что тебя<br>ждёт внутри.</h2>
-  <p class="block-body" style="margin-bottom:8px;color:var(--muted);">Я собрал всё. Один раз — и по порядку. Ничего лишнего.</p>
-  <ul class="inside-list">
-    <li><span class="il-icon">🧠</span><div class="il-text"><strong>Биология — ты прозреешь</strong><span>Видеокурс от доктора: как молекула никотина работает в твоём организме. После просмотра ты будешь другим. Обратного пути не будет — ты поймёшь механизм, и он перестанет работать против тебя.</span></div></li>
-    <li><span class="il-icon">🧩</span><div class="il-text"><strong>Психология — новые нейронные связи</strong><span>Как перестать думать о сигарете как о подруге и помощнице. Ты узнаешь, как тебя запрограммировали — и как это переписать. Прежнего тебя уже не будет.</span></div></li>
-    <li><span class="il-icon">🧘</span><div class="il-text"><strong>Медитация — без ломки</strong><span>Конкретная практика, которая переключает организм с режима курильщика на режим некурящего. Просто повторяешь — и после не хочешь курить. Не терпишь. Именно не хочешь.</span></div></li>
-    <li><span class="il-icon">👥</span><div class="il-text"><strong>Живое сообщество — ты не один</strong><span>Люди, которые идут тем же путём. Как солдаты в одной казарме — одна среда, одна цель. Поддержат, подскажут, не дадут слиться. В одиночку срываются чаще. В сообществе — статистика на твоей стороне.</span></div></li>
-    <li><span class="il-icon">🎯</span><div class="il-text"><strong>Механика ежедневного присутствия</strong><span>15 секунд в день — кружочек в чат. Это удерживает. Каждый раз когда заходишь — видишь людей, которые держатся. И ты держишься вместе с ними.</span></div></li>
-    <li><span class="il-icon">🌿</span><div class="il-text"><strong>Личное присутствие Артура</strong><span>Человек, который прошёл через это сам — 24 года курения, 20+ попыток, вышел без ломки. Передаст тебе всё, что работает.</span></div></li>
-  </ul>
-</div>
-
-<hr class="section-divider">
-
-<!-- БЛОК СРАВНЕНИЯ -->
-<div class="compare-block">
-  <h2 class="compare-headline">Самому или<br>в сообществе?</h2>
-
-  <div class="compare-grid">
-    <div class="compare-col bad">
-      <div class="compare-col-title">Самому — без знаний и поддержки</div>
-      <div class="compare-points">
-        <div class="compare-point">
-          <div class="compare-point-main">Бьёшься об стену силой воли</div>
-          <div class="compare-point-sub">Сила воли — ресурс. Он заканчивается. Это не метод, это мучение.</div>
-        </div>
-        <div class="compare-point">
-          <div class="compare-point-main">Ты терпишь — но не меняешься</div>
-          <div class="compare-point-sub">Внутри ты всё ещё хочешь курить. Механизм зависимости не тронут.</div>
-        </div>
-        <div class="compare-point">
-          <div class="compare-point-main">Срыв. Стыд. Возврат.</div>
-          <div class="compare-point-sub">И снова по кругу. Снова пытаешься. Снова срываешься. Годами.</div>
-        </div>
-        <div class="compare-point">
-          <div class="compare-point-main">Медленно. Неэффективно. Болезненно.</div>
-          <div class="compare-point-sub">Ломка, зажоры, раздражение — и всё равно риск не бросить никогда.</div>
-        </div>
-      </div>
-      <div class="compare-verdict">
-        <div class="compare-verdict-text">Реальный риск — прожить всю жизнь курящим.<br>95% без метода возвращаются к сигаретам.</div>
-      </div>
-    </div>
-
-    <div class="compare-col good">
-      <div class="compare-col-title">В Свежем Вздохе — трансформация</div>
-      <div class="compare-points">
-        <div class="compare-point">
-          <div class="compare-point-main">Ты получаешь знание — не терпение</div>
-          <div class="compare-point-sub">Понимаешь механизм зависимости — и он перестаёт работать против тебя.</div>
-        </div>
-        <div class="compare-point">
-          <div class="compare-point-main">Ты становишься некурящим человеком</div>
-          <div class="compare-point-sub">Не «бросаю и терплю». А «не хочу курить вообще». Это разные вещи.</div>
-        </div>
-        <div class="compare-point">
-          <div class="compare-point-main">Быстро и без мучений</div>
-          <div class="compare-point-sub">Без ломки, без зажоров, без стресса. Потому что это не сила воли — это метод.</div>
-        </div>
-        <div class="compare-point">
-          <div class="compare-point-main">Бросаешь — и не возвращаешься</div>
-          <div class="compare-point-sub">Среда, люди, механика — всё работает на то, чтобы ты остался некурящим навсегда.</div>
-        </div>
-      </div>
-      <div class="compare-verdict">
-        <div class="compare-verdict-text">Ты бросаешь быстро, эффективно и навсегда.<br>И больше никогда не возвращаешься к курению.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<!-- ─── БЛОК ЦЕНЫ: новый формат ─── -->
-<div class="block block-dark">
-  <img src="img-money.png" alt="">
-  <h2 class="block-headline" id="price" style="scroll-margin-top:0">Твоя зависимость стоит дороже.</h2>
-  <div class="price-compare">
-    <div class="price-bad">
-      <span class="price-bad-label">Ты тратишь на свою зависимость каждый месяц</span>
-      <span class="price-strike">6 000 ₽/мес</span>
-      <span style="display:block;font-size:.88rem;color:#B91C1C;opacity:.7;margin-top:10px;font-weight:500;">И это только деньги. Про здоровье даже не начинаем.</span>
-    </div>
-    <div class="price-arrow">↓</div>
-    <div class="price-good">
-      <span class="price-good-label">Свежий Вздох — сейчас</span>
-      <span class="price-was" id="price-was">4 900 ₽/мес</span>
-      <span class="price-good-value" id="hero-price">950 ₽/мес</span>
-    </div>
-  </div>
-
-  <div class="inline-timer" id="inline-timer">
-    <span class="it-prefix">Через</span>
-    <span class="it-countdown" id="it-countdown">--:--:--</span>
-    <span class="it-suffix">цена повысится до <strong id="it-next-price">—</strong></span>
-  </div>
-
-  <a id="buy-btn" href="https://t.me/tribute/app?startapp=s11nx" class="btn-main" target="_blank" rel="noopener" style="margin-top:8px;">Стать некурящим без ломки и навсегда →</a>
-</div>
-
-<hr class="section-divider">
-
-<!-- ─── БЛОК: ПОЧЕМУ ТАКАЯ ЦЕНА ─── -->
-<div class="discount-block" id="discount-ladder">
-  <p class="discount-eyebrow">О цене — честно</p>
-  <h2 class="discount-headline">Я хочу помочь тем,<br>кто готов прямо сейчас.</h2>
-  <p class="discount-body">
-    Полная цена программы — 4 900 ₽ в месяц. Но я хочу помочь тем, кто понимает ценность и готов действовать прямо сейчас — не откладывать, не думать неделями.<br><br>
-    Поэтому для тех, кто готов действовать — цена совсем другая. Это мой способ сказать: я вижу тебя, я ценю твою готовность, и я хочу тебе помочь.
-  </p>
-
-  <div class="discount-tiers" id="price-ladder">
-    <div class="dt" id="dt-0">
-      <div class="dt-left">
-        <div class="dt-when">2 часа</div>
-        <div class="dt-label">Готов — и действуешь сразу</div>
-      </div>
-      <div class="dt-price">950 ₽/мес</div>
-    </div>
-    <div class="dt" id="dt-1">
-      <div class="dt-left">
-        <div class="dt-when">24 часа</div>
-        <div class="dt-label">Думаешь — но не тянешь</div>
-      </div>
-      <div class="dt-price">990 ₽/мес</div>
-    </div>
-    <div class="dt" id="dt-2">
-      <div class="dt-left">
-        <div class="dt-when">7 дней</div>
-        <div class="dt-label">Откладываешь на потом</div>
-      </div>
-      <div class="dt-price">1 450 ₽/мес</div>
-    </div>
-    <div class="dt" id="dt-3">
-      <div class="dt-left">
-        <div class="dt-when">навсегда</div>
-        <div class="dt-label">Полная цена программы</div>
-      </div>
-      <div class="dt-price">4 900 ₽/мес</div>
-    </div>
-  </div>
-
-  <p class="discount-hint">
-    <strong>Цена не меняется обратно.</strong> Когда таймер переходит на следующую отметку — предыдущая цена больше не вернётся. Это не маркетинговый трюк — это просто честное правило для тех, кто ценит своё время.
-  </p>
-
-  <div class="urgency-block">
-    <p class="urgency-top">Ты прекрасно знаешь, что «потом», «завтра», «с понедельника» — это <strong>отмазки для слабаков</strong>. «Завтра» не наступает никогда. Лучшее время для принятия выгодного решения — <strong>ЗДЕСЬ и СЕЙЧАС.</strong></p>
-    <p class="urgency-reality">ЭТО ЖЁСТКАЯ РЕАЛЬНОСТЬ!</p>
-    <p class="urgency-bottom">Выбор простой: <em>99% шанс бросить навсегда</em> вместе с экспертом и единомышленниками — или вечные попытки на силе воли в одиночку.<br><strong>Действуй.</strong></p>
-  </div>
-
-  <a href="#price" class="btn-main">Бросить курить легко, быстро и навсегда →</a>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-black">
-  <img src="img-shield.png" alt="Гарантия — ты ничего не теряешь" style="max-width:240px;border-radius:16px;box-shadow:0 20px 60px rgba(0,200,80,.2);">
-  <div class="guarantee-wrap">
-    <h2 class="guarantee-headline">Гарантия 3 дня</h2>
-    <div class="guarantee-detail">
-      <p>Ты <strong>ничего не теряешь</strong>. Если зайдёшь и поймёшь, что не твоё, — напиши мне в течение 3 дней. Верну <strong>80% без вопросов</strong>. 20% уходит на комиссии сторонних сервисов — это вне моего контроля.<br><br>Просто попробуй. Три дня — этого достаточно, чтобы понять.</p>
-    </div>
-  </div>
-</div>
-
-<hr class="section-divider">
-
-<div class="last-punch">
-  <img src="img-thinking.png" alt="" class="last-punch-svg">
-  <svg style="display:none" class="last-punch-svg" viewBox="0 0 280 290" xmlns="http://www.w3.org/2000/svg">
-    <!-- Торс / рубашка -->
-    <path d="M10,290 L10,212 Q10,190 55,177 L105,167 Q120,165 140,165 Q160,165 175,167 L225,177 Q270,190 270,212 L270,290 Z" fill="#1A5C3E"/>
-    <!-- V-вырез воротника -->
-    <path d="M128,166 L140,190 L152,166" fill="none" stroke="#A8E6C5" stroke-width="2.5" stroke-linejoin="round"/>
-    <!-- Шея -->
-    <rect x="126" y="150" width="28" height="20" rx="8" fill="#F5CC97"/>
-    <!-- Голова -->
-    <ellipse cx="140" cy="104" rx="56" ry="58" fill="#F5CC97"/>
-    <!-- Волосы (верх + виски) -->
-    <path d="M84,90 C84,50 196,50 196,90 L194,77 C192,53 88,53 86,77 Z" fill="#1A5C3E"/>
-    <ellipse cx="90" cy="97" rx="11" ry="26" fill="#1A5C3E"/>
-    <ellipse cx="190" cy="97" rx="11" ry="26" fill="#1A5C3E"/>
-    <!-- Уши -->
-    <ellipse cx="84" cy="109" rx="9" ry="12" fill="#EBB87A"/>
-    <ellipse cx="196" cy="109" rx="9" ry="12" fill="#EBB87A"/>
-    <!-- Левый глаз -->
-    <ellipse cx="120" cy="108" rx="9" ry="8" fill="white"/>
-    <circle cx="121" cy="109" r="5" fill="#14260F"/>
-    <circle cx="123" cy="107" r="1.5" fill="white"/>
-    <!-- Правый глаз -->
-    <ellipse cx="160" cy="108" rx="9" ry="8" fill="white"/>
-    <circle cx="161" cy="109" r="5" fill="#14260F"/>
-    <circle cx="163" cy="107" r="1.5" fill="white"/>
-    <!-- Левая бровь — обычная -->
-    <path d="M111,93 Q120,88 129,91" stroke="#7A4820" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-    <!-- Правая бровь — чуть приподнята (задумчивость) -->
-    <path d="M151,90 Q160,84 169,87" stroke="#7A4820" stroke-width="2.8" fill="none" stroke-linecap="round"/>
-    <!-- Рот — нейтральный, немного неопределённый -->
-    <path d="M128,130 Q140,135 152,130" stroke="#C08240" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-    <!-- Правая рука — плечо → локоть (тянется вверх) -->
-    <path d="M220,210 C240,198 250,178 244,158 C240,145 229,140 218,144 C208,148 206,164 213,177"
-          stroke="#1A5C3E" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- Правое предплечье — от локтя к подбородку -->
-    <path d="M213,177 C206,166 193,154 180,146 C173,142 165,140 158,142"
-          stroke="#1A5C3E" stroke-width="24" fill="none" stroke-linecap="round"/>
-    <!-- Кисть у подбородка -->
-    <ellipse cx="148" cy="142" rx="17" ry="12" fill="#F5CC97"/>
-    <path d="M136,138 Q141,132 147,135" stroke="#D4A060" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-    <path d="M142,135 Q148,129 153,132" stroke="#D4A060" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-    <!-- Пузырьки мыслей (верхний правый угол) -->
-    <circle cx="214" cy="86" r="6.5" fill="#A8E6C5" opacity="0.65"/>
-    <circle cx="233" cy="62" r="10" fill="#A8E6C5" opacity="0.73"/>
-    <circle cx="254" cy="34" r="15" fill="#A8E6C5" opacity="0.82"/>
-  </svg>
-  <p class="last-punch-main">Если не бросишь здесь —<br>честно, я не знаю,<br>что тебе ещё поможет.</p>
-  <p class="last-punch-sub">Потому что здесь собрано всё:<br>метод, информация, люди и условия.</p>
-</div>
-
-<hr class="section-divider">
-
-<div class="block block-dark" id="join">
-  <h2 class="block-headline">«Купи билет»</h2>
-  <div class="ticket-rows">
-    <div class="ticket-row">
-      <p>Знаешь, как говорят: если долго откладываешь поездку в другую страну, просто купи билет. И ты полетишь — потому что уже купил.</p>
-      <img src="img-ticket.png" alt="" class="ticket-img">
-    </div>
-    <div class="ticket-row ticket-row-rev">
-      <img src="img-proud.png" alt="" class="ticket-img">
-      <p>Вот это и есть твой билет. Билет в жизнь, где ты не куришь. Где каждый твой вздох свежий. Где ты гордишься собой. Где твои близкие гордятся тобой.</p>
-    </div>
-    <p style="font-size:clamp(1rem,2.3vw,1.15rem);color:rgba(255,255,255,.7);margin:0 0 8px;text-align:center;">После того как <strong style="color:#fff;">«купил билет»</strong> тебе просто остаётся делать:</p>
-    <ul class="ticket-checklist" id="ticket-checklist">
-      <li class="tc-item"><span class="tc-icon">🎙️</span><span>Записывать кружочек каждый день</span></li>
-      <li class="tc-item"><span class="tc-icon">📖</span><span>Изучать уроки</span></li>
-      <li class="tc-item"><span class="tc-icon">📅</span><span>Выбрать благоприятный день Х</span></li>
-      <li class="tc-item"><span class="tc-icon">🧘</span><span>Медитация — бросить курить</span></li>
-      <li class="tc-item tc-item-final"><span class="tc-icon">✅</span><span>Ты — некурящий человек</span></li>
-      <li class="tc-item"><span class="tc-icon">🧠</span><span>Усиливать новые нейронные связи</span></li>
-    </ul>
-  </div>
-  <div class="scroll-hint">
-    <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
-      <polyline points="4,4 14,13 24,4" stroke="rgba(168,230,197,0.5)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <polyline points="4,17 14,26 24,17" stroke="rgba(168,230,197,0.28)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <a class="btn-main" href="#price">Стать свободным от никотина →</a>
-  <p class="price-note" id="cta-price-note">990 ₽ в месяц · отменить в любой момент</p>
-  <p class="cta-sub">Мы уже собрались. Одному — не вариант. Вместе — другое дело.</p>
-</div>
-
-<footer>
-  <p>Свежий Вздох · Программа по отказу от курения<br>
-  Артур Лето · <a href="https://instagram.com/leto.s.v" target="_blank">@leto.s.v</a></p>
-</footer>
-
-<!-- ─── TIMER WIDGET ─── -->
-<div id="timer-widget">
-  <div class="tw-time" id="tw-time">--:--:--</div>
-  <a href="#discount-ladder" class="tw-btn">Что случится,<br>когда время истечёт?</a>
-</div>
-
+<!-- ?v=N — бампать при КАЖДОЙ правке config.js, иначе браузер отдаёт
+     старый конфиг из кэша и правки «не появляются» на живом сайте -->
+<script src="config.js?v=11"></script>
 <script>
-// ─── ТИРЫ ───────────────────────────────────
-const KEY = 'svezhy_first_visit_v2';
-const H = 3600000;
-const TIERS = [
-  { until: 2*H,      price: '950 ₽/мес',   note: '950 ₽ в месяц · отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=s11nt' },
-  { until: 24*H,     price: '990 ₽/мес',   note: '990 ₽ в месяц · отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=sVVm' },
-  { until: 7*24*H,   price: '1 450 ₽/мес', note: '1 450 ₽ в месяц · отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nv' },
-  { until: Infinity,  price: '4 900 ₽/мес', note: '4 900 ₽ в месяц · отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nx' },
-];
-
-if (!localStorage.getItem(KEY)) {
-  localStorage.setItem(KEY, Date.now().toString());
-}
-
-function elapsed() { return Date.now() - parseInt(localStorage.getItem(KEY)); }
-
-function tierIdx() {
-  const e = elapsed();
-  for (let i = 0; i < TIERS.length; i++) if (e < TIERS[i].until) return i;
-  return TIERS.length - 1;
-}
-
-function pad(n) { return String(n).padStart(2, '0'); }
-
-function fmtRemaining(ms) {
-  if (ms <= 0) return null;
-  const s = Math.floor(ms / 1000);
-  const d = Math.floor(s / 86400);
-  const h = Math.floor((s % 86400) / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const sec = s % 60;
-  return d > 0 ? d + 'д ' + pad(h) + ':' + pad(m) + ':' + pad(sec)
-               : pad(h) + ':' + pad(m) + ':' + pad(sec);
-}
-
-function tick() {
-  const e = elapsed();
-  const idx = tierIdx();
-  const tier = TIERS[idx];
-
-  // Обновить цену в hero-блоке и в CTA
-  const hp = document.getElementById('hero-price');
-  if (hp) hp.textContent = tier.price;
-  const cn = document.getElementById('cta-price-note');
-  if (cn) cn.textContent = tier.note;
-  const bb = document.getElementById('buy-btn');
-  if (bb) bb.href = tier.link;
-  // Перечёркнутая цена — только для тиров со скидкой
-  const pw = document.getElementById('price-was');
-  if (pw) pw.style.display = (idx < TIERS.length - 1) ? 'block' : 'none';
-
-  // Подсветить активный тир в таблице
-  for (let i = 0; i < TIERS.length; i++) {
-    const el = document.getElementById('dt-' + i);
-    if (!el) continue;
-    el.classList.toggle('active', i === idx);
-    el.classList.toggle('past', i < idx);
-    el.classList.toggle('future', i > idx);
-  }
-
-  // Виджет
-  const tw = document.getElementById('tw-time');
-  const itBlock = document.getElementById('inline-timer');
-  const itCountdown = document.getElementById('it-countdown');
-  const itNext = document.getElementById('it-next-price');
-
-  if (idx === TIERS.length - 1) {
-    tw.textContent = '—';
-    if (itBlock) itBlock.style.display = 'none';
-  } else {
-    const rem = TIERS[idx].until - e;
-    const fmt = fmtRemaining(rem) || '00:00:00';
-    tw.textContent = fmt;
-    if (itCountdown) itCountdown.textContent = fmt;
-    if (itNext) itNext.textContent = TIERS[idx + 1].price;
-    if (itBlock) itBlock.style.display = 'flex';
-  }
-}
-
-setInterval(tick, 1000);
-tick();
-
-// Ticket checklist animation
 (function(){
-  const list = document.getElementById('ticket-checklist');
-  if (!list) return;
-  const items = list.querySelectorAll('.tc-item');
-  const obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        items.forEach(function(item, i){
-          setTimeout(function(){ item.classList.add('visible'); }, i * 180);
-        });
-        obs.disconnect();
-      }
-    });
-  }, { threshold: 0.25 });
-  obs.observe(list);
-})();
+'use strict';
 
-// Checklist scroll animation
-(function(){
-  const list = document.getElementById('repro-checklist');
-  if (!list) return;
-  const items = list.querySelectorAll('.repro-item');
-  const obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if (entry.isIntersecting) {
-        items.forEach(function(item, i){
-          setTimeout(function(){ item.classList.add('visible'); }, i * 180);
-        });
-        obs.disconnect();
-      }
-    });
-  }, { threshold: 0.25 });
-  obs.observe(list);
-})();
-</script>
+const stage=document.getElementById('stage'), topbar=document.getElementById('topbar');
+const fill=document.getElementById('fill'), stepn=document.getElementById('stepn'), backBt=document.getElementById('back');
 
-<script>
-const mq = window.matchMedia('(prefers-color-scheme: dark)');
-document.documentElement.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
-mq.addEventListener('change', e => document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light'));
-</script>
+const STORE='vzdoh_diag_v3';
+const LETTER={habit:'h',psycho:'p',stress:'s',physical:'f',social:'o',fear_break:'b',fear_weight:'w',low_belief:'l',focus:'c'};
 
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-var ytPlayer, ytDuration, ytMilestones = {};
-function onYouTubeIframeAPIReady() {
-  ytPlayer = new YT.Player('yt-player', {
-    events: {
-      onReady: function(e) { ytDuration = e.target.getDuration(); },
-      onStateChange: function(e) { if (e.data === YT.PlayerState.PLAYING) trackProgress(); }
-    }
+let answers=[], pos=-1, moneyK=1;
+
+/* ─── АКТИВНЫЕ ВОПРОСЫ ───────────────────────────────────────────
+   Вопрос про продукт не показываем, если этот продукт человек
+   уже назвал основным. «Несколько сразу» — показываем все.      */
+function mainProduct(){
+  const i = QUESTIONS.findIndex(q => q.key === 'product');
+  if (i < 0 || answers[i] == null) return null;
+  const o = QUESTIONS[i].a[answers[i]];
+  return o ? o.v : null;
+}
+/* opt = «оптимистично»: условие ещё не разрешилось (человек не дошёл
+   до вопроса, от которого зависит ветка) — считаем, что вопрос будет.
+   Нужно только для знаменателя прогресса. Без этого счётчик стартовал
+   с 19, а после ответа про попытки бросить прыгал на 21 — и полоска
+   ехала НАЗАД. Теперь знаменатель сразу 21 и может только уменьшиться,
+   то есть прогресс прыгает вперёд, а не назад.                        */
+function isActive(qi, opt){
+  const q = QUESTIONS[qi], main = mainProduct();
+  // «а что у вас с …» — про всё, кроме основного
+  if (q.product){
+    if (main === null) return !!opt;
+    if (main === 'mix') return true;
+    return q.product !== main;
+  }
+  // расход и цена — только под основной продукт
+  if (q.onlyProduct){
+    if (main === null) return !!opt && q.onlyProduct === 'cig';
+    if (main === 'mix') return q.onlyProduct === 'cig';
+    return q.onlyProduct === main;
+  }
+  // условие по ответу на другой вопрос
+  if (q.showIf){
+    const v = val(q.showIf.key);
+    if (v === null) return !!opt;
+    if (q.showIf.not !== undefined && v === q.showIf.not) return false;
+    if (q.showIf.is  !== undefined && v !== q.showIf.is)  return false;
+  }
+  return true;
+}
+function nextActive(from){ for(let i=Math.max(from,0);i<QUESTIONS.length;i++) if(isActive(i)) return i; return -1; }
+function prevActive(before){ for(let i=before-1;i>=0;i--) if(isActive(i)) return i; return -1; }
+function keyOf(qi){ return qi>=0 && QUESTIONS[qi] ? QUESTIONS[qi].key : null; }
+function activeList(opt){
+  const out = [];
+  for (let i = 0; i < QUESTIONS.length; i++) if (isActive(i, opt)) out.push(i);
+  return out;
+}
+
+/* Полный сброс: чистим сохранённые ответы и начинаем с интро.
+   Дёргается ссылкой «Пройти заново» и адресом ?reset            */
+function resetAll(){
+  try{ localStorage.removeItem(STORE); }catch(e){}
+  answers=[]; pos=-1; moneyK=1;
+  screenIntro();
+}
+function save(){ try{ localStorage.setItem(STORE, JSON.stringify({a:answers,p:pos,k:moneyK})); }catch(e){} }
+function load(){ try{ const d=JSON.parse(localStorage.getItem(STORE)||'null');
+  if(d&&Array.isArray(d.a)){ answers=d.a; pos=typeof d.p==='number'?d.p:-1; moneyK=d.k||1; } }catch(e){} }
+function goal(n){ if(window.ym) try{ ym(CONFIG.metrikaId,'reachGoal',n); }catch(e){} }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function fmt(n){ return Math.round(n).toLocaleString('ru-RU'); }
+/* ─── ДОЛЛАРЫ ───────────────────────────────────────────────────────
+   Диагностику проходят из Казахстана, Европы, Индонезии — там рубль
+   ни о чём не говорит. Рядом с каждой суммой идёт «≈ $N».
+   Крупные суммы округляем: «$18 400» вместо «$18 437» — это оценка,
+   и лишние цифры в ней выглядят как ложная точность.             */
+function usd(rub){
+  const r = (typeof CONFIG!=='undefined' && CONFIG.usdRate) || 80;
+  const d = rub / r;
+  // до $10 нужна десятая: пачка за 150₽ и за 200₽ иначе обе дают «$2»,
+  // и соседние варианты выглядят одинаковыми — как ошибка
+  if (d < 10) return '$' + d.toFixed(1).replace('.', ',').replace(',0', '');
+  let x = d;
+  if (x >= 1000)     x = Math.round(x/100)*100;
+  else if (x >= 100) x = Math.round(x/10)*10;
+  else               x = Math.round(x);
+  return '$' + x.toLocaleString('ru-RU');
+}
+function plural(n,a,b,c){ const x=n%10,y=n%100; if(x===1&&y!==11)return a; if(x>=2&&x<=4&&(y<12||y>14))return b; return c; }
+
+/* подстановка названия продукта: {что} → «пачку сигарет» и т.п. */
+function subst(t){
+  if (!t || t.indexOf('{что}') < 0) return t;
+  const m = mainProduct();
+  const w = (typeof PRODUCT_WORDS !== 'undefined' && PRODUCT_WORDS[m]) || 'запас никотина';
+  return t.split('{что}').join(w);
+}
+
+/* значение ответа по служебному ключу */
+function val(key){
+  const i = QUESTIONS.findIndex(q => q.key === key);
+  if (i < 0 || answers[i] == null) return null;
+  const o = QUESTIONS[i].a[answers[i]];
+  return o ? (o.v !== undefined ? o.v : answers[i]) : null;
+}
+
+/* ─── ДЕНЬГИ ─── */
+function moneyCalc(){
+  // расход и цена берутся под основной продукт человека:
+  // units — сколько покупок (пачек / флаконов / банок) уходит в день
+  const P = ['cig','vape','heat','snus','hookah'];
+  let units=null, price=null;
+  P.forEach(p=>{
+    const u=val('use_'+p);   if(u!==null && units===null) units=u;
+    const c=val('price_'+p); if(c!==null && price===null) price=c;
   });
+  if(units===null) units=1;
+  if(price===null) price=220;
+  const years = val('years') || 7;
+  const day = units * price * moneyK;
+  return { month: day*30, year: day*365, total: day*365*years, years: years, day: day };
 }
-function trackProgress() {
-  if (!ytPlayer || !ytDuration) return;
-  var pct = Math.floor(ytPlayer.getCurrentTime() / ytDuration * 100);
-  [25,50,75,100].forEach(function(m){if(pct>=m&&!ytMilestones[m]){ytMilestones[m]=true;}});
-  if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) setTimeout(trackProgress, 5000);
-}
-</script>
 
+/* ─── СТАДИЯ ЗАВИСИМОСТИ (по классификации доктора Звягина) ─── */
+function stageOf(){
+  const years=val('years'), carry=val('carry'), alone=val('alone'),
+        dry=val('dry'), control=val('control'), perday=val('perday'), morning=val('morning');
+
+  // 3-я: каждый день без пропусков + много + границы сдвинулись + утренняя сразу
+  let third = 0;
+  if (dry === 'never') third++;
+  if (perday >= 20) third++;
+  if (control === 'lost') third++;
+  if (morning !== null && morning <= 30) third++;
+  if (carry === 'always') third++;
+  if (alone === 'always') third++;   // курит непрерывно — маркер третьей стадии
+  if (third >= 4) return 3;
+
+  // 1-я: мало лет, не носит с собой, только в компании, есть длинные перерывы
+  let first = 0;
+  if (years !== null && years < 1) first++;
+  if (carry === 'no') first++;
+  if (alone === 'social') first++;
+  if (dry === 'long') first++;
+  if (first >= 3) return 1;
+
+  return 2;
+}
+
+/* ─── ПРОФИЛЬ ─── */
+function score(){
+  const raw={}, max={};
+  CATEGORIES.forEach(c=>{raw[c.code]=0;max[c.code]=0;});
+  // потолок считаем только по показанным вопросам — иначе пропущенные
+  // ветки занижали бы проценты
+  activeList().forEach(i=>{
+    const q=QUESTIONS[i];
+    CATEGORIES.forEach(c=>{
+      let b=0;
+      if(q.multi){
+        // потолок мультивыбора — две самые весомые отметки: реально
+        // больше двух почти никто не ставит, а брать сумму всех
+        // вариантов значило бы занизить проценты у всех
+        const v=q.a.map(o=>(o.s&&o.s[c.code])||0).sort((x,y)=>y-x);
+        b=(v[0]||0)+(v[1]||0);
+      } else q.a.forEach(o=>{const v=(o.s&&o.s[c.code])||0; if(v>b)b=v;});
+      max[c.code]+=b;
+    });
+    const picked = q.multi ? (Array.isArray(answers[i])?answers[i]:[]) : [answers[i]];
+    picked.forEach(n=>{
+      const ch=q.a[n];
+      if(ch&&ch.s) for(const k in ch.s) if(raw[k]!==undefined) raw[k]+=ch.s[k];
+    });
+  });
+  const list=CATEGORIES.map(c=>{
+    let pct=Math.round((raw[c.code]/(max[c.code]||1))*100);
+    pct=Math.max(8,Math.min(94,pct));
+    return {code:c.code,label:c.label,icon:c.icon,pct:pct,raw:raw[c.code]};
+  });
+  list.sort((a,b)=>b.pct-a.pct||b.raw-a.raw);
+  if(list[0].pct<72) list[0].pct=72+(list[0].raw%9);
+  return list;
+}
+
+function payload(list){
+  const d=QUESTIONS.map((q,i)=>{
+    if(answers[i]==null) return 'x';
+    return Array.isArray(answers[i]) ? '('+answers[i].join('')+')' : String(answers[i]);
+  }).join('');
+  return 'd2'+d+list.slice(0,3).map(x=>LETTER[x.code]||'x').join('')+'s'+stageOf();
+}
+
+/* ─── ОТРИСОВКА ─── */
+function paint(html,cls){
+  const old=stage.querySelector('.screen');
+  const draw=()=>{ stage.innerHTML='<div class="screen '+(cls||'')+'">'+html+'</div>'; window.scrollTo(0,0); };
+  if(old){ old.classList.add('leaving'); setTimeout(draw,130); } else draw();
+}
+/* Прогресс. Два отличия от прежнего:
+   1) считаем (n+1)/T, а не n/T — раньше после первого ответа полоска
+      всё ещё стояла на нуле, и человек не видел, что продвинулся;
+   2) стартовый кредит BASE% — эффект «выданного прогресса»: путь,
+      начатый не с нуля, доходят заметно чаще.                       */
+const PROGRESS_BASE = 9;
+function chrome(){
+  // счётчик и полоска считаются по оптимистичному списку — он не растёт
+  const act=activeList(true), T=act.length;
+  if(pos>=0&&pos<QUESTIONS.length){
+    const n=act.indexOf(pos), done=Math.max(n,0)+1;
+    topbar.classList.add('on');
+    fill.style.width=(T?(PROGRESS_BASE+done/T*(100-PROGRESS_BASE)):PROGRESS_BASE)+'%';
+    stepn.textContent=done+' / '+T;
+    backBt.style.visibility='visible';
+  }
+  else if(pos>=QUESTIONS.length){ topbar.classList.add('on'); fill.style.width='100%'; stepn.textContent=''; backBt.style.visibility='hidden'; }
+  else topbar.classList.remove('on');
+}
+
+/* ─── ЭКРАНЫ ─── */
+function screenIntro(){
+  pos=-1; save(); chrome();
+  // автор ушёл под кнопку и стал подписью в одну строку: экран про человека,
+  // а не про меня — но лицо перед первым вопросом всё равно нужно
+  const author = INTRO.author
+    ? '<div class="author"><img src="'+INTRO.author.img+'" alt="'+INTRO.author.name+'">'+
+      '<span class="author-t">'+INTRO.author.line+' <b>'+INTRO.author.name+'</b></span></div>'
+    : '';
+  paint(
+    '<div class="badge">'+INTRO.badge+'</div>'+
+    '<h1>'+INTRO.title+'</h1>'+
+    '<p>'+INTRO.lead+'</p>'+
+    ((INTRO.bullets&&INTRO.bullets.length)?'<ul class="getlist">'+INTRO.bullets.map(b=>'<li><b>→</b><span>'+b+'</span></li>').join('')+'</ul>':'')+
+    '<div class="cta-dock"><button class="btn" id="go">'+INTRO.cta+'</button>'+
+      ((INTRO.meta&&INTRO.meta.length)?'<div class="intro-meta">'+INTRO.meta.map(m=>'<div class="im"><b>'+m.b+'</b>'+(m.s?'<span>'+m.s+'</span>':'')+'</div>').join('')+'</div>':'')+
+      author+
+      (INTRO.note?'<p class="privacy">'+INTRO.note+'</p>':'')+'</div>',
+    'intro');
+  // обработчик — только после отрисовки: paint() откладывает её на 130мс,
+  // когда на экране уже есть предыдущий кадр (возврат «Назад» с первого
+  // вопроса, «Пройти заново»). Синхронно здесь ловился null, и кнопка
+  // «Пройти диагностику» оставалась мёртвой — человек застревал на интро
+  setTimeout(()=>{
+    const g=document.getElementById('go');
+    if(g) g.onclick=()=>{ goal('diag_start'); step(0); };
+  },140);
+}
+
+function screenQuestion(i){
+  const q=QUESTIONS[i];
+  const act=activeList(true), n=act.indexOf(i), T=act.length;   // та же шкала, что видит человек
+  if(T){ [25,50,75].forEach(m=>{ if(Math.round(n/T*100)===m) goal('diag_'+m); }); }
+  if(q.multi) return screenMulti(i);
+  paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
+    '<div class="opts">'+q.a.map((o,n)=>'<button class="opt'+(answers[i]===n?' sel':'')+'" data-n="'+n+'">'+o.t+
+      // на вопросах о цене к каждому диапазону дописываем доллары:
+      // человек не из России иначе не понимает, что он выбирает
+      (q.usd && o.v!==undefined ? '<i class="usd">≈ '+usd(o.v)+'</i>' : '')+
+      '</button>').join('')+'</div>','qwrap');
+  setTimeout(()=>{
+    stage.querySelectorAll('.opt').forEach(b=>{
+      b.onclick=()=>{ answers[i]=+b.dataset.n;
+        stage.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+        save(); setTimeout(()=>step(i+1),120); };
+    });
+  },140);
+}
+
+/* ─── ЭКРАН С МУЛЬТИВЫБОРОМ ───────────────────────────────────────
+   Вариант с основным продуктом человека прячем — спрашивать «а что
+   у вас с сигаретами» того, кто только что выбрал сигареты, глупо.
+   Вариант none («ничего, только основное») взаимоисключающий.
+   Кнопка активна всегда: если ничего не отмечено, она честно
+   называется «Ничего из этого» — тупика с неактивной кнопкой нет. */
+function screenMulti(i){
+  const q=QUESTIONS[i], main=mainProduct();
+  if(!Array.isArray(answers[i])) answers[i]=[];
+  // если человек вернулся назад и сменил основной продукт — снимаем
+  // отметку, которая теперь спрятана, иначе она молча шла бы в баллы
+  answers[i]=answers[i].filter(n=>!(q.a[n] && q.a[n].p && q.a[n].p===main));
+  save();
+  const shown=q.a.map((o,n)=>({o:o,n:n})).filter(x=>!(x.o.p && x.o.p===main));
+  const sel=()=>answers[i];
+
+  paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
+    '<div class="opts">'+shown.map(x=>
+      '<button class="opt multi'+(sel().indexOf(x.n)>-1?' sel':'')+'" data-n="'+x.n+'"'+(x.o.none?' data-none="1"':'')+'>'+x.o.t+'</button>'
+    ).join('')+'</div>'+
+    '<div class="cta-dock"><button class="btn" id="mgo"></button></div>','qwrap');
+
+  setTimeout(()=>{
+    const go=document.getElementById('mgo');
+    const label=()=>{ if(go) go.textContent = sel().length ? 'Продолжить' : 'Ничего из этого'; };
+    stage.querySelectorAll('.opt').forEach(b=>{
+      b.onclick=()=>{
+        const n=+b.dataset.n, isNone=b.dataset.none==='1', at=sel().indexOf(n);
+        if(at>-1) answers[i].splice(at,1);
+        else {
+          if(isNone) answers[i]=[n];                                   // «ничего» гасит остальное
+          else answers[i]=sel().filter(k=>!q.a[k].none).concat(n);     // любой другой гасит «ничего»
+        }
+        stage.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel', sel().indexOf(+x.dataset.n)>-1));
+        save(); label();
+      };
+    });
+    label();
+    if(go) go.onclick=()=>{ save(); step(i+1); };
+  },140);
+}
+
+function screenMoney(nextPos){
+  const m=moneyCalc();
+  paint(
+    '<div class="mid-icon">'+MONEY.icon+'</div>'+
+    '<h2>'+MONEY.title+'</h2>'+
+    '<p>'+MONEY.lead+'</p>'+
+    '<div class="money"><b>'+fmt(m.month)+' ₽</b><u>≈ '+usd(m.month)+'</u><span>в месяц уходит на никотин</span></div>'+
+    '<p style="font-weight:700;color:#fff;margin-top:2px">'+MONEY.ask+'</p>'+
+    '<div class="opts" style="margin-top:-6px">'+
+      MONEY.opts.map((o,n)=>'<button class="opt" data-k="'+o.k+'">'+o.t+'</button>').join('')+
+    '</div>','mid');
+  setTimeout(()=>{
+    stage.querySelectorAll('.opt').forEach(b=>{
+      b.onclick=()=>{ moneyK=parseFloat(b.dataset.k)||1; save(); screenMoney2(nextPos); };
+    });
+  },180);
+}
+
+function screenMoney2(nextPos){
+  const m=moneyCalc();
+  paint(
+    '<div class="mid-icon">🔥</div>'+
+    '<h2>Тогда вот полная картина</h2>'+
+    '<div class="money"><b>'+fmt(m.year)+' ₽</b><u>≈ '+usd(m.year)+'</u><span>вы отдаёте за никотин каждый год</span></div>'+
+    // «уже ушло за N лет» — только при стаже от года: на ответе
+    // «меньше года» (v=0.7) выходило «за 0.7 год», да и считать
+    // накопленный итог там ещё не о чем
+    (m.years >= 1
+      ? '<div class="money alt"><b>'+fmt(m.total)+' ₽</b><u>≈ '+usd(m.total)+'</u><span>уже ушло дымом за '+fmt(m.years)+' '+plural(Math.round(m.years),'год','года','лет')+'</span></div>'
+      : '')+
+    '<p>'+(m.years>=1 ? MONEY.outro : MONEY.outroShort || MONEY.outro)+'</p>'+
+    '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>','mid');
+  setTimeout(()=>{ const c=document.getElementById('cont'); if(c) c.onclick=()=>step(nextPos,true); },180);
+}
+
+function screenInterlude(it,nextPos){
+  if(it.kind==='money') return screenMoney(nextPos);
+  const pic = it.img ? '<img src="'+it.img+'" alt="" class="mid-img">' : '';
+  paint((it.icon?'<div class="mid-icon">'+it.icon+'</div>':'')+'<h2>'+it.title+'</h2>'+pic+'<p>'+it.body+'</p>'+
+    '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>','mid');
+  setTimeout(()=>{ const c=document.getElementById('cont'); if(c) c.onclick=()=>step(nextPos,true); },180);
+}
+
+function screenAnalysis(){
+  pos=QUESTIONS.length; save(); chrome(); goal('diag_analysis');
+  paint('<h2>Анализируем ваши ответы</h2><div class="an-list">'+
+    ANALYSIS_STEPS.map((s,i)=>'<div class="an-row" id="ar'+i+'"><div class="an-head"><span class="an-name">'+s+'</span><span class="an-val" id="av'+i+'">0%</span></div><div class="an-bar"><i id="ab'+i+'"></i></div></div>').join('')+
+    '</div>','an');
+  // у каждой полоски своя длительность: первая самая долгая,
+  // остальные вразнобой — так это выглядит как настоящая работа,
+  // а не как ровный прогрессбар
+  const W=[2.5,0.7,1.5,0.6,1.1], sum=W.reduce((a,b)=>a+b,0);
+  const dur=W.map(w=>CONFIG.analysisMs*w/sum);
+  const startAt=[]; dur.reduce((acc,d,i)=>{startAt[i]=acc; return acc+d;},0);
+
+  setTimeout(()=>{
+    ANALYSIS_STEPS.forEach((s,i)=>{
+      setTimeout(()=>{
+        const row=document.getElementById('ar'+i),v=document.getElementById('av'+i),bar=document.getElementById('ab'+i);
+        if(!row)return; row.classList.add('on');
+        const d=dur[i]||1000, ticks=Math.max(6,Math.round(d/90));
+        let p=0,k=0;
+        const tick=setInterval(()=>{
+          k++; p+=(100/ticks)*(0.55+Math.random()*0.95);
+          if(k>=ticks||p>=100){p=100;clearInterval(tick);}
+          if(v)v.textContent=Math.round(p)+'%'; if(bar)bar.style.width=p+'%';
+          if(p===100&&v)v.innerHTML='&#10003;';
+        },d/ticks);
+      },startAt[i]||0);
+    });
+    setTimeout(screenResult,CONFIG.analysisMs+300);
+  },180);
+}
+
+/* Зона риска по стажу. Диагноз не ставим — только принадлежность к
+   группе. Блок обязательно заканчивается тем, что восстанавливается
+   после отказа: страх без выхода люди закрывают, а не решают.      */
+function riskCard(){
+  if(typeof RISK==='undefined' || !RISK.tiers) return '';
+  const y = val('years');
+  if(y===null) return '';
+  const t = RISK.tiers.find(x=>y>=x.minYears);
+  if(!t) return '';
+  // при ответе «меньше года» round дал бы «1 год» — это уже неправда
+  const срок = y<1 ? 'меньше года' : fmt(y)+' '+plural(Math.round(y),'год','года','лет');
+  return '<div class="card warn"><h3>'+RISK.title+'</h3>'+
+    '<p>Вы употребляете никотин '+срок+'. '+t.lead+'</p>'+
+    '<ul class="risk">'+t.items.map(i=>'<li>'+i+'</li>').join('')+'</ul>'+
+    '<p>'+t.back+'</p>'+
+    '<p class="risk-note">'+RISK.note+'</p></div>';
+}
+
+function screenResult(){
+  pos=QUESTIONS.length+1; save(); chrome(); goal('diag_result');
+
+  const list=score(), top=list[0], prof=PROFILES[top.code]||PROFILES.habit;
+  const st=stageOf(), S=STAGES[st], m=moneyCalc();
+
+  const bars=list.slice(0,5).map((c,i)=>
+    '<div class="bar-row'+(i===0?' top':'')+'"><div class="bar-head"><span class="bar-name">'+c.icon+' '+c.label+'</span><span class="bar-pct">'+c.pct+'%</span></div><div class="bar-track"><i data-w="'+c.pct+'"></i></div></div>').join('');
+
+  // Пока видео нет — не показываем ничего. Плейсхолдер «скоро будет»
+  // стоял в точке принятия решения и читался как «продукт сырой».
+  const video=prof.video
+    ? '<div class="video-box"><video src="'+prof.video+'" controls playsinline preload="metadata"></video></div>'
+    : '';
+
+  const steps=METHOD.steps.map((s,i)=>
+    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4>'+(s.sub?'<p class="mstep-sub">'+s.sub+'</p>':'')+'<p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
+
+  let lid='';
+  try{ lid=localStorage.getItem('vzdoh_lid')||''; if(!lid){ lid='l'+Math.abs(Date.parse(new Date().toISOString())%1e9).toString(36)+Math.floor(performance.now()).toString(36); localStorage.setItem('vzdoh_lid',lid);} }catch(e){}
+  const utm=[]; try{ const u=new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{ if(u.get(k)) utm.push(k+'='+encodeURIComponent(u.get(k))); }); }catch(e){}
+  let land=CONFIG.landingLink.replace('{code}',top.code);
+  land += (land.indexOf('?')>-1?'&':'?')+'lid='+encodeURIComponent(lid)+'&stage='+st+(utm.length?'&'+utm.join('&'):'');
+
+  paint(
+    '<div class="eyebrow">Ваш результат</div>'+
+    '<h1>'+prof.title+'</h1>'+
+    '<div class="bars">'+bars+'</div>'+
+    '<div class="card"><h3>Что это значит</h3><p>'+prof.verdict+'</p></div>'+
+    // тем, кто ни разу не пробовал бросать, «почему срывались раньше»
+    // говорить нельзя: срывов не было, и человек сразу видит, что текст
+    // писали не про него — доверие ко всему разбору падает
+    (val('tries')==='none' && prof.whyNone
+      ? '<div class="card"><h3>Где это обычно срывается</h3><p>'+prof.whyNone+'</p></div>'
+      : '<div class="card"><h3>Почему срывались раньше</h3><p>'+prof.why+'</p></div>')+
+
+    '<div class="card warn"><span class="stage-badge">'+S.n+'</span>'+
+      '<h3 style="margin-top:2px">'+S.lead+'</h3>'+
+      '<p>'+S.body+'</p><p><strong>'+S.warn+'</strong></p>'+
+      
+    '</div>'+
+
+    '<div class="card"><h3>За это время вы отдали</h3>'+
+      '<p style="font-size:1.5rem;font-weight:800;color:var(--acc);letter-spacing:-.02em">'+fmt(m.total)+' ₽ <u class="usd-inline">≈ '+usd(m.total)+'</u></p>'+
+      '<p>И продолжаете отдавать примерно '+fmt(m.month)+' ₽ <u class="usd-inline">≈ '+usd(m.month)+'</u> каждый месяц.</p></div>'+
+    riskCard()+
+
+    video+
+    '<div class="card"><h3>Что с этим делаем</h3><ul class="plan">'+prof.plan.map(p=>'<li><b>—</b><span>'+p+'</span></li>').join('')+'</ul></div>'+
+
+    '<div class="method-head"><h2>'+METHOD.title+'</h2><p>'+METHOD.lead+'</p></div>'+
+    steps+
+    '<div class="card"><h3>Сработает ли это у вас</h3><p>'+prof.fit+'</p></div>'+
+    '<div class="card warn"><h3>'+METHOD.honest.title+'</h3><p>'+METHOD.honest.body+'</p><p><strong>'+METHOD.honest.body2+'</strong></p></div>'+
+
+    '<div class="outro"><h2>'+OUTRO.title+'</h2><p>'+OUTRO.body+'</p></div>'+
+    '<div class="alone">'+
+      (OUTRO.points||[]).map((p,i)=>'<div class="al"><span class="al-n">'+(i+1)+'</span><span class="al-t"><b>'+p.t+'</b><span>'+p.d+'</span></span></div>').join('')+
+    '</div>'+
+    (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
+    // ровно одна кнопка — ничто не делит внимание в точке решения
+    '<div class="cta-dock">'+
+      '<a class="btn" id="toplan" href="'+land+'">'+OUTRO.cta+'</a>'+
+      '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
+      (CONFIG.restartBtn?'<a class="btn-debug" id="restart" href="#">↻ Пройти диагностику заново <i>(отладка)</i></a>':'')+
+    '</div>','res');
+
+  setTimeout(()=>{
+    stage.querySelectorAll('.bar-track i').forEach((el,i)=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},90+i*110));
+    const a=document.getElementById('toplan'); if(a)a.onclick=()=>goal('diag_to_landing');
+    const r=document.getElementById('restart'); if(r)r.onclick=e=>{ e.preventDefault(); resetAll(); };
+  },220);
+}
+
+/* ─── НАВИГАЦИЯ ─── */
+function step(i,skipInterlude){
+  if(i<0) return screenIntro();
+  const qi = nextActive(i);
+
+  // вопросы кончились — последняя вставка, затем анализ
+  if(qi<0){
+    if(!skipInterlude){
+      const last=INTERLUDES.find(x=>x.last);
+      if(last){ pos=QUESTIONS.length-1; save(); chrome(); return screenInterlude(last,QUESTIONS.length); }
+    }
+    return screenAnalysis();
+  }
+
+  if(!skipInterlude){
+    const it=INTERLUDES.find(x=>x.beforeKey && x.beforeKey===keyOf(qi));
+    if(it){ pos=qi; save(); chrome(); return screenInterlude(it,qi); }
+  }
+  pos=qi; save(); chrome(); screenQuestion(qi);
+}
+backBt.onclick=()=>{ const p=prevActive(pos); if(p<0) return screenIntro(); step(p,true); };
+
+// .../diagnostika/?reset — начать с чистого листа. Не зависит от
+// CONFIG.restartBtn, так что остаётся рабочим и после отладки
+try{ if(new URLSearchParams(location.search).has('reset')) localStorage.removeItem(STORE); }catch(e){}
+
+load();
+if(pos>=QUESTIONS.length+1 && activeList().every(i=>answers[i]!=null)) screenResult();
+else if(pos>=0 && pos<QUESTIONS.length) step(pos,true);
+else screenIntro();
+})();
+</script>
 </body>
 </html>

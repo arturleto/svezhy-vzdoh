@@ -8,7 +8,7 @@
 
 const CONFIG = {
   botLink:      'https://t.me/SvezhiyVzdohBot?start={payload}',
-  landingLink:  '../test2/?d={code}',
+  landingLink:  'test2/?d={code}',
   analysisMs:   7000,
   metrikaId:    110722782,
 
@@ -18,7 +18,7 @@ const CONFIG = {
      и при заходе сразу открывает результат.
      Сбросить можно и без этой кнопки — адресом .../diagnostika/?reset
      (он работает всегда, независимо от флага).                     */
-  restartBtn:   true,
+  restartBtn:   false,
 
   /* Курс для перевода сумм в доллары: диагностику проходят не только
      из России — Казахстан, Европа, Индонезия. Рублёвая цифра им ничего
