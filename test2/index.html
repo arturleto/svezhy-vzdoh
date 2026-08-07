@@ -383,7 +383,6 @@ footer a{color:#A8E6C5;text-decoration:none}
     <div class="btns">
       <a class="btn" id="pay-btn" href="https://web.tribute.tg/p/AQN" target="_blank" rel="noopener" data-ev="pay_click">Забронировать место</a>
       <a class="btn btn-2" id="ask-btn" href="https://ig.me/m/leto.s.v" target="_blank" rel="noopener" data-ev="ask_click">Сначала задать вопрос Артуру</a>
-      <a class="btn btn-2" id="diag-btn" href="../diagnostika/" data-ev="diag_click">Пока сомневаюсь — пройти диагностику</a>
       <p class="undertext">Возврат до старта и в первые 3 дня потока</p>
     </div>
   </div>
@@ -474,7 +473,6 @@ const CONFIG = {
   var lid = ''; try { lid = new URLSearchParams(location.search).get('lid') || ''; if (lid) localStorage.setItem('vzdoh_lid', lid); else lid = localStorage.getItem('vzdoh_lid') || ''; } catch(e){}
   var pb = $('pay-btn'); if (pb) { pb.href = withUtm(CONFIG.payUrl); pb.target = '_blank'; pb.rel = 'noopener'; }
   var ab = $('ask-btn'); if (ab) { ab.href = withUtm(CONFIG.askUrl); ab.target = '_blank'; ab.rel = 'noopener'; }
-  var db = $('diag-btn'); if (db && utm.length) db.href = withUtm(db.getAttribute('href'));
   set('pay-btn', 'Забронировать место за ' + CONFIG.price);
 
   /* ── подхват диагноза из диагностики (?d=stress) ── */
