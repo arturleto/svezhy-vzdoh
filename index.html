@@ -320,6 +320,18 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opa
 .btn-debug i{font-style:normal;opacity:.6}
 .btn-debug:hover{color:var(--w);border-color:rgba(255,255,255,.4)}
 .privacy{text-align:center;font-size:.77rem;color:var(--w70);margin-top:12px;line-height:1.5}
+
+/* ── БЛОК «РАЗБОР ОТ АРТУРА» ────────────────────────────────────────
+   Синий, а не мятный: это не про покупку программы, а про личный
+   контакт — визуально не должен спорить с главной кнопкой внизу */
+.tg-card{margin-top:26px;padding:26px 24px;border-radius:20px;
+  background:linear-gradient(160deg, rgba(44,124,214,.16), rgba(26,74,138,.10));
+  border:1px solid rgba(90,160,235,.32);text-align:center}
+.tg-h{font-size:clamp(1.15rem,4.4vw,1.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.25}
+.tg-p{font-size:.96rem;color:var(--w86);line-height:1.6;margin-top:10px;text-wrap:balance}
+.btn-tg{margin-top:18px;background:#4E9BE8;color:#04121F;box-shadow:0 10px 30px rgba(78,155,232,.28)}
+.btn-tg:hover{background:#63A9EC}
+.tg-note{font-size:.8rem;color:var(--w70);margin-top:11px;line-height:1.5}
 </style>
 </head>
 <body>
@@ -526,12 +538,29 @@ function score(){
   return list;
 }
 
+/* ─── КОД РАЗБОРА ДЛЯ TELEGRAM ──────────────────────────────────────
+   Уезжает в бота как ?start=<код>. Telegram разрешает в этом месте
+   ТОЛЬКО [A-Za-z0-9_-] и не больше 64 символов — прошлая версия
+   кодировала мультивыбор скобками «(012)», и такая ссылка просто не
+   открывалась.
+   Формат: d3 · по символу на вопрос · «_» · топ-3 категории · стадия
+   Один вопрос = один символ base36 (индекс ответа), мультивыбор =
+   битовая маска в base36 (7 вариантов → максимум 127 → 2 символа),
+   без ответа = «z». Итог укладывается примерно в 30 символов.      */
+const PAYLOAD_VER = 'd3';
 function payload(list){
-  const d=QUESTIONS.map((q,i)=>{
-    if(answers[i]==null) return 'x';
-    return Array.isArray(answers[i]) ? '('+answers[i].join('')+')' : String(answers[i]);
+  const d = QUESTIONS.map((q, i) => {
+    const a = answers[i];
+    if (a == null) return 'z';
+    if (Array.isArray(a)) {
+      let mask = 0;
+      a.forEach(n => { mask |= (1 << n); });
+      return mask.toString(36).padStart(2, '0');
+    }
+    return Number(a).toString(36);
   }).join('');
-  return 'd2'+d+list.slice(0,3).map(x=>LETTER[x.code]||'x').join('')+'s'+stageOf();
+  const top = list.slice(0, 3).map(x => LETTER[x.code] || 'z').join('');
+  return (PAYLOAD_VER + d + '_' + top + stageOf()).slice(0, 64);
 }
 
 /* ─── ОТРИСОВКА ─── */
@@ -809,6 +838,23 @@ function screenResult(){
       (OUTRO.points||[]).map((p,i)=>'<div class="al"><span class="al-n">'+(i+1)+'</span><span class="al-t"><b>'+p.t+'</b><span>'+p.d+'</span></span></div>').join('')+
     '</div>'+
     (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
+    /* ── РАЗБОР ОТ АРТУРА ───────────────────────────────────────────
+       Обещанное (разбор + метод) человек уже получил выше — бесплатно
+       и без условий. Telegram просим не как шлагбаум, а за ДОПОЛНИТЕЛЬНУЮ
+       ценность: личный разбор. Поэтому блок стоит после результата, а не
+       перед ним, и его можно пропустить.
+       Ответы уезжают в бота кодом в ?start= — там из них соберётся
+       карточка, и человек сам решит, отправлять её Артуру или нет.   */
+    (CONFIG.botLink
+      ? '<div class="tg-card">'+
+          '<div class="tg-h">Хотите разбор лично от меня?</div>'+
+          '<p class="tg-p">Откройте бота — ваши ответы перенесутся туда автоматически. '+
+          'Дальше одна кнопка «Отправить Артуру», и я посмотрю вашу ситуацию и отвечу лично.</p>'+
+          '<a class="btn btn-tg" id="tobot" href="'+CONFIG.botLink.replace('{payload}', payload(list))+'" target="_blank" rel="noopener">Получить разбор от Артура</a>'+
+          '<p class="tg-note">Ничего не отправится, пока вы сами не нажмёте кнопку в боте</p>'+
+        '</div>'
+      : '')+
+
     // ровно одна кнопка — ничто не делит внимание в точке решения
     '<div class="cta-dock">'+
       '<a class="btn" id="toplan" href="'+land+'">'+OUTRO.cta+'</a>'+
@@ -819,6 +865,7 @@ function screenResult(){
   setTimeout(()=>{
     stage.querySelectorAll('.bar-track i').forEach((el,i)=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},90+i*110));
     const a=document.getElementById('toplan'); if(a)a.onclick=()=>goal('diag_to_landing');
+    const tb=document.getElementById('tobot'); if(tb)tb.onclick=()=>goal('diag_to_bot');
     const r=document.getElementById('restart'); if(r)r.onclick=e=>{ e.preventDefault(); resetAll(); };
   },220);
 }
