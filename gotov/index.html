@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110722782', 'ym');
+    ym(110722782, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110722782" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#070C16">
+<title>Диагностика зависимости — Свежий Вздох</title>
+<meta name="description" content="Трёхминутная диагностика курильщика: что держит на никотине именно вас, на какой вы стадии — и метод выхода из зависимости без ломки, без стресса, без зажоров.">
+<meta property="og:title" content="Диагностика курильщика — и метод выхода в конце">
+<meta property="og:description" content="3 минуты: что держит вас на никотине, ваша стадия — и метод выхода из зависимости без ломки, без стресса, без зажоров.">
+<!-- Превью для мессенджеров. ?v=N — Telegram кэширует картинку намертво
+     и сам её не обновляет: при смене изображения БАМПАТЬ версию -->
+<meta property="og:image" content="https://arturleto.github.io/svezhy-vzdoh/og-diag.jpg?v=1">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta property="og:image:alt" content="Женщина выходит из своей прошлой версии, которая всё ещё на нитях зависимости">
+<meta property="og:url" content="https://arturleto.github.io/svezhy-vzdoh/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  /* Фон синий — холодный «медицинский» тон, он же читается как доверие.
+     Акцент оставлен мятным: связка с брендом и с лендингом, куда человек
+     уходит сразу после диагностики. Чтобы увести акцент в синий —
+     менять только --acc / --acc-dim / --acc-line и --on-acc. */
+  --bg:#070C16; --bg-soft:#0D1523;
+  --glow:rgba(26,74,138,.46); --glow-soft:rgba(26,74,138,.20);
+  --acc:#A8E6C5; --acc-dim:rgba(168,230,197,.16); --acc-line:rgba(168,230,197,.34);
+  --on-acc:#04121F;
+  --w:#FFFFFF; --w86:rgba(255,255,255,.86); --w70:rgba(255,255,255,.70);
+  --card:rgba(255,255,255,.055); --card-line:rgba(255,255,255,.11);
+  --warn:#FFD08A; --warn-dim:rgba(255,208,138,.12); --warn-line:rgba(255,208,138,.3);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--w);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 70% at 50% -10%, var(--glow) 0%, transparent 62%),
+             radial-gradient(90% 55% at 50% 108%, var(--glow-soft) 0%, transparent 60%);}
+
+/* тонкое зерно поверх всего: убирает «пластик» плоских градиентов и
+   полосы на тёмном фоне (banding) на дешёвых экранах. Держать ниже
+   .06 — выше начинает мылить текст */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.app{position:relative;z-index:1;min-height:100dvh;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:20;padding:calc(env(safe-area-inset-top) + 12px) 20px 12px;
+  display:flex;align-items:center;gap:14px;
+  background:linear-gradient(to bottom, rgba(7,12,22,.95), rgba(7,12,22,.75) 70%, transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .3s}
+.topbar.on{opacity:1;pointer-events:auto}
+.back{width:38px;height:38px;flex-shrink:0;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
+.back:hover{background:rgba(255,255,255,.08)}
+.back svg{width:19px;height:19px;stroke:var(--w70);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.track{flex:1;height:3px;border-radius:50px;background:rgba(255,255,255,.13);overflow:hidden}
+.fill{height:100%;width:0;border-radius:50px;background:var(--acc);transition:width .55s var(--ease)}
+.step-n{font-size:.8rem;color:var(--w70);font-variant-numeric:tabular-nums;flex-shrink:0;min-width:46px;text-align:right}
+
+.stage{flex:1;display:flex;flex-direction:column;padding:0 20px calc(env(safe-area-inset-bottom) + 28px)}
+.screen{flex:1;display:flex;flex-direction:column;max-width:520px;width:100%;margin:0 auto;animation:enter .42s var(--ease) both}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.screen.leaving{animation:leave .2s ease both}
+@keyframes leave{to{opacity:0;transform:translateY(-10px)}}
+@media(prefers-reduced-motion:reduce){.screen,.screen.leaving{animation:none}}
+
+/* ИНТРО */
+/* safe center — при контенте выше экрана обычный center срезал бы
+   верх; safe в этом случае прижимает к началу вместо обрезки */
+/* padding снизу больше верхнего: блок садится в ОПТИЧЕСКИЙ центр —
+   геометрический центр глаз читает как «съехало вниз» */
+.intro{position:relative;justify-content:safe center;text-align:center;gap:20px;padding:24px 0 78px}
+
+/* ── АВРОРА ─────────────────────────────────────────────────────────
+   Два мягких пятна (мятное сверху, синее снизу) медленно дышат в
+   ритме дыхания — 14с на цикл. Экран перестаёт быть плоской заливкой
+   и «живёт», пока человек читает оффер. Только на интро: на вопросах
+   движущийся фон отвлекал бы от выбора.
+   z-index:-1 — .app создаёт свой контекст наложения, поэтому слой
+   уходит под контент, но остаётся над общим градиентом body::before */
+.intro::before{content:'';position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 24% at 50% 45%, rgba(168,230,197,.22) 0%, transparent 72%),
+             radial-gradient(55% 34% at 12% 58%, rgba(44,124,214,.34) 0%, transparent 70%),
+             radial-gradient(55% 34% at 90% 48%, rgba(30,86,160,.32) 0%, transparent 70%),
+             radial-gradient(70% 40% at 50% 8%, rgba(20,58,110,.30) 0%, transparent 72%);
+  filter:blur(16px);animation:aurora 14s ease-in-out infinite}
+/* виньетка — гасит углы и собирает взгляд в центр, где оффер и кнопка */
+.intro::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(78% 58% at 50% 46%, transparent 30%, rgba(4,8,15,.55) 78%, rgba(3,6,12,.82) 100%)}
+@keyframes aurora{
+  0%,100%{transform:translate3d(-2%,-1%,0) scale(1)}
+  50%    {transform:translate3d(2%,2%,0)  scale(1.1)}}
+
+/* появление лесенкой: строки встают одна за другой, а не всё разом —
+   взгляд ведут сверху вниз ровно до кнопки */
+.screen.intro{animation:none}
+.intro>*{animation:rise .78s var(--ease) both}
+.intro .badge{animation-delay:.06s}
+.intro h1{animation-delay:.16s}
+.intro p{animation-delay:.28s}
+.intro .cta-dock{animation-delay:.42s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* стеклянный бейдж с живой точкой — «вы здесь, вас узнали» */
+.badge{position:relative;align-self:center;display:inline-flex;align-items:center;gap:9px;padding:9px 18px 9px 15px;border-radius:50px;
+  background:linear-gradient(180deg, rgba(168,230,197,.14), rgba(168,230,197,.07));
+  border:1px solid var(--acc-line);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 4px 22px rgba(168,230,197,.10), inset 0 1px 0 rgba(255,255,255,.10)}
+.badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--acc);flex-shrink:0;
+  box-shadow:0 0 0 0 rgba(168,230,197,.6);animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{
+  0%  {box-shadow:0 0 0 0 rgba(168,230,197,.55)}
+  70% {box-shadow:0 0 0 9px rgba(168,230,197,0)}
+  100%{box-shadow:0 0 0 0 rgba(168,230,197,0)}}
+
+/* заголовок и подзаголовок держим почти в одном кегле: экран читается
+   как одно связное предложение, а не «шапка + мелкий текст под ней» */
+.intro h1{font-size:clamp(1.62rem,5.8vw,2.05rem);font-weight:800;line-height:1.18;letter-spacing:-.028em;text-wrap:balance}
+/* акцент — не плоская заливка, а градиент по тексту + мягкое свечение:
+   строка светится изнутри, как подсвеченная вывеска */
+.intro h1 em{font-style:normal;
+  background:linear-gradient(103deg,#E4FBEE 0%,var(--acc) 42%,#79D3AC 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 22px rgba(168,230,197,.30))}
+.intro p{font-size:clamp(1.12rem,4.3vw,1.34rem);color:var(--w86);line-height:1.52;text-wrap:balance;max-width:23ch;margin:0 auto}
+.intro p em{font-style:normal;font-weight:800;color:var(--acc);
+  text-shadow:0 0 18px rgba(168,230,197,.28)}
+.getlist{display:flex;flex-direction:column;gap:9px;text-align:left;width:100%;margin-top:2px}
+.getlist li{list-style:none;display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:13px;padding:13px 16px;font-size:.96rem;color:var(--w86);line-height:1.4}
+.getlist li b{color:var(--acc);flex-shrink:0;font-weight:900}
+/* автор — короткая подпись под кнопкой: лицо для доверия, без плашки
+   и без рассказа о себе. Экран весь про посетителя, автор тут — сноска */
+.author{display:flex;align-items:center;justify-content:center;gap:9px;width:100%}
+.author img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:50% 22%;flex-shrink:0;border:1.5px solid var(--acc-line)}
+.author-t{font-size:.83rem;color:var(--w70);line-height:1.4}
+.author-t b{font-weight:700;color:var(--w86)}
+/* цифры стоят под кнопкой одной строкой: так они попадаются на глаза
+   ровно в момент решения и не отъедают высоту у самого экрана */
+.intro-meta{display:flex;justify-content:center;align-items:center;gap:9px;flex-wrap:wrap;margin-top:11px}
+.im{display:flex;align-items:baseline;gap:5px}
+.im+.im::before{content:'·';color:var(--w70);margin-right:5px}
+.im b{font-size:.95rem;font-weight:800;color:var(--acc);letter-spacing:-.01em}
+.im span{font-size:.85rem;color:var(--w70)}
+
+/* ВОПРОС */
+.qwrap{justify-content:flex-start;padding-top:24px;gap:24px}
+.q{font-size:clamp(1.4rem,5.4vw,1.9rem);font-weight:800;line-height:1.2;letter-spacing:-.028em;text-wrap:balance}
+.qhint{font-size:.94rem;color:var(--w70);margin-top:-14px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:10px;margin-top:2px;padding-bottom:16px}
+.opt{position:relative;width:100%;text-align:left;cursor:pointer;background:var(--card);border:1.5px solid var(--card-line);border-radius:15px;
+  padding:17px 52px 17px 19px;font:inherit;font-size:1.01rem;font-weight:500;color:var(--w);line-height:1.35;
+  transition:background .18s,border-color .18s,transform .12s}
+.opt:hover{background:rgba(255,255,255,.085);border-color:rgba(255,255,255,.2)}
+.opt:active{transform:scale(.985)}
+.opt::after{content:'';position:absolute;right:18px;top:50%;transform:translateY(-50%);width:21px;height:21px;border-radius:50%;
+  border:1.8px solid rgba(255,255,255,.22);transition:border-color .18s,background .18s}
+.opt.sel{background:var(--acc-dim);border-color:var(--acc)}
+.opt.sel::after{border-color:var(--acc);background:var(--acc);box-shadow:inset 0 0 0 3.5px var(--bg)}
+/* мультивыбор: квадрат вместо кружка — сразу видно, что можно отметить несколько */
+.opt.multi::after{border-radius:7px}
+.opt.multi.sel::after{box-shadow:none;
+  background:var(--acc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2304121F' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/13px no-repeat}
+
+/* ВСТАВКА */
+.mid{justify-content:center;text-align:center;gap:20px;padding:30px 0}
+.mid-icon{font-size:3.1rem;line-height:1;animation:pop .5s var(--ease) both .1s}
+@keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+.mid h2{font-size:clamp(1.5rem,5.4vw,1.95rem);font-weight:800;line-height:1.18;letter-spacing:-.03em;text-wrap:balance}
+.mid p{font-size:clamp(.98rem,3.8vw,1.07rem);color:var(--w86);line-height:1.64;text-wrap:balance}
+/* список внутри вставки: сам блок центрируем, а пункты внутри него
+   выравниваем по левому краю — центрированный список читается рвано */
+.pts{list-style:none;display:inline-block;text-align:left;margin:-6px auto 0}
+.pts li{position:relative;padding-left:22px;font-size:clamp(.98rem,3.8vw,1.07rem);color:var(--w86);line-height:1.5}
+.pts li+li{margin-top:9px}
+.pts li::before{content:'';position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;
+  background:var(--acc);box-shadow:0 0 10px rgba(168,230,197,.5)}
+.money{display:flex;flex-direction:column;gap:4px;padding:20px;background:var(--card);border:1px solid var(--card-line);border-radius:18px}
+.money b{font-size:clamp(1.9rem,7.6vw,2.6rem);font-weight:800;color:var(--acc);letter-spacing:-.035em;line-height:1.05;font-variant-numeric:tabular-nums}
+.money span{font-size:.87rem;color:var(--w70)}
+/* доллары — второй строкой под суммой: рублёвая цифра остаётся главной,
+   а тем, кто не в России, сразу виден понятный порядок величины */
+.money u{text-decoration:none;font-size:1rem;font-weight:700;color:var(--w70);letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin-top:-1px}
+.money.alt u{color:rgba(255,208,138,.62)}
+.usd-inline{text-decoration:none;color:var(--w70);font-weight:600;font-size:.86em;white-space:nowrap}
+/* на вариантах цены доллары уходят вправо серым — не спорят с рублями */
+.opt .usd{display:block;margin-top:3px;font-style:normal;font-size:.83rem;font-weight:600;color:var(--w70);letter-spacing:-.01em}
+.money.alt b{color:var(--warn)}
+.mid-img{width:100%;max-width:420px;margin:0 auto;border-radius:18px;display:block;border:1px solid var(--card-line)}
+
+/* АНАЛИЗ */
+.an{justify-content:center;gap:30px;padding:30px 0;text-align:center}
+.an h2{font-size:clamp(1.35rem,5.2vw,1.75rem);font-weight:800;letter-spacing:-.028em}
+.an-list{display:flex;flex-direction:column;gap:16px;text-align:left;width:100%}
+.an-row{display:flex;flex-direction:column;gap:8px;opacity:.32;transition:opacity .5s}
+.an-row.on{opacity:1}
+.an-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.an-name{font-size:.96rem;color:var(--w86);font-weight:500}
+.an-val{font-size:.85rem;color:var(--acc);font-variant-numeric:tabular-nums;min-width:40px;text-align:right;font-weight:600}
+.an-bar{height:5px;border-radius:50px;background:rgba(255,255,255,.1);overflow:hidden}
+.an-bar i{display:block;height:100%;width:0;border-radius:50px;background:var(--acc);transition:width .35s linear}
+
+/* РЕЗУЛЬТАТ */
+.res{gap:24px;padding:26px 0 0;flex:0 0 auto}
+.res .cta-dock{margin-top:18px}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);text-align:center}
+.res h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-spacing:-.033em;text-align:center;text-wrap:balance}
+.bars{display:flex;flex-direction:column;gap:14px;padding:22px 20px;background:var(--card);border:1px solid var(--card-line);border-radius:20px}
+.bar-row{display:flex;flex-direction:column;gap:7px}
+.bar-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bar-name{font-size:.92rem;color:var(--w86);display:flex;align-items:center;gap:8px;line-height:1.3}
+.bar-row.top .bar-name{color:var(--w);font-weight:700}
+.bar-pct{font-size:.94rem;font-weight:800;color:var(--w70);font-variant-numeric:tabular-nums;flex-shrink:0}
+.bar-row.top .bar-pct{color:var(--acc);font-size:1.04rem}
+.bar-track{height:7px;border-radius:50px;background:rgba(255,255,255,.09);overflow:hidden}
+.bar-track i{display:block;height:100%;width:0;border-radius:50px;background:rgba(255,255,255,.3);transition:width 1s var(--ease)}
+.bar-row.top .bar-track i{background:linear-gradient(90deg,#5BAF85,var(--acc))}
+
+.card{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:24px 22px;display:flex;flex-direction:column;gap:12px}
+.card h3{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.card p{font-size:1.01rem;color:var(--w86);line-height:1.66}
+.card p strong{color:var(--w)}
+.card.warn{background:var(--warn-dim);border-color:var(--warn-line)}
+.card.warn h3{color:var(--warn)}
+.stage-badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:7px 14px;border-radius:50px;background:rgba(255,208,138,.16);border:1px solid var(--warn-line);font-size:.88rem;font-weight:800;color:var(--warn)}
+/* список заболеваний в блоке риска */
+.risk{list-style:none;display:flex;flex-direction:column;gap:9px;margin:2px 0}
+.risk li{position:relative;padding-left:20px;font-size:.99rem;color:var(--w);line-height:1.45}
+.risk li::before{content:'';position:absolute;left:2px;top:.52em;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.risk-note{font-size:.87rem !important;color:var(--w70) !important;line-height:1.5;
+  padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
+.plan{list-style:none;display:flex;flex-direction:column;gap:13px}
+.plan li{display:flex;gap:13px;align-items:flex-start;font-size:.98rem;color:var(--w86);line-height:1.55}
+.plan li b{color:var(--acc);font-weight:800;flex-shrink:0}
+
+.video-box{border-radius:20px;overflow:hidden;background:var(--bg-soft);border:1px solid var(--card-line)}
+.video-box video{display:block;width:100%;height:auto}
+.video-ph{padding:36px 22px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+.video-ph .vi{font-size:2.2rem;line-height:1}
+.video-ph b{font-size:1.01rem;font-weight:700}
+.video-ph span{font-size:.87rem;color:var(--w70);line-height:1.5}
+
+/* МЕТОД */
+.method-head{text-align:center;display:flex;flex-direction:column;gap:11px;padding-top:14px}
+.method-head h2{font-size:clamp(1.6rem,6vw,2.15rem);font-weight:800;letter-spacing:-.032em;line-height:1.14}
+.method-head p{font-size:1rem;color:var(--w86);line-height:1.64}
+.mstep{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:9px}
+.mstep-n{display:flex;align-items:center;gap:10px}
+.mstep-num{width:27px;height:27px;flex-shrink:0;border-radius:50%;background:var(--acc);color:var(--on-acc);font-size:.87rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.mstep-cat{font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.mstep h4{font-size:1.13rem;font-weight:800;line-height:1.3}
+.mstep-sub{font-size:1rem;font-weight:700;color:var(--acc) !important;line-height:1.45;margin-top:-3px}
+.mstep p{font-size:.97rem;color:var(--w86);line-height:1.65}
+.mstep-you{margin-top:4px;padding:14px 16px;background:var(--acc-dim);border:1px solid var(--acc-line);border-radius:13px;color:#fff !important}
+.mstep-you strong{color:var(--acc)}
+
+.alone{display:flex;flex-direction:column;gap:10px}
+.al{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:17px 19px}
+.al-n{width:25px;height:25px;flex-shrink:0;border-radius:50%;background:rgba(255,208,138,.18);border:1px solid var(--warn-line);
+  color:var(--warn);font-size:.82rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.al-t b{display:block;font-size:1.02rem;font-weight:800;margin-bottom:3px;line-height:1.3}
+.al-t span{font-size:.95rem;color:var(--w86);line-height:1.58}
+.outro-after{text-align:center;font-size:1.05rem;font-weight:700;color:var(--acc);line-height:1.5;padding:2px 6px}
+.outro{text-align:center;display:flex;flex-direction:column;gap:11px;padding:8px 0 0}
+.outro h2{font-size:clamp(1.35rem,5.2vw,1.8rem);font-weight:800;letter-spacing:-.03em}
+.outro p{font-size:1rem;color:var(--w86);line-height:1.65}
+
+/* КНОПКИ */
+/* на интро кнопка идёт сразу под текстом, а не прижата к низу: после
+   удаления списка «что вы получите» sticky-док оставлял полэкрана пустоты
+   между оффером и кнопкой. Здесь контента мало — собираем всё в центр */
+.intro .cta-dock{position:static;margin-top:10px;padding:0 0 calc(env(safe-area-inset-bottom) + 4px);background:none}
+.cta-dock{position:sticky;bottom:0;z-index:15;padding:16px 0 calc(env(safe-area-inset-bottom) + 12px);margin-top:auto;
+  background:linear-gradient(to top, var(--bg) 58%, rgba(7,12,22,.86) 82%, transparent)}
+.btn{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;border:none;cursor:pointer;font:inherit;
+  background:var(--acc);color:var(--on-acc);font-size:1.05rem;font-weight:800;padding:1.12rem 1.5rem;border-radius:50px;text-decoration:none;
+  transition:transform .13s,box-shadow .2s,opacity .2s;box-shadow:0 8px 30px rgba(168,230,197,.2)}
+.btn:active{transform:scale(.982)}
+
+/* ── ГЛАВНАЯ КНОПКА НА ИНТРО ────────────────────────────────────────
+   Ореол под кнопкой дышит в такт авроре, по кнопке раз в 5с проходит
+   блик. Блик — только на ::after: своя animation на самой кнопке
+   гасит анимацию псевдоэлемента в iOS Safari (грабля из RULES),
+   поэтому кнопка сама не двигается, дышит подложка */
+.intro .cta-dock{position:relative}
+.intro .cta-dock::before{content:'';position:absolute;left:50%;top:50%;width:78%;height:120%;translate:-50% -50%;
+  background:radial-gradient(50% 50% at 50% 50%, rgba(168,230,197,.30) 0%, transparent 70%);
+  filter:blur(26px);pointer-events:none;animation:halo 5.5s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+.intro .btn{position:relative;overflow:hidden;transform:translateZ(0);
+  background:linear-gradient(135deg,#D6F7E6 0%,var(--acc) 48%,#8ADCB6 100%);
+  box-shadow:0 12px 38px rgba(168,230,197,.28), inset 0 1px 0 rgba(255,255,255,.55);
+  letter-spacing:-.012em}
+.intro .btn::after{content:'';position:absolute;top:0;left:0;width:45%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg, transparent 0%, rgba(255,255,255,.62) 50%, transparent 100%);
+  transform:translateX(-160%);animation:shine 5s ease-in-out 1.2s infinite}
+@keyframes shine{0%{transform:translateX(-160%)}28%,100%{transform:translateX(320%)}}
+
+@media(prefers-reduced-motion:reduce){
+  .intro::before,.badge::before,.intro .cta-dock::before,.intro .btn::after,.intro>*{animation:none}
+  .intro>*{opacity:1;transform:none}}
+.btn-ghost{background:transparent;color:var(--w86);box-shadow:none;border:1.5px solid var(--card-line);font-weight:600;font-size:1rem;margin-top:10px}
+.btn-ghost:hover{background:rgba(255,255,255,.05)}
+/* вторая ссылка — текстом, чтобы не конкурировать с главной кнопкой */
+.btn-link{display:block;text-align:center;margin-top:14px;font-size:.94rem;color:var(--w70);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.28)}
+.btn-link:hover{color:var(--w86)}
+/* ⚠️ отладочная ссылка — намеренно невзрачная, чтобы не спутать с
+   боевым элементом и не забыть выключить (CONFIG.restartBtn) */
+.btn-debug{display:block;text-align:center;margin-top:14px;padding:9px;font-size:.82rem;color:var(--w70);
+  text-decoration:none;border:1px dashed rgba(255,255,255,.22);border-radius:11px}
+.btn-debug i{font-style:normal;opacity:.6}
+.btn-debug:hover{color:var(--w);border-color:rgba(255,255,255,.4)}
+.privacy{text-align:center;font-size:.77rem;color:var(--w70);margin-top:12px;line-height:1.5}
+
+/* ── БЛОК «РАЗБОР ОТ АРТУРА» ────────────────────────────────────────
+   Синий, а не мятный: это не про покупку программы, а про личный
+   контакт — визуально не должен спорить с главной кнопкой внизу */
+.tg-card{margin-top:26px;padding:26px 24px;border-radius:20px;
+  background:linear-gradient(160deg, rgba(44,124,214,.16), rgba(26,74,138,.10));
+  border:1px solid rgba(90,160,235,.32);text-align:center}
+.tg-h{font-size:clamp(1.15rem,4.4vw,1.4rem);font-weight:800;letter-spacing:-.02em;line-height:1.25}
+.tg-p{font-size:.96rem;color:var(--w86);line-height:1.6;margin-top:10px;text-wrap:balance}
+.btn-tg{margin-top:18px;background:#4E9BE8;color:#04121F;box-shadow:0 10px 30px rgba(78,155,232,.28)}
+.btn-tg:hover{background:#63A9EC}
+.tg-note{font-size:.8rem;color:var(--w70);margin-top:11px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar" id="topbar">
+    <button class="back" id="back" aria-label="Назад"><svg viewBox="0 0 24 24"><polyline points="15,5 8,12 15,19"/></svg></button>
+    <div class="track"><div class="fill" id="fill"></div></div>
+    <div class="step-n" id="stepn"></div>
+  </div>
+  <main class="stage" id="stage"></main>
+</div>
+
+<!-- ?v=N — бампать при КАЖДОЙ правке config.js, иначе браузер отдаёт
+     старый конфиг из кэша и правки «не появляются» на живом сайте -->
+<script src="config.js?v=19"></script>
+<script>
+(function(){
+'use strict';
+
+const stage=document.getElementById('stage'), topbar=document.getElementById('topbar');
+const fill=document.getElementById('fill'), stepn=document.getElementById('stepn'), backBt=document.getElementById('back');
+
+const STORE='vzdoh_diag_v3';
+const LETTER={habit:'h',psycho:'p',stress:'s',physical:'f',social:'o',fear_break:'b',fear_weight:'w',low_belief:'l',focus:'c'};
+
+let answers=[], pos=-1, moneyK=1;
+// какие отметки прохождения (25/50/75%) уже ушли в Метрику — чтобы при
+// возврате «Назад» цель не отправлялась второй раз
+const marksSent = new Set();
+
+/* ─── АКТИВНЫЕ ВОПРОСЫ ───────────────────────────────────────────
+   Вопрос про продукт не показываем, если этот продукт человек
+   уже назвал основным. «Несколько сразу» — показываем все.      */
+function mainProduct(){
+  const i = QUESTIONS.findIndex(q => q.key === 'product');
+  if (i < 0 || answers[i] == null) return null;
+  const o = QUESTIONS[i].a[answers[i]];
+  return o ? o.v : null;
+}
+/* opt = «оптимистично»: условие ещё не разрешилось (человек не дошёл
+   до вопроса, от которого зависит ветка) — считаем, что вопрос будет.
+   Нужно только для знаменателя прогресса. Без этого счётчик стартовал
+   с 19, а после ответа про попытки бросить прыгал на 21 — и полоска
+   ехала НАЗАД. Теперь знаменатель сразу 21 и может только уменьшиться,
+   то есть прогресс прыгает вперёд, а не назад.                        */
+function isActive(qi, opt){
+  const q = QUESTIONS[qi], main = mainProduct();
+  // «а что у вас с …» — про всё, кроме основного
+  if (q.product){
+    if (main === null) return !!opt;
+    if (main === 'mix') return true;
+    return q.product !== main;
+  }
+  // расход и цена — только под основной продукт
+  if (q.onlyProduct){
+    if (main === null) return !!opt && q.onlyProduct === 'cig';
+    if (main === 'mix') return q.onlyProduct === 'cig';
+    return q.onlyProduct === main;
+  }
+  // условие по ответу на другой вопрос
+  if (q.showIf){
+    const v = val(q.showIf.key);
+    if (v === null) return !!opt;
+    if (q.showIf.not !== undefined && v === q.showIf.not) return false;
+    if (q.showIf.is  !== undefined && v !== q.showIf.is)  return false;
+  }
+  return true;
+}
+function nextActive(from){ for(let i=Math.max(from,0);i<QUESTIONS.length;i++) if(isActive(i)) return i; return -1; }
+function prevActive(before){ for(let i=before-1;i>=0;i--) if(isActive(i)) return i; return -1; }
+function keyOf(qi){ return qi>=0 && QUESTIONS[qi] ? QUESTIONS[qi].key : null; }
+function activeList(opt){
+  const out = [];
+  for (let i = 0; i < QUESTIONS.length; i++) if (isActive(i, opt)) out.push(i);
+  return out;
+}
+
+/* Полный сброс: чистим сохранённые ответы и начинаем с интро.
+   Дёргается ссылкой «Пройти заново» и адресом ?reset            */
+function resetAll(){
+  try{ localStorage.removeItem(STORE); }catch(e){}
+  answers=[]; pos=-1; moneyK=1; marksSent.clear();
+  screenIntro();
+}
+function save(){ try{ localStorage.setItem(STORE, JSON.stringify({a:answers,p:pos,k:moneyK})); }catch(e){} }
+function load(){ try{ const d=JSON.parse(localStorage.getItem(STORE)||'null');
+  if(d&&Array.isArray(d.a)){ answers=d.a; pos=typeof d.p==='number'?d.p:-1; moneyK=d.k||1; } }catch(e){} }
+function goal(n){ if(window.ym) try{ ym(CONFIG.metrikaId,'reachGoal',n); }catch(e){} }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function fmt(n){ return Math.round(n).toLocaleString('ru-RU'); }
+/* ─── ДОЛЛАРЫ ───────────────────────────────────────────────────────
+   Диагностику проходят из Казахстана, Европы, Индонезии — там рубль
+   ни о чём не говорит. Рядом с каждой суммой идёт «≈ N$».
+   ⚠️ ЗНАК ДОЛЛАРА ТОЛЬКО ПОСЛЕ ЧИСЛА: «150$», не «$150» — правило
+   Артура для всех текстов, см. memory/feedback_style.md
+   Крупные суммы округляем: «18 400$» вместо «18 437$» — это оценка,
+   и лишние цифры в ней выглядят как ложная точность.             */
+function usd(rub){
+  const r = (typeof CONFIG!=='undefined' && CONFIG.usdRate) || 80;
+  const d = rub / r;
+  // до 10$ нужна десятая: пачка за 150₽ и за 200₽ иначе обе дают «2$»,
+  // и соседние варианты выглядят одинаковыми — как ошибка
+  if (d < 10) return d.toFixed(1).replace('.', ',').replace(',0', '') + '$';
+  let x = d;
+  if (x >= 1000)     x = Math.round(x/100)*100;
+  else if (x >= 100) x = Math.round(x/10)*10;
+  else               x = Math.round(x);
+  return x.toLocaleString('ru-RU') + '$';
+}
+function plural(n,a,b,c){ const x=n%10,y=n%100; if(x===1&&y!==11)return a; if(x>=2&&x<=4&&(y<12||y>14))return b; return c; }
+
+/* подстановка названия продукта: {что} → «пачку сигарет» и т.п. */
+function subst(t){
+  if (!t || t.indexOf('{что}') < 0) return t;
+  const m = mainProduct();
+  const w = (typeof PRODUCT_WORDS !== 'undefined' && PRODUCT_WORDS[m]) || 'запас никотина';
+  return t.split('{что}').join(w);
+}
+
+/* значение ответа по служебному ключу */
+function val(key){
+  const i = QUESTIONS.findIndex(q => q.key === key);
+  if (i < 0 || answers[i] == null) return null;
+  const o = QUESTIONS[i].a[answers[i]];
+  return o ? (o.v !== undefined ? o.v : answers[i]) : null;
+}
+
+/* ─── ДЕНЬГИ ─── */
+function moneyCalc(){
+  // расход и цена берутся под основной продукт человека:
+  // units — сколько покупок (пачек / флаконов / банок) уходит в день
+  const P = ['cig','vape','heat','snus','hookah'];
+  let units=null, price=null;
+  P.forEach(p=>{
+    const u=val('use_'+p);   if(u!==null && units===null) units=u;
+    const c=val('price_'+p); if(c!==null && price===null) price=c;
+  });
+  if(units===null) units=1;
+  if(price===null) price=220;
+  const years = val('years') || 7;
+  const day = units * price * moneyK;
+  return { month: day*30, year: day*365, total: day*365*years, years: years, day: day };
+}
+
+/* ─── СТАДИЯ ЗАВИСИМОСТИ (по классификации доктора Звягина) ─── */
+function stageOf(){
+  const years=val('years'), carry=val('carry'), alone=val('alone'),
+        dry=val('dry'), control=val('control'), perday=val('perday'), morning=val('morning');
+
+  // 3-я: каждый день без пропусков + много + границы сдвинулись + утренняя сразу
+  let third = 0;
+  if (dry === 'never') third++;
+  if (perday >= 20) third++;
+  if (control === 'lost') third++;
+  if (morning !== null && morning <= 30) third++;
+  if (carry === 'always') third++;
+  if (alone === 'always') third++;   // курит непрерывно — маркер третьей стадии
+  if (third >= 4) return 3;
+
+  // 1-я: мало лет, не носит с собой, только в компании, есть длинные перерывы
+  let first = 0;
+  if (years !== null && years < 1) first++;
+  if (carry === 'no') first++;
+  if (alone === 'social') first++;
+  if (dry === 'long') first++;
+  if (first >= 3) return 1;
+
+  return 2;
+}
+
+/* ─── ПРОФИЛЬ ─── */
+function score(){
+  const raw={}, max={};
+  CATEGORIES.forEach(c=>{raw[c.code]=0;max[c.code]=0;});
+  // потолок считаем только по показанным вопросам — иначе пропущенные
+  // ветки занижали бы проценты
+  activeList().forEach(i=>{
+    const q=QUESTIONS[i];
+    CATEGORIES.forEach(c=>{
+      let b=0;
+      if(q.multi){
+        // потолок мультивыбора — две самые весомые отметки: реально
+        // больше двух почти никто не ставит, а брать сумму всех
+        // вариантов значило бы занизить проценты у всех
+        const v=q.a.map(o=>(o.s&&o.s[c.code])||0).sort((x,y)=>y-x);
+        b=(v[0]||0)+(v[1]||0);
+      } else q.a.forEach(o=>{const v=(o.s&&o.s[c.code])||0; if(v>b)b=v;});
+      max[c.code]+=b;
+    });
+    const picked = q.multi ? (Array.isArray(answers[i])?answers[i]:[]) : [answers[i]];
+    picked.forEach(n=>{
+      const ch=q.a[n];
+      if(ch&&ch.s) for(const k in ch.s) if(raw[k]!==undefined) raw[k]+=ch.s[k];
+    });
+  });
+  const list=CATEGORIES.map(c=>{
+    let pct=Math.round((raw[c.code]/(max[c.code]||1))*100);
+    pct=Math.max(8,Math.min(94,pct));
+    return {code:c.code,label:c.label,icon:c.icon,pct:pct,raw:raw[c.code]};
+  });
+  list.sort((a,b)=>b.pct-a.pct||b.raw-a.raw);
+  if(list[0].pct<72) list[0].pct=72+(list[0].raw%9);
+  return list;
+}
+
+/* ─── КОД РАЗБОРА ДЛЯ TELEGRAM ──────────────────────────────────────
+   Уезжает в бота как ?start=<код>. Telegram разрешает в этом месте
+   ТОЛЬКО [A-Za-z0-9_-] и не больше 64 символов — прошлая версия
+   кодировала мультивыбор скобками «(012)», и такая ссылка просто не
+   открывалась.
+   Формат: d3 · по символу на вопрос · «_» · топ-3 категории · стадия
+   Один вопрос = один символ base36 (индекс ответа), мультивыбор =
+   битовая маска в base36 (7 вариантов → максимум 127 → 2 символа),
+   без ответа = «z». Итог укладывается примерно в 30 символов.      */
+const PAYLOAD_VER = 'd3';
+function payload(list){
+  const d = QUESTIONS.map((q, i) => {
+    const a = answers[i];
+    if (a == null) return 'z';
+    if (Array.isArray(a)) {
+      let mask = 0;
+      a.forEach(n => { mask |= (1 << n); });
+      return mask.toString(36).padStart(2, '0');
+    }
+    return Number(a).toString(36);
+  }).join('');
+  const top = list.slice(0, 3).map(x => LETTER[x.code] || 'z').join('');
+  return (PAYLOAD_VER + d + '_' + top + stageOf()).slice(0, 64);
+}
+
+/* ─── ОТРИСОВКА ─── */
+function paint(html,cls){
+  const old=stage.querySelector('.screen');
+  const draw=()=>{ stage.innerHTML='<div class="screen '+(cls||'')+'">'+html+'</div>'; window.scrollTo(0,0); };
+  if(old){ old.classList.add('leaving'); setTimeout(draw,130); } else draw();
+}
+/* Прогресс. Два отличия от прежнего:
+   1) считаем (n+1)/T, а не n/T — раньше после первого ответа полоска
+      всё ещё стояла на нуле, и человек не видел, что продвинулся;
+   2) стартовый кредит BASE% — эффект «выданного прогресса»: путь,
+      начатый не с нуля, доходят заметно чаще.                       */
+const PROGRESS_BASE = 9;
+function chrome(){
+  // счётчик и полоска считаются по оптимистичному списку — он не растёт
+  const act=activeList(true), T=act.length;
+  if(pos>=0&&pos<QUESTIONS.length){
+    const n=act.indexOf(pos), done=Math.max(n,0)+1;
+    topbar.classList.add('on');
+    fill.style.width=(T?(PROGRESS_BASE+done/T*(100-PROGRESS_BASE)):PROGRESS_BASE)+'%';
+    stepn.textContent=done+' / '+T;
+    backBt.style.visibility='visible';
+  }
+  else if(pos>=QUESTIONS.length){ topbar.classList.add('on'); fill.style.width='100%'; stepn.textContent=''; backBt.style.visibility='hidden'; }
+  else topbar.classList.remove('on');
+}
+
+/* ─── ЭКРАНЫ ─── */
+function screenIntro(){
+  pos=-1; save(); chrome();
+  // автор ушёл под кнопку и стал подписью в одну строку: экран про человека,
+  // а не про меня — но лицо перед первым вопросом всё равно нужно
+  const author = INTRO.author
+    ? '<div class="author"><img src="'+INTRO.author.img+'" alt="'+INTRO.author.name+'">'+
+      '<span class="author-t">'+INTRO.author.line+' <b>'+INTRO.author.name+'</b></span></div>'
+    : '';
+  paint(
+    '<div class="badge">'+INTRO.badge+'</div>'+
+    '<h1>'+INTRO.title+'</h1>'+
+    '<p>'+INTRO.lead+'</p>'+
+    ((INTRO.bullets&&INTRO.bullets.length)?'<ul class="getlist">'+INTRO.bullets.map(b=>'<li><b>→</b><span>'+b+'</span></li>').join('')+'</ul>':'')+
+    '<div class="cta-dock"><button class="btn" id="go">'+INTRO.cta+'</button>'+
+      ((INTRO.meta&&INTRO.meta.length)?'<div class="intro-meta">'+INTRO.meta.map(m=>'<div class="im"><b>'+m.b+'</b>'+(m.s?'<span>'+m.s+'</span>':'')+'</div>').join('')+'</div>':'')+
+      author+
+      (INTRO.note?'<p class="privacy">'+INTRO.note+'</p>':'')+'</div>',
+    'intro');
+  // обработчик — только после отрисовки: paint() откладывает её на 130мс,
+  // когда на экране уже есть предыдущий кадр (возврат «Назад» с первого
+  // вопроса, «Пройти заново»). Синхронно здесь ловился null, и кнопка
+  // «Пройти диагностику» оставалась мёртвой — человек застревал на интро
+  setTimeout(()=>{
+    const g=document.getElementById('go');
+    if(g) g.onclick=()=>{ goal('diag_start'); step(0); };
+  },140);
+}
+
+function screenQuestion(i){
+  const q=QUESTIONS[i];
+  const act=activeList(true), n=act.indexOf(i), T=act.length;   // та же шкала, что видит человек
+  // Отметки прохождения. Раньше стояло Math.round(n/T*100)===m — точное
+  // равенство, и при 21 вопросе шаг составляет ~4.8%, так что круглые
+  // 25/50/75 не выпадали НИКОГДА: цели молчали, воронка была слепой.
+  // Теперь шлём при первом пересечении порога, по разу за визит.
+  if(T){ const pct = n/T*100;
+    [25,50,75].forEach(m=>{ if(pct>=m && !marksSent.has(m)){ marksSent.add(m); goal('diag_'+m); } }); }
+  if(q.multi) return screenMulti(i);
+  paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
+    '<div class="opts">'+q.a.map((o,n)=>'<button class="opt'+(answers[i]===n?' sel':'')+'" data-n="'+n+'">'+o.t+
+      // на вопросах о цене к каждому диапазону дописываем доллары:
+      // человек не из России иначе не понимает, что он выбирает
+      (q.usd && o.v!==undefined ? '<i class="usd">≈ '+usd(o.v)+'</i>' : '')+
+      '</button>').join('')+'</div>','qwrap');
+  setTimeout(()=>{
+    stage.querySelectorAll('.opt').forEach(b=>{
+      b.onclick=()=>{ answers[i]=+b.dataset.n;
+        stage.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel')); b.classList.add('sel');
+        save(); setTimeout(()=>step(i+1),120); };
+    });
+  },140);
+}
+
+/* ─── ЭКРАН С МУЛЬТИВЫБОРОМ ───────────────────────────────────────
+   Вариант с основным продуктом человека прячем — спрашивать «а что
+   у вас с сигаретами» того, кто только что выбрал сигареты, глупо.
+   Вариант none («ничего, только основное») взаимоисключающий.
+   Кнопка активна всегда: если ничего не отмечено, она честно
+   называется «Ничего из этого» — тупика с неактивной кнопкой нет. */
+function screenMulti(i){
+  const q=QUESTIONS[i], main=mainProduct();
+  if(!Array.isArray(answers[i])) answers[i]=[];
+  // если человек вернулся назад и сменил основной продукт — снимаем
+  // отметку, которая теперь спрятана, иначе она молча шла бы в баллы
+  answers[i]=answers[i].filter(n=>!(q.a[n] && q.a[n].p && q.a[n].p===main));
+  save();
+  const shown=q.a.map((o,n)=>({o:o,n:n})).filter(x=>!(x.o.p && x.o.p===main));
+  const sel=()=>answers[i];
+
+  paint('<h2 class="q">'+subst(q.q)+'</h2>'+(q.hint?'<p class="qhint">'+subst(q.hint)+'</p>':'')+
+    '<div class="opts">'+shown.map(x=>
+      '<button class="opt multi'+(sel().indexOf(x.n)>-1?' sel':'')+'" data-n="'+x.n+'"'+(x.o.none?' data-none="1"':'')+'>'+x.o.t+'</button>'
+    ).join('')+'</div>'+
+    '<div class="cta-dock"><button class="btn" id="mgo"></button></div>','qwrap');
+
+  setTimeout(()=>{
+    const go=document.getElementById('mgo');
+    const label=()=>{ if(go) go.textContent = sel().length ? 'Продолжить' : 'Ничего из этого'; };
+    stage.querySelectorAll('.opt').forEach(b=>{
+      b.onclick=()=>{
+        const n=+b.dataset.n, isNone=b.dataset.none==='1', at=sel().indexOf(n);
+        if(at>-1) answers[i].splice(at,1);
+        else {
+          if(isNone) answers[i]=[n];                                   // «ничего» гасит остальное
+          else answers[i]=sel().filter(k=>!q.a[k].none).concat(n);     // любой другой гасит «ничего»
+        }
+        stage.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel', sel().indexOf(+x.dataset.n)>-1));
+        save(); label();
+      };
+    });
+    label();
+    if(go) go.onclick=()=>{ save(); step(i+1); };
+  },140);
+}
+
+function screenMoney(nextPos){
+  const m=moneyCalc();
+  paint(
+    '<div class="mid-icon">'+MONEY.icon+'</div>'+
+    '<h2>'+MONEY.title+'</h2>'+
+    '<p>'+MONEY.lead+'</p>'+
+    '<div class="money"><b>'+fmt(m.month)+' ₽</b><u>≈ '+usd(m.month)+'</u><span>в месяц уходит на никотин</span></div>'+
+    '<p style="font-weight:700;color:#fff;margin-top:2px">'+MONEY.ask+'</p>'+
+    '<div class="opts" style="margin-top:-6px">'+
+      MONEY.opts.map((o,n)=>'<button class="opt" data-k="'+o.k+'">'+o.t+'</button>').join('')+
+    '</div>','mid');
+  setTimeout(()=>{
+    stage.querySelectorAll('.opt').forEach(b=>{
+      b.onclick=()=>{ moneyK=parseFloat(b.dataset.k)||1; save(); screenMoney2(nextPos); };
+    });
+  },180);
+}
+
+function screenMoney2(nextPos){
+  const m=moneyCalc();
+  paint(
+    '<div class="mid-icon">🔥</div>'+
+    '<h2>Тогда вот полная картина</h2>'+
+    '<div class="money"><b>'+fmt(m.year)+' ₽</b><u>≈ '+usd(m.year)+'</u><span>вы отдаёте за никотин каждый год</span></div>'+
+    // «уже ушло за N лет» — только при стаже от года: на ответе
+    // «меньше года» (v=0.7) выходило «за 0.7 год», да и считать
+    // накопленный итог там ещё не о чем
+    (m.years >= 1
+      ? '<div class="money alt"><b>'+fmt(m.total)+' ₽</b><u>≈ '+usd(m.total)+'</u><span>уже ушло дымом за '+fmt(m.years)+' '+plural(Math.round(m.years),'год','года','лет')+'</span></div>'
+      : '')+
+    '<p>'+(m.years>=1 ? MONEY.outro : MONEY.outroShort || MONEY.outro)+'</p>'+
+    '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>','mid');
+  setTimeout(()=>{ const c=document.getElementById('cont'); if(c) c.onclick=()=>step(nextPos,true); },180);
+}
+
+function screenInterlude(it,nextPos){
+  if(it.kind==='money') return screenMoney(nextPos);
+  const pic = it.img ? '<img src="'+it.img+'" alt="" class="mid-img">' : '';
+  paint((it.icon?'<div class="mid-icon">'+it.icon+'</div>':'')+'<h2>'+it.title+'</h2>'+pic+'<p>'+it.body+'</p>'+
+    '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>','mid');
+  setTimeout(()=>{ const c=document.getElementById('cont'); if(c) c.onclick=()=>step(nextPos,true); },180);
+}
+
+function screenAnalysis(){
+  pos=QUESTIONS.length; save(); chrome(); goal('diag_analysis');
+  paint('<h2>Анализируем ваши ответы</h2><div class="an-list">'+
+    ANALYSIS_STEPS.map((s,i)=>'<div class="an-row" id="ar'+i+'"><div class="an-head"><span class="an-name">'+s+'</span><span class="an-val" id="av'+i+'">0%</span></div><div class="an-bar"><i id="ab'+i+'"></i></div></div>').join('')+
+    '</div>','an');
+  // у каждой полоски своя длительность: первая самая долгая,
+  // остальные вразнобой — так это выглядит как настоящая работа,
+  // а не как ровный прогрессбар
+  const W=[2.5,0.7,1.5,0.6,1.1], sum=W.reduce((a,b)=>a+b,0);
+  const dur=W.map(w=>CONFIG.analysisMs*w/sum);
+  const startAt=[]; dur.reduce((acc,d,i)=>{startAt[i]=acc; return acc+d;},0);
+
+  setTimeout(()=>{
+    ANALYSIS_STEPS.forEach((s,i)=>{
+      setTimeout(()=>{
+        const row=document.getElementById('ar'+i),v=document.getElementById('av'+i),bar=document.getElementById('ab'+i);
+        if(!row)return; row.classList.add('on');
+        const d=dur[i]||1000, ticks=Math.max(6,Math.round(d/90));
+        let p=0,k=0;
+        const tick=setInterval(()=>{
+          k++; p+=(100/ticks)*(0.55+Math.random()*0.95);
+          if(k>=ticks||p>=100){p=100;clearInterval(tick);}
+          if(v)v.textContent=Math.round(p)+'%'; if(bar)bar.style.width=p+'%';
+          if(p===100&&v)v.innerHTML='&#10003;';
+        },d/ticks);
+      },startAt[i]||0);
+    });
+    setTimeout(screenResult,CONFIG.analysisMs+300);
+  },180);
+}
+
+/* Зона риска по стажу. Диагноз не ставим — только принадлежность к
+   группе. Блок обязательно заканчивается тем, что восстанавливается
+   после отказа: страх без выхода люди закрывают, а не решают.      */
+function riskCard(){
+  if(typeof RISK==='undefined' || !RISK.tiers) return '';
+  const y = val('years');
+  if(y===null) return '';
+  const t = RISK.tiers.find(x=>y>=x.minYears);
+  if(!t) return '';
+  // при ответе «меньше года» round дал бы «1 год» — это уже неправда
+  const срок = y<1 ? 'меньше года' : fmt(y)+' '+plural(Math.round(y),'год','года','лет');
+  return '<div class="card warn"><h3>'+RISK.title+'</h3>'+
+    '<p>Вы употребляете никотин '+срок+'. '+t.lead+'</p>'+
+    '<ul class="risk">'+t.items.map(i=>'<li>'+i+'</li>').join('')+'</ul>'+
+    '<p>'+t.back+'</p>'+
+    '<p class="risk-note">'+RISK.note+'</p></div>';
+}
+
+function screenResult(){
+  pos=QUESTIONS.length+1; save(); chrome(); goal('diag_result');
+
+  const list=score(), top=list[0], prof=PROFILES[top.code]||PROFILES.habit;
+  const st=stageOf(), S=STAGES[st], m=moneyCalc();
+
+  const bars=list.slice(0,5).map((c,i)=>
+    '<div class="bar-row'+(i===0?' top':'')+'"><div class="bar-head"><span class="bar-name">'+c.icon+' '+c.label+'</span><span class="bar-pct">'+c.pct+'%</span></div><div class="bar-track"><i data-w="'+c.pct+'"></i></div></div>').join('');
+
+  // Пока видео нет — не показываем ничего. Плейсхолдер «скоро будет»
+  // стоял в точке принятия решения и читался как «продукт сырой».
+  const video=prof.video
+    ? '<div class="video-box"><video src="'+prof.video+'" controls playsinline preload="metadata"></video></div>'
+    : '';
+
+  const steps=METHOD.steps.map((s,i)=>
+    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4>'+(s.sub?'<p class="mstep-sub">'+s.sub+'</p>':'')+'<p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
+
+  let lid='';
+  try{ lid=localStorage.getItem('vzdoh_lid')||''; if(!lid){ lid='l'+Math.abs(Date.parse(new Date().toISOString())%1e9).toString(36)+Math.floor(performance.now()).toString(36); localStorage.setItem('vzdoh_lid',lid);} }catch(e){}
+  const utm=[]; try{ const u=new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{ if(u.get(k)) utm.push(k+'='+encodeURIComponent(u.get(k))); }); }catch(e){}
+  let land=CONFIG.landingLink.replace('{code}',top.code);
+  land += (land.indexOf('?')>-1?'&':'?')+'lid='+encodeURIComponent(lid)+'&stage='+st+(utm.length?'&'+utm.join('&'):'');
+
+  paint(
+    '<div class="bars">'+bars+'</div>'+
+    '<div class="cta-dock">'+
+      '<p class="tg-p">Подробная расшифровка вашей ситуации и описание метода отказа от никотиновой зависимости без ломки ждёт вас в Telegram-боте, по кнопке ниже.</p>'+
+      '<a class="btn btn-tg" id="toplan" href="'+(CONFIG.botLink ? CONFIG.botLink.replace('{payload}', payload(list)) : land)+'" target="_blank" rel="noopener">Расшифровка диагностики + метод</a>'+
+      '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
+    '</div>','res');
+
+  setTimeout(()=>{
+    stage.querySelectorAll('.bar-track i').forEach((el,i)=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},90+i*110));
+    const a=document.getElementById('toplan'); if(a)a.onclick=()=>goal('diag_to_bot');
+    const r=document.getElementById('restart'); if(r)r.onclick=e=>{ e.preventDefault(); resetAll(); };
+  },220);
+}
+
+/* ─── НАВИГАЦИЯ ─── */
+function step(i,skipInterlude){
+  if(i<0) return screenIntro();
+  const qi = nextActive(i);
+
+  // вопросы кончились — последняя вставка, затем анализ
+  if(qi<0){
+    if(!skipInterlude){
+      const last=INTERLUDES.find(x=>x.last);
+      if(last){ pos=QUESTIONS.length-1; save(); chrome(); return screenInterlude(last,QUESTIONS.length); }
+    }
+    return screenAnalysis();
+  }
+
+  if(!skipInterlude){
+    const it=INTERLUDES.find(x=>x.beforeKey && x.beforeKey===keyOf(qi));
+    if(it){ pos=qi; save(); chrome(); return screenInterlude(it,qi); }
+  }
+  pos=qi; save(); chrome(); screenQuestion(qi);
+}
+backBt.onclick=()=>{ const p=prevActive(pos); if(p<0) return screenIntro(); step(p,true); };
+
+// .../diagnostika/?reset — начать с чистого листа. Не зависит от
+// CONFIG.restartBtn, так что остаётся рабочим и после отладки
+try{ if(new URLSearchParams(location.search).has('reset')) localStorage.removeItem(STORE); }catch(e){}
+
+load();
+if(pos>=QUESTIONS.length+1 && activeList().every(i=>answers[i]!=null)) screenResult();
+else if(pos>=0 && pos<QUESTIONS.length) step(pos,true);
+else screenIntro();
+})();
+</script>
+</body>
+</html>
