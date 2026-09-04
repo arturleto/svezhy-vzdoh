@@ -838,16 +838,34 @@ function screenResult(){
       (OUTRO.points||[]).map((p,i)=>'<div class="al"><span class="al-n">'+(i+1)+'</span><span class="al-t"><b>'+p.t+'</b><span>'+p.d+'</span></span></div>').join('')+
     '</div>'+
     (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
+    /* ── РАЗБОР ОТ АРТУРА ───────────────────────────────────────────
+       Обещанное (разбор + метод) человек уже получил выше — бесплатно
+       и без условий. Telegram просим не как шлагбаум, а за ДОПОЛНИТЕЛЬНУЮ
+       ценность: личный разбор. Поэтому блок стоит после результата, а не
+       перед ним, и его можно пропустить.
+       Ответы уезжают в бота кодом в ?start= — там из них соберётся
+       карточка, и человек сам решит, отправлять её Артуру или нет.   */
+    (CONFIG.botLink
+      ? '<div class="tg-card">'+
+          '<div class="tg-h">Хотите разбор лично от меня?</div>'+
+          '<p class="tg-p">Откройте бота — ваши ответы перенесутся туда автоматически. '+
+          'Дальше одна кнопка «Отправить Артуру», и я посмотрю вашу ситуацию и отвечу лично.</p>'+
+          '<a class="btn btn-tg" id="tobot" href="'+CONFIG.botLink.replace('{payload}', payload(list))+'" target="_blank" rel="noopener">Получить разбор от Артура</a>'+
+          '<p class="tg-note">Ничего не отправится, пока вы сами не нажмёте кнопку в боте</p>'+
+        '</div>'
+      : '')+
+
+    // ровно одна кнопка — ничто не делит внимание в точке решения
     '<div class="cta-dock">'+
-      '<p class="tg-p">Краткий результат — выше. Подробная расшифровка вашей ситуации и описание метода отказа без ломки — в боте, по кнопке ниже.</p>'+
-      '<a class="btn btn-tg" id="toplan" href="'+(CONFIG.botLink ? CONFIG.botLink.replace('{payload}', payload(list)) : land)+'" target="_blank" rel="noopener">Расшифровка диагностики + метод</a>'+
+      '<a class="btn" id="toplan" href="'+land+'">'+OUTRO.cta+'</a>'+
       '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
       (CONFIG.restartBtn?'<a class="btn-debug" id="restart" href="#">↻ Пройти диагностику заново <i>(отладка)</i></a>':'')+
     '</div>','res');
 
   setTimeout(()=>{
     stage.querySelectorAll('.bar-track i').forEach((el,i)=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},90+i*110));
-    const a=document.getElementById('toplan'); if(a)a.onclick=()=>goal('diag_to_bot');
+    const a=document.getElementById('toplan'); if(a)a.onclick=()=>goal('diag_to_landing');
+    const tb=document.getElementById('tobot'); if(tb)tb.onclick=()=>goal('diag_to_bot');
     const r=document.getElementById('restart'); if(r)r.onclick=e=>{ e.preventDefault(); resetAll(); };
   },220);
 }
