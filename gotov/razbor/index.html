@@ -36,7 +36,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:24px 20px calc(env(safe-area-inset-bottom)+120px);display:flex;flex-direction:column;gap:24px;animation:enter .42s var(--ease) both}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:60px 20px calc(env(safe-area-inset-bottom)+120px);display:flex;flex-direction:column;gap:24px;animation:enter .42s var(--ease) both}
 @keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 .eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);text-align:center}
@@ -101,12 +101,6 @@ h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-
 .price-note{text-align:center;font-size:.82rem;color:var(--w70);margin-top:9px;line-height:1.5}
 .privacy{text-align:center;font-size:.77rem;color:var(--w70);margin-top:8px;line-height:1.5}
 
-/* TIMER WIDGET */
-.timer-block{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap}
-.timer-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:50px;
-  background:rgba(255,208,138,.14);border:1px solid var(--warn-line);font-size:.78rem;font-weight:700;color:var(--warn)}
-.timer-badge b{font-variant-numeric:tabular-nums;font-size:.86rem}
-.timer-next{font-size:.78rem;color:var(--w70)}
 
 /* LOADER */
 .loader{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:18px;text-align:center;padding:24px 20px}
@@ -127,22 +121,10 @@ h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-
 'use strict';
 
 const STORE = 'vzdoh_gotov_v1';
-const TIMER_KEY = 'vzdoh_gotov_start';
-const H = 3600000;
-const TIERS = [
-  { until: 1*H,      price: '450 ₽/мес',   note: '450 ₽ в месяц — отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=s14Xv' },
-  { until: 12*H,     price: '500 ₽/мес',   note: '500 ₽ в месяц — отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=s14Xy' },
-  { until: 84*H,     price: '990 ₽/мес',   note: '990 ₽ в месяц — отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=sVVm' },
-  { until: 276*H,    price: '1 450 ₽/мес', note: '1 450 ₽ в месяц — отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nv' },
-  { until: Infinity, price: '4 900 ₽/мес', note: '4 900 ₽ в месяц — отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nx' },
-];
 
-/* --- TIMER --- */
-try { if (!localStorage.getItem(TIMER_KEY)) localStorage.setItem(TIMER_KEY, Date.now().toString()); } catch(e){}
-function elapsed(){ try{ return Date.now() - parseInt(localStorage.getItem(TIMER_KEY)||'0'); }catch(e){ return 0; } }
-function tierIdx(){ const e=elapsed(); for(let i=0;i<TIERS.length;i++) if(e<TIERS[i].until) return i; return TIERS.length-1; }
-function pad(n){ return String(n).padStart(2,'0'); }
-function fmtRem(ms){ if(ms<=0) return null; const s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor((s%86400)/3600),m=Math.floor((s%3600)/60),sec=s%60; return d>0?d+'д '+pad(h)+':'+pad(m)+':'+pad(sec):pad(h)+':'+pad(m)+':'+pad(sec); }
+/* --- URL PARAMS --- */
+let fullMode = false;
+try{ fullMode = new URLSearchParams(location.search).has('full'); }catch(e){}
 
 /* --- LOAD DATA --- */
 let answers=[], moneyK=1;
@@ -263,49 +245,65 @@ function render(){
   }
   prof=(typeof PROFILES!=='undefined'&&PROFILES[topCode])||PROFILES.habit;
 
-  const st=stageOf();
-  const S=(typeof STAGES!=='undefined'&&STAGES[st])||{n:'',lead:'',body:'',warn:''};
-  const m=moneyCalc();
-
   const bars=list.length>0
     ? '<div class="bars">'+list.slice(0,5).map((c,i)=>'<div class="bar-row'+(i===0?' top':'')+'"><div class="bar-head"><span class="bar-name">'+c.icon+' '+c.label+'</span><span class="bar-pct">'+c.pct+'%</span></div><div class="bar-track"><i data-w="'+c.pct+'"></i></div></div>').join('')+'</div>'
     : '';
 
-  const steps=METHOD.steps.map((s,i)=>
-    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4>'+(s.sub?'<p class="mstep-sub">'+s.sub+'</p>':'')+'<p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
+  let html;
 
-  const moneyBlock=hasData
-    ? '<div class="card"><h3>За это время вы отдали</h3>'+
-        '<p style="font-size:1.5rem;font-weight:800;color:var(--acc);letter-spacing:-.02em">'+fmt(m.total)+' ₽ <span class="usd-inline">≈ '+usd(m.total)+'</span></p>'+
-        '<p>И продолжаете отдавать примерно '+fmt(m.month)+' ₽ <span class="usd-inline">≈ '+usd(m.month)+'</span> каждый месяц.</p></div>'+riskCard()
-    : '';
-
-  const html=
-    '<div class="eyebrow">Ваш результат</div>'+
-    '<h1>'+prof.title+'</h1>'+
-    bars+
-    '<div class="card"><h3>Что это значит</h3><p>'+prof.verdict+'</p></div>'+
-    (val('tries')==='none'&&prof.whyNone
-      ?'<div class="card"><h3>Где это обычно срывается</h3><p>'+prof.whyNone+'</p></div>'
-      :'<div class="card"><h3>Почему срывались раньше</h3><p>'+prof.why+'</p></div>')+
-    (S.n?'<div class="card warn"><span class="stage-badge">'+S.n+'</span><h3 style="margin-top:2px">'+S.lead+'</h3><p>'+S.body+'</p><p><strong>'+S.warn+'</strong></p></div>':'')+
-    moneyBlock+
-    '<div class="card"><h3>Что с этим делаем</h3><ul class="plan">'+prof.plan.map(p=>'<li><b>—</b><span>'+p+'</span></li>').join('')+'</ul></div>'+
-    '<div class="method-head"><h2>'+METHOD.title+'</h2><p>'+METHOD.lead+'</p></div>'+
-    steps+
-    '<div class="card"><h3>Сработает ли это у вас</h3><p>'+prof.fit+'</p></div>'+
-    '<div class="card warn"><h3>'+METHOD.honest.title+'</h3><p>'+METHOD.honest.body+'</p><p><strong>'+METHOD.honest.body2+'</strong></p></div>'+
-    '<div class="outro"><h2>'+OUTRO.title+'</h2><p>'+OUTRO.body+'</p></div>'+
-    '<div class="alone">'+
-      (OUTRO.points||[]).map((p,i)=>'<div class="al"><span class="al-n">'+(i+1)+'</span><span class="al-t"><b>'+p.t+'</b><span>'+p.d+'</span></span></div>').join('')+
-    '</div>'+
-    (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
-    '<div class="cta-wrap">'+
-      '<a class="btn" id="buy-btn" href="'+TIERS[0].link+'" target="_blank" rel="noopener">Войти в клуб — '+TIERS[0].price+'</a>'+
-      '<div class="timer-block" id="timer-block"></div>'+
-      '<p class="price-note" id="price-note">'+TIERS[0].note+'</p>'+
-      '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
-    '</div>';
+  if(!fullMode){
+    /* STATE 1: только бары + инструкция + кнопка в бот */
+    const botLink='https://t.me/SvezhiyVzdohBot?start=gotov_'+topCode;
+    html=
+      '<div class="eyebrow">Ваш результат</div>'+
+      '<h1>'+prof.title+'</h1>'+
+      bars+
+      '<div class="card"><h3>Как получить полный разбор</h3>'+
+        '<p>Нажмите кнопку ниже. Вас перекинет в Telegram-бот — там пройдут расчёты. После этого нажмите кнопку в боте, чтобы вернуться на страницу с персональным разбором и методом.</p>'+
+      '</div>'+
+      '<div class="cta-wrap">'+
+        '<a class="btn" href="'+botLink+'" target="_blank" rel="noopener">Получить разбор и метод</a>'+
+        '<p class="price-note">Откроется Telegram — это бесплатно</p>'+
+        '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
+      '</div>';
+  } else {
+    /* STATE 2: полный разбор + метод + кнопка на клуб (без цены и таймера) */
+    const st=stageOf();
+    const S=(typeof STAGES!=='undefined'&&STAGES[st])||{n:'',lead:'',body:'',warn:''};
+    const m=moneyCalc();
+    const steps=METHOD.steps.map((s,i)=>
+      '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4>'+(s.sub?'<p class="mstep-sub">'+s.sub+'</p>':'')+'<p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
+    const moneyBlock=hasData
+      ? '<div class="card"><h3>За это время вы отдали</h3>'+
+          '<p style="font-size:1.5rem;font-weight:800;color:var(--acc);letter-spacing:-.02em">'+fmt(m.total)+' ₽ <span class="usd-inline">≈ '+usd(m.total)+'</span></p>'+
+          '<p>И продолжаете отдавать примерно '+fmt(m.month)+' ₽ <span class="usd-inline">≈ '+usd(m.month)+'</span> каждый месяц.</p></div>'+riskCard()
+      : '';
+    html=
+      '<div class="eyebrow">Ваш результат</div>'+
+      '<h1>'+prof.title+'</h1>'+
+      bars+
+      '<div class="card"><h3>Что это значит</h3><p>'+prof.verdict+'</p></div>'+
+      (val('tries')==='none'&&prof.whyNone
+        ?'<div class="card"><h3>Где это обычно срывается</h3><p>'+prof.whyNone+'</p></div>'
+        :'<div class="card"><h3>Почему срывались раньше</h3><p>'+prof.why+'</p></div>')+
+      (S.n?'<div class="card warn"><span class="stage-badge">'+S.n+'</span><h3 style="margin-top:2px">'+S.lead+'</h3><p>'+S.body+'</p><p><strong>'+S.warn+'</strong></p></div>':'')+
+      moneyBlock+
+      '<div class="card"><h3>Что с этим делаем</h3><ul class="plan">'+prof.plan.map(p=>'<li><b>—</b><span>'+p+'</span></li>').join('')+'</ul></div>'+
+      '<div class="method-head"><h2>'+METHOD.title+'</h2><p>'+METHOD.lead+'</p></div>'+
+      steps+
+      '<div class="card"><h3>Сработает ли это у вас</h3><p>'+prof.fit+'</p></div>'+
+      '<div class="card warn"><h3>'+METHOD.honest.title+'</h3><p>'+METHOD.honest.body+'</p><p><strong>'+METHOD.honest.body2+'</strong></p></div>'+
+      '<div class="outro"><h2>'+OUTRO.title+'</h2><p>'+OUTRO.body+'</p></div>'+
+      '<div class="alone">'+
+        (OUTRO.points||[]).map((p,i)=>'<div class="al"><span class="al-n">'+(i+1)+'</span><span class="al-t"><b>'+p.t+'</b><span>'+p.d+'</span></span></div>').join('')+
+      '</div>'+
+      (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
+      '<div class="cta-wrap">'+
+        '<a class="btn" id="buy-btn" href="../club/">Войти в клуб</a>'+
+        '<p class="price-note">Закрытый клуб — бросаем вместе, без ломки и стресса</p>'+
+        '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
+      '</div>';
+  }
 
   document.getElementById('root').innerHTML='<div class="wrap">'+html+'</div>';
 
@@ -315,24 +313,6 @@ function render(){
     const btn=document.getElementById('buy-btn');
     if(btn) btn.addEventListener('click',()=>goal('gotov_club_click'));
   },220);
-
-  tickTimer();
-  setInterval(tickTimer,1000);
-}
-
-function tickTimer(){
-  const idx=tierIdx();
-  const tier=TIERS[idx];
-  const btn=document.getElementById('buy-btn');
-  const note=document.getElementById('price-note');
-  const timerBlock=document.getElementById('timer-block');
-  if(btn){ btn.href=tier.link; btn.textContent='Войти в клуб — '+tier.price; }
-  if(note) note.textContent=tier.note;
-  if(!timerBlock) return;
-  if(idx===TIERS.length-1){ timerBlock.innerHTML=''; return; }
-  const rem=TIERS[idx].until-elapsed();
-  const t=fmtRem(rem)||'00:00:00';
-  timerBlock.innerHTML='<span class="timer-badge">Цена вырастет через <b>'+t+'</b></span><span class="timer-next">Следующая: '+TIERS[idx+1].price+'</span>';
 }
 
 if(typeof CONFIG==='undefined'||typeof PROFILES==='undefined'){

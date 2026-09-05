@@ -723,7 +723,7 @@ function screenMoney2(nextPos){
 
 function screenInterlude(it,nextPos){
   if(it.kind==='money') return screenMoney(nextPos);
-  const pic = it.img ? '<img src="'+it.img+'" alt="" class="mid-img">' : '';
+  const pic = it.img ? '<img src="../'+it.img+'" alt="" class="mid-img">' : '';
   paint((it.icon?'<div class="mid-icon">'+it.icon+'</div>':'')+'<h2>'+it.title+'</h2>'+pic+'<p>'+it.body+'</p>'+
     '<div class="cta-dock"><button class="btn" id="cont">Продолжить</button></div>','mid');
   setTimeout(()=>{ const c=document.getElementById('cont'); if(c) c.onclick=()=>step(nextPos,true); },180);
