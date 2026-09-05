@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110722782', 'ym');
+    ym(110722782, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110722782" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#070C16">
+<title>Ваш разбор — Свежий Вздох</title>
+<meta name="description" content="Ваш персональный разбор: что держит на никотине, ваша стадия, и метод выхода без ломки.">
+<meta property="og:title" content="Ваш разбор — Свежий Вздох">
+<meta property="og:url" content="https://arturleto.github.io/svezhy-vzdoh/gotov/razbor/">
+<meta property="og:type" content="website">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#070C16; --bg-soft:#0D1523;
+  --glow:rgba(26,74,138,.46); --glow-soft:rgba(26,74,138,.20);
+  --acc:#A8E6C5; --acc-dim:rgba(168,230,197,.16); --acc-line:rgba(168,230,197,.34);
+  --on-acc:#04121F;
+  --w:#FFFFFF; --w86:rgba(255,255,255,.86); --w70:rgba(255,255,255,.70);
+  --card:rgba(255,255,255,.055); --card-line:rgba(255,255,255,.11);
+  --warn:#FFD08A; --warn-dim:rgba(255,208,138,.12); --warn-line:rgba(255,208,138,.3);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--w);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(120% 70% at 50% -10%, var(--glow) 0%, transparent 62%),
+             radial-gradient(90% 55% at 50% 108%, var(--glow-soft) 0%, transparent 60%);}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:24px 20px calc(env(safe-area-inset-bottom)+120px);display:flex;flex-direction:column;gap:24px;animation:enter .42s var(--ease) both}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);text-align:center}
+h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-spacing:-.033em;text-align:center;text-wrap:balance}
+.bars{display:flex;flex-direction:column;gap:14px;padding:22px 20px;background:var(--card);border:1px solid var(--card-line);border-radius:20px}
+.bar-row{display:flex;flex-direction:column;gap:7px}
+.bar-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bar-name{font-size:.92rem;color:var(--w86);display:flex;align-items:center;gap:8px;line-height:1.3}
+.bar-row.top .bar-name{color:var(--w);font-weight:700}
+.bar-pct{font-size:.94rem;font-weight:800;color:var(--w70);font-variant-numeric:tabular-nums;flex-shrink:0}
+.bar-row.top .bar-pct{color:var(--acc);font-size:1.04rem}
+.bar-track{height:7px;border-radius:50px;background:rgba(255,255,255,.09);overflow:hidden}
+.bar-track i{display:block;height:100%;width:0;border-radius:50px;background:rgba(255,255,255,.3);transition:width 1s var(--ease)}
+.bar-row.top .bar-track i{background:linear-gradient(90deg,#5BAF85,var(--acc))}
+
+.card{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:24px 22px;display:flex;flex-direction:column;gap:12px}
+.card h3{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.card p{font-size:1.01rem;color:var(--w86);line-height:1.66}
+.card p strong{color:var(--w)}
+.card.warn{background:var(--warn-dim);border-color:var(--warn-line)}
+.card.warn h3{color:var(--warn)}
+.stage-badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:7px 14px;border-radius:50px;background:rgba(255,208,138,.16);border:1px solid var(--warn-line);font-size:.88rem;font-weight:800;color:var(--warn)}
+.risk{list-style:none;display:flex;flex-direction:column;gap:9px;margin:2px 0}
+.risk li{position:relative;padding-left:20px;font-size:.99rem;color:var(--w);line-height:1.45}
+.risk li::before{content:'';position:absolute;left:2px;top:.52em;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.risk-note{font-size:.87rem !important;color:var(--w70) !important;line-height:1.5;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
+.plan{list-style:none;display:flex;flex-direction:column;gap:13px}
+.plan li{display:flex;gap:13px;align-items:flex-start;font-size:.98rem;color:var(--w86);line-height:1.55}
+.plan li b{color:var(--acc);font-weight:800;flex-shrink:0}
+.usd-inline{text-decoration:none;color:var(--w70);font-weight:600;font-size:.86em;white-space:nowrap}
+
+.method-head{text-align:center;display:flex;flex-direction:column;gap:11px;padding-top:14px}
+.method-head h2{font-size:clamp(1.6rem,6vw,2.15rem);font-weight:800;letter-spacing:-.032em;line-height:1.14}
+.method-head p{font-size:1rem;color:var(--w86);line-height:1.64}
+.mstep{background:var(--card);border:1px solid var(--card-line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:9px}
+.mstep-n{display:flex;align-items:center;gap:10px}
+.mstep-num{width:27px;height:27px;flex-shrink:0;border-radius:50%;background:var(--acc);color:var(--on-acc);font-size:.87rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.mstep-cat{font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.mstep h4{font-size:1.13rem;font-weight:800;line-height:1.3}
+.mstep-sub{font-size:1rem;font-weight:700;color:var(--acc) !important;line-height:1.45;margin-top:-3px}
+.mstep p{font-size:.97rem;color:var(--w86);line-height:1.65}
+.mstep-you{margin-top:4px;padding:14px 16px;background:var(--acc-dim);border:1px solid var(--acc-line);border-radius:13px;color:#fff !important}
+.mstep-you strong{color:var(--acc)}
+
+.alone{display:flex;flex-direction:column;gap:10px}
+.al{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:17px 19px}
+.al-n{width:25px;height:25px;flex-shrink:0;border-radius:50%;background:rgba(255,208,138,.18);border:1px solid var(--warn-line);color:var(--warn);font-size:.82rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.al-t b{display:block;font-size:1.02rem;font-weight:800;margin-bottom:3px;line-height:1.3}
+.al-t span{font-size:.95rem;color:var(--w86);line-height:1.58}
+.outro-after{text-align:center;font-size:1.05rem;font-weight:700;color:var(--acc);line-height:1.5;padding:2px 6px}
+.outro{text-align:center;display:flex;flex-direction:column;gap:11px;padding:8px 0 0}
+.outro h2{font-size:clamp(1.35rem,5.2vw,1.8rem);font-weight:800;letter-spacing:-.03em}
+.outro p{font-size:1rem;color:var(--w86);line-height:1.65}
+
+/* CTA BLOCK */
+.cta-wrap{position:sticky;bottom:0;z-index:15;padding:18px 0 calc(env(safe-area-inset-bottom)+14px);
+  background:linear-gradient(to top, var(--bg) 58%, rgba(7,12,22,.86) 82%, transparent)}
+.btn{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;border:none;cursor:pointer;font:inherit;
+  background:var(--acc);color:var(--on-acc);font-size:1.05rem;font-weight:800;padding:1.12rem 1.5rem;border-radius:50px;text-decoration:none;
+  transition:transform .13s,box-shadow .2s;box-shadow:0 8px 30px rgba(168,230,197,.2)}
+.btn:active{transform:scale(.982)}
+.price-note{text-align:center;font-size:.82rem;color:var(--w70);margin-top:9px;line-height:1.5}
+.privacy{text-align:center;font-size:.77rem;color:var(--w70);margin-top:8px;line-height:1.5}
+
+/* TIMER WIDGET */
+.timer-block{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.timer-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:50px;
+  background:rgba(255,208,138,.14);border:1px solid var(--warn-line);font-size:.78rem;font-weight:700;color:var(--warn)}
+.timer-badge b{font-variant-numeric:tabular-nums;font-size:.86rem}
+.timer-next{font-size:.78rem;color:var(--w70)}
+
+/* LOADER */
+.loader{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:18px;text-align:center;padding:24px 20px}
+.loader p{color:var(--w70);font-size:.95rem}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.12);border-top-color:var(--acc);border-radius:50%;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div id="root">
+  <div class="loader"><div class="spin"></div><p>Загружаем ваш разбор...</p></div>
+</div>
+
+<script src="../../config.js?v=19"></script>
+<script>
+(function(){
+'use strict';
+
+const STORE = 'vzdoh_gotov_v1';
+const TIMER_KEY = 'vzdoh_gotov_start';
+const H = 3600000;
+const TIERS = [
+  { until: 1*H,      price: '450 ₽/мес',   note: '450 ₽ в месяц — отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=s14Xv' },
+  { until: 12*H,     price: '500 ₽/мес',   note: '500 ₽ в месяц — отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=s14Xy' },
+  { until: 84*H,     price: '990 ₽/мес',   note: '990 ₽ в месяц — отменить в любой момент',   link: 'https://t.me/tribute/app?startapp=sVVm' },
+  { until: 276*H,    price: '1 450 ₽/мес', note: '1 450 ₽ в месяц — отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nv' },
+  { until: Infinity, price: '4 900 ₽/мес', note: '4 900 ₽ в месяц — отменить в любой момент', link: 'https://t.me/tribute/app?startapp=s11nx' },
+];
+
+/* --- TIMER --- */
+try { if (!localStorage.getItem(TIMER_KEY)) localStorage.setItem(TIMER_KEY, Date.now().toString()); } catch(e){}
+function elapsed(){ try{ return Date.now() - parseInt(localStorage.getItem(TIMER_KEY)||'0'); }catch(e){ return 0; } }
+function tierIdx(){ const e=elapsed(); for(let i=0;i<TIERS.length;i++) if(e<TIERS[i].until) return i; return TIERS.length-1; }
+function pad(n){ return String(n).padStart(2,'0'); }
+function fmtRem(ms){ if(ms<=0) return null; const s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor((s%86400)/3600),m=Math.floor((s%3600)/60),sec=s%60; return d>0?d+'д '+pad(h)+':'+pad(m)+':'+pad(sec):pad(h)+':'+pad(m)+':'+pad(sec); }
+
+/* --- LOAD DATA --- */
+let answers=[], moneyK=1;
+let hasData=false;
+try{
+  const raw=localStorage.getItem(STORE);
+  if(raw){ const d=JSON.parse(raw); if(d&&Array.isArray(d.a)&&d.a.length>0){ answers=d.a; moneyK=d.k||1; hasData=true; } }
+}catch(e){}
+
+/* --- FALLBACK: ?d=code --- */
+let urlCode='';
+try{ urlCode=new URLSearchParams(location.search).get('d')||''; }catch(e){}
+
+if(!hasData && !urlCode){
+  location.href='../';
+}
+
+/* --- HELPERS (from diagnostic engine) --- */
+function fmt(n){ return Math.round(n).toLocaleString('ru-RU'); }
+function usd(rub){
+  const r=(typeof CONFIG!=='undefined'&&CONFIG.usdRate)||80;
+  const d=rub/r;
+  if(d<10) return d.toFixed(1).replace('.',',').replace(',0','')+'$';
+  let x=d;
+  if(x>=1000) x=Math.round(x/100)*100;
+  else if(x>=100) x=Math.round(x/10)*10;
+  else x=Math.round(x);
+  return x.toLocaleString('ru-RU')+'$';
+}
+function plural(n,a,b,c){ const x=n%10,y=n%100; if(x===1&&y!==11)return a; if(x>=2&&x<=4&&(y<12||y>14))return b; return c; }
+function subst(t){
+  if(!t||t.indexOf('{что}')<0) return t;
+  const m=mainProduct();
+  const w=(typeof PRODUCT_WORDS!=='undefined'&&PRODUCT_WORDS[m])||'запас никотина';
+  return t.split('{что}').join(w);
+}
+function val(key){
+  if(!QUESTIONS) return null;
+  const i=QUESTIONS.findIndex(q=>q.key===key);
+  if(i<0||answers[i]==null) return null;
+  const o=QUESTIONS[i].a[answers[i]];
+  return o?(o.v!==undefined?o.v:answers[i]):null;
+}
+function mainProduct(){
+  if(!QUESTIONS) return null;
+  const i=QUESTIONS.findIndex(q=>q.key==='product');
+  if(i<0||answers[i]==null) return null;
+  const o=QUESTIONS[i].a[answers[i]];
+  return o?o.v:null;
+}
+function isActive(qi){
+  if(!QUESTIONS) return false;
+  const q=QUESTIONS[qi], main=mainProduct();
+  if(q.product){ if(main===null) return false; if(main==='mix') return true; return q.product!==main; }
+  if(q.onlyProduct){ if(main===null) return false; if(main==='mix') return q.onlyProduct==='cig'; return q.onlyProduct===main; }
+  if(q.showIf){ const v=val(q.showIf.key); if(v===null) return false; if(q.showIf.not!==undefined&&v===q.showIf.not) return false; if(q.showIf.is!==undefined&&v!==q.showIf.is) return false; }
+  return true;
+}
+function activeList(){ if(!QUESTIONS) return []; const out=[]; for(let i=0;i<QUESTIONS.length;i++) if(isActive(i)) out.push(i); return out; }
+function stageOf(){
+  const years=val('years'),carry=val('carry'),alone=val('alone'),dry=val('dry'),control=val('control'),perday=val('perday'),morning=val('morning');
+  let third=0;
+  if(dry==='never') third++; if(perday>=20) third++; if(control==='lost') third++; if(morning!==null&&morning<=30) third++; if(carry==='always') third++; if(alone==='always') third++;
+  if(third>=4) return 3;
+  let first=0;
+  if(years!==null&&years<1) first++; if(carry==='no') first++; if(alone==='social') first++; if(dry==='long') first++;
+  if(first>=3) return 1;
+  return 2;
+}
+function score(){
+  if(!CATEGORIES||!QUESTIONS) return [];
+  const raw={},max={};
+  CATEGORIES.forEach(c=>{raw[c.code]=0;max[c.code]=0;});
+  activeList().forEach(i=>{
+    const q=QUESTIONS[i];
+    CATEGORIES.forEach(c=>{
+      let b=0;
+      if(q.multi){ const v=q.a.map(o=>(o.s&&o.s[c.code])||0).sort((x,y)=>y-x); b=(v[0]||0)+(v[1]||0); }
+      else q.a.forEach(o=>{const v=(o.s&&o.s[c.code])||0;if(v>b)b=v;});
+      max[c.code]+=b;
+    });
+    const picked=q.multi?(Array.isArray(answers[i])?answers[i]:[]):[answers[i]];
+    picked.forEach(n=>{ const ch=q.a[n]; if(ch&&ch.s) for(const k in ch.s) if(raw[k]!==undefined) raw[k]+=ch.s[k]; });
+  });
+  const list=CATEGORIES.map(c=>{ let pct=Math.round((raw[c.code]/(max[c.code]||1))*100); pct=Math.max(8,Math.min(94,pct)); return {code:c.code,label:c.label,icon:c.icon,pct:pct,raw:raw[c.code]}; });
+  list.sort((a,b)=>b.pct-a.pct||b.raw-a.raw);
+  if(list[0]&&list[0].pct<72) list[0].pct=72+(list[0].raw%9);
+  return list;
+}
+function moneyCalc(){
+  const P=['cig','vape','heat','snus','hookah'];
+  let units=null,price=null;
+  P.forEach(p=>{ const u=val('use_'+p); if(u!==null&&units===null) units=u; const c=val('price_'+p); if(c!==null&&price===null) price=c; });
+  if(units===null) units=1; if(price===null) price=220;
+  const years=val('years')||7;
+  const day=units*price*moneyK;
+  return {month:day*30,year:day*365,total:day*365*years,years:years,day:day};
+}
+function riskCard(){
+  if(typeof RISK==='undefined'||!RISK.tiers) return '';
+  const y=val('years'); if(y===null) return '';
+  const t=RISK.tiers.find(x=>y>=x.minYears); if(!t) return '';
+  const срок=y<1?'меньше года':fmt(y)+' '+plural(Math.round(y),'год','года','лет');
+  return '<div class="card warn"><h3>'+RISK.title+'</h3>'+
+    '<p>Вы употребляете никотин '+срок+'. '+t.lead+'</p>'+
+    '<ul class="risk">'+t.items.map(i=>'<li>'+i+'</li>').join('')+'</ul>'+
+    '<p class="risk-note">'+RISK.note+'</p></div>';
+}
+function goal(n){ if(window.ym) try{ ym(110722782,'reachGoal',n); }catch(e){} }
+
+/* --- RENDER --- */
+function render(){
+  let list, topCode, prof;
+  if(hasData){
+    list=score(); topCode=list[0].code;
+  } else {
+    topCode=urlCode||'habit'; list=[];
+  }
+  prof=(typeof PROFILES!=='undefined'&&PROFILES[topCode])||PROFILES.habit;
+
+  const st=stageOf();
+  const S=(typeof STAGES!=='undefined'&&STAGES[st])||{n:'',lead:'',body:'',warn:''};
+  const m=moneyCalc();
+
+  const bars=list.length>0
+    ? '<div class="bars">'+list.slice(0,5).map((c,i)=>'<div class="bar-row'+(i===0?' top':'')+'"><div class="bar-head"><span class="bar-name">'+c.icon+' '+c.label+'</span><span class="bar-pct">'+c.pct+'%</span></div><div class="bar-track"><i data-w="'+c.pct+'"></i></div></div>').join('')+'</div>'
+    : '';
+
+  const steps=METHOD.steps.map((s,i)=>
+    '<div class="mstep"><div class="mstep-n"><span class="mstep-num">'+(i+1)+'</span><span class="mstep-cat">'+s.n+'</span></div><h4>'+s.t+'</h4>'+(s.sub?'<p class="mstep-sub">'+s.sub+'</p>':'')+'<p>'+s.d+'</p>'+(s.d15?'<p>'+s.d15+'</p>':'')+(s.d2?'<p class="mstep-you">'+s.d2+'</p>':'')+'</div>').join('');
+
+  const moneyBlock=hasData
+    ? '<div class="card"><h3>За это время вы отдали</h3>'+
+        '<p style="font-size:1.5rem;font-weight:800;color:var(--acc);letter-spacing:-.02em">'+fmt(m.total)+' ₽ <span class="usd-inline">≈ '+usd(m.total)+'</span></p>'+
+        '<p>И продолжаете отдавать примерно '+fmt(m.month)+' ₽ <span class="usd-inline">≈ '+usd(m.month)+'</span> каждый месяц.</p></div>'+riskCard()
+    : '';
+
+  const html=
+    '<div class="eyebrow">Ваш результат</div>'+
+    '<h1>'+prof.title+'</h1>'+
+    bars+
+    '<div class="card"><h3>Что это значит</h3><p>'+prof.verdict+'</p></div>'+
+    (val('tries')==='none'&&prof.whyNone
+      ?'<div class="card"><h3>Где это обычно срывается</h3><p>'+prof.whyNone+'</p></div>'
+      :'<div class="card"><h3>Почему срывались раньше</h3><p>'+prof.why+'</p></div>')+
+    (S.n?'<div class="card warn"><span class="stage-badge">'+S.n+'</span><h3 style="margin-top:2px">'+S.lead+'</h3><p>'+S.body+'</p><p><strong>'+S.warn+'</strong></p></div>':'')+
+    moneyBlock+
+    '<div class="card"><h3>Что с этим делаем</h3><ul class="plan">'+prof.plan.map(p=>'<li><b>—</b><span>'+p+'</span></li>').join('')+'</ul></div>'+
+    '<div class="method-head"><h2>'+METHOD.title+'</h2><p>'+METHOD.lead+'</p></div>'+
+    steps+
+    '<div class="card"><h3>Сработает ли это у вас</h3><p>'+prof.fit+'</p></div>'+
+    '<div class="card warn"><h3>'+METHOD.honest.title+'</h3><p>'+METHOD.honest.body+'</p><p><strong>'+METHOD.honest.body2+'</strong></p></div>'+
+    '<div class="outro"><h2>'+OUTRO.title+'</h2><p>'+OUTRO.body+'</p></div>'+
+    '<div class="alone">'+
+      (OUTRO.points||[]).map((p,i)=>'<div class="al"><span class="al-n">'+(i+1)+'</span><span class="al-t"><b>'+p.t+'</b><span>'+p.d+'</span></span></div>').join('')+
+    '</div>'+
+    (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
+    '<div class="cta-wrap">'+
+      '<a class="btn" id="buy-btn" href="'+TIERS[0].link+'" target="_blank" rel="noopener">Войти в клуб — '+TIERS[0].price+'</a>'+
+      '<div class="timer-block" id="timer-block"></div>'+
+      '<p class="price-note" id="price-note">'+TIERS[0].note+'</p>'+
+      '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
+    '</div>';
+
+  document.getElementById('root').innerHTML='<div class="wrap">'+html+'</div>';
+
+  setTimeout(()=>{
+    document.querySelectorAll('.bar-track i').forEach((el,i)=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},90+i*110));
+    goal('gotov_razbor_view');
+    const btn=document.getElementById('buy-btn');
+    if(btn) btn.addEventListener('click',()=>goal('gotov_club_click'));
+  },220);
+
+  tickTimer();
+  setInterval(tickTimer,1000);
+}
+
+function tickTimer(){
+  const idx=tierIdx();
+  const tier=TIERS[idx];
+  const btn=document.getElementById('buy-btn');
+  const note=document.getElementById('price-note');
+  const timerBlock=document.getElementById('timer-block');
+  if(btn){ btn.href=tier.link; btn.textContent='Войти в клуб — '+tier.price; }
+  if(note) note.textContent=tier.note;
+  if(!timerBlock) return;
+  if(idx===TIERS.length-1){ timerBlock.innerHTML=''; return; }
+  const rem=TIERS[idx].until-elapsed();
+  const t=fmtRem(rem)||'00:00:00';
+  timerBlock.innerHTML='<span class="timer-badge">Цена вырастет через <b>'+t+'</b></span><span class="timer-next">Следующая: '+TIERS[idx+1].price+'</span>';
+}
+
+if(typeof CONFIG==='undefined'||typeof PROFILES==='undefined'){
+  document.getElementById('root').innerHTML='<div class="loader"><p>Ошибка загрузки. <a href="../" style="color:var(--acc)">Пройти диагностику заново</a></p></div>';
+} else {
+  render();
+}
+
+})();
+</script>
+</body>
+</html>
