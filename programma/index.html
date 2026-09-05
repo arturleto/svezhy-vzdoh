@@ -512,6 +512,14 @@ const CONFIG = {
   var ab = $('ask-btn'); if (ab) { ab.href = withUtm(CONFIG.askUrl); ab.target = '_blank'; ab.rel = 'noopener'; }
   set('pay-btn', 'Забронировать место за ' + CONFIG.price);
 
+  /* ── трекинг из Telegram-воронки (?uid=) ── */
+  try {
+    var tgUid = new URLSearchParams(location.search).get('uid');
+    if (tgUid && pb) {
+      pb.href = 'http://178.105.228.42:8080/go?uid=' + encodeURIComponent(tgUid) + '&to=club';
+    }
+  } catch(e){}
+
   /* ── подхват диагноза из диагностики (?d=stress) ── */
   var PROFILES = {
     stress: {
