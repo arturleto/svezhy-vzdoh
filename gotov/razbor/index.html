@@ -102,6 +102,11 @@ h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-
 .privacy{text-align:center;font-size:.77rem;color:var(--w70);margin-top:8px;line-height:1.5}
 
 
+/* AVATAR */
+.avatar-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:4px}
+.avatar-ring{width:72px;height:72px;border-radius:50%;background:var(--acc-dim);border:2px solid var(--acc-line);display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:900;color:var(--acc);letter-spacing:-.02em;flex-shrink:0}
+.avatar-name{font-size:.9rem;color:var(--w70);font-weight:500}
+
 /* LOADER */
 .loader{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:18px;text-align:center;padding:24px 20px}
 .loader p{color:var(--w70);font-size:.95rem}
@@ -123,8 +128,13 @@ h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-
 const STORE = 'vzdoh_gotov_v1';
 
 /* --- URL PARAMS --- */
-let fullMode = false;
-try{ fullMode = new URLSearchParams(location.search).has('full'); }catch(e){}
+let fullMode = false, urlUid = '', urlName = '';
+try{
+  const p = new URLSearchParams(location.search);
+  fullMode = p.has('full');
+  urlUid = p.get('uid') || '';
+  urlName = p.get('name') || '';
+}catch(e){}
 
 /* --- LOAD DATA --- */
 let answers=[], moneyK=1;
@@ -255,7 +265,7 @@ function render(){
     /* STATE 1: только бары + инструкция + кнопка в бот */
     const botLink='https://t.me/SvezhiyVzdohBot?start=gotov_'+topCode;
     html=
-      '<div class="eyebrow">Ваш результат</div>'+
+      '<div class="eyebrow">ВАШ РЕЗУЛЬТАТ</div>'+
       '<h1>'+prof.title+'</h1>'+
       bars+
       '<div class="card" style="gap:16px">'+
@@ -276,8 +286,16 @@ function render(){
           '<p style="font-size:1.5rem;font-weight:800;color:var(--acc);letter-spacing:-.02em">'+fmt(m.total)+' ₽ <span class="usd-inline">≈ '+usd(m.total)+'</span></p>'+
           '<p>И продолжаете отдавать примерно '+fmt(m.month)+' ₽ <span class="usd-inline">≈ '+usd(m.month)+'</span> каждый месяц.</p></div>'+riskCard()
       : '';
+    const initial=urlName?urlName.trim()[0].toUpperCase():'🌿';
+    const avatarBlock=urlName
+      ? '<div class="avatar-wrap"><div class="avatar-ring">'+initial+'</div><span class="avatar-name">'+urlName+'</span></div>'
+      : '';
+    const clubHref=urlUid
+      ? 'http://178.105.228.42:8080/go?uid='+urlUid+'&to=gotov_club'
+      : '../club/';
     html=
-      '<div class="eyebrow">Ваш результат</div>'+
+      '<div class="eyebrow">ВАШ РЕЗУЛЬТАТ</div>'+
+      avatarBlock+
       '<h1>'+prof.title+'</h1>'+
       bars+
       '<div class="card"><h3>Что это значит</h3><p>'+prof.verdict+'</p></div>'+
@@ -297,7 +315,7 @@ function render(){
       '</div>'+
       (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
       '<div class="cta-wrap">'+
-        '<a class="btn" id="buy-btn" href="../club/">Войти в клуб</a>'+
+        '<a class="btn" id="buy-btn" href="'+clubHref+'">Программа «Свежий Вздох»</a>'+
         '<p class="price-note">Закрытый клуб — бросаем вместе, без ломки и стресса</p>'+
         '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
       '</div>';
