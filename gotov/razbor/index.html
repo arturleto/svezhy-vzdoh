@@ -277,7 +277,7 @@ function render(){
       '<a class="btn" href="'+botLink+'" target="_blank" rel="noopener" style="margin-top:4px">Получить разбор и метод</a>'+
       '<p class="price-note" style="text-align:center">Откроется Telegram — это бесплатно</p>';
   } else {
-    /* STATE 2: полный разбор + метод + кнопка на клуб (без цены и таймера) */
+    /* STATE 2: полный разбор + метод + кнопка на сообщество (без цены и таймера) */
     const st=stageOf();
     const S=(typeof STAGES!=='undefined'&&STAGES[st])||{n:'',lead:'',body:'',warn:''};
     const m=moneyCalc();
@@ -321,7 +321,7 @@ function render(){
       (OUTRO.after?'<p class="outro-after">'+OUTRO.after+'</p>':'')+
       '<div class="cta-wrap">'+
         '<a class="btn" id="buy-btn" href="'+clubHref+'">Программа «Свежий Вздох»</a>'+
-        '<p class="price-note">Закрытый клуб — бросаем вместе, без ломки и стресса</p>'+
+        '<p class="price-note">Сообщество «Свежий Вздох»: бросаем вместе, без ломки и стресса</p>'+
         '<p class="privacy">Диагностика носит информационный характер и не является медицинским заключением.</p>'+
       '</div>';
   }
