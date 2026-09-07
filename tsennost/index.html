@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Ценность метода · Свежий Вздох</title>
+<style>
+:root{
+  --paper:#FBFAF7; --ink:#15211B; --ink-soft:#4A6157; --line:#E2E8E4;
+  --green-deep:#1A5C3E; --green-mid:#2A7A55; --green-pale:#E7F5EC;
+  --amber:#B8781F; --amber-bg:#FDF6E7; --amber-line:#F0DCAF;
+  --red:#B0342A; --red-bg:#FCF0EE; --red-line:#F0CFCA;
+  --sans:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:18px;line-height:1.7;-webkit-text-size-adjust:100%;}
+
+.top{position:sticky;top:0;z-index:10;background:rgba(251,250,247,.94);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);}
+.top-in{max-width:760px;margin:0 auto;padding:12px 22px;display:flex;
+  align-items:center;justify-content:space-between;gap:14px;}
+.top-title{font-size:.86rem;font-weight:800;color:var(--green-deep);}
+.top-time{font-size:.82rem;font-weight:700;color:var(--ink-soft);
+  background:var(--green-pale);padding:5px 11px;border-radius:50px;white-space:nowrap;}
+
+.wrap{max-width:760px;margin:0 auto;padding:34px 22px 90px;}
+
+.hero{padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:32px;}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--green-mid);margin-bottom:12px;}
+h1{font-size:clamp(1.8rem,5.5vw,2.5rem);line-height:1.12;font-weight:900;
+  letter-spacing:-.03em;margin-bottom:14px;text-wrap:balance;}
+.lead{font-size:1rem;color:var(--ink-soft);line-height:1.6;}
+
+h2{font-size:clamp(1.3rem,4vw,1.7rem);font-weight:900;letter-spacing:-.025em;
+  line-height:1.15;margin:48px 0 16px;text-wrap:balance;}
+h2:first-of-type{margin-top:34px;}
+h3{font-size:1.05rem;font-weight:800;margin:26px 0 10px;letter-spacing:-.01em;}
+p{margin-bottom:16px;}
+p:last-child{margin-bottom:0;}
+strong{font-weight:800;}
+
+.core{background:var(--green-deep);color:#fff;border-radius:20px;padding:30px 26px;
+  margin:26px 0;}
+.core .k{font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--green-pale);margin-bottom:12px;}
+.core p{font-size:clamp(1.15rem,3.6vw,1.42rem);line-height:1.4;font-weight:800;
+  letter-spacing:-.02em;color:#fff;margin:0;}
+.core p + p{margin-top:14px;font-size:1rem;font-weight:500;
+  color:rgba(255,255,255,.8);letter-spacing:0;line-height:1.6;}
+
+.four{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+.el{background:#fff;border:1px solid var(--line);border-left:4px solid var(--green-mid);
+  border-radius:14px;padding:18px 20px;}
+.el .n{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green-mid);margin-bottom:6px;}
+.el h4{font-size:1.02rem;font-weight:800;margin-bottom:6px;}
+.el p{font-size:.94rem;color:var(--ink-soft);margin:0;}
+
+.vlist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:18px 0;}
+.vlist li{background:#fff;border:1px solid var(--line);border-radius:13px;
+  padding:15px 18px 15px 50px;position:relative;font-size:.96rem;line-height:1.55;}
+.vlist li::before{content:counter(v);counter-increment:v;position:absolute;left:15px;top:15px;
+  width:24px;height:24px;border-radius:7px;background:var(--green-pale);color:var(--green-deep);
+  font-size:.76rem;font-weight:900;display:flex;align-items:center;justify-content:center;}
+.vlist{counter-reset:v var(--start,0);}
+.vlist li b{color:var(--ink);font-weight:800;}
+.vlist li span{display:block;color:var(--ink-soft);font-size:.9rem;margin-top:3px;}
+
+.quote{background:var(--amber-bg);border:1px solid var(--amber-line);border-radius:14px;
+  padding:18px 20px;margin:14px 0;font-size:1.02rem;line-height:1.55;font-weight:700;}
+.quote small{display:block;font-size:.82rem;font-weight:600;color:var(--amber);
+  margin-top:8px;letter-spacing:.02em;}
+
+.warn{background:var(--red-bg);border:1px solid var(--red-line);border-left:4px solid var(--red);
+  border-radius:14px;padding:18px 20px;margin:16px 0;}
+.warn h3{margin-top:0;color:var(--red);font-size:1rem;}
+.warn ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.warn li{position:relative;padding-left:17px;font-size:.94rem;line-height:1.5;color:#6B2F28;}
+.warn li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;
+  border-radius:50%;background:var(--red);}
+
+.note{background:#fff;border:1px solid var(--line);border-left:3px solid var(--green-mid);
+  border-radius:12px;padding:16px 18px;margin:20px 0;font-size:.93rem;
+  color:var(--ink-soft);line-height:1.6;}
+.note h3{margin-top:0;font-size:.98rem;color:var(--ink);}
+.note ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:8px;}
+.note li{position:relative;padding-left:17px;}
+.note li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;
+  border-radius:50%;background:var(--green-mid);}
+
+.foot{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);
+  font-size:.84rem;color:#8A9C93;line-height:1.6;}
+code{background:#F2F5F3;padding:1px 5px;border-radius:4px;font-size:.88em;}
+@media print{.top{position:static}body{font-size:11pt;background:#fff}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-in">
+    <span class="top-title">Ценность метода</span>
+    <span class="top-time">24 пункта</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Свежий Вздох · 07.09.2026</div>
+    <h1>Вся ценность, которую мы продаём</h1>
+    <p class="lead">Собрано из трёх твоих голосовых от 7 сентября плюс то, что уже зафиксировано в канонах проекта. Это рабочий инвентарь: отсюда берём формулировки для сайта, бота и писем.</p>
+  </div>
+
+  <h2>Ядро в одной фразе</h2>
+
+  <div class="core">
+    <div class="k">Главное</div>
+    <p>Мы продаём не «как бросить». Мы продаём «как не вернуться».</p>
+    <p>Бросить пробовал почти каждый курильщик. Проблема не в том, чтобы бросить. Проблема в том, что через неделю, месяц или год человек снова закуривает. Все продают первый шаг. Мы единственные, кто строит систему на второй.</p>
+  </div>
+
+  <p>Из этого ядра растут три опоры, и каждую надо проговаривать отдельно:</p>
+
+  <div class="quote">
+    1. Выйти <b>без ломки</b>, а не перетерпеть.<br>
+    2. Не идти на попытку <b>вслепую</b>, а сдать экзамен и знать, что готов.<br>
+    3. Не остаться <b>одному</b> после того, как бросил.
+  </div>
+
+  <h2>Четыре элемента метода</h2>
+
+  <p>Чтобы победить врага, его нужно знать. Чтобы победить зависимость, её нужно изучить. Для этого работают четыре элемента, и только вместе.</p>
+
+  <div class="four">
+    <div class="el">
+      <div class="n">Элемент 1</div>
+      <h4>Биохакинг</h4>
+      <p>Разбираешься, как устроена твоя собственная химия. Ацетилхолин, рецепторы, дофамин, стадии. Тяга перестаёт быть загадкой и становится процессом, у которого есть начало и конец.</p>
+    </div>
+    <div class="el">
+      <div class="n">Элемент 2</div>
+      <h4>Психология</h4>
+      <p>Вынимаешь чужие установки и ставишь на их место мышление некурящего. Прорабатывается не разово, а систематически.</p>
+    </div>
+    <div class="el">
+      <div class="n">Элемент 3</div>
+      <h4>Намерение через медитацию</h4>
+      <p>Это то, что даёт выход без ломки. Организм получает команду перестать ждать никотин извне и начать вырабатывать свой ацетилхолин.</p>
+    </div>
+    <div class="el">
+      <div class="n">Элемент 4</div>
+      <h4>Простройка новых нейронных связей</h4>
+      <p>После отказа связь некурящего человека надо укреплять, пока она не вытеснит связь курильщика. Для этого идёт серия материалов по расписанию.</p>
+    </div>
+  </div>
+
+  <h2>Инвентарь: что человек реально получает</h2>
+
+  <h3>Материальное, то что можно потрогать</h3>
+  <ul class="vlist" style="--start:0">
+    <li><b>Курс врача-нарколога по биохимии зависимости</b><span>Простым языком, понятно любому. Не научпоп, а система.</span></li>
+    <li><b>Разбор психологии и установок</b><span>Аллен Карр плюс работа с личными убеждениями и триггерами.</span></li>
+    <li><b>Видео на 40 минут про намерение и медитацию Дня Х</b><span>Технически и подробно: какой настрой, что делать, о чём думать, как сформулировать.</span></li>
+    <li><b>Техника ритуала</b><span>Манифест на листе, фото, сжигание. Обязательная часть метода.</span></li>
+    <li><b>Экзамен на знание зависимости</b><span>Не «почитал и всё». Проверка, что ты действительно готов.</span></li>
+    <li><b>Лицензия на право бросить курить</b><span>Сертификат, который выдаётся после сданного экзамена.</span></li>
+    <li><b>Отдельный блок «как не сорваться»</b><span>Инструменты на момент, когда накрыло.</span></li>
+    <li><b>Серия материалов после отказа</b><span>Видео, статьи, факты. Выдаются порционно по расписанию, а не сваливаются кучей.</span></li>
+    <li><b>Телеграм-бот, вокруг которого всё построено</b><span>Хранит дату отказа, хранит твоё «зачем», напоминает, ведёт по шагам.</span></li>
+    <li><b>Живой чат с людьми, которые идут туда же</b><span>Можно спросить, поделиться, увидеть чужое движение.</span></li>
+    <li><b>Личная поддержка Артура</b><span>Отвечает сам, а не служба поддержки.</span></li>
+  </ul>
+
+  <h3>Состояние, то ради чего всё затевается</h3>
+  <ul class="vlist" style="--start:11">
+    <li><b>Выход без ломки</b><span>Не «легче перетерпеть», а вообще без неё. Сознание чистое, ты дееспособен.</span></li>
+    <li><b>Ты не срываешься на близких</b><span>Ни раздражительности, ни трёх дней, когда с тобой невозможно находиться рядом.</span></li>
+    <li><b>Без зажора и набора веса</b><span>Не приходится заедать снеками, чипсами и шоколадом.</span></li>
+    <li><b>Ты продолжаешь работать</b><span>Не выпадаешь из жизни на неделю. Фокус и внимание остаются при тебе.</span></li>
+    <li><b>Понимание вместо страха</b><span>Ты узнаёшь тягу в лицо и знаешь, чем её гасить. Тем, что понимаешь, управляешь.</span></li>
+  </ul>
+
+  <h3>Экономия, то за что платят молча</h3>
+  <ul class="vlist" style="--start:16">
+    <li><b>Больше десяти лет чужого поиска</b><span>Артур собирал это годами. Тебе не нужно проходить этот путь заново.</span></li>
+    <li><b>Отобранная информация</b><span>Половина того, что написано про отказ от курения, либо от незнания, либо будто сделана табачными компаниями. Фильтровать не придётся.</span></li>
+    <li><b>Сэкономленные попытки</b><span>Каждая провальная попытка это не только месяцы, это вера в себя. Экзамен нужен, чтобы не тратить их впустую.</span></li>
+    <li><b>Деньги</b><span>Подписка стоит меньше, чем ты тратишь на зависимость каждый месяц.</span></li>
+  </ul>
+
+  <h3>Уникальное, чего нет ни у кого</h3>
+  <ul class="vlist" style="--start:20">
+    <li><b>Экзамен и лицензия как шлагбаум перед Днём Х</b><span>Никто больше не проверяет готовность до попытки. Все просто говорят «бросай».</span></li>
+    <li><b>Система после отказа, а не только до</b><span>Главная дыра всего рынка. Все продают первый шаг, никто не держит человека дальше.</span></li>
+    <li><b>Метод собран из личного опыта, а не из книжки</b><span>24 года курения, больше двадцати попыток, последние три без ломки.</span></li>
+    <li><b>Автор любил курить и всё равно вышел</b><span>Это снимает возражение «тебе просто не нравилось». Значит, работает и для тех, кто любит.</span></li>
+  </ul>
+
+  <h2>Готовые формулировки</h2>
+  <p>Можно брать как есть на сайт, в бота и в письма.</p>
+
+  <div class="quote">
+    Ты платишь не за информацию. Ты платишь за то, что тебе не придётся искать её десять лет.
+    <small>для блока про цену</small>
+  </div>
+
+  <div class="quote">
+    Экзамен нужен не нам. Он нужен тебе, чтобы не потратить впустую ещё одну попытку.
+    <small>для блока про экзамен</small>
+  </div>
+
+  <div class="quote">
+    Бросить пробовал каждый. Вопрос не в том, как бросить. Вопрос в том, как не вернуться.
+    <small>для первого экрана сайта</small>
+  </div>
+
+  <div class="quote">
+    Без ломки это не про комфорт. Это про вероятность. Люди срываются именно в ломке, а если её нет, то и срываться не на чем.
+    <small>для блока про метод</small>
+  </div>
+
+  <div class="quote">
+    Чтобы победить врага, его нужно знать. Пока ты не понимаешь, как устроена зависимость, ты воюешь с тем, чего не видишь.
+    <small>для первого экрана сайта</small>
+  </div>
+
+  <div class="quote">
+    Я любил курить. Мне нравился запах, нравился процесс, нравилась вся культура вокруг. И всё равно вышел. Значит, дело не в том, любишь ты или нет.
+    <small>для блока с историей</small>
+  </div>
+
+  <h2>Где ценность сейчас теряется</h2>
+
+  <div class="warn">
+    <h3>Три дыры, которые надо закрыть</h3>
+    <ul>
+      <li><strong>Нет ни одного чужого результата.</strong> Вся ценность держится на одном человеке. Как только появится хотя бы три живых истории участников, продажа усилится сильнее, чем от любого текста. Это самая большая дыра.</li>
+      <li><strong>Нет цифр.</strong> Сколько уроков, сколько видео, сколько материалов в серии после отказа, на сколько недель она рассчитана. Без чисел «огромное количество материалов» звучит как ничто. Дай цифры, и я вставлю их везде.</li>
+      <li><strong>«99 процентов» на сайте.</strong> Ты сам назвал это туфтой. Плюс это обещание процента результата в теме здоровья, юридический риск. Убрать и заменить на механику: экзамен, лицензия, система после.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <h3>Что ещё стоит вытащить в ценность, но у меня нет данных</h3>
+    <ul>
+      <li>Сколько человек уже внутри сообщества</li>
+      <li>Есть ли материалы на первые 72 часа и на первый месяц отдельно</li>
+      <li>Гарантия возврата: три дня и 100 процентов, это ещё в силе?</li>
+      <li>Что именно бот делает сам, а что человек должен инициировать</li>
+    </ul>
+    <p>Скажи по каждому пункту, и я допишу. Придумывать не буду.</p>
+  </div>
+
+  <div class="foot">
+    Собрано 07.09.2026 из расшифровки трёх голосовых.<br>
+    Исходники: <code>1. STOP NICOTINE / 11. ВОРОНКА / Ценность метода / РАСШИФРОВКА_ценность.md</code><br>
+    Сценарий видео: <a href="../scenario/">arturleto.github.io/svezhy-vzdoh/scenario/</a>
+  </div>
+
+</div>
+</body>
+</html>
