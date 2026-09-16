@@ -21,7 +21,7 @@
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1024">
 <meta property="og:image:alt" content="Женщина выходит из своей прошлой версии, которая всё ещё на нитях зависимости">
-<meta property="og:url" content="https://arturleto.github.io/svezhy-vzdoh/gotov/">
+<meta property="og:url" content="https://arturleto.github.io/svezhy-vzdoh/vzdoh/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -355,7 +355,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;opa
 const stage=document.getElementById('stage'), topbar=document.getElementById('topbar');
 const fill=document.getElementById('fill'), stepn=document.getElementById('stepn'), backBt=document.getElementById('back');
 
-const STORE='vzdoh_gotov_v1';
+const STORE='vzdoh_v1';
 const LETTER={habit:'h',psycho:'p',stress:'s',physical:'f',social:'o',fear_break:'b',fear_weight:'w',low_belief:'l',focus:'c'};
 
 let answers=[], pos=-1, moneyK=1;
@@ -592,7 +592,7 @@ function chrome(){
 /* ─── ЭКРАНЫ ─── */
 function screenIntro(){
   pos=-1; save(); chrome();
-  try{ if(!localStorage.getItem('vzdoh_gotov_start')) localStorage.setItem('vzdoh_gotov_start',Date.now().toString()); }catch(e){}
+  try{ if(!localStorage.getItem('vzdoh_start')) localStorage.setItem('vzdoh_start',Date.now().toString()); }catch(e){}
   // автор ушёл под кнопку и стал подписью в одну строку: экран про человека,
   // а не про меня — но лицо перед первым вопросом всё равно нужно
   const author = INTRO.author

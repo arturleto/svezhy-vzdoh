@@ -14,7 +14,7 @@
 <title>Ваш разбор — Свежий Вздох</title>
 <meta name="description" content="Ваш персональный разбор: что держит на никотине, ваша стадия, и метод выхода без ломки.">
 <meta property="og:title" content="Ваш разбор — Свежий Вздох">
-<meta property="og:url" content="https://arturleto.github.io/svezhy-vzdoh/gotov/razbor/">
+<meta property="og:url" content="https://arturleto.github.io/svezhy-vzdoh/vzdoh/razbor/">
 <meta property="og:type" content="website">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -126,7 +126,7 @@ h1{font-size:clamp(1.7rem,6.4vw,2.4rem);font-weight:800;line-height:1.13;letter-
 (function(){
 'use strict';
 
-const STORE = 'vzdoh_gotov_v1';
+const STORE = 'vzdoh_v1';
 
 /* --- URL PARAMS --- */
 let fullMode = false, urlUid = '', urlName = '', urlPhoto = '';
@@ -265,7 +265,7 @@ function render(){
 
   if(!fullMode){
     /* STATE 1: только бары + инструкция + кнопка в бот */
-    const botLink='https://t.me/SvezhiyVzdohBot?start=gotov_'+topCode;
+    const botLink='https://t.me/SvezhiyVzdohBot?start=vzdoh_'+topCode;
     html=
       '<div class="eyebrow">ВАШ РЕЗУЛЬТАТ</div>'+
       '<h1>'+prof.title+'</h1>'+
@@ -296,7 +296,7 @@ function render(){
       ? '<div class="avatar-wrap"><div class="avatar-ring">'+avatarInner+'</div>'+(urlName?'<span class="avatar-name">'+urlName+'</span>':'')+'</div>'
       : '';
     const clubHref=urlUid
-      ? 'http://178.105.228.42:8080/go?uid='+urlUid+'&to=gotov_club'
+      ? 'http://178.105.228.42:8080/go?uid='+urlUid+'&to=vzdoh_club'
       : '../club/';
     html=
       '<div class="eyebrow">ВАШ РЕЗУЛЬТАТ</div>'+
@@ -330,9 +330,9 @@ function render(){
 
   setTimeout(()=>{
     document.querySelectorAll('.bar-track i').forEach((el,i)=>setTimeout(()=>{el.style.width=el.dataset.w+'%';},90+i*110));
-    goal('gotov_razbor_view');
+    goal('vzdoh_razbor_view');
     const btn=document.getElementById('buy-btn');
-    if(btn) btn.addEventListener('click',()=>goal('gotov_club_click'));
+    if(btn) btn.addEventListener('click',()=>goal('vzdoh_club_click'));
   },220);
 }
 
